@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 57da1ef2bec08c74d839bf853e518e7a
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159332
+  packageName: HQ ArchViz Modern Studio Apartment 2
+  packageVersion: 1.1
+  assetPath: Assets/Studio Apartment 2/Shaders/Standard_2sided.shader
+  uploadId: 411943
