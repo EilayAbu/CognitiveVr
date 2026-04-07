@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d4fc12dc9beafa44e9f614b7b6ef70c7
+timeCreated: 1494508219
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 90324
+  packageName: Free Smartphone
+  packageVersion: 1.0
+  assetPath: Assets/Smartphone/screen.mat
+  uploadId: 183267

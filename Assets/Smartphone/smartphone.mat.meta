@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4fb885b0b011ab44b82a6408dd6842d6
+timeCreated: 1453429622
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 90324
+  packageName: Free Smartphone
+  packageVersion: 1.0
+  assetPath: Assets/Smartphone/smartphone.mat
+  uploadId: 183267
