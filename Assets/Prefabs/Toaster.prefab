@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07a7093e1113da345805658b38526fbb, type: 2}
+  - {fileID: 2100000, guid: 46772a7ffc487a544a2baea1010ed44a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 5733805181035016854}
   - component: {fileID: 6917943980249065169}
   - component: {fileID: 8470931729812414946}
+  - component: {fileID: 3236892503609970944}
   m_Layer: 0
   m_Name: TustMakinasi_Low.014
   m_TagString: Untagged
@@ -302,7 +303,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07a7093e1113da345805658b38526fbb, type: 2}
+  - {fileID: 2100000, guid: 0740ac72c11c4f24498b3e97aeb691f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -326,6 +327,29 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3236892503609970944
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987000416558412004}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.0015065334
+  m_Height: 0.00619
+  m_Direction: 1
+  m_Center: {x: 0.010643772, y: 0.03026545, z: 0.00082028843}
 --- !u!1 &2483243541824432272
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +416,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07a7093e1113da345805658b38526fbb, type: 2}
+  - {fileID: 2100000, guid: 0740ac72c11c4f24498b3e97aeb691f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -482,7 +506,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07a7093e1113da345805658b38526fbb, type: 2}
+  - {fileID: 2100000, guid: 1c12897b8fd029940885a64f609c0471, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -572,7 +596,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07a7093e1113da345805658b38526fbb, type: 2}
+  - {fileID: 2100000, guid: 46772a7ffc487a544a2baea1010ed44a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -662,7 +686,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07a7093e1113da345805658b38526fbb, type: 2}
+  - {fileID: 2100000, guid: 46772a7ffc487a544a2baea1010ed44a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -793,7 +817,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07a7093e1113da345805658b38526fbb, type: 2}
+  - {fileID: 2100000, guid: 0740ac72c11c4f24498b3e97aeb691f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -828,6 +852,7 @@ GameObject:
   - component: {fileID: 7252815168127585328}
   - component: {fileID: 859676091580024474}
   - component: {fileID: 6997262765440777142}
+  - component: {fileID: 5997484444712442082}
   m_Layer: 0
   m_Name: TustMakinasi_Low.001
   m_TagString: Untagged
@@ -883,7 +908,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07a7093e1113da345805658b38526fbb, type: 2}
+  - {fileID: 2100000, guid: 46772a7ffc487a544a2baea1010ed44a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -907,6 +932,29 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &5997484444712442082
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7710366942278301384}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.001
+  m_Height: 0.02055803
+  m_Direction: 2
+  m_Center: {x: 0.0135, y: 0.03211, z: 3.2267122e-16}
 --- !u!1 &7758711324650578909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1653681739644135305}
+  - component: {fileID: 5765469713982622144}
   m_Layer: 0
   m_Name: upperTust
   m_TagString: Untagged
@@ -1201,11 +1250,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8479064836275648594}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.0077666356, w: 0.99996984}
+  m_LocalRotation: {x: 0, y: 0, z: 0.42388323, w: 0.90571684}
   m_LocalPosition: {x: 0.01103, y: 0.01281, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8159939404472202710}
   m_Father: {fileID: 4333302533915868467}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.89}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 50.16}
+--- !u!54 &5765469713982622144
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8479064836275648594}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 62
+  m_CollisionDetection: 0
