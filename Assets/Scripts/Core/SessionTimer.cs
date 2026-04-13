@@ -62,7 +62,10 @@ namespace CognitiveVR.Core
         {
             InitializeDefaultEvents();
         }
-
+        private void Start()
+        {
+            StartSession();
+        }
         private void Update()
         {
             if (!_isRunning) return;
