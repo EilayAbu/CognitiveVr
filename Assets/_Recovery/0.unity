@@ -2552,76 +2552,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4807684263483314, guid: a7495604612396e4082f684cbbdccd0c, type: 3}
   m_PrefabInstance: {fileID: 257767798}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &264197517
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 264197518}
-  - component: {fileID: 264197520}
-  - component: {fileID: 264197519}
-  m_Layer: 0
-  m_Name: Slot_2_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &264197518
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264197517}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1115826129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &264197519
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264197517}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4, y: 1.4, z: 1.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &264197520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264197517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f3e8d2c5b94d7a8f6e2c0b9d4e1a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
-  zone: {fileID: 1115826131}
-  grabbable: {fileID: 0}
-  boxCollider: {fileID: 264197519}
-  colliderSize: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!1001 &286311564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2676,120 +2606,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4439540366751122, guid: 75323ed9fb528af4ca8187afd6fcbb5a, type: 3}
   m_PrefabInstance: {fileID: 286311564}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &296235623
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7100000000000000001, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_Name
-      value: Smartphone
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.296
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.0503
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.678
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7100000000000000006, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: _sessionTimer
-      value: 
-      objectReference: {fileID: 965045159}
-    - target: {fileID: 7100000000000000008, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: _sessionTimer
-      value: 
-      objectReference: {fileID: 965045159}
-    - target: {fileID: 7100000000000000008, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: _smsSwapTracker
-      value: 
-      objectReference: {fileID: 296235626}
-    - target: {fileID: 7100000000000001001, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 800463434}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7100000000000000001, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 296235626}
-  m_SourcePrefab: {fileID: 100100000, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
---- !u!1 &296235624 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7100000000000000001, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-  m_PrefabInstance: {fileID: 296235623}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &296235625 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7100000000000000002, guid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f, type: 3}
-  m_PrefabInstance: {fileID: 296235623}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &296235626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296235624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Phone.SmsSwapTracker
-  _sessionTimer: {fileID: 965045159}
-  _backpack: {fileID: 1115826131}
-  _laptop: {fileID: 1535111573}
-  _tablet: {fileID: 1077798304}
-  _verboseLogs: 1
-  _smsAppeared: 0
-  _smsAppearedAt: -1
-  _firstActionAt: -1
-  _laptopRemoved: 0
-  _laptopRemovedAt: -1
-  _tabletPlaced: 0
-  _tabletPlacedAt: -1
-  _swapCompletedReported: 0
 --- !u!1001 &307350662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4095,8 +3911,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -4581,7 +4397,7 @@ MonoBehaviour:
   _maxInteractors: -1
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
-  _pointableElement: {fileID: 1208580750}
+  _pointableElement: {fileID: 0}
   _rigidbody: {fileID: 1208580749}
   _grabSource: {fileID: 0}
   _useClosestPointAsGrabSource: 0
@@ -4604,7 +4420,7 @@ MonoBehaviour:
   _maxInteractors: -1
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
-  _pointableElement: {fileID: 1208580750}
+  _pointableElement: {fileID: 0}
   _rigidbody: {fileID: 1208580749}
   _physicsGrabbable: {fileID: 0}
   _resetGrabOnGrabsUpdated: 1
@@ -5220,36 +5036,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 140354985}
     m_Modifications:
     - target: {fileID: 615159336469116325, guid: c3f47ab5d2e9478b8ab6c0149e52fd91, type: 3}
-      propertyPath: _title
-      value: "\u05DC\u05D4\u05E9\u05D9\u05DD \u05D1\u05EA\u05D9\u05E7"
-      objectReference: {fileID: 0}
-    - target: {fileID: 615159336469116325, guid: c3f47ab5d2e9478b8ab6c0149e52fd91, type: 3}
       propertyPath: _customTaskLines.Array.size
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 615159336469116325, guid: c3f47ab5d2e9478b8ab6c0149e52fd91, type: 3}
       propertyPath: '_customTaskLines.Array.data[0]'
-      value: "\u05D0\u05E8\u05E0\u05E7"
+      value: "\u05DE\u05E9\u05D9\u05DE\u05D4 1"
       objectReference: {fileID: 0}
     - target: {fileID: 615159336469116325, guid: c3f47ab5d2e9478b8ab6c0149e52fd91, type: 3}
       propertyPath: '_customTaskLines.Array.data[1]'
-      value: "\u05DE\u05D7\u05E9\u05D1 \u05E0\u05D9\u05D9\u05D3"
+      value: "\u05DE\u05E9\u05D9\u05DE\u05D4 2"
       objectReference: {fileID: 0}
     - target: {fileID: 615159336469116325, guid: c3f47ab5d2e9478b8ab6c0149e52fd91, type: 3}
       propertyPath: '_customTaskLines.Array.data[2]'
-      value: "\u05D1\u05E7\u05D1\u05D5\u05E7 \u05DE\u05D9\u05DD"
+      value: "\u05DE\u05E9\u05D9\u05D4\u05DE3"
       objectReference: {fileID: 0}
     - target: {fileID: 615159336469116325, guid: c3f47ab5d2e9478b8ab6c0149e52fd91, type: 3}
       propertyPath: '_customTaskLines.Array.data[3]'
-      value: "\u05E6\u05E4\u05EA\u05D7\u05D5\u05EA"
+      value: "\u05DE\u05E9\u05D9\u05D4\u05DE3"
       objectReference: {fileID: 0}
     - target: {fileID: 615159336469116325, guid: c3f47ab5d2e9478b8ab6c0149e52fd91, type: 3}
       propertyPath: '_customTaskLines.Array.data[4]'
-      value: "\u05EA\u05E8\u05D5\u05E4\u05D5\u05EA "
+      value: "\u05DE\u05E9\u05D9\u05D4\u05DE3"
       objectReference: {fileID: 0}
     - target: {fileID: 615159336469116325, guid: c3f47ab5d2e9478b8ab6c0149e52fd91, type: 3}
       propertyPath: '_customTaskLines.Array.data[5]'
-      value: "\u05D5\u05D8\u05D5\u05E1\u05D8"
+      value: "\u05DE\u05E9\u05D9\u05D4\u05DE3"
       objectReference: {fileID: 0}
     - target: {fileID: 2299614895501510854, guid: c3f47ab5d2e9478b8ab6c0149e52fd91, type: 3}
       propertyPath: m_LocalScale.x
@@ -5997,76 +5809,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1758782049}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &610994855
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 610994856}
-  - component: {fileID: 610994858}
-  - component: {fileID: 610994857}
-  m_Layer: 0
-  m_Name: Slot_1_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &610994856
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610994855}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1115826129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &610994857
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610994855}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4, y: 1.4, z: 1.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &610994858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610994855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f3e8d2c5b94d7a8f6e2c0b9d4e1a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
-  zone: {fileID: 1115826131}
-  grabbable: {fileID: 0}
-  boxCollider: {fileID: 610994857}
-  colliderSize: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!1001 &615656693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6666,9 +6408,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6263224468846366218, guid: 9e6ba0e8d8bdc96478362c1dd26a5d53, type: 3}
       insertIndex: -1
       addedObject: {fileID: 481628328}
-    - targetCorrespondingSourceObject: {fileID: 6263224468846366218, guid: 9e6ba0e8d8bdc96478362c1dd26a5d53, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1356721375}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 296529112200259115, guid: 9e6ba0e8d8bdc96478362c1dd26a5d53, type: 3}
       insertIndex: -1
@@ -6676,9 +6415,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 296529112200259115, guid: 9e6ba0e8d8bdc96478362c1dd26a5d53, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1208580749}
-    - targetCorrespondingSourceObject: {fileID: 296529112200259115, guid: 9e6ba0e8d8bdc96478362c1dd26a5d53, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1208580752}
   m_SourcePrefab: {fileID: 100100000, guid: 9e6ba0e8d8bdc96478362c1dd26a5d53, type: 3}
 --- !u!1 &674581016
 GameObject:
@@ -6865,76 +6601,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1247572917}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &703485554
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 703485555}
-  - component: {fileID: 703485557}
-  - component: {fileID: 703485556}
-  m_Layer: 0
-  m_Name: Slot_0_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &703485555
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703485554}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1115826129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &703485556
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703485554}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4, y: 1.4, z: 1.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &703485557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703485554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f3e8d2c5b94d7a8f6e2c0b9d4e1a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
-  zone: {fileID: 1115826131}
-  grabbable: {fileID: 0}
-  boxCollider: {fileID: 703485556}
-  colliderSize: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!1 &706944248
 GameObject:
   m_ObjectHideFlags: 0
@@ -8026,7 +7692,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 296235625}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 100000, guid: 4e9bb637798979a4ca9e30741b7e2c77, type: 3}
       propertyPath: m_Name
@@ -8034,23 +7700,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e9bb637798979a4ca9e30741b7e2c77, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.296
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e9bb637798979a4ca9e30741b7e2c77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.0503
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e9bb637798979a4ca9e30741b7e2c77, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.002
+      value: -1.678
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e9bb637798979a4ca9e30741b7e2c77, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e9bb637798979a4ca9e30741b7e2c77, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e9bb637798979a4ca9e30741b7e2c77, type: 3}
       propertyPath: m_LocalRotation.y
@@ -8085,81 +7751,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e9bb637798979a4ca9e30741b7e2c77, type: 3}
---- !u!4 &800463434 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: 4e9bb637798979a4ca9e30741b7e2c77, type: 3}
-  m_PrefabInstance: {fileID: 800463433}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &804265419
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 804265420}
-  - component: {fileID: 804265422}
-  - component: {fileID: 804265421}
-  m_Layer: 0
-  m_Name: Slot_0_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &804265420
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804265419}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1115826129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &804265421
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804265419}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4, y: 1.4, z: 1.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &804265422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804265419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f3e8d2c5b94d7a8f6e2c0b9d4e1a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
-  zone: {fileID: 1115826131}
-  grabbable: {fileID: 0}
-  boxCollider: {fileID: 804265421}
-  colliderSize: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!1001 &808634944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8280,76 +7871,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1719612998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &815700896
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 815700897}
-  - component: {fileID: 815700899}
-  - component: {fileID: 815700898}
-  m_Layer: 0
-  m_Name: Slot_2_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &815700897
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815700896}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: -4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1115826129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &815700898
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815700896}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4, y: 1.4, z: 1.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &815700899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815700896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f3e8d2c5b94d7a8f6e2c0b9d4e1a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
-  zone: {fileID: 1115826131}
-  grabbable: {fileID: 0}
-  boxCollider: {fileID: 815700898}
-  colliderSize: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!1 &819504657
 GameObject:
   m_ObjectHideFlags: 0
@@ -9553,15 +9074,6 @@ MonoBehaviour:
     TriggerTime: 0
     DisplayName: 
     Triggered: 0
-  - Id: sms_plan_change
-    TriggerTime: 120
-    DisplayName: "\u05D4\u05D5\u05D3\u05E2\u05EA SMS - \u05E9\u05D9\u05E0\u05D5\u05D9
-      \u05EA\u05D5\u05DB\u05E0\u05D9\u05EA"
-    Triggered: 0
-  - Id: rain_push
-    TriggerTime: 240
-    DisplayName: "\u05D4\u05EA\u05E8\u05D0\u05EA \u05D2\u05E9\u05DD \u05D1\u05D8\u05DC\u05E4\u05D5\u05DF"
-    Triggered: 0
   _elapsedTime: 0
   _isRunning: 0
 --- !u!1001 &967641739
@@ -10557,8 +10069,8 @@ MonoBehaviour:
   shouldBoundaryVisibilityBeSuppressed: 0
   requestBodyTrackingPermissionOnStartup: 0
   requestFaceTrackingPermissionOnStartup: 0
-  requestEyeTrackingPermissionOnStartup: 1
-  requestScenePermissionOnStartup: 1
+  requestEyeTrackingPermissionOnStartup: 0
+  requestScenePermissionOnStartup: 0
   requestRecordAudioPermissionOnStartup: 0
   requestPassthroughCameraAccessPermissionOnStartup: 0
   _localDimming: 1
@@ -10821,8 +10333,6 @@ GameObject:
   - component: {fileID: 1077574078}
   - component: {fileID: 1074674078}
   - component: {fileID: 1075805022}
-  - component: {fileID: 1077798303}
-  - component: {fileID: 1077798304}
   m_Layer: 0
   m_Name: Tablet
   m_TagString: Untagged
@@ -10830,48 +10340,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &1077798303
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077798302}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1077798304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077798302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd929e6a9bd458842a4ac5f362c83d01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.InventoryItemMetaBridge
-  itemId: 3
-  grabbable: {fileID: 0}
-  enableDebugLogs: 0
 --- !u!1 &1078104823
 GameObject:
   m_ObjectHideFlags: 0
@@ -11020,19 +10488,10 @@ Transform:
   m_GameObject: {fileID: 1115826128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.17, z: 0}
+  m_LocalPosition: {x: 0, y: 0.18, z: 0}
   m_LocalScale: {x: 0.031, y: 0.031, z: 0.04}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1437360091}
-  - {fileID: 703485555}
-  - {fileID: 804265420}
-  - {fileID: 1359814811}
-  - {fileID: 610994856}
-  - {fileID: 1626132098}
-  - {fileID: 1990267973}
-  - {fileID: 264197518}
-  - {fileID: 815700897}
+  m_Children: []
   m_Father: {fileID: 438924787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1115826130
@@ -11050,12 +10509,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 8, z: 10}
-  m_Center: {x: 0, y: 4, z: 0}
+  m_Size: {x: 10, y: 0, z: 9.999999}
+  m_Center: {x: 0, y: 0.0000038146973, z: 0}
 --- !u!114 &1115826131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11068,21 +10527,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e96dbc4c428414daed374a8563c0cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackInventoryZone
-  inventoryParent: {fileID: 1115826129}
+  inventoryParent: {fileID: 0}
   metaSnapZones: []
   slotTransforms: []
   inventoryScale: 0.2
-  autoGenerateSlots: 1
-  autoSlotsLocalArea: {x: 0.7, y: 0.7}
-  autoSlotsLocalY: 0
-  autoSlotPrefix: Slot_
-  autoConfigureSlotComponents: 1
-  slotColliderSize: {x: 0.25, y: 0.25, z: 0.25}
   audioSource: {fileID: 0}
   itemInClip: {fileID: 0}
   itemOutClip: {fileID: 0}
-  backpackBodyGrabbablesToSuppress: []
-  enableDebugLogs: 1
+  enableDebugLogs: 0
 --- !u!23 &1115826132
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11875,7 +11327,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -11902,19 +11354,6 @@ MonoBehaviour:
   _kinematicWhileSelected: 1
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
---- !u!114 &1208580752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1208580747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e9f2155cb65cc54a821bfbfcf304d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ToasterTriggerZone
-  enableDebugLogs: 0
 --- !u!1001 &1209196081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13007,37 +12446,6 @@ Transform:
   - {fileID: 234499702}
   m_Father: {fileID: 1310073523}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1356721374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1356721375}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1356721375
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356721374}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1208580748}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1359227809
 GameObject:
   m_ObjectHideFlags: 0
@@ -13146,76 +12554,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.05, y: 0.01, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1359814810
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1359814811}
-  - component: {fileID: 1359814813}
-  - component: {fileID: 1359814812}
-  m_Layer: 0
-  m_Name: Slot_1_0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1359814811
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359814810}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1115826129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1359814812
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359814810}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4, y: 1.4, z: 1.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1359814813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359814810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f3e8d2c5b94d7a8f6e2c0b9d4e1a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
-  zone: {fileID: 1115826131}
-  grabbable: {fileID: 0}
-  boxCollider: {fileID: 1359814812}
-  colliderSize: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!1 &1359972548
 GameObject:
   m_ObjectHideFlags: 0
@@ -13873,76 +13211,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &1437360090
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1437360091}
-  - component: {fileID: 1437360093}
-  - component: {fileID: 1437360092}
-  m_Layer: 0
-  m_Name: Slot_0_0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1437360091
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437360090}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: 4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1115826129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1437360092
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437360090}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4, y: 1.4, z: 1.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1437360093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437360090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f3e8d2c5b94d7a8f6e2c0b9d4e1a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
-  zone: {fileID: 1115826131}
-  grabbable: {fileID: 0}
-  boxCollider: {fileID: 1437360092}
-  colliderSize: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!1 &1438337525
 GameObject:
   m_ObjectHideFlags: 0
@@ -14536,7 +13804,7 @@ GameObject:
   - component: {fileID: 1535111573}
   - component: {fileID: 1535111572}
   m_Layer: 0
-  m_Name: Laptop
+  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14577,7 +13845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd929e6a9bd458842a4ac5f362c83d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.InventoryItemMetaBridge
-  itemId: 2
+  itemId: 0
   grabbable: {fileID: 1535111572}
   enableDebugLogs: 0
 --- !u!54 &1535111574
@@ -14603,7 +13871,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -15447,76 +14715,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1626657683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1626132097
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1626132098}
-  - component: {fileID: 1626132100}
-  - component: {fileID: 1626132099}
-  m_Layer: 0
-  m_Name: Slot_1_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1626132098
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626132097}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1115826129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1626132099
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626132097}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4, y: 1.4, z: 1.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1626132100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626132097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f3e8d2c5b94d7a8f6e2c0b9d4e1a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
-  zone: {fileID: 1115826131}
-  grabbable: {fileID: 0}
-  boxCollider: {fileID: 1626132099}
-  colliderSize: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!1 &1626657682
 GameObject:
   m_ObjectHideFlags: 0
@@ -19605,76 +18803,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1626657683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1990267972
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1990267973}
-  - component: {fileID: 1990267975}
-  - component: {fileID: 1990267974}
-  m_Layer: 0
-  m_Name: Slot_2_0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1990267973
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990267972}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: 0, z: -4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1115826129}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1990267974
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990267972}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4, y: 1.4, z: 1.4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1990267975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990267972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f3e8d2c5b94d7a8f6e2c0b9d4e1a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
-  zone: {fileID: 1115826131}
-  grabbable: {fileID: 0}
-  boxCollider: {fileID: 1990267974}
-  colliderSize: {x: 1.5, y: 1.5, z: 1.5}
 --- !u!1 &1991002589
 GameObject:
   m_ObjectHideFlags: 0
@@ -21793,7 +20921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4333302533915868467, guid: 1c36843fe1cc9854ca3774591b363fa0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.11
+      value: -0.403
       objectReference: {fileID: 0}
     - target: {fileID: 4333302533915868467, guid: 1c36843fe1cc9854ca3774591b363fa0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22435,8 +21563,8 @@ SceneRoots:
   - {fileID: 1002337702}
   - {fileID: 1535111575}
   - {fileID: 1077574078}
+  - {fileID: 800463433}
   - {fileID: 6579608259940887390}
   - {fileID: 165475630}
   - {fileID: 1054461246}
   - {fileID: 1841739824}
-  - {fileID: 296235623}
