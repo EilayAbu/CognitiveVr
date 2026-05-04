@@ -62,7 +62,10 @@ namespace CognitiveVR.Core
         {
             InitializeDefaultEvents();
         }
-
+        private void Start()
+        {
+            StartSession();
+        }
         private void Update()
         {
             if (!_isRunning) return;
@@ -121,7 +124,8 @@ namespace CognitiveVR.Core
 
             ScheduledEvents = new List<ScheduledEvent>
             {
-                new ScheduledEvent { Id = "sms_plan_change", TriggerTime = 165f, DisplayName = "הודעת SMS - שינוי תוכנית" },
+                new ScheduledEvent { Id = "sms_plan_change", TriggerTime = 120f, DisplayName = "הודעת SMS - שינוי תוכנית" },
+                new ScheduledEvent { Id = "rain_push", TriggerTime = 240f, DisplayName = "התראת גשם בטלפון" },
                 new ScheduledEvent { Id = "neighbor_knock", TriggerTime = 240f, DisplayName = "דפיקת שכנה בדלת" },
                 new ScheduledEvent { Id = "clock_reminder", TriggerTime = 300f, DisplayName = "צליל תזכורת מהשעון (08:57)" },
                 new ScheduledEvent { Id = "shelf_fall", TriggerTime = 360f, DisplayName = "מדף נופל ליד הדלת" },
