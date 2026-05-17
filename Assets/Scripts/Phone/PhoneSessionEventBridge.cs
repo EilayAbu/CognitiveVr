@@ -28,6 +28,7 @@ namespace CognitiveVR.Phone
         [SerializeField] private PhoneScreenController _phone;
         [SerializeField] private PhoneNotificationManager _notificationManager;
         [SerializeField] private SmsSwapTracker _smsSwapTracker;
+        [SerializeField] private WeatherAppScreen _weatherAppScreen;
 
         [Header("Debug")]
         [SerializeField] private bool _verboseLogs = true;
@@ -144,6 +145,20 @@ namespace CognitiveVR.Phone
                 createdAt: now);
 
             _notificationManager.PushNotification(data);
+
+            // Visual weather app no longer exists; treat the rain push itself as
+            // the user having seen the forecast so CheckWeather task progress
+            // still advances.
+            if (_weatherAppScreen == null && _phone != null)
+                _weatherAppScreen = _phone.GetComponent<WeatherAppScreen>();
+            if (_weatherAppScreen == null)
+#if UNITY_2023_1_OR_NEWER
+                _weatherAppScreen = FindFirstObjectByType<WeatherAppScreen>();
+#else
+                _weatherAppScreen = FindObjectOfType<WeatherAppScreen>();
+#endif
+            if (_weatherAppScreen != null)
+                _weatherAppScreen.NotifyOpened();
 
             if (_verboseLogs)
                 Debug.Log($"[{nameof(PhoneSessionEventBridge)}] Rain push dispatched at {now:F1}s ({timestampLabel}).", this);

@@ -8,6 +8,7 @@ using CognitiveVR.Phone;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace CognitiveVR.EditorTools
@@ -23,7 +24,7 @@ namespace CognitiveVR.EditorTools
     /// </summary>
     public static class PhoneSetupEditor
     {
-        private const string PrefabPath = "Assets/Prefabs/Smartphone.prefab";
+        private const string PrefabPath = "Assets/Prefabs/phone/Smartphone.prefab";
 
         private static readonly string[] LaptopNames = {
             "Laptop", "laptop", "LaptopItem", "Laptop_Pickup", "Notebook"
@@ -66,6 +67,7 @@ namespace CognitiveVR.EditorTools
             string scheduledEventsStatus = EnsureScheduledEvents();
             string backpackStatus = EnsureBackpackSetup(phoneInstance);
             string xrStatus = TryEnsurePhoneXRComponents(phoneInstance);
+            string eventSystemStatus = EnsurePointableCanvasModuleOnEventSystem();
 
             EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 
@@ -75,13 +77,68 @@ namespace CognitiveVR.EditorTools
                 $"Wired {wiredItemRefs} explicit item ref(s) on SmsSwapTracker.\n" +
                 $"SessionTimer events: {scheduledEventsStatus}\n" +
                 $"Backpack: {backpackStatus}\n" +
-                $"Phone XR components: {xrStatus}\n\n" +
+                $"Phone XR components: {xrStatus}\n" +
+                $"EventSystem input module: {eventSystemStatus}\n\n" +
                 $"Next steps if XR is missing:\n" +
-                $"- Verify the XR rig has a PointableCanvasModule (or equivalent) so ray pointer input reaches the phone canvas.\n" +
+                $"- Run 'CognitiveVR/Rebuild Notification Card Prefab' then 'CognitiveVR/Rebuild Phone Screen Prefab' if the phone screen looks empty in the editor.\n" +
                 $"- Per-slot hand-grab: each backpack slot now has a BoxCollider + Grabbable + HandGrabInteractable; if Meta SDK types weren't found, see console warnings.\n" +
                 $"- Body grab suppression: while a hand hovers a slot, the backpack body's HandGrabInteractable is auto-disabled so the bag itself isn't grabbed when extracting items.\n" +
                 $"- Press Play and confirm the SMS notification arrives at T+2:00 and rain push at T+4:00.",
                 "OK");
+        }
+
+        /// <summary>
+        /// Finds the scene's EventSystem and replaces the default
+        /// StandaloneInputModule with Meta's PointableCanvasModule so ray
+        /// pointer events reach the phone canvas. Meta types are resolved via
+        /// reflection so the editor script compiles without the SDK.
+        /// </summary>
+        private static string EnsurePointableCanvasModuleOnEventSystem()
+        {
+#if UNITY_2023_1_OR_NEWER
+            EventSystem es = UnityEngine.Object.FindFirstObjectByType<EventSystem>();
+#else
+            EventSystem es = UnityEngine.Object.FindObjectOfType<EventSystem>();
+#endif
+            if (es == null)
+            {
+                GameObject esGo = new GameObject("EventSystem", typeof(EventSystem));
+                Undo.RegisterCreatedObjectUndo(esGo, "Create EventSystem");
+                es = esGo.GetComponent<EventSystem>();
+            }
+
+            Type pointableModuleType = PhoneCanvasBuilderEditor.ResolveType("Oculus.Interaction.PointableCanvasModule");
+            if (pointableModuleType == null)
+                return "Meta PointableCanvasModule type not found (SDK missing?)";
+
+            int removed = 0;
+            foreach (BaseInputModule mod in es.GetComponents<BaseInputModule>())
+            {
+                if (mod == null) continue;
+                if (pointableModuleType.IsInstanceOfType(mod)) continue;
+                Undo.DestroyObjectImmediate(mod);
+                removed++;
+            }
+
+            Component existing = es.GetComponent(pointableModuleType);
+            if (existing != null)
+            {
+                return removed > 0
+                    ? $"already present; removed {removed} other input module(s)"
+                    : "already present";
+            }
+
+            try
+            {
+                Undo.AddComponent(es.gameObject, pointableModuleType);
+                return removed > 0
+                    ? $"added PointableCanvasModule; removed {removed} other input module(s)"
+                    : "added PointableCanvasModule";
+            }
+            catch (Exception ex)
+            {
+                return $"failed to add PointableCanvasModule: {ex.Message}";
+            }
         }
 
         private static string EnsureScheduledEvents()

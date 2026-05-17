@@ -179,9 +179,9 @@ namespace CognitiveVR.Tasks
             Outline outline = borderGo.GetComponent<Outline>();
             if (outline == null)
                 outline = borderGo.gameObject.AddComponent<Outline>();
-            outline.effectColor = _borderColor;
-            outline.effectDistance = new Vector2(_borderThickness, -_borderThickness);
-            outline.useGraphicAlpha = true;
+            //outline.effectColor = _borderColor;
+            //outline.effectDistance = new Vector2(_borderThickness, -_borderThickness);
+            //outline.useGraphicAlpha = true;
 
             return rect;
         }

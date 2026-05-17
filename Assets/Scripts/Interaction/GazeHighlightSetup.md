@@ -1,32 +1,30 @@
-# Gaze Highlight Setup
+# Gaze Glow Setup
 
-## 1) Add scripts to scene
-- Add `GazeHighlightController` to your XR rig root (or any persistent scene object).
-- Keep `Head Transform` empty to auto-use `Camera.main`, or assign your HMD camera transform explicitly.
+A single component, `GazeGlow`, lives on every object that should glow when the player looks at it. There is no controller, no tag, no layer, and no physics raycast.
 
-## 2) Create the filter contract
-- Create a dedicated tag, for example: `GazeHighlight`.
-- Create/use a dedicated layer for gaze-highlight candidates.
-- Assign both the tag and layer to every object you want to be highlightable.
+## How detection works
+Each frame the component:
+1. Reads the head transform (Camera.main by default, or an explicit override).
+2. Computes the direction from the camera position to this object's position.
+3. Computes the angle between the camera forward and that direction.
+4. Turns the highlight ON when the angle drops below `Enter Angle Degrees` and OFF when it rises above `Exit Angle Degrees` (hysteresis prevents flicker at the edges).
 
-## 3) Mark targets
-- Add `GazeHighlightTarget` to each highlightable object root.
-- If the renderers are in children, leave `Include Children` enabled.
+## Setup steps
+1. Add the `GazeGlow` component to any object you want to glow.
+2. (Optional) If `Camera.main` is not the HMD camera, drag the correct head transform (for example `CenterEyeAnchor`) into `Head Transform Override`.
+3. Tune in the Inspector:
+   - `Enter Angle Degrees` (default `12`)
+   - `Exit Angle Degrees` (default `18`, must be >= enter)
+   - `Use Distance Limit` + `Max Distance` (default `5` meters)
 
-## 4) Controller tuning
-- Set `Detection Mask` to the dedicated layer only.
-- Set `Required Tag` to `GazeHighlight`.
-- Start with:
-  - `Max Distance`: `4`
-  - `Max View Angle`: `20`
-  - `Switch Cooldown Seconds`: `0.08`
+## Highlight style
+- If the object's material exposes `_OutlineColor` and `_OutlineWidth`, the component drives those properties.
+- Otherwise it falls back to `_EmissionColor` (URP/Standard PBR materials).
+- Adjust `Outline Color`, `Outline Width`, `Fallback To Emission`, and `Emission Intensity` per object as needed.
 
-## 5) Highlight style notes
-- Preferred path: materials that expose `_OutlineColor` and `_OutlineWidth`.
-- If outline shader properties are not present, the target falls back to `_EmissionColor` highlight.
-
-## 6) Quick validation checklist
-- Look at one tagged object -> highlight turns on.
-- Look away -> highlight turns off after cooldown.
-- Move gaze between two tagged objects -> only one stays highlighted.
-- Put an occluder in front of target -> highlight does not trigger through occluder.
+## Validation checklist
+- Look directly at the object: it lights up.
+- Look slightly away (still inside `Exit Angle`): it stays lit (no flicker).
+- Look beyond `Exit Angle`: it turns off.
+- Walk further than `Max Distance`: it turns off.
+- Enable `Verbose Logs` to print state changes to the console.
