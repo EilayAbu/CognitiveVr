@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a440a8f699cf3904191c64ae91c92627
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 279844
+  packageName: Animated Digit Clock
+  packageVersion: 1.0.3
+  assetPath: Assets/DigitClock/Materials/DigitClock_M01.mat
+  uploadId: 660480

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ad9250dc4b7d19f49926ef9c8227c326
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 279844
+  packageName: Animated Digit Clock
+  packageVersion: 1.0.3
+  assetPath: Assets/DigitClock/Readme/Readme.txt
+  uploadId: 660480

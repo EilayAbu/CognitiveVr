@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a22e0f613d2cc7449b59fe46da154fd6
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 279844
+  packageName: Animated Digit Clock
+  packageVersion: 1.0.3
+  assetPath: Assets/DigitClock/Scenes/DemoScene.unity
+  uploadId: 660480
