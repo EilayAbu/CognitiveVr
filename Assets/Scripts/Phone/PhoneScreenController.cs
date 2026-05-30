@@ -26,12 +26,22 @@ namespace CognitiveVR.Phone
         [SerializeField] private Color _panelColor = new Color(0.12f, 0.14f, 0.20f, 1f);
         [SerializeField] private Color _accentColor = new Color(0.25f, 0.55f, 1f, 1f);
 
+        [Header("Pre-Authored Message GameObjects (toggled at runtime)")]
+        [Tooltip("Boss/SMS message GameObject - lit up when the plan-change SMS arrives.")]
+        [SerializeField] private GameObject _bossMessageObject;
+        [Tooltip("Weather alert message GameObject - lit up when the rain push arrives.")]
+        [SerializeField] private GameObject _weatherMessageObject;
+        [Tooltip("If true, both message objects are hidden on Awake.")]
+        [SerializeField] private bool _hideMessagesOnAwake = true;
+
         public PhoneNotificationManager NotificationManager => _notificationManager;
         public RectTransform NotificationContent => _notificationContent;
         public TMP_FontAsset FontAsset => _fontAsset;
         public Color TextColor => _textColor;
         public Color PanelColor => _panelColor;
         public Color AccentColor => _accentColor;
+        public GameObject BossMessageObject => _bossMessageObject;
+        public GameObject WeatherMessageObject => _weatherMessageObject;
 
         private void Awake()
         {
@@ -43,6 +53,38 @@ namespace CognitiveVR.Phone
 
             if (_notificationManager != null && _notificationContent != null)
                 _notificationManager.Initialize(this, _notificationContent);
+
+            if (_hideMessagesOnAwake)
+            {
+                if (_bossMessageObject != null) _bossMessageObject.SetActive(false);
+                if (_weatherMessageObject != null) _weatherMessageObject.SetActive(false);
+            }
+        }
+
+        public void ShowBossMessage()
+        {
+            if (_bossMessageObject != null) _bossMessageObject.SetActive(true);
+        }
+
+        public void HideBossMessage()
+        {
+            if (_bossMessageObject != null) _bossMessageObject.SetActive(false);
+        }
+
+        public void ShowWeatherMessage()
+        {
+            if (_weatherMessageObject != null) _weatherMessageObject.SetActive(true);
+        }
+
+        public void HideWeatherMessage()
+        {
+            if (_weatherMessageObject != null) _weatherMessageObject.SetActive(false);
+        }
+
+        public void HideAllMessages()
+        {
+            HideBossMessage();
+            HideWeatherMessage();
         }
     }
 }

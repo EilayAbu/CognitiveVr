@@ -105,6 +105,9 @@ namespace CognitiveVR.Phone
 
             _notificationManager.PushNotification(data);
 
+            if (_phone != null)
+                _phone.ShowBossMessage();
+
             if (_smsSwapTracker == null && _phone != null)
                 _smsSwapTracker = _phone.GetComponent<SmsSwapTracker>();
             if (_smsSwapTracker == null)
@@ -145,6 +148,9 @@ namespace CognitiveVR.Phone
                 createdAt: now);
 
             _notificationManager.PushNotification(data);
+
+            if (_phone != null)
+                _phone.ShowWeatherMessage();
 
             // Visual weather app no longer exists; treat the rain push itself as
             // the user having seen the forecast so CheckWeather task progress
