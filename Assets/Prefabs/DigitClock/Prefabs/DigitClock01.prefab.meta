@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2c219d1f342e307448df7d0f2c1b50e4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 279844
+  packageName: Animated Digit Clock
+  packageVersion: 1.0.3
+  assetPath: Assets/DigitClock/Prefabs/DigitClock01.prefab
+  uploadId: 660480

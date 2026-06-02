@@ -31,19 +31,19 @@ TagManager:
   - SamplesInfoPanel
   - QDSUIToggleCheckboxRadio
   - toast
-  - PlayerHand
+  - GazeHighlight
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Overlay UI
+  - 
   - Water
   - UI
   - 
   - 
   - 
   - 
-  - 
+  - GazeHighlightLayer
   - 
   - 
   - 

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a18a0f10c1b23764c942bd518c38b8ed
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 264988
+  packageName: Medicine and Health - Prop Package
+  packageVersion: 1.0
+  assetPath: Assets/Pixelsplit/MedicinePackage/Scene/Demo/PX_Demo_Global_Volume_Profile.asset
+  uploadId: 612711

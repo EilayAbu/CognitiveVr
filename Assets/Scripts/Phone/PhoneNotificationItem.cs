@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace CognitiveVR.Phone
@@ -37,163 +36,83 @@ namespace CognitiveVR.Phone
     }
 
     /// <summary>
-    /// A single persistent notification card on the phone screen.
-    /// - Stays on screen until dismissed by the user.
-    /// - Body uses an inner ScrollRect so long messages can be scrolled by ray drag.
-    /// - Implements IBeginDragHandler / IDragHandler / IEndDragHandler on the
-    ///   header to detect a horizontal swipe, which fires OnDismissRequested.
+    /// Pure data-binding component on a Notification_Slot prefab. Holds
+    /// references to the title / body / timestamp labels and the SwipeToDelete
+    /// behaviour on the visual child. Swipe + delete-button + dismiss
+    /// animation live in <see cref="SwipeToDelete"/> - this class no longer
+    /// reads input.
     /// </summary>
     [DisallowMultipleComponent]
-    public class PhoneNotificationItem : MonoBehaviour,
-        IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class PhoneNotificationItem : MonoBehaviour
     {
         [Header("Bindings")]
-        [SerializeField] private RectTransform _root;
-        [SerializeField] private RectTransform _swipeTarget;
         [SerializeField] private TMP_Text _titleLabel;
         [SerializeField] private TMP_Text _bodyLabel;
         [SerializeField] private TMP_Text _timestampLabel;
         [SerializeField] private Image _iconImage;
-        [SerializeField] private ScrollRect _bodyScroll;
-
-        [Header("Swipe")]
-        [Tooltip("Horizontal travel (in canvas-local units) required to dismiss.")]
-        [SerializeField] private float _dismissDistance = 220f;
-        [Tooltip("Animation duration when sliding off the screen on dismiss.")]
-        [SerializeField] private float _dismissAnimSeconds = 0.18f;
+        [SerializeField] private SwipeToDelete _swipe;
 
         public event Action<PhoneNotificationItem> OnDismissRequested;
 
         public PhoneNotificationData Data { get; private set; }
-
-        private bool _dragging;
-        private Vector2 _dragStartLocal;
-        private Vector2 _swipeStartAnchored;
-        private bool _animatingDismiss;
-        private float _dismissAnimStart;
-        private Vector2 _dismissFromAnchored;
-        private Vector2 _dismissToAnchored;
-        private CanvasGroup _canvasGroup;
+        public SwipeToDelete Swipe => _swipe;
 
         public void ConfigureReferences(
-            RectTransform root,
-            RectTransform swipeTarget,
             TMP_Text title,
             TMP_Text body,
             TMP_Text timestamp,
-            ScrollRect bodyScroll,
+            SwipeToDelete swipe,
             Image icon = null)
         {
-            _root = root;
-            _swipeTarget = swipeTarget;
             _titleLabel = title;
             _bodyLabel = body;
             _timestampLabel = timestamp;
-            _bodyScroll = bodyScroll;
+            _swipe = swipe;
             _iconImage = icon;
         }
 
         public void Bind(PhoneNotificationData data)
         {
             Data = data;
-            if (_titleLabel != null) _titleLabel.text = data.Title;
-            if (_bodyLabel != null) _bodyLabel.text = data.Body;
-            if (_timestampLabel != null) _timestampLabel.text = data.TimestampLabel;
-
-            if (_bodyScroll != null)
-                _bodyScroll.verticalNormalizedPosition = 1f;
+            if (_titleLabel != null) _titleLabel.text = data?.Title ?? string.Empty;
+            if (_bodyLabel != null) _bodyLabel.text = data?.Body ?? string.Empty;
+            if (_timestampLabel != null) _timestampLabel.text = data?.TimestampLabel ?? string.Empty;
         }
 
         public void UpdateTimestamp(string timestamp)
         {
-            if (_timestampLabel != null)
-                _timestampLabel.text = timestamp;
+            if (_timestampLabel != null) _timestampLabel.text = timestamp;
         }
 
-        private void Awake()
+        private void OnEnable()
         {
-            if (_root == null) _root = GetComponent<RectTransform>();
-            if (_swipeTarget == null) _swipeTarget = _root;
-            _canvasGroup = GetComponent<CanvasGroup>();
-            if (_canvasGroup == null) _canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            if (_swipe == null) _swipe = GetComponentInChildren<SwipeToDelete>(true);
+            if (_swipe != null) _swipe.OnDismissedEvent += HandleSwipeDismissed;
         }
 
-        private void Update()
+        private void OnDisable()
         {
-            if (!_animatingDismiss) return;
-
-            float t = (Time.unscaledTime - _dismissAnimStart) / Mathf.Max(0.01f, _dismissAnimSeconds);
-            if (t >= 1f)
-            {
-                _swipeTarget.anchoredPosition = _dismissToAnchored;
-                _canvasGroup.alpha = 0f;
-                _animatingDismiss = false;
-                OnDismissRequested?.Invoke(this);
-                return;
-            }
-
-            float eased = 1f - Mathf.Pow(1f - t, 3f);
-            _swipeTarget.anchoredPosition = Vector2.LerpUnclamped(_dismissFromAnchored, _dismissToAnchored, eased);
-            _canvasGroup.alpha = Mathf.Clamp01(1f - t);
+            if (_swipe != null) _swipe.OnDismissedEvent -= HandleSwipeDismissed;
         }
 
-        public void OnBeginDrag(PointerEventData eventData)
+        private void HandleSwipeDismissed()
         {
-            if (_animatingDismiss) return;
-            if (_swipeTarget == null) return;
-            if (_swipeTarget.parent is not RectTransform parentRect) return;
-
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                parentRect, eventData.position, eventData.pressEventCamera, out _dragStartLocal);
-            _swipeStartAnchored = _swipeTarget.anchoredPosition;
-            _dragging = true;
+            OnDismissRequested?.Invoke(this);
+            Destroy(gameObject);
         }
 
-        public void OnDrag(PointerEventData eventData)
-        {
-            if (!_dragging || _animatingDismiss) return;
-            if (_swipeTarget.parent is not RectTransform parentRect) return;
-
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                parentRect, eventData.position, eventData.pressEventCamera, out Vector2 currentLocal);
-
-            float deltaX = currentLocal.x - _dragStartLocal.x;
-            _swipeTarget.anchoredPosition = new Vector2(_swipeStartAnchored.x + deltaX, _swipeStartAnchored.y);
-
-            float fade = Mathf.Clamp01(1f - Mathf.Abs(deltaX) / _dismissDistance);
-            _canvasGroup.alpha = Mathf.Lerp(0.4f, 1f, fade);
-        }
-
-        public void OnEndDrag(PointerEventData eventData)
-        {
-            if (!_dragging) return;
-            _dragging = false;
-
-            float deltaX = _swipeTarget.anchoredPosition.x - _swipeStartAnchored.x;
-            if (Mathf.Abs(deltaX) >= _dismissDistance)
-            {
-                StartDismissAnimation(Mathf.Sign(deltaX));
-            }
-            else
-            {
-                _swipeTarget.anchoredPosition = _swipeStartAnchored;
-                _canvasGroup.alpha = 1f;
-            }
-        }
-
+        /// <summary>
+        /// Triggers the same dismiss animation as a swipe. Used by the
+        /// manager's DismissAll() or external callers.
+        /// </summary>
         public void RequestDismiss()
         {
-            if (_animatingDismiss) return;
-            StartDismissAnimation(1f);
-        }
-
-        private void StartDismissAnimation(float direction)
-        {
-            _animatingDismiss = true;
-            _dismissAnimStart = Time.unscaledTime;
-            _dismissFromAnchored = _swipeTarget.anchoredPosition;
-            float offscreenX = (Mathf.Sign(direction) == 0 ? 1f : Mathf.Sign(direction)) * 1200f;
-            _dismissToAnchored = new Vector2(offscreenX, _swipeStartAnchored.y);
+            if (_swipe != null) _swipe.Dismiss();
+            else
+            {
+                OnDismissRequested?.Invoke(this);
+                Destroy(gameObject);
+            }
         }
     }
 }

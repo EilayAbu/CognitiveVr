@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 8fabce3fba0022945a3c672fb532c8b1
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Digit01: {fileID: 18700000, guid: aeb43bc848a57df4d8eb0abc0ef879cc, type: 3}
+  - _Digit02: {fileID: 18700000, guid: aeb43bc848a57df4d8eb0abc0ef879cc, type: 3}
+  - _Digit03: {fileID: 18700000, guid: aeb43bc848a57df4d8eb0abc0ef879cc, type: 3}
+  - _Digit04: {fileID: 18700000, guid: aeb43bc848a57df4d8eb0abc0ef879cc, type: 3}
+  - _DigitsDays01: {fileID: 2800000, guid: 464d13eaea0653e47950e9890a629d74, type: 3}
+  - _DigitMask_CL01: {fileID: 2800000, guid: 0e656b152bcefd24495c074e8075c610, type: 3}
+  - _DigitDots01: {fileID: 2800000, guid: d557c3c31398cab479440088ec123491, type: 3}
+  - _MonthDigit01: {fileID: 18700000, guid: aeb43bc848a57df4d8eb0abc0ef879cc, type: 3}
+  - _MonthDigit02: {fileID: 18700000, guid: aeb43bc848a57df4d8eb0abc0ef879cc, type: 3}
+  - _DayDigit01: {fileID: 18700000, guid: aeb43bc848a57df4d8eb0abc0ef879cc, type: 3}
+  - _DayDigit02: {fileID: 18700000, guid: aeb43bc848a57df4d8eb0abc0ef879cc, type: 3}
+  - _Letters_MD01: {fileID: 2800000, guid: d768e769efca55742aef378549616ecf, type: 3}
+  - _DigitClock_MAP01: {fileID: 2800000, guid: f29d8a7db9291744fb3d330f6c52f009, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 279844
+  packageName: Animated Digit Clock
+  packageVersion: 1.0.3
+  assetPath: Assets/DigitClock/Shaders/DigitClockShader.shader
+  uploadId: 660480
