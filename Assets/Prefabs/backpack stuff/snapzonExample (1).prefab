@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: f8766c17-aaf8-4b55-9431-de8deea83842
-  instanceId: f0d54f03-94b2-4ba8-9d11-59a23a2e356a
+  instanceId: a7273d25-13f1-4db4-a196-83796ed79e95
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: f8338144-8280-4ff6-9455-ae2bb9c20fe8
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 7358e191-33b7-43ca-b066-b2f00531ac66
-  instanceId: ca6f394a-d062-4ed6-8bfb-7e8c1be7503e
+  instanceId: 3fc336bc-7b76-41e1-8c81-3e830f6ad4b1
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.InteractableUnityEventWrapper
-  _interactableView: {fileID: 1314815187231491314}
+  _interactableView: {fileID: 7389560277618613562}
   _whenHover:
     m_PersistentCalls:
       m_Calls: []
