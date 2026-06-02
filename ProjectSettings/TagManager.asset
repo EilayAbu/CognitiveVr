@@ -31,11 +31,12 @@ TagManager:
   - SamplesInfoPanel
   - QDSUIToggleCheckboxRadio
   - toast
+  - PlayerHand
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Overlay UI
   - Water
   - UI
   - 
