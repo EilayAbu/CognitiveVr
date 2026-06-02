@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: f8766c17-aaf8-4b55-9431-de8deea83842
-  instanceId: a7273d25-13f1-4db4-a196-83796ed79e95
+  instanceId: b364ff08-ca8c-451c-83d6-044229bcfdcf
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: f8338144-8280-4ff6-9455-ae2bb9c20fe8
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Meta.XR.BuildingBlocks::Meta.XR.BuildingBlocks.BuildingBlock
   blockId: 7358e191-33b7-43ca-b066-b2f00531ac66
-  instanceId: 3fc336bc-7b76-41e1-8c81-3e830f6ad4b1
+  instanceId: 2416ebc8-d0a5-4a2c-8c36-016de6f8d49e
   version: 1
   installationRoutineCheckpoint:
     _installationRoutineId: 
@@ -251,8 +251,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -276,8 +276,8 @@ MonoBehaviour:
   _targetTransform: {fileID: 7330173000128386259}
   _maxGrabPoints: -1
   _rigidbody: {fileID: 4803241399698043381}
-  _kinematicWhileSelected: 1
-  _throwWhenUnselected: 1
+  _kinematicWhileSelected: 0
+  _throwWhenUnselected: 0
   _forceKinematicDisabled: 0
 --- !u!114 &8078490972394777427
 MonoBehaviour:
@@ -363,6 +363,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6303467687337804279}
     m_Modifications:
+    - target: {fileID: -1653022013273449393, guid: 2c388bdb963a363418437ef4347b4522, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 1bd60f4e4774c97469bd13aad8a14735, type: 3}
     - target: {fileID: 4658904325700070051, guid: 2c388bdb963a363418437ef4347b4522, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -419,6 +423,10 @@ PrefabInstance:
       propertyPath: '_audioClips.Array.data[0]'
       value: 
       objectReference: {fileID: 8300000, guid: 452cab5cd4cc31a4bbda065fe1729e0d, type: 3}
+    - target: {fileID: 7410389675181900697, guid: 2c388bdb963a363418437ef4347b4522, type: 3}
+      propertyPath: '_audioClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1bd60f4e4774c97469bd13aad8a14735, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -505,6 +513,10 @@ PrefabInstance:
       propertyPath: _audioSource
       value: 
       objectReference: {fileID: 2941777284032794495}
+    - target: {fileID: 7410389675181900697, guid: 08eeff844ea75dc4192675890988e004, type: 3}
+      propertyPath: '_audioClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 80fbb8c0c68727f429e4d50ddadd683b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
