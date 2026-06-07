@@ -1,6 +1,10 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD:Assets/Prefabs/[Free] Phone/Materials/AO1k.mat
+--- !u!114 &-8683184955493496191
+=======
 --- !u!114 &-368115698952883867
+>>>>>>> main:Assets/Prefabs/phone/[Free] Phone/Materials/AO1k.mat
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

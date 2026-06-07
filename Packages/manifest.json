@@ -1,7 +1,11 @@
 {
   "dependencies": {
     "com.boxqkrtm.ide.cursor": "https://github.com/boxqkrtm/com.unity.ide.cursor.git",
+    "com.hecomi.ulipsync": "https://github.com/hecomi/uLipSync.git#upm",
     "com.meta.xr.sdk.all": "85.0.0",
+    "com.readyplayerme.core": "https://github.com/readyplayerme/rpm-unity-sdk-core.git",
+    "com.soupday.cc3_unity_tools": "https://github.com/soupday/CCiC-Unity-Tools.git",
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.collab-proxy": "2.11.4",
     "com.unity.feature.development": "1.0.2",
     "com.unity.inputsystem": "1.19.0",
