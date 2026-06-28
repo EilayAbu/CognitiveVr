@@ -64,7 +64,7 @@ namespace CognitiveVR.Core
         }
         private void Start()
         {
-            StartSession();
+            //StartSession();
         }
         private void Update()
         {

@@ -32,11 +32,13 @@ TagManager:
   - QDSUIToggleCheckboxRadio
   - toast
   - GazeHighlight
+  - 'ChairZone '
+  - ChairZone
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - pocket
   - Water
   - UI
   - 
