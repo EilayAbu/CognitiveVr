@@ -1,44 +1,54 @@
 ﻿using UnityEngine;
 using TMPro;
-using System;
+using CognitiveVR.Core;
 
 public class DigitalClock : MonoBehaviour
 {
     [Header("UI References")]
     public TextMeshProUGUI clockText;
 
-    [Header("Scene Start Time")]
-    public int startHour = 8;
-    public int startMinute = 53;
+    [Header("Bindings")]
+    [SerializeField] private SessionTimer _sessionTimer;
 
     // משתנה שישמור את הדקה האחרונה שעודכנה
     private int lastMinute = -1;
 
-    // ההפרש בין שעת הסצינה הרצויה לשעת המערכת בעת טעינת הסצינה
-    private TimeSpan timeOffset;
-
     void Start()
     {
-        DateTime now = DateTime.Now;
-        DateTime sceneStart = now.Date.AddHours(startHour).AddMinutes(startMinute);
-        timeOffset = sceneStart - now;
+        ResolveSessionTimer();
     }
 
     void Update()
     {
-        DateTime currentTime = DateTime.Now + timeOffset;
+        if (_sessionTimer == null)
+        {
+            ResolveSessionTimer();
+            if (_sessionTimer == null) return;
+        }
+
+        var (hours, minutes, _) = _sessionTimer.WallClockTime;
 
         // בדיקה האם הדקה הנוכחית שונה מהדקה האחרונה שהצגנו
-        if (currentTime.Minute != lastMinute)
+        if (minutes != lastMinute)
         {
             // עדכון הטקסט רק כשצריך
             if (clockText != null)
             {
-                clockText.text = currentTime.ToString("HH:mm");
+                clockText.text = $"{hours:D2}:{minutes:D2}";
             }
 
             // שמירת הדקה החדשה כדי שלא נעדכן שוב באותו פריים
-            lastMinute = currentTime.Minute;
+            lastMinute = minutes;
         }
+    }
+
+    private void ResolveSessionTimer()
+    {
+        if (_sessionTimer != null) return;
+#if UNITY_2023_1_OR_NEWER
+        _sessionTimer = FindFirstObjectByType<SessionTimer>();
+#else
+        _sessionTimer = FindObjectOfType<SessionTimer>();
+#endif
     }
 }
