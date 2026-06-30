@@ -159,7 +159,7 @@ public class GuideActionController : MonoBehaviour
 
         if (guide != null)
         {
-            guide.SetActive(false);
+            //guide.SetActive(false);
             Debug.Log("Guide disappeared.");
         }
     }

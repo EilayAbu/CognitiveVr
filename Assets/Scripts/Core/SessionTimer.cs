@@ -88,14 +88,18 @@ namespace CognitiveVR.Core
 
         public void StartSession()
         {
-            _elapsedTime = 0f;
-            _isRunning = true;
-            _timeWarningFired = false;
+            if (!_isRunning)
+            {
+                _elapsedTime = 0f;
+                _isRunning = true;
+                _timeWarningFired = false;
 
-            foreach (var evt in ScheduledEvents)
-                evt.Triggered = false;
+                foreach (var evt in ScheduledEvents)
+                    evt.Triggered = false;
 
-            OnSessionStarted?.Invoke();
+                OnSessionStarted?.Invoke();
+            }
+            
         }
 
         public void EndSession()

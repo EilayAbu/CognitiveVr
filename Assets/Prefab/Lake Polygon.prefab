@@ -1,0 +1,6854 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3624634372341052665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5273903772153104608}
+  - component: {fileID: 1016706000941565310}
+  - component: {fileID: 6269531232333007672}
+  - component: {fileID: 6132289972063035477}
+  - component: {fileID: 2130901830714365869}
+  - component: {fileID: 5314547604599194310}
+  m_Layer: 4
+  m_Name: Lake Polygon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 1
+  m_IsActive: 1
+--- !u!4 &5273903772153104608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624634372341052665}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 24.330109, y: 12.983007, z: -22.794281}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1016706000941565310
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624634372341052665}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 4fce1c77da8f6ac4da2cf9dec546d485, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6269531232333007672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624634372341052665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178cbc0d599b414d8ee6fc19efe7bdbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainControlPoints:
+  - position: {x: 11.854563, y: 0, z: -24.416927, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.8791359, z: 0, w: -0.47657114}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: -0.4780078, y: -0.00000047683716, z: -38.328304, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: -0.8309871, z: 0, w: 0.5562917}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: -16.813126, y: 0.00000047683716, z: -36.233215, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: -0.48879144, z: 0, w: 0.8724007}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: -31.28462, y: 0, z: -19.466484, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: -0.26054803, z: 0, w: 0.9654609}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: -36.947006, y: 0.00000047683716, z: -1.6469264, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: -0.093434185, z: 0, w: 0.9956255}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: -36.346546, y: 0.0000009536743, z: 7.2656946, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.35818765, z: 0, w: 0.9336496}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: -27.146078, y: -0.00000047683716, z: 9.246577, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.4473334, z: 0, w: 0.8943673}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: -23.162283, y: 0.00000047683716, z: 17.14838, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.31807613, z: 0, w: 0.94806516}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: -18.340382, y: 0.00000047683716, z: 20.892645, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.48894554, z: 0, w: 0.87231433}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: -7.0001655, y: -0.00000047683716, z: 27.036024, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.637974, z: 0, w: 0.7700579}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: 1.9003153, y: 0.00000047683716, z: 24.723812, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.7961341, z: 0, w: 0.60512024}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: 8.824841, y: 0, z: 22.639881, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.91548705, z: 0, w: 0.40234742}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: 12.577166, y: -0.0000009536743, z: 14.923157, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.8679555, z: 0, w: 0.49664196}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: 26.110138, y: 0.00000047683716, z: 12.480951, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.8905709, z: 0, w: 0.4548445}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: 30.050117, y: 0.0000009536743, z: 2.279426, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.97216165, z: 0, w: 0.23431125}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: 35.808495, y: 0.00000047683716, z: -6.4697948, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.97075486, z: 0, w: 0.24007304}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: 38.919807, y: -0.0000009536743, z: -14.556512, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: 0.98257107, z: 0, w: -0.18588737}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  - position: {x: 31.472857, y: -0.00000047683716, z: -17.518362, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    orientation: {x: 0, y: -0.81924057, z: 0, w: 0.57345}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 1
+    additionalDensityV: 1
+  controlPointsParameters:
+  - position: {x: 11.854567, y: 0, z: -24.416924}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0.8791359, z: 0, w: -0.47657114}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.83794165, y: 0, z: -0.5457598}
+    binormal: {x: -0.5457598, y: 0, z: 0.83794165}
+    distance: 0
+    density: 1
+    id: 0
+  - position: {x: -0.47800827, y: 0, z: -38.328293}
+    width: 0
+    snap: 0
+    lerpValue: 1
+    orientation: {x: 0, y: -0.8309869, z: 0, w: 0.556292}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.92454267, y: 0, z: -0.3810785}
+    binormal: {x: -0.3810785, y: 0, z: 0.92454267}
+    distance: 18.78253
+    density: 1
+    id: 0
+  - position: {x: -16.813126, y: 0, z: -36.23321}
+    width: 0
+    snap: 0
+    lerpValue: 2
+    orientation: {x: 0, y: -0.4887917, z: 0, w: 0.8724005}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.85284424, y: 0, z: 0.5221654}
+    binormal: {x: 0.5221654, y: -0, z: 0.85284424}
+    distance: 35.82317
+    density: 1
+    id: 0
+  - position: {x: -31.284615, y: 0, z: -19.466501}
+    width: 0
+    snap: 0
+    lerpValue: 3
+    orientation: {x: 0, y: -0.26054773, z: 0, w: 0.965461}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.50309724, y: 0, z: 0.8642298}
+    binormal: {x: 0.8642298, y: -0, z: 0.50309724}
+    distance: 58.14262
+    density: 1
+    id: 0
+  - position: {x: -36.947006, y: 0, z: -1.6469193}
+    width: 0
+    snap: 0
+    lerpValue: 4
+    orientation: {x: 0, y: -0.093434386, z: 0, w: 0.99562544}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.1860513, y: 0, z: 0.9825401}
+    binormal: {x: 0.9825401, y: -0, z: 0.1860513}
+    distance: 76.92809
+    density: 1
+    id: 0
+  - position: {x: -36.346546, y: 0, z: 7.2656918}
+    width: 0
+    snap: 0
+    lerpValue: 5
+    orientation: {x: 0, y: 0.3581876, z: 0, w: 0.93364966}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.66884345, y: 0, z: 0.7434033}
+    binormal: {x: 0.7434033, y: 0, z: -0.66884345}
+    distance: 86.17439
+    density: 1
+    id: 0
+  - position: {x: -27.146069, y: 0, z: 9.246577}
+    width: 0
+    snap: 0
+    lerpValue: 6
+    orientation: {x: 0, y: 0.44733334, z: 0, w: 0.89436734}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.8001606, y: 0, z: 0.59978586}
+    binormal: {x: 0.59978586, y: 0, z: -0.8001606}
+    distance: 95.74922
+    density: 1
+    id: 0
+  - position: {x: -23.162287, y: 0, z: 17.148369}
+    width: 0
+    snap: 0
+    lerpValue: 7
+    orientation: {x: 0, y: 0.318076, z: 0, w: 0.9480652}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.6031136, y: 0, z: 0.79765534}
+    binormal: {x: 0.79765534, y: 0, z: -0.6031136}
+    distance: 104.69143
+    density: 1
+    id: 0
+  - position: {x: -18.340374, y: 0, z: 20.89265}
+    width: 0
+    snap: 0
+    lerpValue: 8
+    orientation: {x: 0, y: 0.4889454, z: 0, w: 0.8723144}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.8530282, y: 0, z: 0.5218648}
+    binormal: {x: 0.52186483, y: 0, z: -0.85302824}
+    distance: 110.8533
+    density: 1
+    id: 0
+  - position: {x: -7.0001717, y: 0, z: 27.036003}
+    width: 0
+    snap: 0
+    lerpValue: 9
+    orientation: {x: 0, y: 0.637974, z: 0, w: 0.7700579}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.98255384, y: 0, z: 0.18597844}
+    binormal: {x: 0.18597844, y: 0, z: -0.98255384}
+    distance: 123.80996
+    density: 1
+    id: 0
+  - position: {x: 1.900322, y: 0, z: 24.72382}
+    width: 0
+    snap: 0
+    lerpValue: 10
+    orientation: {x: 0, y: 0.79613405, z: 0, w: 0.60512036}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.96351373, y: 0, z: -0.2676588}
+    binormal: {x: -0.2676588, y: 0, z: -0.96351373}
+    distance: 133.1389
+    density: 1
+    id: 0
+  - position: {x: 8.824848, y: 0, z: 22.639904}
+    width: 0
+    snap: 0
+    lerpValue: 11
+    orientation: {x: 0, y: 0.9154868, z: 0, w: 0.4023481}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.73668873, y: 0, z: -0.67623204}
+    binormal: {x: -0.67623204, y: 0, z: -0.73668873}
+    distance: 140.46432
+    density: 1
+    id: 0
+  - position: {x: 12.577162, y: 0, z: 14.923145}
+    width: 0
+    snap: 0
+    lerpValue: 12
+    orientation: {x: 0, y: 0.8679556, z: 0, w: 0.49664176}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.862126, y: 0, z: -0.50669396}
+    binormal: {x: -0.50669396, y: 0, z: -0.862126}
+    distance: 149.2589
+    density: 1
+    id: 0
+  - position: {x: 26.110027, y: 0, z: 12.480963}
+    width: 0
+    snap: 0
+    lerpValue: 13
+    orientation: {x: 0, y: 0.89057076, z: 0, w: 0.45484483}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.81014293, y: 0, z: -0.58623236}
+    binormal: {x: -0.58623236, y: 0, z: -0.81014293}
+    distance: 163.13554
+    density: 1
+    id: 0
+  - position: {x: 30.050114, y: 0, z: 2.2794185}
+    width: 0
+    snap: 0
+    lerpValue: 14
+    orientation: {x: 0, y: 0.9721617, z: 0, w: 0.23431088}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.45557612, y: 0, z: -0.8901968}
+    binormal: {x: -0.8901968, y: 0, z: -0.45557612}
+    distance: 174.26738
+    density: 1
+    id: 0
+  - position: {x: 35.80847, y: 0, z: -6.4697995}
+    width: 0
+    snap: 0
+    lerpValue: 15
+    orientation: {x: 0, y: 0.970755, z: 0, w: 0.2400726}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.46610326, y: 0, z: -0.8847303}
+    binormal: {x: -0.88473034, y: 0, z: -0.4661033}
+    distance: 184.75128
+    density: 1
+    id: 0
+  - position: {x: 38.919834, y: 0, z: -14.556515}
+    width: 0
+    snap: 0
+    lerpValue: 16
+    orientation: {x: 0, y: 0.9825713, z: 0, w: -0.18588623}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.3652929, y: 0, z: -0.9308926}
+    binormal: {x: -0.93089265, y: 0, z: 0.36529294}
+    distance: 193.5985
+    density: 1
+    id: 0
+  - position: {x: 31.472858, y: 0, z: -17.518375}
+    width: 0
+    snap: 0
+    lerpValue: 17
+    orientation: {x: 0, y: -0.81924045, z: 0, w: 0.57345027}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9395871, y: 0, z: -0.34230977}
+    binormal: {x: -0.3423098, y: 0, z: 0.9395872}
+    distance: 201.83441
+    density: 1
+    id: 0
+  - position: {x: 11.854563, y: 0, z: -24.416925}
+    width: 0
+    snap: 0
+    lerpValue: 18
+    orientation: {x: 0, y: 0.8791359, z: 0, w: -0.47657114}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.8379416, y: 0, z: -0.54575986}
+    binormal: {x: -0.5457599, y: 0, z: 0.83794165}
+    distance: 222.69287
+    density: 1
+    id: 0
+  additionalDataList: []
+  controlPointsPositionUp:
+  - {x: 11.581687, y: 0, z: -23.997953}
+  - {x: -0.6685457, y: 0, z: -37.866024}
+  - {x: -16.55204, y: 0, z: -35.806786}
+  - {x: -30.8525, y: 0, z: -19.214958}
+  - {x: -36.455727, y: 0, z: -1.5538932}
+  - {x: -35.974846, y: 0, z: 6.9312696}
+  - {x: -26.846174, y: 0, z: 8.846498}
+  - {x: -22.763456, y: 0, z: 16.846813}
+  - {x: -18.079441, y: 0, z: 20.466135}
+  - {x: -6.907184, y: 0, z: 26.544727}
+  - {x: 1.7664914, y: 0, z: 24.242062}
+  - {x: 8.486732, y: 0, z: 22.271555}
+  - {x: 12.323817, y: 0, z: 14.492084}
+  - {x: 25.816912, y: 0, z: 12.075889}
+  - {x: 29.605017, y: 0, z: 2.0516326}
+  - {x: 35.366116, y: 0, z: -6.702852}
+  - {x: 38.45438, y: 0, z: -14.373866}
+  - {x: 31.301706, y: 0, z: -17.048582}
+  controlPointsPositionDown:
+  - {x: 12.127446, y: 0, z: -24.835894}
+  - {x: -0.28746662, y: 0, z: -38.79057}
+  - {x: -17.074207, y: 0, z: -36.65963}
+  - {x: -31.716732, y: 0, z: -19.718056}
+  - {x: -37.43827, y: 0, z: -1.7399441}
+  - {x: -36.718246, y: 0, z: 7.600113}
+  - {x: -27.44596, y: 0, z: 9.646659}
+  - {x: -23.561113, y: 0, z: 17.449928}
+  - {x: -18.601307, y: 0, z: 21.319162}
+  - {x: -7.093162, y: 0, z: 27.527283}
+  - {x: 2.0341506, y: 0, z: 25.205574}
+  - {x: 9.162965, y: 0, z: 23.008242}
+  - {x: 12.83051, y: 0, z: 15.354209}
+  - {x: 26.403143, y: 0, z: 12.886031}
+  - {x: 30.495214, y: 0, z: 2.5072095}
+  - {x: 36.250843, y: 0, z: -6.2367473}
+  - {x: 39.385273, y: 0, z: -14.7391615}
+  - {x: 31.644018, y: 0, z: -17.988169}
+  points:
+  - position: {x: 11.854567, y: 0, z: -24.416924}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0.8791359, z: 0, w: -0.47657114}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.83794165, y: 0, z: -0.5457598}
+    binormal: {x: -0.5457598, y: 0, z: 0.83794165}
+    distance: 0
+    density: 1
+    id: 0
+  - position: {x: 9.991723, y: 0, z: -25.929691}
+    width: 0
+    snap: 0
+    lerpValue: 0.125
+    orientation: {x: 0, y: 0.9217899, z: 0, w: -0.38768983}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.71473706, y: 0, z: -0.6993932}
+    binormal: {x: -0.6993933, y: 0, z: 0.7147371}
+    distance: 2.3997192
+    density: 1
+    id: 0
+  - position: {x: 8.352955, y: 0, z: -27.776829}
+    width: 0
+    snap: 0
+    lerpValue: 0.25
+    orientation: {x: 0, y: 0.94499826, z: 0, w: -0.32707533}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.6181713, y: 0, z: -0.78604347}
+    binormal: {x: -0.78604347, y: 0, z: 0.6181713}
+    distance: 4.869026
+    density: 1
+    id: 0
+  - position: {x: 6.8721223, y: 0, z: -29.823462}
+    width: 0
+    snap: 0
+    lerpValue: 0.375
+    orientation: {x: 0, y: 0.95599455, z: 0, w: -0.29338458}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.5609481, y: 0, z: -0.82785106}
+    binormal: {x: -0.82785106, y: 0, z: 0.5609481}
+    distance: 7.3952036
+    density: 1
+    id: 0
+  - position: {x: 5.483081, y: 0, z: -31.934711}
+    width: 0
+    snap: 0
+    lerpValue: 0.5
+    orientation: {x: 0, y: 0.958708, z: 0, w: -0.2843923}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.54529834, y: 0, z: -0.83824205}
+    binormal: {x: -0.83824205, y: 0, z: 0.54529834}
+    distance: 9.922418
+    density: 1
+    id: 0
+  - position: {x: 4.1196895, y: 0, z: -33.9757}
+    width: 0
+    snap: 0
+    lerpValue: 0.625
+    orientation: {x: 0, y: 0.9537386, z: 0, w: -0.30063727}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.5734587, y: 0, z: -0.81923443}
+    binormal: {x: -0.8192345, y: 0, z: 0.57345873}
+    distance: 12.376898
+    density: 1
+    id: 0
+  - position: {x: 2.7158055, y: 0, z: -35.811543}
+    width: 0
+    snap: 0
+    lerpValue: 0.75
+    orientation: {x: 0, y: 0.93794125, z: 0, w: -0.3467942}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.6505451, y: 0, z: -0.75946754}
+    binormal: {x: -0.7594676, y: 0, z: 0.6505452}
+    distance: 14.688003
+    density: 1
+    id: 0
+  - position: {x: 1.2052872, y: 0, z: -37.307365}
+    width: 0
+    snap: 0
+    lerpValue: 0.875
+    orientation: {x: 0, y: 0.90230876, z: 0, w: -0.43109035}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.7779532, y: 0, z: -0.6283221}
+    binormal: {x: -0.6283222, y: 0, z: 0.77795327}
+    distance: 16.813831
+    density: 1
+    id: 0
+  - position: {x: -0.47800827, y: 0, z: -38.328293}
+    width: 0
+    snap: 0
+    lerpValue: 1
+    orientation: {x: 0, y: -0.8309869, z: 0, w: 0.556292}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.92454267, y: 0, z: -0.3810785}
+    binormal: {x: -0.3810785, y: 0, z: 0.92454267}
+    distance: 18.78253
+    density: 1
+    id: 0
+  - position: {x: -2.3411074, y: 0, z: -38.93264}
+    width: 0
+    snap: 0
+    lerpValue: 1.125
+    orientation: {x: 0, y: -0.78659177, z: 0, w: 0.6174734}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.971399, y: 0, z: -0.23745307}
+    binormal: {x: -0.23745307, y: 0, z: 0.971399}
+    distance: 20.741196
+    density: 1
+    id: 0
+  - position: {x: -4.3240356, y: 0, z: -39.273846}
+    width: 0
+    snap: 0
+    lerpValue: 1.25
+    orientation: {x: 0, y: -0.7429392, z: 0, w: 0.66935897}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.994586, y: 0, z: -0.10391714}
+    binormal: {x: -0.10391714, y: 0, z: 0.994586}
+    distance: 22.753265
+    density: 1
+    id: 0
+  - position: {x: -6.3924174, y: 0, z: -39.359737}
+    width: 0
+    snap: 0
+    lerpValue: 1.375
+    orientation: {x: 0, y: -0.70048296, z: 0, w: 0.7136691}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9998261, y: 0, z: 0.018647335}
+    binormal: {x: 0.018647337, y: -0, z: 0.99982613}
+    distance: 24.82343
+    density: 1
+    id: 0
+  - position: {x: -8.511883, y: 0, z: -39.19813}
+    width: 0
+    snap: 0
+    lerpValue: 1.5
+    orientation: {x: 0, y: -0.6590244, z: 0, w: 0.75212157}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9913329, y: 0, z: 0.13137367}
+    binormal: {x: 0.13137369, y: -0, z: 0.99133295}
+    distance: 26.949047
+    density: 1
+    id: 0
+  - position: {x: -10.648059, y: 0, z: -38.796856}
+    width: 0
+    snap: 0
+    lerpValue: 1.625
+    orientation: {x: 0, y: -0.6179804, z: 0, w: 0.7861935}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.97170436, y: 0, z: 0.23620047}
+    binormal: {x: 0.23620047, y: -0, z: 0.97170436}
+    distance: 29.122585
+    density: 1
+    id: 0
+  - position: {x: -12.766571, y: 0, z: -38.16373}
+    width: 0
+    snap: 0
+    lerpValue: 1.75
+    orientation: {x: 0, y: -0.5765533, z: 0, w: 0.8170596}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9421568, y: 0, z: 0.33517262}
+    binormal: {x: 0.33517262, y: -0, z: 0.9421568}
+    distance: 31.333681
+    density: 1
+    id: 0
+  - position: {x: -14.833052, y: 0, z: -37.306576}
+    width: 0
+    snap: 0
+    lerpValue: 1.875
+    orientation: {x: 0, y: -0.5338221, z: 0, w: 0.8455968}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.90279657, y: 0, z: 0.43006784}
+    binormal: {x: 0.43006784, y: -0, z: 0.90279657}
+    distance: 33.57088
+    density: 1
+    id: 0
+  - position: {x: -16.813126, y: 0, z: -36.23321}
+    width: 0
+    snap: 0
+    lerpValue: 2
+    orientation: {x: 0, y: -0.4887917, z: 0, w: 0.8724005}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.85284424, y: 0, z: 0.5221654}
+    binormal: {x: 0.5221654, y: -0, z: 0.85284424}
+    distance: 35.82317
+    density: 1
+    id: 0
+  - position: {x: -18.771456, y: 0, z: -34.846622}
+    width: 0
+    snap: 0
+    lerpValue: 2.125
+    orientation: {x: 0, y: -0.43410045, z: 0, w: 0.9008645}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.7821313, y: 0, z: 0.6231136}
+    binormal: {x: 0.62311363, y: -0, z: 0.7821314}
+    distance: 38.222687
+    density: 1
+    id: 0
+  - position: {x: -20.768496, y: 0, z: -33.097805}
+    width: 0
+    snap: 0
+    lerpValue: 2.25
+    orientation: {x: 0, y: -0.39441487, z: 0, w: 0.9189325}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.7248813, y: 0, z: 0.68887377}
+    binormal: {x: 0.68887377, y: -0, z: 0.7248813}
+    distance: 40.877216
+    density: 1
+    id: 0
+  - position: {x: -22.76355, y: 0, z: -31.066544}
+    width: 0
+    snap: 0
+    lerpValue: 2.375
+    orientation: {x: 0, y: -0.3641025, z: 0, w: 0.93135893}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.67822015, y: 0, z: 0.73485875}
+    binormal: {x: 0.73485875, y: -0, z: 0.67822015}
+    distance: 43.724365
+    density: 1
+    id: 0
+  - position: {x: -24.715916, y: 0, z: -28.832638}
+    width: 0
+    snap: 0
+    lerpValue: 2.5
+    orientation: {x: 0, y: -0.33965498, z: 0, w: 0.9405501}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.638925, y: 0, z: 0.76926905}
+    binormal: {x: 0.76926905, y: -0, z: 0.638925}
+    distance: 46.691193
+    density: 1
+    id: 0
+  - position: {x: -26.584902, y: 0, z: -26.475882}
+    width: 0
+    snap: 0
+    lerpValue: 2.625
+    orientation: {x: 0, y: -0.31876087, z: 0, w: 0.9478352}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.6042656, y: 0, z: 0.79678303}
+    binormal: {x: 0.79678303, y: -0, z: 0.6042656}
+    distance: 49.699085
+    density: 1
+    id: 0
+  - position: {x: -28.329811, y: 0, z: -24.076077}
+    width: 0
+    snap: 0
+    lerpValue: 2.75
+    orientation: {x: 0, y: -0.29970148, z: 0, w: 0.954033}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.5718502, y: 0, z: 0.8203581}
+    binormal: {x: 0.8203581, y: -0, z: 0.5718502}
+    distance: 52.6662
+    density: 1
+    id: 0
+  - position: {x: -29.909945, y: 0, z: -21.713017}
+    width: 0
+    snap: 0
+    lerpValue: 2.875
+    orientation: {x: 0, y: -0.2809172, z: 0, w: 0.95973206}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.53921044, y: 0, z: 0.842171}
+    binormal: {x: 0.8421711, y: -0, z: 0.5392105}
+    distance: 55.50889
+    density: 1
+    id: 0
+  - position: {x: -31.284615, y: 0, z: -19.466501}
+    width: 0
+    snap: 0
+    lerpValue: 3
+    orientation: {x: 0, y: -0.26054773, z: 0, w: 0.965461}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.50309724, y: 0, z: 0.8642298}
+    binormal: {x: 0.8642298, y: -0, z: 0.50309724}
+    distance: 58.14262
+    density: 1
+    id: 0
+  - position: {x: -32.456757, y: 0, z: -17.228552}
+    width: 0
+    snap: 0
+    lerpValue: 3.125
+    orientation: {x: 0, y: -0.2188302, z: 0, w: 0.97576296}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.42705283, y: 0, z: 0.9042267}
+    binormal: {x: 0.9042267, y: -0, z: 0.42705283}
+    distance: 60.66895
+    density: 1
+    id: 0
+  - position: {x: -33.46639, y: 0, z: -14.8768835}
+    width: 0
+    snap: 0
+    lerpValue: 3.25
+    orientation: {x: 0, y: -0.18514629, z: 0, w: 0.982711}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.3638906, y: 0, z: 0.9314417}
+    binormal: {x: 0.9314417, y: -0, z: 0.3638906}
+    distance: 63.228188
+    density: 1
+    id: 0
+  - position: {x: -34.328434, y: 0, z: -12.469857}
+    width: 0
+    snap: 0
+    lerpValue: 3.375
+    orientation: {x: 0, y: -0.15799706, z: 0, w: 0.98743963}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.3120251, y: 0, z: 0.95007384}
+    binormal: {x: 0.95007384, y: -0, z: 0.3120251}
+    distance: 65.78492
+    density: 1
+    id: 0
+  - position: {x: -35.057804, y: 0, z: -10.065832}
+    width: 0
+    snap: 0
+    lerpValue: 3.5
+    orientation: {x: 0, y: -0.13622586, z: 0, w: 0.99067783}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.2699119, y: 0, z: 0.962885}
+    binormal: {x: 0.962885, y: -0, z: 0.2699119}
+    distance: 68.29715
+    density: 1
+    id: 0
+  - position: {x: -35.66943, y: 0, z: -7.7231674}
+    width: 0
+    snap: 0
+    lerpValue: 3.625
+    orientation: {x: 0, y: -0.119038194, z: 0, w: 0.9928897}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.23638359, y: 0, z: 0.97165984}
+    binormal: {x: 0.97165984, y: -0, z: 0.23638359}
+    distance: 70.71834
+    density: 1
+    id: 0
+  - position: {x: -36.178226, y: 0, z: -5.5002213}
+    width: 0
+    snap: 0
+    lerpValue: 3.75
+    orientation: {x: 0, y: -0.10601647, z: 0, w: 0.99436444}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.21083803, y: 0, z: 0.97752106}
+    binormal: {x: 0.97752106, y: -0, z: 0.21083803}
+    distance: 72.99877
+    density: 1
+    id: 0
+  - position: {x: -36.599106, y: 0, z: -3.4553523}
+    width: 0
+    snap: 0
+    lerpValue: 3.875
+    orientation: {x: 0, y: -0.09720922, z: 0, w: 0.995264}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.19349767, y: 0, z: 0.98110074}
+    binormal: {x: 0.98110074, y: -0, z: 0.19349767}
+    distance: 75.0865
+    density: 1
+    id: 0
+  - position: {x: -36.947006, y: 0, z: -1.6469193}
+    width: 0
+    snap: 0
+    lerpValue: 4
+    orientation: {x: 0, y: -0.093434386, z: 0, w: 0.99562544}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.1860513, y: 0, z: 0.9825401}
+    binormal: {x: 0.9825401, y: -0, z: 0.1860513}
+    distance: 76.92809
+    density: 1
+    id: 0
+  - position: {x: -37.23042, y: 0, z: -0.05924473}
+    width: 0
+    snap: 0
+    lerpValue: 4.125
+    orientation: {x: 0, y: -0.08154677, z: 0, w: 0.99666953}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.16255036, y: 0, z: 0.98670024}
+    binormal: {x: 0.98670024, y: -0, z: 0.16255036}
+    distance: 78.54086
+    density: 1
+    id: 0
+  - position: {x: -37.4388, y: 0, z: 1.3699679}
+    width: 0
+    snap: 0
+    lerpValue: 4.25
+    orientation: {x: 0, y: -0.0610757, z: 0, w: 0.9981332}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.12192334, y: 0, z: 0.9925395}
+    binormal: {x: 0.9925395, y: -0, z: 0.12192334}
+    distance: 79.98518
+    density: 1
+    id: 0
+  - position: {x: -37.558464, y: 0, z: 2.6522932}
+    width: 0
+    snap: 0
+    lerpValue: 4.375
+    orientation: {x: 0, y: -0.029124573, z: 0, w: 0.9995758}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.058224436, y: 0, z: 0.99830353}
+    binormal: {x: 0.99830353, y: -0, z: 0.058224436}
+    distance: 81.27308
+    density: 1
+    id: 0
+  - position: {x: -37.575703, y: 0, z: 3.799305}
+    width: 0
+    snap: 0
+    lerpValue: 4.5
+    orientation: {x: 0, y: 0.017780205, z: 0, w: 0.9998419}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.03555479, y: 0, z: 0.9993677}
+    binormal: {x: 0.9993677, y: 0, z: -0.03555479}
+    distance: 82.42022
+    density: 1
+    id: 0
+  - position: {x: -37.47682, y: 0, z: 4.8225775}
+    width: 0
+    snap: 0
+    lerpValue: 4.625
+    orientation: {x: 0, y: 0.082794145, z: 0, w: 0.99656665}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.16501977, y: 0, z: 0.9862903}
+    binormal: {x: 0.9862903, y: 0, z: -0.16501977}
+    distance: 83.44826
+    density: 1
+    id: 0
+  - position: {x: -37.24814, y: 0, z: 5.733683}
+    width: 0
+    snap: 0
+    lerpValue: 4.75
+    orientation: {x: 0, y: 0.16628997, z: 0, w: 0.98607695}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.32794935, y: 0, z: 0.9446953}
+    binormal: {x: 0.9446953, y: 0, z: -0.32794935}
+    distance: 84.38763
+    density: 1
+    id: 0
+  - position: {x: -36.875942, y: 0, z: 6.544197}
+    width: 0
+    snap: 0
+    lerpValue: 4.875
+    orientation: {x: 0, y: 0.26229772, z: 0, w: 0.96498704}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.5062277, y: 0, z: 0.8623998}
+    binormal: {x: 0.8623999, y: 0, z: -0.50622773}
+    distance: 85.27951
+    density: 1
+    id: 0
+  - position: {x: -36.346546, y: 0, z: 7.2656918}
+    width: 0
+    snap: 0
+    lerpValue: 5
+    orientation: {x: 0, y: 0.3581876, z: 0, w: 0.93364966}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.66884345, y: 0, z: 0.7434033}
+    binormal: {x: 0.7434033, y: 0, z: -0.66884345}
+    distance: 86.17439
+    density: 1
+    id: 0
+  - position: {x: -35.572353, y: 0, z: 7.8045206}
+    width: 0
+    snap: 0
+    lerpValue: 5.125
+    orientation: {x: 0, y: 0.545127, z: 0, w: 0.8383535}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.9140183, y: 0, z: 0.40567318}
+    binormal: {x: 0.40567312, y: 0, z: -0.91401815}
+    distance: 87.11764
+    density: 1
+    id: 0
+  - position: {x: -34.52885, y: 0, z: 8.109529}
+    width: 0
+    snap: 0
+    lerpValue: 5.25
+    orientation: {x: 0, y: 0.6394897, z: 0, w: 0.76879966}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.98327893, y: 0, z: 0.18210591}
+    binormal: {x: 0.18210591, y: 0, z: -0.98327893}
+    distance: 88.2048
+    density: 1
+    id: 0
+  - position: {x: -33.297, y: 0, z: 8.2560215}
+    width: 0
+    snap: 0
+    lerpValue: 5.375
+    orientation: {x: 0, y: 0.6815775, z: 0, w: 0.73174596}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.99748313, y: 0, z: 0.07090437}
+    binormal: {x: 0.07090437, y: 0, z: -0.99748313}
+    distance: 89.445335
+    density: 1
+    id: 0
+  - position: {x: -31.957764, y: 0, z: 8.31931}
+    width: 0
+    snap: 0
+    lerpValue: 5.5
+    orientation: {x: 0, y: 0.694898, z: 0, w: 0.7191083}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.99941385, y: 0, z: 0.034233395}
+    binormal: {x: 0.034233395, y: 0, z: -0.99941385}
+    distance: 90.786064
+    density: 1
+    id: 0
+  - position: {x: -30.592098, y: 0, z: 8.3747015}
+    width: 0
+    snap: 0
+    lerpValue: 5.625
+    orientation: {x: 0, y: 0.68682957, z: 0, w: 0.7268185}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.99840087, y: 0, z: 0.056530185}
+    binormal: {x: 0.056530185, y: 0, z: -0.99840087}
+    distance: 92.152855
+    density: 1
+    id: 0
+  - position: {x: -29.280952, y: 0, z: 8.497504}
+    width: 0
+    snap: 0
+    lerpValue: 5.75
+    orientation: {x: 0, y: 0.65459645, z: 0, w: 0.75597847}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.98972166, y: 0, z: 0.14300673}
+    binormal: {x: 0.14300674, y: 0, z: -0.9897217}
+    distance: 93.46974
+    density: 1
+    id: 0
+  - position: {x: -28.105291, y: 0, z: 8.763027}
+    width: 0
+    snap: 0
+    lerpValue: 5.875
+    orientation: {x: 0, y: 0.58414525, z: 0, w: 0.81164914}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.94824195, y: 0, z: 0.31754875}
+    binormal: {x: 0.31754875, y: 0, z: -0.94824195}
+    distance: 94.67501
+    density: 1
+    id: 0
+  - position: {x: -27.146069, y: 0, z: 9.246577}
+    width: 0
+    snap: 0
+    lerpValue: 6
+    orientation: {x: 0, y: 0.44733334, z: 0, w: 0.89436734}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.8001606, y: 0, z: 0.59978586}
+    binormal: {x: 0.59978586, y: 0, z: -0.8001606}
+    distance: 95.74922
+    density: 1
+    id: 0
+  - position: {x: -26.404196, y: 0, z: 9.979398}
+    width: 0
+    snap: 0
+    lerpValue: 6.125
+    orientation: {x: 0, y: 0.3293312, z: 0, w: 0.9442145}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.6219185, y: 0, z: 0.783082}
+    binormal: {x: 0.783082, y: 0, z: -0.6219185}
+    distance: 96.79201
+    density: 1
+    id: 0
+  - position: {x: -25.802965, y: 0, z: 10.903154}
+    width: 0
+    snap: 0
+    lerpValue: 6.25
+    orientation: {x: 0, y: 0.24616459, z: 0, w: 0.969228}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.47717923, y: 0, z: 0.87880594}
+    binormal: {x: 0.878806, y: 0, z: -0.47717926}
+    distance: 97.89419
+    density: 1
+    id: 0
+  - position: {x: -25.306898, y: 0, z: 11.958794}
+    width: 0
+    snap: 0
+    lerpValue: 6.375
+    orientation: {x: 0, y: 0.19466925, z: 0, w: 0.980869}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.38188997, y: 0, z: 0.92420775}
+    binormal: {x: 0.9242078, y: 0, z: -0.38189}
+    distance: 99.06058
+    density: 1
+    id: 0
+  - position: {x: -24.880516, y: 0, z: 13.087263}
+    width: 0
+    snap: 0
+    lerpValue: 6.5
+    orientation: {x: 0, y: 0.16851905, z: 0, w: 0.9856984}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.3322179, y: 0, z: 0.9432026}
+    binormal: {x: 0.9432027, y: 0, z: -0.33221793}
+    distance: 100.266914
+    density: 1
+    id: 0
+  - position: {x: -24.48834, y: 0, z: 14.229507}
+    width: 0
+    snap: 0
+    lerpValue: 6.625
+    orientation: {x: 0, y: 0.16426505, z: 0, w: 0.9864163}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.32406744, y: 0, z: 0.946034}
+    binormal: {x: 0.946034, y: 0, z: -0.32406744}
+    distance: 101.47461
+    density: 1
+    id: 0
+  - position: {x: -24.094896, y: 0, z: 15.326477}
+    width: 0
+    snap: 0
+    lerpValue: 6.75
+    orientation: {x: 0, y: 0.18266806, z: 0, w: 0.9831747}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.3591892, y: 0, z: 0.93326473}
+    binormal: {x: 0.93326473, y: 0, z: -0.3591892}
+    distance: 102.64
+    density: 1
+    id: 0
+  - position: {x: -23.664703, y: 0, z: 16.319115}
+    width: 0
+    snap: 0
+    lerpValue: 6.875
+    orientation: {x: 0, y: 0.22975174, z: 0, w: 0.97324926}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.44721144, y: 0, z: 0.8944283}
+    binormal: {x: 0.8944283, y: 0, z: -0.44721144}
+    distance: 103.72185
+    density: 1
+    id: 0
+  - position: {x: -23.162287, y: 0, z: 17.148369}
+    width: 0
+    snap: 0
+    lerpValue: 7
+    orientation: {x: 0, y: 0.318076, z: 0, w: 0.9480652}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.6031136, y: 0, z: 0.79765534}
+    binormal: {x: 0.79765534, y: 0, z: -0.6031136}
+    distance: 104.69143
+    density: 1
+    id: 0
+  - position: {x: -22.64421, y: 0, z: 17.798948}
+    width: 0
+    snap: 0
+    lerpValue: 7.125
+    orientation: {x: 0, y: 0.34435448, z: 0, w: 0.93883973}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.64658725, y: 0, z: 0.76284}
+    binormal: {x: 0.76284003, y: 0, z: -0.6465873}
+    distance: 105.52309
+    density: 1
+    id: 0
+  - position: {x: -22.16851, y: 0, z: 18.320538}
+    width: 0
+    snap: 0
+    lerpValue: 7.25
+    orientation: {x: 0, y: 0.3805631, z: 0, w: 0.924755}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.7038552, y: 0, z: 0.7103434}
+    binormal: {x: 0.7103434, y: 0, z: -0.7038552}
+    distance: 106.22902
+    density: 1
+    id: 0
+  - position: {x: -21.701902, y: 0, z: 18.75155}
+    width: 0
+    snap: 0
+    lerpValue: 7.375
+    orientation: {x: 0, y: 0.4217707, z: 0, w: 0.9067025}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.76484114, y: 0, z: 0.644219}
+    binormal: {x: 0.644219, y: 0, z: -0.76484114}
+    distance: 106.864235
+    density: 1
+    id: 0
+  - position: {x: -21.211105, y: 0, z: 19.130411}
+    width: 0
+    snap: 0
+    lerpValue: 7.5
+    orientation: {x: 0, y: 0.45846748, z: 0, w: 0.8887112}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.8148904, y: 0, z: 0.5796152}
+    binormal: {x: 0.5796152, y: 0, z: -0.8148904}
+    distance: 107.484245
+    density: 1
+    id: 0
+  - position: {x: -20.662836, y: 0, z: 19.495535}
+    width: 0
+    snap: 0
+    lerpValue: 7.625
+    orientation: {x: 0, y: 0.48290247, z: 0, w: 0.8756742}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.84573036, y: 0, z: 0.53361046}
+    binormal: {x: 0.53361046, y: 0, z: -0.84573036}
+    distance: 108.14297
+    density: 1
+    id: 0
+  - position: {x: -20.023813, y: 0, z: 19.885338}
+    width: 0
+    snap: 0
+    lerpValue: 7.75
+    orientation: {x: 0, y: 0.49378064, z: 0, w: 0.8695865}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.85876995, y: 0, z: 0.5123614}
+    binormal: {x: 0.5123614, y: 0, z: -0.85876995}
+    distance: 108.891495
+    density: 1
+    id: 0
+  - position: {x: -19.260754, y: 0, z: 20.338236}
+    width: 0
+    snap: 0
+    lerpValue: 7.875
+    orientation: {x: 0, y: 0.4944043, z: 0, w: 0.8692321}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.8595041, y: 0, z: 0.5111288}
+    binormal: {x: 0.51112884, y: 0, z: -0.85950416}
+    distance: 109.77884
+    density: 1
+    id: 0
+  - position: {x: -18.340374, y: 0, z: 20.89265}
+    width: 0
+    snap: 0
+    lerpValue: 8
+    orientation: {x: 0, y: 0.4889454, z: 0, w: 0.8723144}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.8530282, y: 0, z: 0.5218648}
+    binormal: {x: 0.52186483, y: 0, z: -0.85302824}
+    distance: 110.8533
+    density: 1
+    id: 0
+  - position: {x: -17.21808, y: 0, z: 21.603569}
+    width: 0
+    snap: 0
+    lerpValue: 8.125
+    orientation: {x: 0, y: 0.4778443, z: 0, w: 0.87844455}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.83951944, y: 0, z: 0.5433297}
+    binormal: {x: 0.5433297, y: 0, z: -0.83951944}
+    distance: 112.181816
+    density: 1
+    id: 0
+  - position: {x: -15.906461, y: 0, z: 22.45798}
+    width: 0
+    snap: 0
+    lerpValue: 8.25
+    orientation: {x: 0, y: 0.4764778, z: 0, w: 0.8791865}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.8378257, y: 0, z: 0.5459378}
+    binormal: {x: 0.5459378, y: 0, z: -0.8378257}
+    distance: 113.74718
+    density: 1
+    id: 0
+  - position: {x: -14.457999, y: 0, z: 23.392275}
+    width: 0
+    snap: 0
+    lerpValue: 8.375
+    orientation: {x: 0, y: 0.48144144, z: 0, w: 0.87647825}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.8439459, y: 0, z: 0.5364283}
+    binormal: {x: 0.5364283, y: 0, z: -0.8439459}
+    distance: 115.47082
+    density: 1
+    id: 0
+  - position: {x: -12.925185, y: 0, z: 24.342855}
+    width: 0
+    snap: 0
+    lerpValue: 8.5
+    orientation: {x: 0, y: 0.4920775, z: 0, w: 0.8705514}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.8567575, y: 0, z: 0.5157194}
+    binormal: {x: 0.5157194, y: 0, z: -0.8567575}
+    distance: 117.27446
+    density: 1
+    id: 0
+  - position: {x: -11.360508, y: 0, z: 25.24612}
+    width: 0
+    snap: 0
+    lerpValue: 8.625
+    orientation: {x: 0, y: 0.50923663, z: 0, w: 0.8606266}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.8765251, y: 0, z: 0.48135623}
+    binormal: {x: 0.48135623, y: 0, z: -0.8765251}
+    distance: 119.08115
+    density: 1
+    id: 0
+  - position: {x: -9.816453, y: 0, z: 26.038467}
+    width: 0
+    snap: 0
+    lerpValue: 8.75
+    orientation: {x: 0, y: 0.5353261, z: 0, w: 0.8446455}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.9043216, y: 0, z: 0.42685184}
+    binormal: {x: 0.42685184, y: 0, z: -0.9043216}
+    distance: 120.816635
+    density: 1
+    id: 0
+  - position: {x: -8.345511, y: 0, z: 26.656296}
+    width: 0
+    snap: 0
+    lerpValue: 8.875
+    orientation: {x: 0, y: 0.57519513, z: 0, w: 0.81801623}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.94103783, y: 0, z: 0.3383012}
+    binormal: {x: 0.33830124, y: 0, z: -0.9410379}
+    distance: 122.41206
+    density: 1
+    id: 0
+  - position: {x: -7.0001717, y: 0, z: 27.036003}
+    width: 0
+    snap: 0
+    lerpValue: 9
+    orientation: {x: 0, y: 0.637974, z: 0, w: 0.7700579}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: -0, y: 1, z: 0}
+    tangent: {x: 0.98255384, y: 0, z: 0.18597844}
+    binormal: {x: 0.18597844, y: 0, z: -0.98255384}
+    distance: 123.80996
+    density: 1
+    id: 0
+  - position: {x: -5.7573595, y: 0, z: 27.150032}
+    width: 0
+    snap: 0
+    lerpValue: 9.125
+    orientation: {x: 0, y: 0.7079499, z: 0, w: 0.70626265}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.99999714, y: 0, z: -0.0023860966}
+    binormal: {x: -0.0023860966, y: 0, z: -0.99999714}
+    distance: 125.05799
+    density: 1
+    id: 0
+  - position: {x: -4.5571957, y: 0, z: 27.047138}
+    width: 0
+    snap: 0
+    lerpValue: 9.25
+    orientation: {x: 0, y: 0.7624249, z: 0, w: 0.6470767}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9866948, y: 0, z: -0.16258337}
+    binormal: {x: -0.16258337, y: 0, z: -0.9866948}
+    distance: 126.26256
+    density: 1
+    id: 0
+  - position: {x: -3.3969636, y: 0, z: 26.778206}
+    width: 0
+    snap: 0
+    lerpValue: 9.375
+    orientation: {x: 0, y: 0.8005203, z: 0, w: 0.5993057}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.95951265, y: 0, z: -0.28166535}
+    binormal: {x: -0.28166538, y: 0, z: -0.9595127}
+    distance: 127.45355
+    density: 1
+    id: 0
+  - position: {x: -2.273946, y: 0, z: 26.394115}
+    width: 0
+    snap: 0
+    lerpValue: 9.5
+    orientation: {x: 0, y: 0.8242193, z: 0, w: 0.5662708}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.93346256, y: 0, z: -0.35867482}
+    binormal: {x: -0.35867482, y: 0, z: -0.93346256}
+    distance: 128.64044
+    density: 1
+    id: 0
+  - position: {x: -1.1854262, y: 0, z: 25.945751}
+    width: 0
+    snap: 0
+    lerpValue: 9.625
+    orientation: {x: 0, y: 0.8357147, z: 0, w: 0.54916394}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9178887, y: 0, z: -0.39683798}
+    binormal: {x: -0.39683798, y: 0, z: -0.9178887}
+    distance: 129.81769
+    density: 1
+    id: 0
+  - position: {x: -0.12868613, y: 0, z: 25.483992}
+    width: 0
+    snap: 0
+    lerpValue: 9.75
+    orientation: {x: 0, y: 0.83596, z: 0, w: 0.54879045}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9175337, y: 0, z: -0.39765805}
+    binormal: {x: -0.39765805, y: 0, z: -0.9175337}
+    distance: 130.97092
+    density: 1
+    id: 0
+  - position: {x: 0.89899105, y: 0, z: 25.05972}
+    width: 0
+    snap: 0
+    lerpValue: 9.875
+    orientation: {x: 0, y: 0.823958, z: 0, w: 0.5666509}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9337931, y: 0, z: -0.35781345}
+    binormal: {x: -0.35781345, y: 0, z: -0.9337931}
+    distance: 132.08273
+    density: 1
+    id: 0
+  - position: {x: 1.900322, y: 0, z: 24.72382}
+    width: 0
+    snap: 0
+    lerpValue: 10
+    orientation: {x: 0, y: 0.79613405, z: 0, w: 0.60512036}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.96351373, y: 0, z: -0.2676588}
+    binormal: {x: -0.2676588, y: 0, z: -0.96351373}
+    distance: 133.1389
+    density: 1
+    id: 0
+  - position: {x: 2.882125, y: 0, z: 24.49091}
+    width: 0
+    snap: 0
+    lerpValue: 10.125
+    orientation: {x: 0, y: 0.77400094, z: 0, w: 0.63318443}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9801707, y: 0, z: -0.19815502}
+    binormal: {x: -0.19815502, y: 0, z: -0.9801707}
+    distance: 134.14795
+    density: 1
+    id: 0
+  - position: {x: 3.8447366, y: 0, z: 24.318808}
+    width: 0
+    snap: 0
+    lerpValue: 10.25
+    orientation: {x: 0, y: 0.7612632, z: 0, w: 0.64844304}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9872716, y: 0, z: -0.15904327}
+    binormal: {x: -0.15904327, y: 0, z: -0.9872716}
+    distance: 135.12582
+    density: 1
+    id: 0
+  - position: {x: 4.7811465, y: 0, z: 24.173166}
+    width: 0
+    snap: 0
+    lerpValue: 10.375
+    orientation: {x: 0, y: 0.759714, z: 0, w: 0.6502574}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9880192, y: 0, z: -0.15433069}
+    binormal: {x: -0.15433069, y: 0, z: -0.9880192}
+    distance: 136.07349
+    density: 1
+    id: 0
+  - position: {x: 5.684346, y: 0, z: 24.019644}
+    width: 0
+    snap: 0
+    lerpValue: 10.5
+    orientation: {x: 0, y: 0.77059275, z: 0, w: 0.6373279}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.98224044, y: 0, z: -0.18762624}
+    binormal: {x: -0.18762626, y: 0, z: -0.9822405}
+    distance: 136.98964
+    density: 1
+    id: 0
+  - position: {x: 6.5473247, y: 0, z: 23.8239}
+    width: 0
+    snap: 0
+    lerpValue: 10.625
+    orientation: {x: 0, y: 0.7943931, z: 0, w: 0.607404}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9650351, y: 0, z: -0.2621209}
+    binormal: {x: -0.2621209, y: 0, z: -0.9650351}
+    distance: 137.87454
+    density: 1
+    id: 0
+  - position: {x: 7.3630743, y: 0, z: 23.55159}
+    width: 0
+    snap: 0
+    lerpValue: 10.75
+    orientation: {x: 0, y: 0.82993037, z: 0, w: 0.557867}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.92598146, y: 0, z: -0.3775689}
+    binormal: {x: -0.3775689, y: 0, z: -0.92598146}
+    distance: 138.73454
+    density: 1
+    id: 0
+  - position: {x: 8.124585, y: 0, z: 23.168373}
+    width: 0
+    snap: 0
+    lerpValue: 10.875
+    orientation: {x: 0, y: 0.872863, z: 0, w: 0.48796535}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.8518538, y: 0, z: -0.52377963}
+    binormal: {x: -0.52377963, y: 0, z: -0.8518538}
+    distance: 139.58704
+    density: 1
+    id: 0
+  - position: {x: 8.824848, y: 0, z: 22.639904}
+    width: 0
+    snap: 0
+    lerpValue: 11
+    orientation: {x: 0, y: 0.9154868, z: 0, w: 0.4023481}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.73668873, y: 0, z: -0.67623204}
+    binormal: {x: -0.67623204, y: 0, z: -0.73668873}
+    distance: 140.46432
+    density: 1
+    id: 0
+  - position: {x: 9.378824, y: 0, z: 21.908789}
+    width: 0
+    snap: 0
+    lerpValue: 11.125
+    orientation: {x: 0, y: 0.9694865, z: 0, w: 0.24514498}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.4753295, y: 0, z: -0.8798079}
+    binormal: {x: -0.8798079, y: 0, z: -0.4753295}
+    distance: 141.3816
+    density: 1
+    id: 0
+  - position: {x: 9.756742, y: 0, z: 20.983147}
+    width: 0
+    snap: 0
+    lerpValue: 11.25
+    orientation: {x: 0, y: 0.9884041, z: 0, w: 0.1518465}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.30017138, y: 0, z: -0.95388526}
+    binormal: {x: -0.9538853, y: 0, z: -0.3001714}
+    distance: 142.38142
+    density: 1
+    id: 0
+  - position: {x: 10.034497, y: 0, z: 19.926886}
+    width: 0
+    snap: 0
+    lerpValue: 11.375
+    orientation: {x: 0, y: 0.9936228, z: 0, w: 0.11275536}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.22407259, y: 0, z: -0.9745725}
+    binormal: {x: -0.9745725, y: 0, z: -0.22407259}
+    distance: 143.47359
+    density: 1
+    id: 0
+  - position: {x: 10.287985, y: 0, z: 18.803913}
+    width: 0
+    snap: 0
+    lerpValue: 11.5
+    orientation: {x: 0, y: 0.9933519, z: 0, w: 0.11511771}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.22870475, y: 0, z: -0.9734958}
+    binormal: {x: -0.97349584, y: 0, z: -0.22870477}
+    distance: 144.62482
+    density: 1
+    id: 0
+  - position: {x: 10.593101, y: 0, z: 17.678143}
+    width: 0
+    snap: 0
+    lerpValue: 11.625
+    orientation: {x: 0, y: 0.9878854, z: 0, w: 0.15518516}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.30661032, y: 0, z: -0.95183516}
+    binormal: {x: -0.95183516, y: 0, z: -0.30661032}
+    distance: 145.7912
+    density: 1
+    id: 0
+  - position: {x: 11.025739, y: 0, z: 16.613483}
+    width: 0
+    snap: 0
+    lerpValue: 11.75
+    orientation: {x: 0, y: 0.9718517, z: 0, w: 0.23559341}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.45792368, y: 0, z: -0.8889915}
+    binormal: {x: -0.88899153, y: 0, z: -0.4579237}
+    distance: 146.9404
+    density: 1
+    id: 0
+  - position: {x: 11.661794, y: 0, z: 15.673848}
+    width: 0
+    snap: 0
+    lerpValue: 11.875
+    orientation: {x: 0, y: 0.9344513, z: 0, w: 0.35609102}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.6654993, y: 0, z: -0.7463984}
+    binormal: {x: -0.74639845, y: 0, z: -0.6654994}
+    distance: 148.07507
+    density: 1
+    id: 0
+  - position: {x: 12.577162, y: 0, z: 14.923145}
+    width: 0
+    snap: 0
+    lerpValue: 12
+    orientation: {x: 0, y: 0.8679556, z: 0, w: 0.49664176}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.862126, y: 0, z: -0.50669396}
+    binormal: {x: -0.50669396, y: 0, z: -0.862126}
+    distance: 149.2589
+    density: 1
+    id: 0
+  - position: {x: 13.866334, y: 0, z: 14.418519}
+    width: 0
+    snap: 0
+    lerpValue: 12.125
+    orientation: {x: 0, y: 0.79156667, z: 0, w: 0.61108285}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.96742564, y: 0, z: -0.25315547}
+    binormal: {x: -0.25315547, y: 0, z: -0.96742564}
+    distance: 150.64331
+    density: 1
+    id: 0
+  - position: {x: 15.497516, y: 0, z: 14.123591}
+    width: 0
+    snap: 0
+    lerpValue: 12.25
+    orientation: {x: 0, y: 0.74875206, z: 0, w: 0.66285014}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9926208, y: 0, z: -0.12125945}
+    binormal: {x: -0.12125945, y: 0, z: -0.9926208}
+    distance: 152.30093
+    density: 1
+    id: 0
+  - position: {x: 17.357195, y: 0, z: 13.961992}
+    width: 0
+    snap: 0
+    lerpValue: 12.375
+    orientation: {x: 0, y: 0.728719, z: 0, w: 0.68481284}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.99807227, y: 0, z: -0.06206271}
+    binormal: {x: -0.06206271, y: 0, z: -0.99807227}
+    distance: 154.16762
+    density: 1
+    id: 0
+  - position: {x: 19.33186, y: 0, z: 13.857352}
+    width: 0
+    snap: 0
+    lerpValue: 12.5
+    orientation: {x: 0, y: 0.72487515, z: 0, w: 0.68888026}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9987044, y: 0, z: -0.050887875}
+    binormal: {x: -0.050887875, y: 0, z: -0.9987044}
+    distance: 156.14505
+    density: 1
+    id: 0
+  - position: {x: 21.307991, y: 0, z: 13.7333}
+    width: 0
+    snap: 0
+    lerpValue: 12.625
+    orientation: {x: 0, y: 0.7354712, z: 0, w: 0.677556}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9966458, y: 0, z: -0.08183583}
+    binormal: {x: -0.08183583, y: 0, z: -0.9966458}
+    distance: 158.12508
+    density: 1
+    id: 0
+  - position: {x: 23.172073, y: 0, z: 13.513464}
+    width: 0
+    snap: 0
+    lerpValue: 12.75
+    orientation: {x: 0, y: 0.7626908, z: 0, w: 0.6467633}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.9865608, y: 0, z: -0.16339445}
+    binormal: {x: -0.16339445, y: 0, z: -0.9865608}
+    distance: 160.00208
+    density: 1
+    id: 0
+  - position: {x: 24.81059, y: 0, z: 13.121475}
+    width: 0
+    snap: 0
+    lerpValue: 12.875
+    orientation: {x: 0, y: 0.8125744, z: 0, w: 0.5828575}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.94723016, y: 0, z: -0.32055438}
+    binormal: {x: -0.32055438, y: 0, z: -0.94723016}
+    distance: 161.68683
+    density: 1
+    id: 0
+  - position: {x: 26.110027, y: 0, z: 12.480963}
+    width: 0
+    snap: 0
+    lerpValue: 13
+    orientation: {x: 0, y: 0.89057076, z: 0, w: 0.45484483}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.81014293, y: 0, z: -0.58623236}
+    binormal: {x: -0.58623236, y: 0, z: -0.81014293}
+    distance: 163.13554
+    density: 1
+    id: 0
+  - position: {x: 27.049137, y: 0, z: 11.567137}
+    width: 0
+    snap: 0
+    lerpValue: 13.125
+    orientation: {x: 0, y: 0.9461264, z: 0, w: 0.3237976}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.61270684, y: 0, z: -0.7903102}
+    binormal: {x: -0.79031026, y: 0, z: -0.6127069}
+    distance: 164.44589
+    density: 1
+    id: 0
+  - position: {x: 27.726925, y: 0, z: 10.442116}
+    width: 0
+    snap: 0
+    lerpValue: 13.25
+    orientation: {x: 0, y: 0.97600555, z: 0, w: 0.21774562}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.42504185, y: 0, z: -0.90517366}
+    binormal: {x: -0.9051737, y: 0, z: -0.42504188}
+    distance: 165.75931
+    density: 1
+    id: 0
+  - position: {x: 28.21025, y: 0, z: 9.159872}
+    width: 0
+    snap: 0
+    lerpValue: 13.375
+    orientation: {x: 0, y: 0.989125, z: 0, w: 0.14707741}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.2909559, y: 0, z: -0.9567365}
+    binormal: {x: -0.9567365, y: 0, z: -0.2909559}
+    distance: 167.12962
+    density: 1
+    id: 0
+  - position: {x: 28.565977, y: 0, z: 7.7743793}
+    width: 0
+    snap: 0
+    lerpValue: 13.5
+    orientation: {x: 0, y: 0.99407095, z: 0, w: 0.10873353}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.21617769, y: 0, z: -0.97635406}
+    binormal: {x: -0.97635406, y: 0, z: -0.21617769}
+    distance: 168.56006
+    density: 1
+    id: 0
+  - position: {x: 28.860964, y: 0, z: 6.339613}
+    width: 0
+    snap: 0
+    lerpValue: 13.625
+    orientation: {x: 0, y: 0.9951785, z: 0, w: 0.098080546}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.19521526, y: 0, z: -0.9807604}
+    binormal: {x: -0.9807604, y: 0, z: -0.19521526}
+    distance: 170.02484
+    density: 1
+    id: 0
+  - position: {x: 29.162075, y: 0, z: 4.9095483}
+    width: 0
+    snap: 0
+    lerpValue: 13.75
+    orientation: {x: 0, y: 0.99353373, z: 0, w: 0.11353748}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.22560662, y: 0, z: -0.9742184}
+    binormal: {x: -0.9742185, y: 0, z: -0.22560664}
+    distance: 171.48627
+    density: 1
+    id: 0
+  - position: {x: 29.536173, y: 0, z: 3.5381582}
+    width: 0
+    snap: 0
+    lerpValue: 13.875
+    orientation: {x: 0, y: 0.9875458, z: 0, w: 0.15733185}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.31074482, y: 0, z: -0.9504934}
+    binormal: {x: -0.9504934, y: 0, z: -0.31074482}
+    distance: 172.90776
+    density: 1
+    id: 0
+  - position: {x: 30.050114, y: 0, z: 2.2794185}
+    width: 0
+    snap: 0
+    lerpValue: 14
+    orientation: {x: 0, y: 0.9721617, z: 0, w: 0.23431088}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.45557612, y: 0, z: -0.8901968}
+    binormal: {x: -0.8901968, y: 0, z: -0.45557612}
+    distance: 174.26738
+    density: 1
+    id: 0
+  - position: {x: 30.700998, y: 0, z: 1.1117439}
+    width: 0
+    snap: 0
+    lerpValue: 14.125
+    orientation: {x: 0, y: 0.96369535, z: 0, w: 0.2670044}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.51462173, y: 0, z: -0.8574173}
+    binormal: {x: -0.85741735, y: 0, z: -0.5146218}
+    distance: 175.6042
+    density: 1
+    id: 0
+  - position: {x: 31.423899, y: 0, z: -0.025527723}
+    width: 0
+    snap: 0
+    lerpValue: 14.25
+    orientation: {x: 0, y: 0.9569927, z: 0, w: 0.29011205}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.5552702, y: 0, z: -0.83167005}
+    binormal: {x: -0.83167005, y: 0, z: -0.5552702}
+    distance: 176.95178
+    density: 1
+    id: 0
+  - position: {x: 32.192654, y: 0, z: -1.1370218}
+    width: 0
+    snap: 0
+    lerpValue: 14.375
+    orientation: {x: 0, y: 0.95255834, z: 0, w: 0.30435616}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.579834, y: 0, z: -0.81473464}
+    binormal: {x: -0.81473464, y: 0, z: -0.579834}
+    distance: 178.30322
+    density: 1
+    id: 0
+  - position: {x: 32.981094, y: 0, z: -2.2273657}
+    width: 0
+    snap: 0
+    lerpValue: 14.5
+    orientation: {x: 0, y: 0.9506874, z: 0, w: 0.3101507}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.5897127, y: 0, z: -0.8076131}
+    binormal: {x: -0.80761313, y: 0, z: -0.58971274}
+    distance: 179.64877
+    density: 1
+    id: 0
+  - position: {x: 33.76306, y: 0, z: -3.3011878}
+    width: 0
+    snap: 0
+    lerpValue: 14.625
+    orientation: {x: 0, y: 0.9515575, z: 0, w: 0.30747077}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.58515227, y: 0, z: -0.81092346}
+    binormal: {x: -0.81092346, y: 0, z: -0.58515227}
+    distance: 180.97714
+    density: 1
+    id: 0
+  - position: {x: 34.51239, y: 0, z: -4.363116}
+    width: 0
+    snap: 0
+    lerpValue: 14.75
+    orientation: {x: 0, y: 0.9552606, z: 0, w: 0.29576555}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.5650663, y: 0, z: -0.82504547}
+    binormal: {x: -0.8250455, y: 0, z: -0.56506634}
+    distance: 182.27682
+    density: 1
+    id: 0
+  - position: {x: 35.202915, y: 0, z: -5.417777}
+    width: 0
+    snap: 0
+    lerpValue: 14.875
+    orientation: {x: 0, y: 0.9617618, z: 0, w: 0.27388743}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.5268288, y: 0, z: -0.84997135}
+    binormal: {x: -0.8499714, y: 0, z: -0.5268289}
+    distance: 183.53743
+    density: 1
+    id: 0
+  - position: {x: 35.80847, y: 0, z: -6.4697995}
+    width: 0
+    snap: 0
+    lerpValue: 15
+    orientation: {x: 0, y: 0.970755, z: 0, w: 0.2400726}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.46610326, y: 0, z: -0.8847303}
+    binormal: {x: -0.88473034, y: 0, z: -0.4661033}
+    distance: 184.75128
+    density: 1
+    id: 0
+  - position: {x: 36.396236, y: 0, z: -7.5473742}
+    width: 0
+    snap: 0
+    lerpValue: 15.125
+    orientation: {x: 0, y: 0.96775484, z: 0, w: 0.25189403}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.48754328, y: 0, z: -0.8730988}
+    binormal: {x: -0.8730988, y: 0, z: -0.48754328}
+    distance: 185.97873
+    density: 1
+    id: 0
+  - position: {x: 37.019897, y: 0, z: -8.658174}
+    width: 0
+    snap: 0
+    lerpValue: 15.25
+    orientation: {x: 0, y: 0.9676288, z: 0, w: 0.25237784}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.48841614, y: 0, z: -0.87261087}
+    binormal: {x: -0.87261087, y: 0, z: -0.48841614}
+    distance: 187.25262
+    density: 1
+    id: 0
+  - position: {x: 37.633095, y: 0, z: -9.776054}
+    width: 0
+    snap: 0
+    lerpValue: 15.375
+    orientation: {x: 0, y: 0.97022057, z: 0, w: 0.24222319}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.47001988, y: 0, z: -0.88265586}
+    binormal: {x: -0.88265586, y: 0, z: -0.47001988}
+    distance: 188.52765
+    density: 1
+    id: 0
+  - position: {x: 38.189484, y: 0, z: -10.8748665}
+    width: 0
+    snap: 0
+    lerpValue: 15.5
+    orientation: {x: 0, y: 0.9755807, z: 0, w: 0.2196413}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.42855564, y: 0, z: -0.9035154}
+    binormal: {x: -0.9035154, y: 0, z: -0.42855564}
+    distance: 189.7593
+    density: 1
+    id: 0
+  - position: {x: 38.642715, y: 0, z: -11.928466}
+    width: 0
+    snap: 0
+    lerpValue: 15.625
+    orientation: {x: 0, y: 0.9837361, z: 0, w: 0.17961992}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.35339722, y: 0, z: -0.9354734}
+    binormal: {x: -0.9354734, y: 0, z: -0.35339722}
+    distance: 190.90623
+    density: 1
+    id: 0
+  - position: {x: 38.946415, y: 0, z: -12.910705}
+    width: 0
+    snap: 0
+    lerpValue: 15.75
+    orientation: {x: 0, y: 0.9937443, z: 0, w: 0.111679114}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: 0.22196096, y: 0, z: -0.9750556}
+    binormal: {x: -0.9750556, y: 0, z: -0.22196096}
+    distance: 191.93436
+    density: 1
+    id: 0
+  - position: {x: 39.054237, y: 0, z: -13.795437}
+    width: 0
+    snap: 0
+    lerpValue: 15.875
+    orientation: {x: 0, y: 0.99999434, z: 0, w: -0.0033631858}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.0067263325, y: 0, z: -0.99997735}
+    binormal: {x: -0.99997735, y: 0, z: 0.0067263325}
+    distance: 192.82564
+    density: 1
+    id: 0
+  - position: {x: 38.919834, y: 0, z: -14.556515}
+    width: 0
+    snap: 0
+    lerpValue: 16
+    orientation: {x: 0, y: 0.9825713, z: 0, w: -0.18588623}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.3652929, y: 0, z: -0.9308926}
+    binormal: {x: -0.93089265, y: 0, z: 0.36529294}
+    distance: 193.5985
+    density: 1
+    id: 0
+  - position: {x: 38.57739, y: 0, z: -15.145067}
+    width: 0
+    snap: 0
+    lerpValue: 16.125
+    orientation: {x: 0, y: 0.93974036, z: 0, w: -0.34188893}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.64257365, y: 0, z: -0.7662239}
+    binormal: {x: -0.7662239, y: 0, z: 0.64257365}
+    distance: 194.27942
+    density: 1
+    id: 0
+  - position: {x: 38.085735, y: 0, z: -15.565054}
+    width: 0
+    snap: 0
+    lerpValue: 16.25
+    orientation: {x: 0, y: 0.873879, z: 0, w: -0.48614347}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.8496612, y: 0, z: -0.52732897}
+    binormal: {x: -0.52732897, y: 0, z: 0.8496612}
+    distance: 194.92604
+    density: 1
+    id: 0
+  - position: {x: 37.435402, y: 0, z: -15.869569}
+    width: 0
+    snap: 0
+    lerpValue: 16.375
+    orientation: {x: 0, y: -0.8183738, z: 0, w: 0.5746863}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9406164, y: 0, z: -0.3394713}
+    binormal: {x: -0.3394713, y: 0, z: 0.9406164}
+    distance: 195.64413
+    density: 1
+    id: 0
+  - position: {x: 36.616947, y: 0, z: -16.111704}
+    width: 0
+    snap: 0
+    lerpValue: 16.5
+    orientation: {x: 0, y: -0.78891736, z: 0, w: 0.61449933}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9695784, y: 0, z: -0.24478106}
+    binormal: {x: -0.24478106, y: 0, z: 0.9695784}
+    distance: 196.49765
+    density: 1
+    id: 0
+  - position: {x: 35.620914, y: 0, z: -16.344559}
+    width: 0
+    snap: 0
+    lerpValue: 16.625
+    orientation: {x: 0, y: -0.7811742, z: 0, w: 0.62431324}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9753946, y: 0, z: -0.22046609}
+    binormal: {x: -0.2204661, y: 0, z: 0.97539467}
+    distance: 197.52054
+    density: 1
+    id: 0
+  - position: {x: 34.437855, y: 0, z: -16.621225}
+    width: 0
+    snap: 0
+    lerpValue: 16.75
+    orientation: {x: 0, y: -0.78737605, z: 0, w: 0.616473}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9707922, y: 0, z: -0.23992197}
+    binormal: {x: -0.23992197, y: 0, z: 0.9707922}
+    distance: 198.73552
+    density: 1
+    id: 0
+  - position: {x: 33.058327, y: 0, z: -16.994799}
+    width: 0
+    snap: 0
+    lerpValue: 16.875
+    orientation: {x: 0, y: -0.8014498, z: 0, w: 0.5980621}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9586334, y: 0, z: -0.28464347}
+    binormal: {x: -0.28464347, y: 0, z: 0.9586334}
+    distance: 200.16473
+    density: 1
+    id: 0
+  - position: {x: 31.472858, y: 0, z: -17.518375}
+    width: 0
+    snap: 0
+    lerpValue: 17
+    orientation: {x: 0, y: -0.81924045, z: 0, w: 0.57345027}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9395871, y: 0, z: -0.34230977}
+    binormal: {x: -0.3423098, y: 0, z: 0.9395872}
+    distance: 201.83441
+    density: 1
+    id: 0
+  - position: {x: 29.553188, y: 0, z: -18.144379}
+    width: 0
+    snap: 0
+    lerpValue: 17.125
+    orientation: {x: 0, y: -0.80230623, z: 0, w: 0.5969127}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9578135, y: 0, z: -0.2873904}
+    binormal: {x: -0.2873904, y: 0, z: 0.9578135}
+    distance: 203.85358
+    density: 1
+    id: 0
+  - position: {x: 27.253325, y: 0, z: -18.801851}
+    width: 0
+    snap: 0
+    lerpValue: 17.25
+    orientation: {x: 0, y: -0.7959137, z: 0, w: 0.6054101}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9637084, y: 0, z: -0.26695713}
+    binormal: {x: -0.26695713, y: 0, z: 0.9637084}
+    distance: 206.24557
+    density: 1
+    id: 0
+  - position: {x: 24.687283, y: 0, z: -19.50882}
+    width: 0
+    snap: 0
+    lerpValue: 17.375
+    orientation: {x: 0, y: -0.7959731, z: 0, w: 0.605332}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.963656, y: 0, z: -0.26714626}
+    binormal: {x: -0.26714626, y: 0, z: 0.963656}
+    distance: 208.90723
+    density: 1
+    id: 0
+  - position: {x: 21.969065, y: 0, z: -20.283306}
+    width: 0
+    snap: 0
+    lerpValue: 17.5
+    orientation: {x: 0, y: -0.80103415, z: 0, w: 0.5986186}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.95902795, y: 0, z: -0.2833115}
+    binormal: {x: -0.2833115, y: 0, z: 0.95902795}
+    distance: 211.73363
+    density: 1
+    id: 0
+  - position: {x: 19.212677, y: 0, z: -21.143337}
+    width: 0
+    snap: 0
+    lerpValue: 17.625
+    orientation: {x: 0, y: -0.8108881, z: 0, w: 0.5852012}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.9490654, y: 0, z: -0.31507915}
+    binormal: {x: -0.31507915, y: 0, z: 0.9490654}
+    distance: 214.62106
+    density: 1
+    id: 0
+  - position: {x: 16.532127, y: 0, z: -22.106934}
+    width: 0
+    snap: 0
+    lerpValue: 17.75
+    orientation: {x: 0, y: -0.8261589, z: 0, w: 0.5634373}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.93097734, y: 0, z: -0.36507687}
+    binormal: {x: -0.3650769, y: 0, z: 0.9309774}
+    distance: 217.46954
+    density: 1
+    id: 0
+  - position: {x: 14.04142, y: 0, z: -23.192122}
+    width: 0
+    snap: 0
+    lerpValue: 17.875
+    orientation: {x: 0, y: -0.84823185, z: 0, w: 0.5296252}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.8984897, y: 0, z: -0.4389945}
+    binormal: {x: -0.43899453, y: 0, z: 0.8984898}
+    distance: 220.18639
+    density: 1
+    id: 0
+  - position: {x: 11.854563, y: 0, z: -24.416925}
+    width: 0
+    snap: 0
+    lerpValue: 18
+    orientation: {x: 0, y: 0.8791359, z: 0, w: -0.47657114}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    normal: {x: 0, y: 1, z: 0}
+    tangent: {x: -0.8379416, y: 0, z: -0.54575986}
+    binormal: {x: -0.5457599, y: 0, z: 0.83794165}
+    distance: 222.69287
+    density: 1
+    id: 0
+  pointsUp:
+  - position: {x: 9.717803, y: 0, z: -25.50927}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 8.079064, y: 0, z: -27.351797}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 6.600411, y: 0, z: -29.39167}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 5.2167873, y: 0, z: -31.495026}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 3.8631375, y: 0, z: -33.528004}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 2.4744022, y: 0, z: -35.356735}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 0.98552585, y: 0, z: -36.847363}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -0.66854715, y: 0, z: -37.86602}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -2.4909468, y: 0, z: -38.470108}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -4.4210577, y: 0, z: -38.81171}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -6.428315, y: 0, z: -38.899}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -8.482154, y: 0, z: -38.74015}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -10.55201, y: 0, z: -38.343327}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -12.607319, y: 0, z: -37.716713}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -14.617518, y: 0, z: -36.868473}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -16.55204, y: 0, z: -35.80678}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -18.474804, y: 0, z: -34.435524}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -20.442305, y: 0, z: -32.70571}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -22.41286, y: 0, z: -30.696236}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -24.344788, y: 0, z: -28.485987}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -26.1964, y: 0, z: -26.153847}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -27.926012, y: 0, z: -23.7787}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -29.49194, y: 0, z: -21.439442}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -30.852499, y: 0, z: -19.214956}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -32.01067, y: 0, z: -16.995764}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -33.007427, y: 0, z: -14.659812}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -33.85808, y: 0, z: -12.267136}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -34.57795, y: 0, z: -9.877759}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -35.18233, y: 0, z: -7.551717}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -35.68655, y: 0, z: -5.349039}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -36.10591, y: 0, z: -3.3297546}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -36.455723, y: 0, z: -1.5538931}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -36.745865, y: 0, z: -0.00925487}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -36.96598, y: 0, z: 1.3665612}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -37.101044, y: 0, z: 2.5888245}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -37.136032, y: 0, z: 3.6728036}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -37.055927, y: 0, z: 4.633768}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -36.84571, y: 0, z: 5.486989}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -36.49036, y: 0, z: 6.2477326}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -35.97485, y: 0, z: 6.9312706}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -35.21308, y: 0, z: 7.443457}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -34.18246, y: 0, z: 7.729406}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -32.96323, y: 0, z: 7.863265}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -31.635624, y: 0, z: 7.919186}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -30.27988, y: 0, z: 7.971319}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -28.976233, y: 0, z: 8.093815}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -27.804914, y: 0, z: 8.360823}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -26.846172, y: 0, z: 8.846496}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -26.098488, y: 0, z: 9.585304}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -25.484795, y: 0, z: 10.521399}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -24.972, y: 0, z: 11.593454}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -24.527025, y: 0, z: 12.7401495}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -24.116772, y: 0, z: 13.900156}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -23.70815, y: 0, z: 15.012154}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -23.268076, y: 0, z: 16.014814}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -22.763458, y: 0, z: 16.846813}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -22.251081, y: 0, z: 17.492054}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -21.786798, y: 0, z: 18.002045}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -21.336119, y: 0, z: 18.416859}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -20.864544, y: 0, z: 18.77658}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -20.337584, y: 0, z: 19.12129}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -19.720741, y: 0, z: 19.491064}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -18.979525, y: 0, z: 19.925987}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -18.079437, y: 0, z: 20.466131}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -16.976301, y: 0, z: 21.165573}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -15.68402, y: 0, z: 22.009302}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -14.255258, y: 0, z: 22.933804}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -12.742668, y: 0, z: 23.875557}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -11.198908, y: 0, z: 24.771044}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -9.676636, y: 0, z: 25.556747}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -8.228511, y: 0, z: 26.169147}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -6.9071865, y: 0, z: 26.544727}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -5.69006, y: 0, z: 26.65568}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -4.5173, y: 0, z: 26.550583}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -3.38571, y: 0, z: 26.280493}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -2.2920954, y: 0, z: 25.896463}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -1.2332625, y: 0, z: 25.44955}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -0.2060165, y: 0, z: 24.990808}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 0.7928364, y: 0, z: 24.571297}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 1.7664907, y: 0, z: 24.242065}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 2.7197053, y: 0, z: 24.019566}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 3.6514764, y: 0, z: 23.862226}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 4.5563564, y: 0, z: 23.73407}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 5.4288983, y: 0, z: 23.599108}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 6.263654, y: 0, z: 23.421358}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 7.0551777, y: 0, z: 23.164837}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 7.79802, y: 0, z: 22.793562}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 8.4867325, y: 0, z: 22.271551}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 9.038322, y: 0, z: 21.540426}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 9.422412, y: 0, z: 20.609428}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 9.712471, y: 0, z: 19.544024}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 9.981971, y: 0, z: 18.409676}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 10.304384, y: 0, z: 17.271845}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 10.7531805, y: 0, z: 16.195993}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 11.4018345, y: 0, z: 15.247587}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 12.323816, y: 0, z: 14.492086}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 13.614741, y: 0, z: 13.985426}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 15.245613, y: 0, z: 13.689244}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 17.10299, y: 0, z: 13.527531}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 19.073427, y: 0, z: 13.424284}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 21.04348, y: 0, z: 13.303502}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 22.899708, y: 0, z: 13.089178}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 24.528664, y: 0, z: 12.705307}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 25.81691, y: 0, z: 12.07589}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 26.741335, y: 0, z: 11.178235}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 27.400078, y: 0, z: 10.075006}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 27.861563, y: 0, z: 8.818223}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 28.194212, y: 0, z: 7.459904}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 28.46646, y: 0, z: 6.052066}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 28.746727, y: 0, z: 4.646729}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 29.103437, y: 0, z: 3.2959116}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 29.605019, y: 0, z: 2.051631}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 30.249014, y: 0, z: 0.88915503}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 30.969212, y: 0, z: -0.25166306}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 31.73838, y: 0, z: -1.3719132}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 32.529305, y: 0, z: -2.4726872}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 33.314762, y: 0, z: -3.5550764}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 34.067528, y: 0, z: -4.620172}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 34.760387, y: 0, z: -5.669067}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 35.36611, y: 0, z: -6.702852}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 35.950058, y: 0, z: -7.747729}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 36.56614, y: 0, z: -8.813887}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 37.17002, y: 0, z: -9.878402}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 37.717358, y: 0, z: -10.918345}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 38.163807, y: 0, z: -11.9107895}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 38.465023, y: 0, z: -12.8328085}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 38.57666, y: 0, z: -13.661476}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 38.454376, y: 0, z: -14.373866}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 38.13625, y: 0, z: -14.918065}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 37.680824, y: 0, z: -15.29366}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 37.07447, y: 0, z: -15.554973}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 36.303562, y: 0, z: -15.756327}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 35.35446, y: 0, z: -15.952043}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 34.21354, y: 0, z: -16.196444}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 32.867165, y: 0, z: -16.54385}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 31.301708, y: 0, z: -17.048582}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 29.387009, y: 0, z: -17.66541}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 27.080269, y: 0, z: -18.323206}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 24.498896, y: 0, z: -19.037466}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 21.760296, y: 0, z: -19.823683}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 18.981867, y: 0, z: -20.69735}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 16.281021, y: 0, z: -21.673952}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 13.77516, y: 0, z: -22.76899}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 11.58169, y: 0, z: -23.997953}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  pointsDown:
+  - position: {x: 10.265642, y: 0, z: -26.35011}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 8.626847, y: 0, z: -28.20186}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 7.1438346, y: 0, z: -30.255257}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 5.749376, y: 0, z: -32.374397}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 4.3762436, y: 0, z: -34.423393}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 2.957212, y: 0, z: -36.266354}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 1.4250512, y: 0, z: -37.76738}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -0.2874651, y: 0, z: -38.790577}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -2.191268, y: 0, z: -39.395164}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -4.227012, y: 0, z: -39.735977}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -6.35652, y: 0, z: -39.82047}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -8.541611, y: 0, z: -39.656113}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -10.744105, y: 0, z: -39.25038}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -12.925822, y: 0, z: -38.610744}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -15.048582, y: 0, z: -37.744667}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -17.074207, y: 0, z: -36.659626}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -19.06811, y: 0, z: -35.25773}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -21.094688, y: 0, z: -33.489902}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -23.114237, y: 0, z: -31.436853}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -25.087046, y: 0, z: -29.17929}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -26.973408, y: 0, z: -26.797924}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -28.733616, y: 0, z: -24.373453}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -30.327963, y: 0, z: -21.986595}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -31.716738, y: 0, z: -19.718054}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -32.902843, y: 0, z: -17.461342}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -33.92535, y: 0, z: -15.093955}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -34.79878, y: 0, z: -12.67258}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -35.53766, y: 0, z: -10.253905}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -36.156525, y: 0, z: -7.894617}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -36.66989, y: 0, z: -5.6514025}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -37.0923, y: 0, z: -3.5809484}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -37.43827, y: 0, z: -1.7399435}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -37.71497, y: 0, z: -0.10923458}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -37.911633, y: 0, z: 1.373375}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -38.01589, y: 0, z: 2.715763}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -38.015373, y: 0, z: 3.9258075}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -37.89772, y: 0, z: 5.011387}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -37.650562, y: 0, z: 5.9803777}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -37.261528, y: 0, z: 6.8406596}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -36.71825, y: 0, z: 7.6001124}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -35.93162, y: 0, z: 8.165584}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -34.87524, y: 0, z: 8.489652}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -33.63077, y: 0, z: 8.648779}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -32.279903, y: 0, z: 8.719436}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -30.90431, y: 0, z: 8.778085}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -29.58567, y: 0, z: 8.901194}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -28.405663, y: 0, z: 9.165231}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -27.445961, y: 0, z: 9.64666}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -26.709904, y: 0, z: 10.373492}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -26.121138, y: 0, z: 11.28491}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -25.641794, y: 0, z: 12.324133}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -25.234005, y: 0, z: 13.434375}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -24.85991, y: 0, z: 14.558858}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -24.48164, y: 0, z: 15.6407995}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -24.061327, y: 0, z: 16.623417}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -23.561111, y: 0, z: 17.449928}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -23.03734, y: 0, z: 18.105844}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -22.550222, y: 0, z: 18.63903}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -22.067686, y: 0, z: 19.086246}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -21.557667, y: 0, z: 19.484241}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -20.988089, y: 0, z: 19.869778}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -20.326883, y: 0, z: 20.279606}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -19.541979, y: 0, z: 20.75048}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -18.601307, y: 0, z: 21.319162}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -17.459862, y: 0, z: 22.041567}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -16.1289, y: 0, z: 22.906656}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -14.660742, y: 0, z: 23.850748}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -13.107704, y: 0, z: 24.810158}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -11.522109, y: 0, z: 25.721199}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -9.956273, y: 0, z: 26.52019}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -8.462519, y: 0, z: 27.143446}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -7.0931635, y: 0, z: 27.527283}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -5.82466, y: 0, z: 27.644384}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -4.597092, y: 0, z: 27.543695}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -3.408218, y: 0, z: 27.27592}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -2.2557976, y: 0, z: 26.89177}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -1.1375908, y: 0, z: 26.44195}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: -0.05135768, y: 0, z: 25.977173}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 1.0051434, y: 0, z: 25.548145}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 2.0341506, y: 0, z: 25.205574}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 3.0445445, y: 0, z: 24.962257}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 4.037997, y: 0, z: 24.775387}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 5.0059366, y: 0, z: 24.61226}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 5.939793, y: 0, z: 24.440178}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 6.8309946, y: 0, z: 24.226435}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 7.6709704, y: 0, z: 23.938332}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 8.451151, y: 0, z: 23.543167}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 9.162964, y: 0, z: 23.00824}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 9.719324, y: 0, z: 22.277147}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 10.091071, y: 0, z: 21.356865}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 10.3565235, y: 0, z: 20.309746}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 10.594, y: 0, z: 19.198153}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 10.881817, y: 0, z: 18.084444}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 11.298296, y: 0, z: 17.03098}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 11.921755, y: 0, z: 16.100113}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 12.830511, y: 0, z: 15.354212}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 14.117924, y: 0, z: 14.851612}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 15.749418, y: 0, z: 14.55794}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 17.611404, y: 0, z: 14.396456}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 19.590294, y: 0, z: 14.29042}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 21.5725, y: 0, z: 14.163097}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 23.444437, y: 0, z: 13.93775}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 25.092514, y: 0, z: 13.53764}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 26.403145, y: 0, z: 12.886033}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 27.35694, y: 0, z: 11.956039}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 28.053772, y: 0, z: 10.809226}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 28.55894, y: 0, z: 9.501521}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 28.93774, y: 0, z: 8.088857}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 29.255468, y: 0, z: 6.627163}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 29.577425, y: 0, z: 5.1723714}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 29.968908, y: 0, z: 3.78041}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 30.495213, y: 0, z: 2.5072122}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 31.15298, y: 0, z: 1.334333}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 31.878588, y: 0, z: 0.2006078}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 32.646923, y: 0, z: -0.9021299}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 33.432877, y: 0, z: -1.9820442}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 34.21136, y: 0, z: -3.0472991}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 34.95725, y: 0, z: -4.106058}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 35.64544, y: 0, z: -5.1664867}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 36.25084, y: 0, z: -6.2367473}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 36.842422, y: 0, z: -7.347019}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 37.47365, y: 0, z: -8.502461}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 38.096172, y: 0, z: -9.673706}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 38.661613, y: 0, z: -10.831388}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 39.121613, y: 0, z: -11.946141}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 39.4278, y: 0, z: -12.9886}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 39.531807, y: 0, z: -13.929395}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 39.385277, y: 0, z: -14.739162}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 39.01853, y: 0, z: -15.37207}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 38.490643, y: 0, z: -15.83645}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 37.79633, y: 0, z: -16.184162}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 36.930336, y: 0, z: -16.467083}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 35.887375, y: 0, z: -16.737074}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 34.662186, y: 0, z: -17.04601}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 33.249496, y: 0, z: -17.44575}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 31.644022, y: 0, z: -17.988167}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 29.719366, y: 0, z: -18.623348}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 27.426382, y: 0, z: -19.280497}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 24.87567, y: 0, z: -19.980171}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 22.177835, y: 0, z: -20.742928}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 19.443487, y: 0, z: -21.589323}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 16.783236, y: 0, z: -22.53991}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 14.307686, y: 0, z: -23.61525}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  - position: {x: 12.127443, y: 0, z: -24.835896}
+    width: 0
+    snap: 0
+    lerpValue: 0
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    normal: {x: 0, y: 0, z: 0}
+    tangent: {x: 0, y: 0, z: 0}
+    binormal: {x: 0, y: 0, z: 0}
+    distance: 0
+    density: 0
+    id: 0
+  snapToTerrain: 0
+  width: 1
+  isLooping: 1
+  length: 222.69287
+  useRotation: 0
+  useWidth: 0
+  useSplinePointDensity: 1
+  useSplineWidthDensity: 0
+  useMeshCurve: 0
+  usePointSnap: 0
+  dataSet: 1
+  selectedPosition: 4
+--- !u!33 &6132289972063035477
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624634372341052665}
+  m_Mesh: {fileID: 0}
+--- !u!114 &2130901830714365869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624634372341052665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972fcd29bf9fe274087ba3a700bac4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolbarInt: 4
+  baseProfile: {fileID: 0}
+  currentProfile: {fileID: 11400000, guid: 016c111fb146687478c1e8581ddabf63, type: 2}
+  oldProfile: {fileID: 11400000, guid: 016c111fb146687478c1e8581ddabf63, type: 2}
+  points: []
+  generateMeshParts: 0
+  meshPartsCount: 3
+  meshesPartTransforms: []
+  generateLod: 0
+  canGenerateLod: 1
+  generateLodGPU: 0
+  lodDistance: {x: 100, y: 80, z: 50, w: 20}
+  lodRefreshTime: 0.1
+  height: 0
+  lockHeight: 1
+  yOffset: 0
+  trianglesGenerated: 1070
+  vertsGenerated: 608
+  currentMesh: {fileID: 0}
+  meshFilter: {fileID: 6132289972063035477}
+  depth:
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  - {x: 3, y: 0, z: 0, w: 0}
+  closeDistanceSimulation: 5
+  angleSimulation: 5
+  checkDistanceSimulation: 50
+  depthOffsetSimulation: 0.5
+  removeFirstPointSimulation: 1
+  snapToTerrain: 0
+  <OnGenerationStarted>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnGenerationEnded>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <LastGenerationPoint>k__BackingField:
+    position: {x: 0, y: 0, z: 0, w: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    orientation: {x: 0, y: 0, z: 0, w: 0}
+    snap: 0
+    meshCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    additionalDensityU: 0
+    additionalDensityV: 0
+  <LastGenerationPosition>k__BackingField: {x: 0, y: 0, z: 0}
+  lakeHoles: []
+  nmSpline: {fileID: 6269531232333007672}
+  <TriangleSizeByLimit>k__BackingField: 0.19107112
+  meshTerrainGOs: []
+  ramTerrainManager:
+    nmNmSpline: {fileID: 6269531232333007672}
+    baseTerrainPainterData: {fileID: 0}
+    terrainPainterGetDataOld: {fileID: 11400000, guid: ef2c633412300364d88d77579145c0ad, type: 2}
+  vertexPainterData:
+    alwaysDrawing: 1
+    drawing: 1
+    showVertexColors: 0
+    showFlowMap: 0
+    toolbarInt: 1
+    flowToolSelected: 3
+    drawColor: {r: 0, g: 0, b: 0, a: 1}
+    drawSize: 2
+    drawBlendSize: 0.478
+    opacity: 0.3
+    speedMultiplier: 1.5
+    drawColorR: 0
+    drawColorG: 0
+    drawColorB: 0
+    drawColorA: 1
+    flowSpeed: -0.254
+    flowDirection: 0
+    drawOnMultiple: 0
+    height: 0.1
+    overridenColors: 1
+    overridenFlow: 1
+    overridenVertexHeight: 0
+    currentDrawObject: {fileID: 3624634372341052665}
+    meshFilters:
+    - {fileID: 6132289972063035477}
+    meshRenderers:
+    - {fileID: 1016706000941565310}
+    oldMaterials: []
+  meshRenderer: {fileID: 1016706000941565310}
+--- !u!64 &5314547604599194310
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624634372341052665}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
