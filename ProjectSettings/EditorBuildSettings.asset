@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/Studio Apartment 2/Apartment Scene.unity
     guid: 0ceb1e501fb03304fb244a59fd86a708
   - enabled: 1
-    path: Assets/Scenes/TutorialScene.unity
+    path: Assets/Scenes/Working/TutorialScene.unity
     guid: 454736a4dfa9dc949a65e200f773190e
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/Working/MainScene.unity
     guid: 679c2341725fea947a121a83f734b377
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}

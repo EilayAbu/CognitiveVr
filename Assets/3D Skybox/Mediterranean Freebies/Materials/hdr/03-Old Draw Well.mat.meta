@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: dde4f2e1b6d94b7429c0de9075b5ec6d
+timeCreated: 1559823639
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98721
+  packageName: 3D Skybox PRO - Mediterranean Freebies
+  packageVersion: 2023.1.0
+  assetPath: Assets/3D Skybox/Mediterranean Freebies/Materials/hdr/03-Old Draw Well.mat
+  uploadId: 558306

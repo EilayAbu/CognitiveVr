@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 0fa319de5d15aee49b34147354d88b99
+timeCreated: 1559823640
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98721
+  packageName: 3D Skybox PRO - Mediterranean Freebies
+  packageVersion: 2023.1.0
+  assetPath: Assets/3D Skybox/Mediterranean Freebies/Materials/hdr/05-Green Fields.mat
+  uploadId: 558306

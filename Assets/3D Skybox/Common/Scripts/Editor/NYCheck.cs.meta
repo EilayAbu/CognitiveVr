@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: fa9ed7a385100394abd95ffccae3f5c6
+timeCreated: 1513874844
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98721
+  packageName: 3D Skybox PRO - Mediterranean Freebies
+  packageVersion: 2023.1.0
+  assetPath: Assets/3D Skybox/Common/Scripts/Editor/NYCheck.cs
+  uploadId: 558306

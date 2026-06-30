@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 79d0c3252f6dac143808351d6b9a0fd6
+timeCreated: 1559823638
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98721
+  packageName: 3D Skybox PRO - Mediterranean Freebies
+  packageVersion: 2023.1.0
+  assetPath: Assets/3D Skybox/Mediterranean Freebies/Materials/hdr/01-Beautiful Pasture.mat
+  uploadId: 558306
