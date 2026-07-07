@@ -35,10 +35,6 @@ namespace CognitiveVR.EditorTools
             if (controller == null)
                 controller = Undo.AddComponent<ToasterController>(toasterObj);
 
-            var smokeSetup = toasterObj.GetComponent<ToasterSmokeSetup>();
-            if (smokeSetup == null)
-                smokeSetup = Undo.AddComponent<ToasterSmokeSetup>(toasterObj);
-
             Transform upperTust = toasterObj.transform.Find("upperTust");
             if (upperTust != null)
             {
@@ -72,8 +68,7 @@ namespace CognitiveVR.EditorTools
             EditorUtility.DisplayDialog("Setup Complete",
                 "Toaster components added:\n" +
                 "- CognitiveTask (Toast)\n" +
-                "- ToasterController\n" +
-                "- ToasterSmokeSetup\n\n" +
+                "- ToasterController\n\n" +
                 "Please verify the toast object references (fresh/ready/burnt) in the Inspector.",
                 "OK");
         }

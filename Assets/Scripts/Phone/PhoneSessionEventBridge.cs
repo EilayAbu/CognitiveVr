@@ -44,6 +44,10 @@ namespace CognitiveVR.Phone
         private void OnEnable()
         {
             ResolveReferences();
+
+            if (_phone != null)
+                _phone.OnWeatherMessageOpenedEvent += HandleWeatherMessageOpened;
+
             if (_sessionTimer == null) return;
 
             _sessionTimer.OnScheduledEventTriggered += HandleScheduledEvent;
@@ -52,10 +56,32 @@ namespace CognitiveVR.Phone
 
         private void OnDisable()
         {
+            if (_phone != null)
+                _phone.OnWeatherMessageOpenedEvent -= HandleWeatherMessageOpened;
+
             if (_sessionTimer == null) return;
 
             _sessionTimer.OnScheduledEventTriggered -= HandleScheduledEvent;
             _sessionTimer.OnSessionStarted -= HandleSessionStarted;
+        }
+
+        /// <summary>
+        /// Fired when the user opens the weather message via its button. Treats
+        /// this as the user having read the forecast so CheckWeather task
+        /// progress advances only on the actual open action.
+        /// </summary>
+        private void HandleWeatherMessageOpened()
+        {
+            if (_weatherAppScreen == null && _phone != null)
+                _weatherAppScreen = _phone.GetComponent<WeatherAppScreen>();
+            if (_weatherAppScreen == null)
+#if UNITY_2023_1_OR_NEWER
+                _weatherAppScreen = FindFirstObjectByType<WeatherAppScreen>();
+#else
+                _weatherAppScreen = FindObjectOfType<WeatherAppScreen>();
+#endif
+            if (_weatherAppScreen != null)
+                _weatherAppScreen.NotifyOpened();
         }
 
         private void HandleSessionStarted()
@@ -106,7 +132,7 @@ namespace CognitiveVR.Phone
             _notificationManager.PushNotification(data);
 
             if (_phone != null)
-                _phone.ShowBossMessage();
+                _phone.ShowBossMessageButton();
 
             if (_smsSwapTracker == null && _phone != null)
                 _smsSwapTracker = _phone.GetComponent<SmsSwapTracker>();
@@ -150,21 +176,7 @@ namespace CognitiveVR.Phone
             _notificationManager.PushNotification(data);
 
             if (_phone != null)
-                _phone.ShowWeatherMessage();
-
-            // Visual weather app no longer exists; treat the rain push itself as
-            // the user having seen the forecast so CheckWeather task progress
-            // still advances.
-            if (_weatherAppScreen == null && _phone != null)
-                _weatherAppScreen = _phone.GetComponent<WeatherAppScreen>();
-            if (_weatherAppScreen == null)
-#if UNITY_2023_1_OR_NEWER
-                _weatherAppScreen = FindFirstObjectByType<WeatherAppScreen>();
-#else
-                _weatherAppScreen = FindObjectOfType<WeatherAppScreen>();
-#endif
-            if (_weatherAppScreen != null)
-                _weatherAppScreen.NotifyOpened();
+                _phone.ShowWeatherMessageButton();
 
             if (_verboseLogs)
                 Debug.Log($"[{nameof(PhoneSessionEventBridge)}] Rain push dispatched at {now:F1}s ({timestampLabel}).", this);

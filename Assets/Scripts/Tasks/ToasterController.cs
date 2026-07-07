@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using CognitiveVR.Models;
 
 namespace CognitiveVR.Tasks
@@ -50,39 +51,25 @@ namespace CognitiveVR.Tasks
         [Tooltip("Indicator GameObject that is enabled when the toast is overcooked or burnt.")]
         [SerializeField] private GameObject _burntLight;
 
-        [Header("Smoke Particle System")]
-        [SerializeField] private ParticleSystem _smokeParticles;
-
         [Header("Timing")]
         [Tooltip("Seconds from activation until toast is ready")]
         [SerializeField] private float _cookTime = 30f;
-        [Tooltip("Seconds from activation until smoke stage 2 (medium)")]
-        [SerializeField] private float _smokeStage2Time = 60f;
-        [Tooltip("Seconds from activation until smoke stage 3 (heavy) and toast is burnt")]
-        [SerializeField] private float _smokeStage3Time = 90f;
+        [Tooltip("Seconds from activation until well done")]
+        [SerializeField] private float _wellDoneTime = 60f;
+        [Tooltip("Seconds from activation until toast is burnt")]
+        [SerializeField] private float _burnTime = 90f;
 
-        [Header("Smoke Settings - Stage 1 (Light)")]
-        [SerializeField] private float _stage1Emission = 5f;
-        [SerializeField] private float _stage1StartSize = 0.03f;
-        [SerializeField] private float _stage1Lifetime = 2f;
-        [SerializeField] private Color _stage1Color = new Color(0.75f, 0.75f, 0.75f, 0.3f);
-
-        [Header("Smoke Settings - Stage 2 (Medium)")]
-        [SerializeField] private float _stage2Emission = 15f;
-        [SerializeField] private float _stage2StartSize = 0.06f;
-        [SerializeField] private float _stage2Lifetime = 3f;
-        [SerializeField] private Color _stage2Color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-
-        [Header("Smoke Settings - Stage 3 (Heavy)")]
-        [SerializeField] private float _stage3Emission = 30f;
-        [SerializeField] private float _stage3StartSize = 0.1f;
-        [SerializeField] private float _stage3Lifetime = 4f;
-        [SerializeField] private Color _stage3Color = new Color(0.25f, 0.25f, 0.25f, 0.7f);
+        [Header("Stage Events")]
+        [Tooltip("Fired once when toast is ready (elapsed >= _cookTime)")]
+        [SerializeField] private UnityEvent _onToastReady;
+        [Tooltip("Fired once when toast is well done (elapsed >= _wellDoneTime)")]
+        [SerializeField] private UnityEvent _onWellDone;
+        [Tooltip("Fired once when toast is burnt (elapsed >= _burnTime)")]
+        [SerializeField] private UnityEvent _onToastBurnt;
 
         [Header("Runtime (Read Only)")]
         [SerializeField] private ToasterState _state = ToasterState.Idle;
         [SerializeField] private float _cookingElapsed;
-        [SerializeField] private int _currentSmokeStage;
 
         private bool _lidWasOpen = true;
         private bool _toastInside;
@@ -91,11 +78,9 @@ namespace CognitiveVR.Tasks
 
         public ToasterState State => _state;
         public float CookingElapsed => _cookingElapsed;
-        public int CurrentSmokeStage => _currentSmokeStage;
         public bool IsPoweredOn => _isPoweredOn;
 
         public event Action<ToasterState> OnStateChanged;
-        public event Action<int> OnSmokeStageChanged;
         public event Action<bool> OnPowerChanged;
 
         private void Awake()
@@ -106,7 +91,6 @@ namespace CognitiveVR.Tasks
         private void Start()
         {
             SetToastVisibility(true, false, false);
-            StopSmoke();
             UpdateIndicatorLights();
             _lidWasOpen = IsLidOpen();
         }
@@ -131,7 +115,6 @@ namespace CognitiveVR.Tasks
             {
                 _cookingElapsed += Time.deltaTime;
                 UpdateCookingState();
-                UpdateSmokeStage();
             }
 
             if (lidJustOpened && _state >= ToasterState.Cooking)
@@ -181,10 +164,8 @@ namespace CognitiveVR.Tasks
 
             _state = ToasterState.Cooking;
             _cookingElapsed = 0f;
-            _currentSmokeStage = 0;
 
             SetToastVisibility(true, false, false);
-            StopSmoke();
             UpdateIndicatorLights();
 
             float now = GetSessionTime();
@@ -205,7 +186,7 @@ namespace CognitiveVR.Tasks
         /// <summary>
         /// Sets the toaster power state. Hook this to the button's WhenSelect UnityEvent
         /// (with a boolean argument) for separate on/off buttons. If turned off while
-        /// cooking, the toaster is reset to Idle and smoke is stopped.
+        /// cooking, the toaster is reset to Idle.
         /// </summary>
         public void SetPower(bool on)
         {
@@ -219,10 +200,8 @@ namespace CognitiveVR.Tasks
 
             if (!on && _state >= ToasterState.Cooking && _state < ToasterState.Done)
             {
-                StopSmoke();
                 _state = ToasterState.Idle;
                 _cookingElapsed = 0f;
-                _currentSmokeStage = 0;
                 SetToastVisibility(true, false, false);
                 OnStateChanged?.Invoke(_state);
             }
@@ -253,8 +232,6 @@ namespace CognitiveVR.Tasks
 
             _metrics.RecordToastRemoved(now, _cookingElapsed, _cookTime, severity);
 
-            StopSmoke();
-
             _state = ToasterState.Done;
             UpdateIndicatorLights();
 
@@ -270,26 +247,16 @@ namespace CognitiveVR.Tasks
 
         public ToasterMetrics GetMetrics() => _metrics;
 
-        /// <summary>
-        /// Assign the smoke particle system at runtime (used by ToasterSmokeSetup).
-        /// </summary>
-        public void SetSmokeParticles(ParticleSystem ps)
-        {
-            _smokeParticles = ps;
-        }
-
         public void ResetToaster()
         {
             _state = ToasterState.Idle;
             _cookingElapsed = 0f;
-            _currentSmokeStage = 0;
             _lidWasOpen = IsLidOpen();
             _toastInside = false;
             _toastObject = null;
             _metrics = new ToasterMetrics();
 
             SetToastVisibility(true, false, false);
-            StopSmoke();
             UpdateIndicatorLights();
 
             if (_cognitiveTask != null)
@@ -304,17 +271,19 @@ namespace CognitiveVR.Tasks
         {
             if (_state == ToasterState.Done) return;
 
-            if (_cookingElapsed >= _smokeStage3Time && _state != ToasterState.Burnt)
+            if (_cookingElapsed >= _burnTime && _state != ToasterState.Burnt)
             {
                 _state = ToasterState.Burnt;
                 SetToastVisibility(false, false, true);
                 UpdateIndicatorLights();
+                _onToastBurnt?.Invoke();
                 OnStateChanged?.Invoke(_state);
             }
-            else if (_cookingElapsed >= _smokeStage2Time && _state < ToasterState.Overcooked)
+            else if (_cookingElapsed >= _wellDoneTime && _state < ToasterState.Overcooked)
             {
                 _state = ToasterState.Overcooked;
                 UpdateIndicatorLights();
+                _onWellDone?.Invoke();
                 OnStateChanged?.Invoke(_state);
             }
             else if (_cookingElapsed >= _cookTime && _state < ToasterState.Ready)
@@ -326,93 +295,9 @@ namespace CognitiveVR.Tasks
                 float now = GetSessionTime();
                 _metrics.RecordToastReady(now);
 
+                _onToastReady?.Invoke();
                 OnStateChanged?.Invoke(_state);
             }
-        }
-
-        #endregion
-
-        #region Smoke Control
-
-        private void UpdateSmokeStage()
-        {
-            int newStage = 0;
-
-            if (_cookingElapsed >= _smokeStage3Time)
-                newStage = 3;
-            else if (_cookingElapsed >= _smokeStage2Time)
-                newStage = 2;
-            else if (_cookingElapsed >= _cookTime)
-                newStage = 1;
-
-            if (newStage != _currentSmokeStage)
-            {
-                _currentSmokeStage = newStage;
-                ApplySmokeStage(newStage);
-
-                if (newStage == 1)
-                {
-                    float now = GetSessionTime();
-                    _metrics.RecordSmokeStarted(now);
-                }
-
-                OnSmokeStageChanged?.Invoke(newStage);
-            }
-        }
-
-        private void ApplySmokeStage(int stage)
-        {
-            if (_smokeParticles == null) return;
-
-            if (stage <= 0)
-            {
-                StopSmoke();
-                return;
-            }
-
-            float emission, startSize, lifetime;
-            Color color;
-
-            switch (stage)
-            {
-                case 1:
-                    emission = _stage1Emission;
-                    startSize = _stage1StartSize;
-                    lifetime = _stage1Lifetime;
-                    color = _stage1Color;
-                    break;
-                case 2:
-                    emission = _stage2Emission;
-                    startSize = _stage2StartSize;
-                    lifetime = _stage2Lifetime;
-                    color = _stage2Color;
-                    break;
-                default:
-                    emission = _stage3Emission;
-                    startSize = _stage3StartSize;
-                    lifetime = _stage3Lifetime;
-                    color = _stage3Color;
-                    break;
-            }
-
-            var emissionModule = _smokeParticles.emission;
-            emissionModule.rateOverTime = emission;
-
-            var mainModule = _smokeParticles.main;
-            mainModule.startSize = startSize;
-            mainModule.startLifetime = lifetime;
-            mainModule.startColor = color;
-
-            if (!_smokeParticles.isPlaying)
-                _smokeParticles.Play();
-        }
-
-        private void StopSmoke()
-        {
-            if (_smokeParticles == null) return;
-
-            _smokeParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            _currentSmokeStage = 0;
         }
 
         #endregion
@@ -480,9 +365,9 @@ namespace CognitiveVR.Tasks
 
         private BurnSeverity GetCurrentBurnSeverity()
         {
-            if (_cookingElapsed >= _smokeStage3Time)
+            if (_cookingElapsed >= _burnTime)
                 return BurnSeverity.Burnt;
-            if (_cookingElapsed >= _smokeStage2Time)
+            if (_cookingElapsed >= _wellDoneTime)
                 return BurnSeverity.Overcooked;
             return BurnSeverity.Perfect;
         }
