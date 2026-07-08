@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Oculus.Interaction;
 using UnityEngine;
 
@@ -5,20 +6,21 @@ namespace CognitiveVR.Interaction
 {
     /// <summary>
     /// Self-contained pocket / holster that holds one permanent, dedicated item
-    /// (e.g. a phone). The assigned item lives inside the pocket at all times:
-    /// reach in and grab it to pull it out, and the moment you let go it snaps
-    /// back to the pocket automatically, wherever it was dropped.
+    /// (e.g. a phone). Reach in and grab to pull it out; release anywhere and it
+    /// snaps back to the pocket automatically.
     ///
-    /// While stored, the item is frozen and (optionally) rescaled, and all of its
-    /// colliders are forced to triggers. Trigger colliders are ignored by
-    /// <see cref="CharacterController.Move"/>, so the pocketed item never blocks
-    /// the player's movement, height changes, jumping or falling. The colliders
-    /// stay enabled (just as triggers) so the item remains detectable by Meta
-    /// hand-grab; on pull-out each collider's original trigger state is restored.
+    /// KEY FIX vs. the earlier version: the item is restored to full size and to a
+    /// world-stable parent on HOVER (before the grab is captured), not on Select.
+    /// Meta's OneGrabFreeTransformer captures the grab offset on Select using the
+    /// object's current lossy scale; if the scale changes during the grab the held
+    /// object ends up offset/skewed/jittery. Priming on hover means the transformer
+    /// always captures a clean, full-size pose.
     /// </summary>
     [DisallowMultipleComponent]
     public class RigPocket : MonoBehaviour
     {
+        private enum PocketState { Stored, Primed, Out }
+
         [Header("Permanent Item")]
         [Tooltip("The single item that permanently lives in this pocket. Must carry a Meta ISDK Grabbable.")]
         [SerializeField] private Grabbable permanentItem;
@@ -28,11 +30,9 @@ namespace CognitiveVR.Interaction
         [SerializeField] private Transform holsterAnchor;
 
         [Header("Stored Appearance")]
-        [Tooltip("Multiplier applied to the stored item's original world size (1 = keep size, 0.2 = shrink to 20%).")]
+        [Tooltip("Multiplier applied to the stored item's original world size while it sits in the pocket. " +
+                 "Restored to full size the instant a hand hovers, so the grab pose is never distorted.")]
         [SerializeField] private float storedScale = 1f;
-
-        [Tooltip("Freeze the stored item's rigidbody (kinematic + gravity off) so it stays put inside the pocket.")]
-        [SerializeField] private bool freezeRigidbody = true;
 
         [Header("Audio (optional)")]
         [SerializeField] private AudioSource audioSource;
@@ -48,16 +48,19 @@ namespace CognitiveVR.Interaction
 
         private Transform _originalParent;
         private Vector3 _originalLocalScale;
-        private bool _originalUseGravity;
-        private bool _originalIsKinematic;
         private bool _cachedInitialState;
 
-        private bool _isOut;
+        private PocketState _state = PocketState.Stored;
+
+        // Every pointer (hand) currently selecting the item. Hand-to-hand transfers
+        // temporarily hold two entries; we only snap back when this hits zero.
+        private readonly HashSet<int> _grabbers = new HashSet<int>();
+        private int _hoverCount;
 
         private Transform ActiveAnchor => holsterAnchor != null ? holsterAnchor : transform;
 
-        /// <summary>True while the item is currently sitting inside the pocket.</summary>
-        public bool HasItem => !_isOut;
+        /// <summary>True while the item is currently sitting inside the pocket (stored or primed).</summary>
+        public bool HasItem => _state != PocketState.Out;
 
         private void OnValidate()
         {
@@ -80,7 +83,6 @@ namespace CognitiveVR.Interaction
 
             permanentItem.WhenPointerEventRaised += HandlePointerEvent;
 
-            // Begin with the item tucked inside the pocket.
             StoreItem();
         }
 
@@ -91,9 +93,7 @@ namespace CognitiveVR.Interaction
                 permanentItem.WhenPointerEventRaised -= HandlePointerEvent;
             }
 
-            // Never leave the item's colliders stuck as triggers if the pocket
-            // is disabled while the item is stored.
-            SetStoredAsTrigger(false);
+            RestoreOriginalTriggers();
         }
 
         private void CacheItemReferences()
@@ -122,13 +122,6 @@ namespace CognitiveVR.Interaction
             Transform itemTransform = permanentItem.transform;
             _originalParent = itemTransform.parent;
             _originalLocalScale = itemTransform.localScale;
-
-            if (_itemRigidbody != null)
-            {
-                _originalUseGravity = _itemRigidbody.useGravity;
-                _originalIsKinematic = _itemRigidbody.isKinematic;
-            }
-
             _cachedInitialState = true;
         }
 
@@ -136,21 +129,82 @@ namespace CognitiveVR.Interaction
         {
             switch (pointerEvent.Type)
             {
+                case PointerEventType.Hover:
+                    _hoverCount++;
+                    // Restore full size + world-stable parent BEFORE the grab is captured.
+                    if (_state == PocketState.Stored)
+                    {
+                        Prime();
+                    }
+                    break;
+
+                case PointerEventType.Unhover:
+                    _hoverCount = Mathf.Max(0, _hoverCount - 1);
+                    // Hand left without grabbing -> tuck it back.
+                    if (_state == PocketState.Primed && _hoverCount == 0 && _grabbers.Count == 0)
+                    {
+                        StoreItem();
+                    }
+                    break;
+
                 case PointerEventType.Select:
-                    // Grabbed: pull the item out of the pocket.
-                    if (!_isOut)
+                    // First hand to grab pulls it out. A second hand grabbing during a
+                    // transfer just gets added to the set; the item is already out.
+                    bool wasEmpty = _grabbers.Count == 0;
+                    _grabbers.Add(pointerEvent.Identifier);
+                    if (wasEmpty && _state != PocketState.Out)
                     {
                         PullOutItem();
                     }
                     break;
 
                 case PointerEventType.Unselect:
-                    // Released anywhere: snap it back into the pocket.
-                    if (_isOut)
+                case PointerEventType.Cancel:
+                    _grabbers.Remove(pointerEvent.Identifier);
+                    // Only snap back once NO hand is holding it. Releasing one hand of a
+                    // two-hand / hand-to-hand transfer leaves the count > 0, so no yank.
+                    if (_grabbers.Count == 0 && _state == PocketState.Out)
                     {
                         StoreItem();
                     }
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Full size, re-parented to the world-stable original parent, still frozen
+        /// and sitting at the pocket. Nothing here runs during the grab itself, so
+        /// Meta's grab transformer captures a clean, undistorted pose on Select.
+        /// </summary>
+        private void Prime()
+        {
+            Transform itemTransform = permanentItem.transform;
+
+            itemTransform.SetParent(_originalParent, true); // world pose preserved
+            itemTransform.localScale = _originalLocalScale; // full size, no scale swap during grab
+
+            FreezeRigidbody();
+
+            _state = PocketState.Primed;
+
+            if (enableDebugLogs)
+            {
+                Debug.Log($"[{nameof(RigPocket)}] Primed {permanentItem.name} (full size).", permanentItem);
+            }
+        }
+
+        private void PullOutItem()
+        {
+            // Already full-size + correctly parented from Prime(); just make it solid.
+            RestoreOriginalTriggers();
+
+            _state = PocketState.Out;
+
+            PlayOneShot(itemOutClip);
+
+            if (enableDebugLogs)
+            {
+                Debug.Log($"[{nameof(RigPocket)}] Pulled {permanentItem.name} out of pocket.", permanentItem);
             }
         }
 
@@ -159,9 +213,8 @@ namespace CognitiveVR.Interaction
             Transform itemTransform = permanentItem.transform;
             Transform anchor = ActiveAnchor;
 
-            // Compensate for differences in parent lossy scale so the stored
-            // item ends up at originalWorldSize * storedScale regardless of how
-            // the anchor itself is scaled.
+            // Compensate for differences in parent lossy scale so the stored item
+            // ends up at originalWorldSize * storedScale regardless of anchor scale.
             Vector3 oldLossy = _originalParent != null ? _originalParent.lossyScale : Vector3.one;
             Vector3 newLossy = anchor != null ? anchor.lossyScale : Vector3.one;
             Vector3 ratio = new Vector3(
@@ -173,19 +226,13 @@ namespace CognitiveVR.Interaction
             itemTransform.SetPositionAndRotation(anchor.position, anchor.rotation);
             itemTransform.localScale = Vector3.Scale(_originalLocalScale, ratio) * storedScale;
 
-            if (_itemRigidbody != null && freezeRigidbody)
-            {
-                _itemRigidbody.linearVelocity = Vector3.zero;
-                _itemRigidbody.angularVelocity = Vector3.zero;
-                _itemRigidbody.useGravity = false;
-                _itemRigidbody.isKinematic = true;
-            }
+            FreezeRigidbody();
 
             // Force colliders to triggers so the pocketed item never blocks the
-            // player CharacterController, while staying grabbable.
-            SetStoredAsTrigger(true);
+            // player CharacterController, while staying detectable by hand-grab.
+            SetStoredAsTrigger();
 
-            _isOut = false;
+            _state = PocketState.Stored;
 
             PlayOneShot(itemInClip);
 
@@ -195,34 +242,23 @@ namespace CognitiveVR.Interaction
             }
         }
 
-        private void PullOutItem()
+        private void FreezeRigidbody()
         {
-            Transform itemTransform = permanentItem.transform;
-
-            itemTransform.SetParent(_originalParent, true);
-            itemTransform.localScale = _originalLocalScale;
-
-            if (_itemRigidbody != null && freezeRigidbody)
+            if (_itemRigidbody == null)
             {
-                _itemRigidbody.useGravity = _originalUseGravity;
-                _itemRigidbody.isKinematic = _originalIsKinematic;
+                return;
             }
 
-            // Restore the original collider trigger states now that the item is
-            // back in play.
-            SetStoredAsTrigger(false);
-
-            _isOut = true;
-
-            PlayOneShot(itemOutClip);
-
-            if (enableDebugLogs)
-            {
-                Debug.Log($"[{nameof(RigPocket)}] Pulled {permanentItem.name} out of pocket.", permanentItem);
-            }
+            // Stays kinematic while grabbed too: Meta's transformer drives the
+            // Transform directly, so a kinematic body follows cleanly with no
+            // gravity/physics fighting the grab. It snaps back on release anyway.
+            _itemRigidbody.linearVelocity = Vector3.zero;
+            _itemRigidbody.angularVelocity = Vector3.zero;
+            _itemRigidbody.useGravity = false;
+            _itemRigidbody.isKinematic = true;
         }
 
-        private void SetStoredAsTrigger(bool stored)
+        private void SetStoredAsTrigger()
         {
             if (_itemColliders == null)
             {
@@ -231,13 +267,26 @@ namespace CognitiveVR.Interaction
 
             for (int i = 0; i < _itemColliders.Length; i++)
             {
-                Collider c = _itemColliders[i];
-                if (c == null)
+                if (_itemColliders[i] != null)
                 {
-                    continue;
+                    _itemColliders[i].isTrigger = true;
                 }
+            }
+        }
 
-                c.isTrigger = stored ? true : _originalIsTrigger[i];
+        private void RestoreOriginalTriggers()
+        {
+            if (_itemColliders == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < _itemColliders.Length; i++)
+            {
+                if (_itemColliders[i] != null)
+                {
+                    _itemColliders[i].isTrigger = _originalIsTrigger[i];
+                }
             }
         }
 
