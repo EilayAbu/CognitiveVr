@@ -152,6 +152,7 @@ namespace CognitiveVR.Tasks
 
             if (_reparentToastToBox)
                 _toast.transform.SetParent(transform, true);
+                _toast.SetActive(false);
 
             if (_toastRigidbody != null)
             {

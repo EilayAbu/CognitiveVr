@@ -65,7 +65,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - last
   - OVROverlayCanvas Rendering
   m_SortingLayers:
   - name: Default
