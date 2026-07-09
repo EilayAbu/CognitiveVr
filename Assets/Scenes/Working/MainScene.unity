@@ -4893,7 +4893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sessionTimer: {fileID: 0}
+  _sessionTimer: {fileID: 965045159}
   _label: {fileID: 647652241}
   _showSeconds: 0
   _refreshIntervalSeconds: 0.5
@@ -10681,7 +10681,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.06
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -21529,9 +21529,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0e45b47359e42ce45a9b332775f6a6d2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.38
+  m_Volume: 0.196
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
