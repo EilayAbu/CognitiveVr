@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 62e462567d2e84f488be2ea2bff68265, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2225f911b0bc10e4c84d36f23e6f597f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 783321256}
+  m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -435,6 +435,120 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &35595773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 35595774}
+  - component: {fileID: 35595777}
+  - component: {fileID: 35595776}
+  - component: {fileID: 35595775}
+  m_Layer: 0
+  m_Name: redLight (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &35595774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35595773}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.009, y: 0.009, z: 0.009}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 359896941}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!136 &35595775
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35595773}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &35595776
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35595773}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: aff34943b51c6354d94c357c979c873f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &35595777
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35595773}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &41535471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1475,6 +1589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SMEG
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 06ce7dd48d6b64357a732d1ff0cbe8c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5399568338007485138, guid: 06ce7dd48d6b64357a732d1ff0cbe8c8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2372,6 +2490,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallsForDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 50dae5b7af3784a2b8eb0579183f7400, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2529,6 +2651,10 @@ PrefabInstance:
     - target: {fileID: 1520502250578562, guid: a7495604612396e4082f684cbbdccd0c, type: 3}
       propertyPath: m_Name
       value: Mouse (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520502250578562, guid: a7495604612396e4082f684cbbdccd0c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4807684263483314, guid: a7495604612396e4082f684cbbdccd0c, type: 3}
       propertyPath: m_RootOrder
@@ -3644,6 +3770,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 97648659907749748, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622706635936965941, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4771200758581805565, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.9463608
@@ -3852,6 +3986,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4771200758581805565, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1920925490}
+    - targetCorrespondingSourceObject: {fileID: 8321669900693040279, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 35595774}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
 --- !u!114 &359896940 stripped
@@ -3865,6 +4002,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfd099939b016c4e99a6b3c4d30fbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ToasterController
+--- !u!4 &359896941 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8321669900693040279, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+  m_PrefabInstance: {fileID: 359896939}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &359896942 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4771200758581805565, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
@@ -5377,6 +5519,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 695681806}
     m_Modifications:
     - target: {fileID: 100000, guid: a11be652a1192bb4496a3f4158d96371, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a11be652a1192bb4496a3f4158d96371, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -5856,7 +6002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &509629269
 Transform:
   m_ObjectHideFlags: 0
@@ -6309,7 +6455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 08315d8a98df19840904380aaaa3a141, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 08315d8a98df19840904380aaaa3a141, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6473,6 +6619,10 @@ PrefabInstance:
     - target: {fileID: 3310482163316554887, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
       propertyPath: m_Name
       value: Door (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3310482163316554887, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3579776804834900099, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
       propertyPath: m_Name
@@ -7674,6 +7824,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1872192053719432, guid: 2920fd28216c1f142bd8a0012645db25, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4465210295179768, guid: 2920fd28216c1f142bd8a0012645db25, type: 3}
       propertyPath: m_RootOrder
       value: 113
@@ -7839,7 +7993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &728712912
 Transform:
   m_ObjectHideFlags: 0
@@ -8044,6 +8198,10 @@ PrefabInstance:
     - target: {fileID: 1423093965726326, guid: db13705415585bb42adbfaa97be604a2, type: 3}
       propertyPath: m_Name
       value: Radiator (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423093965726326, guid: db13705415585bb42adbfaa97be604a2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4112657724156868, guid: db13705415585bb42adbfaa97be604a2, type: 3}
       propertyPath: m_RootOrder
@@ -11244,6 +11402,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1460884762386744, guid: 1f828eb4776dd294a8f9a033704319a5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4354933547808340, guid: 1f828eb4776dd294a8f9a033704319a5, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.09
@@ -12433,6 +12595,10 @@ PrefabInstance:
     - target: {fileID: 3144334074576996695, guid: 2eae282455ffa33499b408673cabf375, type: 3}
       propertyPath: m_Name
       value: Guide Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144334074576996695, guid: 2eae282455ffa33499b408673cabf375, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8033398698425030331, guid: 2eae282455ffa33499b408673cabf375, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
@@ -13746,6 +13912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3310482163316554887, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3579776804834900099, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
       propertyPath: m_Name
       value: Door
@@ -14780,6 +14950,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewWall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022447134622689170, guid: eba0c268bf88fda4c89952fd505d7ff9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4043467080300016909, guid: eba0c268bf88fda4c89952fd505d7ff9, type: 3}
       propertyPath: m_LocalScale.y
       value: 3.2330992
@@ -15404,6 +15578,10 @@ PrefabInstance:
     - target: {fileID: 1389930879980602, guid: 1823e1897c8d70d4580501db19c89d80, type: 3}
       propertyPath: m_Name
       value: Monitor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389930879980602, guid: 1823e1897c8d70d4580501db19c89d80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4376494150821690, guid: 1823e1897c8d70d4580501db19c89d80, type: 3}
       propertyPath: m_RootOrder
@@ -18778,6 +18956,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lobby
       objectReference: {fileID: 0}
+    - target: {fileID: 6808784964635105731, guid: c2f1754c64ea97b4b8c809defdbcbd5c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7712919899092899617, guid: c2f1754c64ea97b4b8c809defdbcbd5c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -19726,6 +19908,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kitchen_Decor_20 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1691453204124684, guid: a67ffab218c716a42a867930d940610e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4111559272153474, guid: a67ffab218c716a42a867930d940610e, type: 3}
       propertyPath: m_RootOrder
       value: 118
@@ -20588,6 +20774,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewWall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3022447134622689170, guid: eba0c268bf88fda4c89952fd505d7ff9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4043467080300016909, guid: eba0c268bf88fda4c89952fd505d7ff9, type: 3}
       propertyPath: m_LocalScale.y
       value: 3.2330992
@@ -20878,6 +21068,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 728712911}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OnWindowClosed:
     m_PersistentCalls:
       m_Calls: []
@@ -20931,6 +21133,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 695681806}
     m_Modifications:
+    - target: {fileID: 1705874885928042, guid: 40fee35f8471bee4386005339a2fe516, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4505644897800466, guid: 40fee35f8471bee4386005339a2fe516, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -22313,6 +22519,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewWall
       objectReference: {fileID: 0}
+    - target: {fileID: 3022447134622689170, guid: eba0c268bf88fda4c89952fd505d7ff9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4043467080300016909, guid: eba0c268bf88fda4c89952fd505d7ff9, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.9673457
@@ -23071,6 +23281,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 695681806}
     m_Modifications:
+    - target: {fileID: 1423093965726326, guid: db13705415585bb42adbfaa97be604a2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4112657724156868, guid: db13705415585bb42adbfaa97be604a2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -23479,6 +23693,10 @@ PrefabInstance:
     - target: {fileID: 8872012399676109368, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
       propertyPath: m_Name
       value: Window (Separated)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8872012399676109368, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23928,6 +24146,10 @@ PrefabInstance:
     - target: {fileID: 1542360131191346, guid: 3c4077800af3d4741a3b1e5d12bd3ae6, type: 3}
       propertyPath: m_Name
       value: Keyboard (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1542360131191346, guid: 3c4077800af3d4741a3b1e5d12bd3ae6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4710235221205184, guid: 3c4077800af3d4741a3b1e5d12bd3ae6, type: 3}
       propertyPath: m_RootOrder
@@ -26206,6 +26428,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1872192053719432, guid: 2920fd28216c1f142bd8a0012645db25, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4465210295179768, guid: 2920fd28216c1f142bd8a0012645db25, type: 3}
       propertyPath: m_RootOrder
       value: 112
@@ -28478,6 +28704,10 @@ PrefabInstance:
     - target: {fileID: 2869207507150323529, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_Name
       value: Auto_DigitalClock
+      objectReference: {fileID: 0}
+    - target: {fileID: 2869207507150323529, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
