@@ -36,6 +36,12 @@ namespace CognitiveVR.Tasks
         [Tooltip("Maximum allowed lid angle (degrees)")]
         [SerializeField] private float _maxLidAngle = 90f;
 
+        [Header("Lid Presence Events")]
+        [Tooltip("Fired once when the lid opens while the toast is inside the toaster")]
+        [SerializeField] private UnityEvent _onLidOpened;
+        [Tooltip("Fired once when the lid closes while the toast is inside the toaster")]
+        [SerializeField] private UnityEvent _onLidClosed;
+
         [Header("Toast Objects")]
         [SerializeField] private GameObject _freshToast;
         [SerializeField] private GameObject _readyToast;
@@ -66,6 +72,12 @@ namespace CognitiveVR.Tasks
         [SerializeField] private UnityEvent _onWellDone;
         [Tooltip("Fired once when toast is burnt (elapsed >= _burnTime)")]
         [SerializeField] private UnityEvent _onToastBurnt;
+
+        [Header("Toast Presence Events")]
+        [Tooltip("Fired every time the toast is placed inside the toaster")]
+        [SerializeField] private UnityEvent _onToastInserted;
+        [Tooltip("Fired every time the toast is taken out of the toaster (temporary removal - does not finalize the task)")]
+        [SerializeField] private UnityEvent _onToastRemoved;
 
         [Header("Runtime (Read Only)")]
         [SerializeField] private ToasterState _state = ToasterState.Idle;
@@ -102,7 +114,16 @@ namespace CognitiveVR.Tasks
 
             bool lidOpen = IsLidOpen();
             bool lidJustOpened = lidOpen && !_lidWasOpen;
+            bool lidJustClosed = !lidOpen && _lidWasOpen;
             _lidWasOpen = lidOpen;
+
+            if (_toastInside)
+            {
+                if (lidJustOpened)
+                    _onLidOpened?.Invoke();
+                else if (lidJustClosed)
+                    _onLidClosed?.Invoke();
+            }
 
             if (_state == ToasterState.Idle)
             {
@@ -111,7 +132,7 @@ namespace CognitiveVR.Tasks
                 return;
             }
 
-            if (_state >= ToasterState.Cooking && _state <= ToasterState.Burnt)
+            if (_state >= ToasterState.Cooking && _state <= ToasterState.Burnt && _toastInside)
             {
                 _cookingElapsed += Time.deltaTime;
                 UpdateCookingState();
@@ -136,19 +157,52 @@ namespace CognitiveVR.Tasks
 
         #region Toast Trigger Zone
 
+        /// <summary>
+        /// Called when the toast is placed inside the toaster. Resumes cooking
+        /// (if already in progress) and re-fires whichever stage event currently
+        /// applies, so bound objects reflect the toast's current condition.
+        /// </summary>
         public void NotifyToastEntered(GameObject toast)
         {
             _toastInside = true;
             _toastObject = toast;
+
+            _onToastInserted?.Invoke();
+            RefireCurrentStageEvent();
         }
 
+        /// <summary>
+        /// Called when the toast is taken out of the toaster. This is always a
+        /// temporary removal - it pauses cooking (see Update()) but does NOT
+        /// finalize the task. Finalization only happens when something calls
+        /// RemoveToast() explicitly (e.g. LunchBoxController.PlaceToastAndSeal()).
+        /// </summary>
         public void NotifyToastExited()
         {
             _toastInside = false;
             _toastObject = null;
 
-            if (_state >= ToasterState.Ready && _state < ToasterState.Done)
-                RemoveToast();
+            _onToastRemoved?.Invoke();
+        }
+
+        /// <summary>
+        /// Re-invokes whichever stage event matches the current state, so objects
+        /// toggled off by _onToastRemoved come back on when the toast returns.
+        /// </summary>
+        private void RefireCurrentStageEvent()
+        {
+            switch (_state)
+            {
+                case ToasterState.Ready:
+                    _onToastReady?.Invoke();
+                    break;
+                case ToasterState.Overcooked:
+                    _onWellDone?.Invoke();
+                    break;
+                case ToasterState.Burnt:
+                    _onToastBurnt?.Invoke();
+                    break;
+            }
         }
 
         #endregion
@@ -220,7 +274,12 @@ namespace CognitiveVR.Tasks
         }
 
         /// <summary>
-        /// Call when the player grabs/removes the toast from the toaster.
+        /// Finalizes the task (state becomes Done, metrics recorded). This is
+        /// NOT called automatically when the toast leaves the toaster's trigger
+        /// zone anymore - it must be called explicitly by external logic once
+        /// the toast is actually done being handled (e.g.
+        /// LunchBoxController.PlaceToastAndSeal() calls this when the toast is
+        /// sealed into the lunch box).
         /// </summary>
         public void RemoveToast()
         {
