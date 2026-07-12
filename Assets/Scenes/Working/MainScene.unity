@@ -4127,6 +4127,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 97648659907749748, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 518034544426252585, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1622706635936965941, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
@@ -4190,6 +4194,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _powerIndicatorParent
+      value: 
+      objectReference: {fileID: 1695665212}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onWellDone.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -4203,7 +4211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onToastReady.m_PersistentCalls.m_Calls.Array.size
@@ -4255,6 +4263,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
@@ -4321,6 +4337,14 @@ PrefabInstance:
       propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 1518980360}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 1409557626}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 1060722045}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onToastReady.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4438,6 +4462,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onToastReady.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -4471,6 +4503,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
@@ -4562,6 +4602,14 @@ PrefabInstance:
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onToastReady.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -4603,6 +4651,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
@@ -4679,6 +4735,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: _onToastBurnt.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
@@ -14096,6 +14160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8733ebe23f85185428441f8c331788fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1060722045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1622706635936965941, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+  m_PrefabInstance: {fileID: 359896939}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1066559961
 GameObject:
   m_ObjectHideFlags: 0
@@ -22127,6 +22196,11 @@ CapsuleCollider:
   m_Height: 1.2062885
   m_Direction: 1
   m_Center: {x: -0.00056481356, y: 0.6032199, z: -0.03907126}
+--- !u!1 &1695665212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 97648659907749748, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+  m_PrefabInstance: {fileID: 359896939}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1717277936
 PrefabInstance:
   m_ObjectHideFlags: 0
