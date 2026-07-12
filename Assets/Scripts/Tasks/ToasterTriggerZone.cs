@@ -66,6 +66,7 @@ namespace CognitiveVR.Tasks
             if (enableDebugLogs)
                 Debug.Log($"[ToasterTriggerZone] Toast exited trigger: {other.name}", other);
 
+            UnfreezeToast();
             Unsubscribe();
             _controller?.NotifyToastExited();
         }
