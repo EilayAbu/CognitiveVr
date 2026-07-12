@@ -57,6 +57,11 @@ namespace CognitiveVR.Interaction
         private readonly HashSet<int> _grabbers = new HashSet<int>();
         private int _hoverCount;
 
+        // Set when the grab count hits zero; the actual store is deferred to
+        // LateUpdate so a same-frame re-grab (hand-to-hand transfer / two-hand
+        // reorient) can cancel it before the phone ever snaps back.
+        private bool _storeQueued;
+
         private Transform ActiveAnchor => holsterAnchor != null ? holsterAnchor : transform;
 
         /// <summary>True while the item is currently sitting inside the pocket (stored or primed).</summary>
@@ -149,9 +154,11 @@ namespace CognitiveVR.Interaction
 
                 case PointerEventType.Select:
                     // First hand to grab pulls it out. A second hand grabbing during a
-                    // transfer just gets added to the set; the item is already out.
+                    // transfer/two-hand reorient just gets added to the set; the item is
+                    // already out. Any pending store is cancelled by the new grab.
                     bool wasEmpty = _grabbers.Count == 0;
                     _grabbers.Add(pointerEvent.Identifier);
+                    _storeQueued = false;
                     if (wasEmpty && _state != PocketState.Out)
                     {
                         PullOutItem();
@@ -161,13 +168,24 @@ namespace CognitiveVR.Interaction
                 case PointerEventType.Unselect:
                 case PointerEventType.Cancel:
                     _grabbers.Remove(pointerEvent.Identifier);
-                    // Only snap back once NO hand is holding it. Releasing one hand of a
-                    // two-hand / hand-to-hand transfer leaves the count > 0, so no yank.
+                    // Do NOT store here. During a transfer the releasing hand's Unselect
+                    // can arrive before the receiving hand's Select in the same frame,
+                    // dipping the count to 0 for an instant. Defer to LateUpdate.
                     if (_grabbers.Count == 0 && _state == PocketState.Out)
                     {
-                        StoreItem();
+                        _storeQueued = true;
                     }
                     break;
+            }
+        }
+
+        private void LateUpdate()
+        {
+            // Deferred store: run only if nothing re-grabbed the item this frame.
+            if (_storeQueued && _grabbers.Count == 0 && _state == PocketState.Out)
+            {
+                _storeQueued = false;
+                StoreItem();
             }
         }
 
@@ -198,6 +216,7 @@ namespace CognitiveVR.Interaction
             // Already full-size + correctly parented from Prime(); just make it solid.
             RestoreOriginalTriggers();
 
+            _storeQueued = false;
             _state = PocketState.Out;
 
             PlayOneShot(itemOutClip);
