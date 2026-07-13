@@ -23,7 +23,7 @@ namespace CognitiveVR.Interaction
 
         [Header("Permanent Item")]
         [Tooltip("The single item that permanently lives in this pocket. Must carry a Meta ISDK Grabbable.")]
-        [SerializeField] private Grabbable permanentItem;
+        public Grabbable permanentItem;
 
         [Header("Snap Target")]
         [Tooltip("Where the stored item snaps to. If empty, this transform is used.")]
