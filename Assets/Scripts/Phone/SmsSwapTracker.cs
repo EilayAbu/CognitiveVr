@@ -15,6 +15,9 @@ namespace CognitiveVR.Phone
     ///   FLEX_2 - Laptop removed from bag (binary)
     ///   FLEX_3 - Tablet placed in bag (binary)
     ///   FLEX_4 - Total swap duration (SMS -> both items in correct state)
+    /// Items are identified by their GameObject name (case-insensitive match
+    /// against the configured name lists). Storage state comes directly from
+    /// the <see cref="BackpackInventoryZone"/> item entered/exited events.
     /// Routes lifecycle through TaskApi for the SmsSwap task and exposes
     /// BuildRecords() for assessment harvesting (same pattern as ToasterMetrics).
     /// </summary>
@@ -25,10 +28,11 @@ namespace CognitiveVR.Phone
         [SerializeField] private SessionTimer _sessionTimer;
         [SerializeField] private BackpackInventoryZone _backpack;
 
-        [Header("Optional explicit item refs")]
-        [Tooltip("If provided, only these specific items are watched. If empty, all InventoryItemMetaBridge components in the scene with a matching ItemId are watched.")]
-        [SerializeField] private InventoryItemMetaBridge _laptop;
-        [SerializeField] private InventoryItemMetaBridge _tablet;
+        [Header("Item Name Matching")]
+        [Tooltip("An item whose GameObject name contains one of these (case-insensitive) counts as the laptop.")]
+        [SerializeField] private List<string> _laptopNames = new List<string> { "Laptop" };
+        [Tooltip("An item whose GameObject name contains one of these (case-insensitive) counts as the tablet.")]
+        [SerializeField] private List<string> _tabletNames = new List<string> { "Tablet" };
 
         [Header("Debug")]
         [SerializeField] private bool _verboseLogs = true;
@@ -47,9 +51,7 @@ namespace CognitiveVR.Phone
         public bool TabletPlaced => _tabletPlaced;
         public bool SwapCompleted => _laptopRemoved && _tabletPlaced;
 
-        private readonly HashSet<InventoryItemMetaBridge> _watched = new HashSet<InventoryItemMetaBridge>();
-        private readonly HashSet<InventoryItemMetaBridge> _everStoredLaptops = new HashSet<InventoryItemMetaBridge>();
-        private readonly HashSet<InventoryItemMetaBridge> _everStoredTablets = new HashSet<InventoryItemMetaBridge>();
+        private bool _laptopEverStored;
 
         private void Awake()
         {
@@ -59,13 +61,26 @@ namespace CognitiveVR.Phone
         private void OnEnable()
         {
             ResolveReferences();
-            BindWatchedItems();
-            CaptureInitialInventoryState();
+
+            if (_backpack != null)
+            {
+                _backpack.WhenItemEntered += HandleItemEnteredBackpack;
+                _backpack.WhenItemExited += HandleItemExitedBackpack;
+                CaptureInitialInventoryState();
+            }
+            else
+            {
+                Debug.LogWarning($"[{nameof(SmsSwapTracker)}] No {nameof(BackpackInventoryZone)} found; swap tracking is inactive.", this);
+            }
         }
 
         private void OnDisable()
         {
-            UnbindWatchedItems();
+            if (_backpack != null)
+            {
+                _backpack.WhenItemEntered -= HandleItemEnteredBackpack;
+                _backpack.WhenItemExited -= HandleItemExitedBackpack;
+            }
         }
 
         public void OnSmsAppeared(float sessionTime)
@@ -143,90 +158,69 @@ namespace CognitiveVR.Phone
             return Time.time;
         }
 
-        private void HandleItemSelected(InventoryItemMetaBridge item)
+        private static bool NameMatches(string itemName, List<string> candidates)
         {
-            if (item == null) return;
+            if (string.IsNullOrEmpty(itemName) || candidates == null) return false;
 
-            switch (item.ItemId)
+            foreach (string candidate in candidates)
             {
-                case ItemId.Laptop:
-                    if (_everStoredLaptops.Contains(item) && !_laptopRemoved)
-                    {
-                        float now = SessionTimeNow();
-                        _laptopRemoved = true;
-                        _laptopRemovedAt = now;
-                        RegisterFirstAction(now);
-                        try
-                        {
-                            TaskApi.ReportStepCompleted(TaskType.SmsSwap, "remove_laptop", "Laptop removed from bag");
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.LogWarning($"[{nameof(SmsSwapTracker)}] Failed to report remove_laptop: {ex.Message}", this);
-                        }
+                if (string.IsNullOrEmpty(candidate)) continue;
+                if (itemName.IndexOf(candidate, StringComparison.OrdinalIgnoreCase) >= 0)
+                    return true;
+            }
+            return false;
+        }
 
-                        if (_verboseLogs)
-                            Debug.Log($"[{nameof(SmsSwapTracker)}] Laptop removed at {now:F1}s.", item);
+        private void HandleItemEnteredBackpack(string itemName, BackpackSlot slot)
+        {
+            if (NameMatches(itemName, _tabletNames) && !_tabletPlaced)
+            {
+                float now = SessionTimeNow();
+                _tabletPlaced = true;
+                _tabletPlacedAt = now;
+                RegisterFirstAction(now);
+                try
+                {
+                    TaskApi.ReportStepCompleted(TaskType.SmsSwap, "place_tablet", "Tablet placed in bag");
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning($"[{nameof(SmsSwapTracker)}] Failed to report place_tablet: {ex.Message}", this);
+                }
 
-                        TryReportCompletion();
-                    }
-                    break;
+                if (_verboseLogs)
+                    Debug.Log($"[{nameof(SmsSwapTracker)}] Tablet '{itemName}' placed at {now:F1}s.", this);
 
-                case ItemId.Tablet:
-                    // No-op on select for tablet; we record it on Released-into-bag.
-                    break;
+                TryReportCompletion();
+            }
+            else if (NameMatches(itemName, _laptopNames))
+            {
+                _laptopEverStored = true;
             }
         }
 
-        private void HandleItemReleased(InventoryItemMetaBridge item)
+        private void HandleItemExitedBackpack(string itemName, BackpackSlot slot)
         {
-            if (item == null) return;
+            if (!NameMatches(itemName, _laptopNames)) return;
+            if (!_laptopEverStored || _laptopRemoved) return;
 
-            // This event fires on release; the BackpackInventoryZone separately
-            // decides if the item ended up inside the inventory volume. We use a
-            // post-frame check via item.IsStoredInInventory.
-            StartCoroutineCheckStored(item);
-        }
-
-        private void StartCoroutineCheckStored(InventoryItemMetaBridge item)
-        {
-            if (!isActiveAndEnabled) return;
-            StartCoroutine(CheckStoredNextFrame(item));
-        }
-
-        private System.Collections.IEnumerator CheckStoredNextFrame(InventoryItemMetaBridge item)
-        {
-            yield return null;
-            if (item == null) yield break;
-
-            if (item.IsStoredInInventory)
+            float now = SessionTimeNow();
+            _laptopRemoved = true;
+            _laptopRemovedAt = now;
+            RegisterFirstAction(now);
+            try
             {
-                if (item.ItemId == ItemId.Tablet && !_tabletPlaced)
-                {
-                    float now = SessionTimeNow();
-                    _tabletPlaced = true;
-                    _tabletPlacedAt = now;
-                    _everStoredTablets.Add(item);
-                    RegisterFirstAction(now);
-                    try
-                    {
-                        TaskApi.ReportStepCompleted(TaskType.SmsSwap, "place_tablet", "Tablet placed in bag");
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.LogWarning($"[{nameof(SmsSwapTracker)}] Failed to report place_tablet: {ex.Message}", this);
-                    }
-
-                    if (_verboseLogs)
-                        Debug.Log($"[{nameof(SmsSwapTracker)}] Tablet placed at {now:F1}s.", item);
-
-                    TryReportCompletion();
-                }
-                else if (item.ItemId == ItemId.Laptop)
-                {
-                    _everStoredLaptops.Add(item);
-                }
+                TaskApi.ReportStepCompleted(TaskType.SmsSwap, "remove_laptop", "Laptop removed from bag");
             }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[{nameof(SmsSwapTracker)}] Failed to report remove_laptop: {ex.Message}", this);
+            }
+
+            if (_verboseLogs)
+                Debug.Log($"[{nameof(SmsSwapTracker)}] Laptop '{itemName}' removed at {now:F1}s.", this);
+
+            TryReportCompletion();
         }
 
         private void RegisterFirstAction(float t)
@@ -254,59 +248,12 @@ namespace CognitiveVR.Phone
                 Debug.Log($"[{nameof(SmsSwapTracker)}] SmsSwap completed.", this);
         }
 
-        private void BindWatchedItems()
-        {
-            UnbindWatchedItems();
-
-            if (_laptop != null) AddWatched(_laptop);
-            if (_tablet != null) AddWatched(_tablet);
-
-            if (_watched.Count == 0)
-            {
-#if UNITY_2023_1_OR_NEWER
-                InventoryItemMetaBridge[] all = FindObjectsByType<InventoryItemMetaBridge>(FindObjectsSortMode.None);
-#else
-                InventoryItemMetaBridge[] all = FindObjectsOfType<InventoryItemMetaBridge>();
-#endif
-                foreach (InventoryItemMetaBridge item in all)
-                {
-                    if (item == null) continue;
-                    if (item.ItemId == ItemId.Laptop || item.ItemId == ItemId.Tablet)
-                        AddWatched(item);
-                }
-            }
-        }
-
-        private void AddWatched(InventoryItemMetaBridge item)
-        {
-            if (item == null || _watched.Contains(item)) return;
-            _watched.Add(item);
-            item.WhenItemSelected += HandleItemSelected;
-            item.WhenItemReleased += HandleItemReleased;
-        }
-
-        private void UnbindWatchedItems()
-        {
-            foreach (InventoryItemMetaBridge item in _watched)
-            {
-                if (item == null) continue;
-                item.WhenItemSelected -= HandleItemSelected;
-                item.WhenItemReleased -= HandleItemReleased;
-            }
-            _watched.Clear();
-        }
-
         private void CaptureInitialInventoryState()
         {
-            foreach (InventoryItemMetaBridge item in _watched)
+            foreach (string storedName in _backpack.StoredItemNames)
             {
-                if (item == null) continue;
-                if (!item.IsStoredInInventory) continue;
-
-                if (item.ItemId == ItemId.Laptop)
-                    _everStoredLaptops.Add(item);
-                else if (item.ItemId == ItemId.Tablet)
-                    _everStoredTablets.Add(item);
+                if (NameMatches(storedName, _laptopNames))
+                    _laptopEverStored = true;
             }
         }
 

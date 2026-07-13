@@ -1,27 +1,26 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CognitiveVR.Interaction
 {
     /// <summary>
-    /// Place on PackLP (or the backpack grid plane parent) to manage 3x3 storage slots.
-    /// Items are stored when released inside the backpack trigger volume.
-    /// The component is self-healing: if no slots are configured it will generate
-    /// a 3x3 grid of child Transforms at runtime, and it will force the attached
-    /// collider into trigger mode so OnTriggerEnter actually fires.
+    /// Data-collection hub for the backpack. The zone no longer owns a trigger
+    /// volume or storage logic — each <see cref="BackpackSlot"/> is independent
+    /// and stores/releases items on its own. This component only:
+    ///  - generates / manages the 3x3 slot layout,
+    ///  - aggregates the per-slot stored/removed notifications into public
+    ///    events (<see cref="WhenItemEntered"/> / <see cref="WhenItemExited"/>
+    ///    and the Inspector-facing UnityEvents) for data collection,
+    ///  - plays in/out audio feedback,
+    ///  - suppresses the backpack body grabbables while a hand hovers a slot.
     /// </summary>
-    [RequireComponent(typeof(Collider))]
     public class BackpackInventoryZone : MonoBehaviour
     {
         [Header("Inventory Layout")]
-        [Tooltip("Optional parent for stored items. If empty, this object is used.")]
-        [SerializeField] private Transform inventoryParent;
-        [Tooltip("Assign 9 Meta Snap Zone components (for example SnapInteractable) when available.")]
-        [SerializeField] private List<MonoBehaviour> metaSnapZones = new List<MonoBehaviour>(9);
         [Tooltip("Fallback list of exactly 9 slot transforms (3x3) used as snap points.")]
         [SerializeField] private List<Transform> slotTransforms = new List<Transform>(9);
-        [Tooltip("Multiplier applied to a stored item's original world size (e.g. 0.2 stores items at 20% of their original size).")]
-        [SerializeField] private float inventoryScale = 0.2f;
 
         [Header("Auto Slot Generation")]
         [Tooltip("If true and no slots are configured, generate a 3x3 grid of child Transforms at runtime.")]
@@ -31,15 +30,21 @@ namespace CognitiveVR.Interaction
         [Tooltip("Local-space Y position (relative to this transform) for auto-generated slot transforms.")]
         [SerializeField] private float autoSlotsLocalY = 0f;
         [SerializeField] private string autoSlotPrefix = "Slot_";
-        [Tooltip("If true, attach a BackpackSlot component (with BoxCollider) to each slot so the hand can grab items per-slot.")]
+        [Tooltip("If true, attach a BackpackSlot component (with trigger BoxCollider) to each slot.")]
         [SerializeField] private bool autoConfigureSlotComponents = true;
-        [Tooltip("BoxCollider size (local space) added on every slot for hand-grab detection.")]
+        [Tooltip("BoxCollider size (local space) added on every slot for item/hand detection.")]
         [SerializeField] private Vector3 slotColliderSize = Vector3.one;
 
         [Header("Audio (optional)")]
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private AudioClip itemInClip;
         [SerializeField] private AudioClip itemOutClip;
+
+        [Header("Data Collection Events")]
+        [Tooltip("Invoked with the item name when an item is stored in any slot.")]
+        [SerializeField] private UnityEvent<string> onItemEntered = new UnityEvent<string>();
+        [Tooltip("Invoked with the item name when an item is removed from any slot.")]
+        [SerializeField] private UnityEvent<string> onItemExited = new UnityEvent<string>();
 
         [Header("Body Grab Suppression")]
         [Tooltip("Behaviours to disable while a hand is hovering one of the slots (typically the backpack body's HandGrabInteractable / Grabbable). Auto-discovered by CognitiveVR > Setup Smartphone In Scene if left empty.")]
@@ -48,26 +53,27 @@ namespace CognitiveVR.Interaction
         [Header("Debug")]
         [SerializeField] private bool enableDebugLogs;
 
-        private readonly Dictionary<Transform, InventoryItemMetaBridge> _slotOccupancy = new Dictionary<Transform, InventoryItemMetaBridge>();
-        private readonly HashSet<InventoryItemMetaBridge> _itemsInsideVolume = new HashSet<InventoryItemMetaBridge>();
+        /// <summary>Raised when an item is stored in any slot (item name + slot).</summary>
+        public event Action<string, BackpackSlot> WhenItemEntered;
+
+        /// <summary>Raised when an item is removed from any slot (item name + slot).</summary>
+        public event Action<string, BackpackSlot> WhenItemExited;
+
+        private readonly List<string> _storedItemNames = new List<string>();
+        private readonly List<BackpackSlot> _boundSlots = new List<BackpackSlot>();
         private readonly Dictionary<Behaviour, bool> _suppressedOriginalEnabled = new Dictionary<Behaviour, bool>();
         private int _activeSlotHoverCount;
 
-        private Transform ActiveInventoryParent => inventoryParent != null ? inventoryParent : transform;
+        /// <summary>Names of all items currently stored in the backpack.</summary>
+        public IReadOnlyList<string> StoredItemNames => _storedItemNames;
 
         private void Awake()
         {
-            ForceTriggerCollider();
             EnsureSlotsExist();
         }
 
         private void OnValidate()
         {
-            if (inventoryScale <= 0f)
-            {
-                inventoryScale = 0.2f;
-            }
-
             if (slotColliderSize.x < 0.05f || slotColliderSize.y < 0.05f || slotColliderSize.z < 0.05f)
             {
                 slotColliderSize = Vector3.one;
@@ -76,72 +82,80 @@ namespace CognitiveVR.Interaction
 
         private void OnEnable()
         {
-            RegisterKnownItemsInScene();
+            SubscribeToSlots();
         }
 
         private void OnDisable()
         {
-            foreach (InventoryItemMetaBridge item in FindObjectsByType<InventoryItemMetaBridge>(FindObjectsSortMode.None))
-            {
-                item.WhenItemSelected -= HandleItemSelected;
-                item.WhenItemReleased -= HandleItemReleased;
-            }
-
+            UnsubscribeFromSlots();
             RestoreSuppressedBodyGrabbables();
             _activeSlotHoverCount = 0;
-            _itemsInsideVolume.Clear();
-            _slotOccupancy.Clear();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void SubscribeToSlots()
         {
-            InventoryItemMetaBridge item = other.GetComponentInParent<InventoryItemMetaBridge>();
-            if (item == null)
+            UnsubscribeFromSlots();
+
+            foreach (Transform slotTransform in slotTransforms)
             {
-                return;
-            }
-
-            RegisterItem(item);
-            _itemsInsideVolume.Add(item);
-
-            if (enableDebugLogs)
-            {
-                Debug.Log($"[{nameof(BackpackInventoryZone)}] Item entered backpack volume: {item.name}", item);
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            InventoryItemMetaBridge item = other.GetComponentInParent<InventoryItemMetaBridge>();
-            if (item == null)
-            {
-                return;
-            }
-
-            _itemsInsideVolume.Remove(item);
-
-            if (enableDebugLogs)
-            {
-                Debug.Log($"[{nameof(BackpackInventoryZone)}] Item exited backpack volume: {item.name}", item);
-            }
-        }
-
-        private void ForceTriggerCollider()
-        {
-            Collider volumeCollider = GetComponent<Collider>();
-            if (volumeCollider == null)
-            {
-                Debug.LogError($"[{nameof(BackpackInventoryZone)}] Missing collider on {name}.", this);
-                return;
-            }
-
-            if (!volumeCollider.isTrigger)
-            {
-                volumeCollider.isTrigger = true;
-                if (enableDebugLogs)
+                if (slotTransform == null)
                 {
-                    Debug.Log($"[{nameof(BackpackInventoryZone)}] Forced collider to trigger on {name}.", this);
+                    continue;
                 }
+
+                BackpackSlot slot = slotTransform.GetComponent<BackpackSlot>();
+                if (slot == null)
+                {
+                    continue;
+                }
+
+                slot.WhenItemStored += HandleSlotItemStored;
+                slot.WhenItemRemoved += HandleSlotItemRemoved;
+                _boundSlots.Add(slot);
+            }
+        }
+
+        private void UnsubscribeFromSlots()
+        {
+            foreach (BackpackSlot slot in _boundSlots)
+            {
+                if (slot == null)
+                {
+                    continue;
+                }
+                slot.WhenItemStored -= HandleSlotItemStored;
+                slot.WhenItemRemoved -= HandleSlotItemRemoved;
+            }
+            _boundSlots.Clear();
+        }
+
+        private void HandleSlotItemStored(BackpackSlot slot, InventoryItemMetaBridge item)
+        {
+            string itemName = item != null ? item.ItemName : "<null>";
+            _storedItemNames.Add(itemName);
+            PlayOneShot(itemInClip);
+
+            WhenItemEntered?.Invoke(itemName, slot);
+            onItemEntered.Invoke(itemName);
+
+            if (enableDebugLogs)
+            {
+                Debug.Log($"[{nameof(BackpackInventoryZone)}] Item entered backpack: '{itemName}' (slot '{slot.name}').", slot);
+            }
+        }
+
+        private void HandleSlotItemRemoved(BackpackSlot slot, InventoryItemMetaBridge item)
+        {
+            string itemName = item != null ? item.ItemName : "<null>";
+            _storedItemNames.Remove(itemName);
+            PlayOneShot(itemOutClip);
+
+            WhenItemExited?.Invoke(itemName, slot);
+            onItemExited.Invoke(itemName);
+
+            if (enableDebugLogs)
+            {
+                Debug.Log($"[{nameof(BackpackInventoryZone)}] Item exited backpack: '{itemName}' (slot '{slot.name}').", slot);
             }
         }
 
@@ -165,24 +179,13 @@ namespace CognitiveVR.Interaction
 
             if (!autoGenerateSlots)
             {
-                Debug.LogWarning($"[{nameof(BackpackInventoryZone)}] No snap zones / slot transforms configured on {name} and auto-generation is disabled.", this);
+                Debug.LogWarning($"[{nameof(BackpackInventoryZone)}] No slot transforms configured on {name} and auto-generation is disabled.", this);
                 return;
             }
 
             slotTransforms.Clear();
 
             Vector2 area = autoSlotsLocalArea;
-            // Auto-fit slot grid to ~80% of the BoxCollider XZ footprint when
-            // the user left the default value untouched, so slots are spaced
-            // sensibly regardless of how small/large the parent's lossy scale is.
-            if (Mathf.Approximately(area.x, 0.7f) && Mathf.Approximately(area.y, 0.7f))
-            {
-                if (GetComponent<Collider>() is BoxCollider box)
-                {
-                    area = new Vector2(box.size.x * 0.8f, box.size.z * 0.8f);
-                }
-            }
-
             float halfX = area.x * 0.5f;
             float halfZ = area.y * 0.5f;
 
@@ -198,17 +201,19 @@ namespace CognitiveVR.Interaction
                     GameObject slotGo;
                     if (existing == null)
                     {
+                        // Only brand-new slots get the computed grid placement;
+                        // slots already placed in the scene keep their transform.
                         slotGo = new GameObject(slotName);
                         slotGo.transform.SetParent(transform, false);
+                        slotGo.transform.localPosition = new Vector3(tx, autoSlotsLocalY, tz);
+                        slotGo.transform.localRotation = Quaternion.identity;
+                        slotGo.transform.localScale = Vector3.one;
                     }
                     else
                     {
                         slotGo = existing.gameObject;
                     }
 
-                    slotGo.transform.localPosition = new Vector3(tx, autoSlotsLocalY, tz);
-                    slotGo.transform.localRotation = Quaternion.identity;
-                    slotGo.transform.localScale = Vector3.one;
                     slotTransforms.Add(slotGo.transform);
 
                     if (autoConfigureSlotComponents)
@@ -243,15 +248,6 @@ namespace CognitiveVR.Interaction
         private int CountConfiguredSlots()
         {
             int count = 0;
-            if (metaSnapZones != null)
-            {
-                foreach (MonoBehaviour zone in metaSnapZones)
-                {
-                    if (zone != null) count++;
-                }
-            }
-            if (count > 0) return count;
-
             if (slotTransforms != null)
             {
                 foreach (Transform slot in slotTransforms)
@@ -260,72 +256,6 @@ namespace CognitiveVR.Interaction
                 }
             }
             return count;
-        }
-
-        private void RegisterKnownItemsInScene()
-        {
-            foreach (InventoryItemMetaBridge item in FindObjectsByType<InventoryItemMetaBridge>(FindObjectsSortMode.None))
-            {
-                RegisterItem(item);
-            }
-        }
-
-        private void RegisterItem(InventoryItemMetaBridge item)
-        {
-            item.WhenItemSelected -= HandleItemSelected;
-            item.WhenItemReleased -= HandleItemReleased;
-            item.WhenItemSelected += HandleItemSelected;
-            item.WhenItemReleased += HandleItemReleased;
-        }
-
-        private void HandleItemSelected(InventoryItemMetaBridge item)
-        {
-            if (item.IsStoredInInventory)
-            {
-                ReleaseItemFromInventory(item, true);
-            }
-        }
-
-        private void HandleItemReleased(InventoryItemMetaBridge item)
-        {
-            if (!_itemsInsideVolume.Contains(item) || item.IsStoredInInventory)
-            {
-                return;
-            }
-
-            Transform nearestSlot = GetNearestFreeSlot(item.transform.position);
-            if (nearestSlot == null)
-            {
-                if (enableDebugLogs)
-                {
-                    Debug.Log($"[{nameof(BackpackInventoryZone)}] No free slot available for {item.name}.", item);
-                }
-                return;
-            }
-
-            StoreItemInInventory(item, nearestSlot);
-        }
-
-        private void StoreItemInInventory(InventoryItemMetaBridge item, Transform slot)
-        {
-            if (_slotOccupancy.ContainsKey(slot))
-            {
-                return;
-            }
-
-            item.ApplyStoredState(ActiveInventoryParent, slot, inventoryScale);
-            _slotOccupancy[slot] = item;
-            BackpackSlot slotComponent = slot.GetComponent<BackpackSlot>();
-            if (slotComponent != null)
-            {
-                slotComponent.SetStoredItem(item);
-            }
-            PlayOneShot(itemInClip);
-
-            if (enableDebugLogs)
-            {
-                Debug.Log($"[{nameof(BackpackInventoryZone)}] Stored {item.name} in slot {slot.name} (scale x{inventoryScale:F3}).", item);
-            }
         }
 
         /// <summary>
@@ -403,116 +333,6 @@ namespace CognitiveVR.Interaction
             _suppressedOriginalEnabled.Clear();
         }
 
-        /// <summary>
-        /// Called by <see cref="BackpackSlot"/> when the hand performs a grab
-        /// gesture on a slot collider. Releases the item bound to that slot.
-        /// </summary>
-        internal void ReleaseItemFromSlot(BackpackSlot slot)
-        {
-            if (slot == null)
-            {
-                return;
-            }
-
-            if (!_slotOccupancy.TryGetValue(slot.transform, out InventoryItemMetaBridge item) || item == null)
-            {
-                if (enableDebugLogs)
-                {
-                    Debug.Log($"[{nameof(BackpackInventoryZone)}] Slot '{slot.name}' grabbed but holds no item.", slot);
-                }
-                return;
-            }
-
-            ReleaseItemFromInventory(item, true);
-        }
-
-        private void ReleaseItemFromInventory(InventoryItemMetaBridge item, bool playAudio)
-        {
-            Transform occupiedSlot = null;
-            foreach (KeyValuePair<Transform, InventoryItemMetaBridge> pair in _slotOccupancy)
-            {
-                if (pair.Value == item)
-                {
-                    occupiedSlot = pair.Key;
-                    break;
-                }
-            }
-
-            if (occupiedSlot != null)
-            {
-                _slotOccupancy.Remove(occupiedSlot);
-                BackpackSlot slotComponent = occupiedSlot.GetComponent<BackpackSlot>();
-                if (slotComponent != null)
-                {
-                    slotComponent.ClearStoredItem();
-                }
-            }
-
-            item.RestoreFromStoredState();
-
-            if (playAudio)
-            {
-                PlayOneShot(itemOutClip);
-            }
-
-            if (enableDebugLogs)
-            {
-                Debug.Log($"[{nameof(BackpackInventoryZone)}] Released {item.name} from inventory.", item);
-            }
-        }
-
-        private Transform GetNearestFreeSlot(Vector3 worldPosition)
-        {
-            Transform nearest = null;
-            float nearestDistanceSqr = float.MaxValue;
-
-            foreach (Transform slot in GetConfiguredSlots())
-            {
-                if (slot == null || _slotOccupancy.ContainsKey(slot))
-                {
-                    continue;
-                }
-
-                float distanceSqr = (slot.position - worldPosition).sqrMagnitude;
-                if (distanceSqr < nearestDistanceSqr)
-                {
-                    nearestDistanceSqr = distanceSqr;
-                    nearest = slot;
-                }
-            }
-
-            return nearest;
-        }
-
-        private IEnumerable<Transform> GetConfiguredSlots()
-        {
-            bool hasMetaZones = false;
-            if (metaSnapZones != null && metaSnapZones.Count > 0)
-            {
-                foreach (MonoBehaviour zone in metaSnapZones)
-                {
-                    if (zone != null)
-                    {
-                        hasMetaZones = true;
-                        yield return zone.transform;
-                    }
-                }
-            }
-
-            if (hasMetaZones)
-            {
-                yield break;
-            }
-
-            foreach (Transform slot in slotTransforms)
-            {
-                if (slot != null)
-                {
-                    yield return slot;
-                }
-            }
-        }
-
         private void PlayOneShot(AudioClip clip)
         {
             if (audioSource == null || clip == null)
@@ -534,18 +354,6 @@ namespace CognitiveVR.Interaction
 
         private void OnDrawGizmosSelected()
         {
-            Collider c = GetComponent<Collider>();
-            if (c is BoxCollider box)
-            {
-                Gizmos.color = new Color(0.2f, 0.8f, 1f, 0.25f);
-                Matrix4x4 prev = Gizmos.matrix;
-                Gizmos.matrix = transform.localToWorldMatrix;
-                Gizmos.DrawCube(box.center, box.size);
-                Gizmos.color = new Color(0.2f, 0.8f, 1f, 1f);
-                Gizmos.DrawWireCube(box.center, box.size);
-                Gizmos.matrix = prev;
-            }
-
             Gizmos.color = Color.yellow;
             foreach (Transform slot in slotTransforms)
             {

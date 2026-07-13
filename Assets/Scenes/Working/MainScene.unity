@@ -2897,7 +2897,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd929e6a9bd458842a4ac5f362c83d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.InventoryItemMetaBridge
-  itemId: 4
+  storedScale: 0.2
+  disableWhileStored: []
   grabbable: {fileID: 249482132}
   enableDebugLogs: 0
 --- !u!1001 &254988459
@@ -3189,6 +3190,11 @@ MonoBehaviour:
   grabbable: {fileID: 264197521}
   boxCollider: {fileID: 264197519}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
+  highlightRenderer: {fileID: 0}
+  highlightQuadSize: {x: 0.12, y: 0.12}
+  idleColor: {r: 1, g: 1, b: 1, a: 0.25}
+  touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
+  enableDebugLogs: 0
 --- !u!114 &264197521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6150,7 +6156,7 @@ Transform:
   m_GameObject: {fileID: 438924786}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.06699997, y: 1.102, z: -0.62874055}
+  m_LocalPosition: {x: 0.06699997, y: 1.102, z: -0.993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7364,7 +7370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd929e6a9bd458842a4ac5f362c83d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.InventoryItemMetaBridge
-  itemId: 5
+  storedScale: 0.2
+  disableWhileStored: []
   grabbable: {fileID: 557276123}
   enableDebugLogs: 0
 --- !u!54 &557276122
@@ -8128,6 +8135,11 @@ MonoBehaviour:
   grabbable: {fileID: 610994859}
   boxCollider: {fileID: 610994857}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
+  highlightRenderer: {fileID: 0}
+  highlightQuadSize: {x: 0.12, y: 0.12}
+  idleColor: {r: 1, g: 1, b: 1, a: 0.25}
+  touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
+  enableDebugLogs: 0
 --- !u!114 &610994859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9065,6 +9077,11 @@ MonoBehaviour:
   grabbable: {fileID: 703485558}
   boxCollider: {fileID: 703485556}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
+  highlightRenderer: {fileID: 0}
+  highlightQuadSize: {x: 0.12, y: 0.12}
+  idleColor: {r: 1, g: 1, b: 1, a: 0.25}
+  touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
+  enableDebugLogs: 0
 --- !u!114 &703485558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10878,6 +10895,11 @@ MonoBehaviour:
   grabbable: {fileID: 804265423}
   boxCollider: {fileID: 804265421}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
+  highlightRenderer: {fileID: 0}
+  highlightQuadSize: {x: 0.12, y: 0.12}
+  idleColor: {r: 1, g: 1, b: 1, a: 0.25}
+  touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
+  enableDebugLogs: 0
 --- !u!114 &804265423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11060,6 +11082,11 @@ MonoBehaviour:
   grabbable: {fileID: 815700900}
   boxCollider: {fileID: 815700898}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
+  highlightRenderer: {fileID: 0}
+  highlightQuadSize: {x: 0.12, y: 0.12}
+  idleColor: {r: 1, g: 1, b: 1, a: 0.25}
+  touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
+  enableDebugLogs: 0
 --- !u!114 &815700900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11531,7 +11558,7 @@ GameObject:
   - component: {fileID: 853326915}
   - component: {fileID: 853326914}
   m_Layer: 0
-  m_Name: Laptop (1)
+  m_Name: Laptop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11633,7 +11660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd929e6a9bd458842a4ac5f362c83d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.InventoryItemMetaBridge
-  itemId: 2
+  storedScale: 0.2
+  disableWhileStored: []
   grabbable: {fileID: 853326915}
   enableDebugLogs: 0
 --- !u!54 &853326917
@@ -14534,7 +14562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd929e6a9bd458842a4ac5f362c83d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.InventoryItemMetaBridge
-  itemId: 3
+  storedScale: 0.2
+  disableWhileStored: []
   grabbable: {fileID: 1077798306}
   enableDebugLogs: 1
 --- !u!4 &1080199422 stripped
@@ -14784,7 +14813,6 @@ GameObject:
   - component: {fileID: 1115826133}
   - component: {fileID: 1115826132}
   - component: {fileID: 1115826131}
-  - component: {fileID: 1115826130}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -14816,27 +14844,6 @@ Transform:
   - {fileID: 815700897}
   m_Father: {fileID: 438924787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1115826130
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115826128}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10, y: 2.8884401, z: 9.999999}
-  m_Center: {x: 0, y: 0.8130194, z: 0}
 --- !u!114 &1115826131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14849,10 +14856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e96dbc4c428414daed374a8563c0cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackInventoryZone
-  inventoryParent: {fileID: 1115826129}
-  metaSnapZones: []
   slotTransforms: []
-  inventoryScale: 0.4
   autoGenerateSlots: 1
   autoSlotsLocalArea: {x: 0.7, y: 0.7}
   autoSlotsLocalY: 0
@@ -14862,7 +14866,22 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   itemInClip: {fileID: 0}
   itemOutClip: {fileID: 0}
-  backpackBodyGrabbablesToSuppress: []
+  onItemEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  onItemExited:
+    m_PersistentCalls:
+      m_Calls: []
+  backpackBodyGrabbablesToSuppress:
+  - {fileID: 1437360093}
+  - {fileID: 703485557}
+  - {fileID: 804265422}
+  - {fileID: 1359814813}
+  - {fileID: 610994858}
+  - {fileID: 1626132100}
+  - {fileID: 1990267975}
+  - {fileID: 264197520}
+  - {fileID: 815700899}
   enableDebugLogs: 0
 --- !u!23 &1115826132
 MeshRenderer:
@@ -18084,6 +18103,11 @@ MonoBehaviour:
   grabbable: {fileID: 1359814814}
   boxCollider: {fileID: 1359814812}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
+  highlightRenderer: {fileID: 0}
+  highlightQuadSize: {x: 0.12, y: 0.12}
+  idleColor: {r: 1, g: 1, b: 1, a: 0.25}
+  touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
+  enableDebugLogs: 0
 --- !u!114 &1359814814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19298,6 +19322,11 @@ MonoBehaviour:
   grabbable: {fileID: 1437360094}
   boxCollider: {fileID: 1437360092}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
+  highlightRenderer: {fileID: 0}
+  highlightQuadSize: {x: 0.12, y: 0.12}
+  idleColor: {r: 1, g: 1, b: 1, a: 0.25}
+  touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
+  enableDebugLogs: 0
 --- !u!114 &1437360094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21245,6 +21274,11 @@ MonoBehaviour:
   grabbable: {fileID: 1626132101}
   boxCollider: {fileID: 1626132099}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
+  highlightRenderer: {fileID: 0}
+  highlightQuadSize: {x: 0.12, y: 0.12}
+  idleColor: {r: 1, g: 1, b: 1, a: 0.25}
+  touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
+  enableDebugLogs: 0
 --- !u!114 &1626132101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26465,7 +26499,8 @@ PrefabInstance:
       propertyPath: itemId
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6449303923237955856, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
@@ -28523,6 +28558,11 @@ MonoBehaviour:
   grabbable: {fileID: 1990267976}
   boxCollider: {fileID: 1990267974}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
+  highlightRenderer: {fileID: 0}
+  highlightQuadSize: {x: 0.12, y: 0.12}
+  idleColor: {r: 1, g: 1, b: 1, a: 0.25}
+  touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
+  enableDebugLogs: 0
 --- !u!114 &1990267976
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,21 +18,13 @@ namespace CognitiveVR.EditorTools
     /// zone, and SMS swap tracking.
     ///
     /// Drops the Smartphone prefab into the scene if missing, fixes common
-    /// Backpack mis-configurations (non-trigger collider, dynamic rigidbody, no
-    /// slot transforms), tags any existing laptop / tablet inventory items by
-    /// name and resolves the SessionTimer / SmsSwapTracker references.
+    /// Backpack mis-configurations (dynamic rigidbody, no slot transforms)
+    /// and resolves the SessionTimer / SmsSwapTracker references. Items are
+    /// identified at runtime by their GameObject name (see SmsSwapTracker).
     /// </summary>
     public static class PhoneSetupEditor
     {
         private const string PrefabPath = "Assets/Prefabs/phone/Smartphone.prefab";
-
-        private static readonly string[] LaptopNames = {
-            "Laptop", "laptop", "LaptopItem", "Laptop_Pickup", "Notebook"
-        };
-
-        private static readonly string[] TabletNames = {
-            "Tablet", "tablet", "TabletItem", "Tablet_Pickup", "iPad"
-        };
 
         [MenuItem("CognitiveVR/Setup Smartphone In Scene")]
         public static void SetupSmartphoneInScene()
@@ -61,9 +53,6 @@ namespace CognitiveVR.EditorTools
 
             EnsureSmsSwapTracker(phoneInstance);
             ResolvePhoneRefsToScene(phoneInstance);
-            int taggedLaptops = TagItemsByName(LaptopNames, ItemId.Laptop);
-            int taggedTablets = TagItemsByName(TabletNames, ItemId.Tablet);
-            int wiredItemRefs = WireSmsSwapTrackerItemRefs(phoneInstance);
             string scheduledEventsStatus = EnsureScheduledEvents();
             string backpackStatus = EnsureBackpackSetup(phoneInstance);
             string xrStatus = TryEnsurePhoneXRComponents(phoneInstance);
@@ -73,8 +62,7 @@ namespace CognitiveVR.EditorTools
 
             EditorUtility.DisplayDialog("Smartphone Setup Complete",
                 $"Smartphone prefab is in the scene.\n" +
-                $"Tagged {taggedLaptops} laptop item(s) and {taggedTablets} tablet item(s) with ItemId.\n" +
-                $"Wired {wiredItemRefs} explicit item ref(s) on SmsSwapTracker.\n" +
+                $"Items are matched by GameObject name (configure name lists on SmsSwapTracker).\n" +
                 $"SessionTimer events: {scheduledEventsStatus}\n" +
                 $"Backpack: {backpackStatus}\n" +
                 $"Phone XR components: {xrStatus}\n" +
@@ -265,44 +253,6 @@ namespace CognitiveVR.EditorTools
             }
         }
 
-        private static int TagItemsByName(string[] candidateNames, ItemId itemId)
-        {
-            int count = 0;
-            HashSet<GameObject> seen = new HashSet<GameObject>();
-
-            foreach (string n in candidateNames)
-            {
-                GameObject go = GameObject.Find(n);
-                if (go == null) continue;
-                if (!seen.Add(go)) continue;
-
-                InventoryItemMetaBridge bridge = go.GetComponent<InventoryItemMetaBridge>();
-                if (bridge == null)
-                    bridge = go.GetComponentInChildren<InventoryItemMetaBridge>();
-
-                if (bridge == null)
-                {
-                    Debug.LogWarning(
-                        $"[PhoneSetup] Found '{n}' but it has no InventoryItemMetaBridge component. " +
-                        $"Skipping {itemId} tagging.");
-                    continue;
-                }
-
-                FieldInfo idField = typeof(InventoryItemMetaBridge).GetField(
-                    "itemId", BindingFlags.NonPublic | BindingFlags.Instance);
-                if (idField != null)
-                {
-                    Undo.RecordObject(bridge, $"Tag {bridge.name} as {itemId}");
-                    idField.SetValue(bridge, itemId);
-                    EditorUtility.SetDirty(bridge);
-                    count++;
-                    Debug.Log($"[PhoneSetup] Tagged '{bridge.name}' as ItemId.{itemId}.");
-                }
-            }
-
-            return count;
-        }
-
         private static string EnsureBackpackSetup(GameObject phoneInstance)
         {
             BackpackInventoryZone zone = UnityEngine.Object.FindFirstObjectByType<BackpackInventoryZone>();
@@ -312,30 +262,6 @@ namespace CognitiveVR.EditorTools
             }
 
             int fixesApplied = 0;
-
-            Collider zoneCollider = zone.GetComponent<Collider>();
-            if (zoneCollider != null && !zoneCollider.isTrigger)
-            {
-                Undo.RecordObject(zoneCollider, "Backpack: force collider to trigger");
-                zoneCollider.isTrigger = true;
-                EditorUtility.SetDirty(zoneCollider);
-                fixesApplied++;
-                Debug.Log($"[PhoneSetup] Forced backpack collider on '{zone.name}' to trigger.", zone);
-            }
-
-            if (zoneCollider is BoxCollider box && box.size.y < 0.01f)
-            {
-                Undo.RecordObject(box, "Backpack: give trigger box a non-zero Y size");
-                Vector3 s = box.size;
-                s.y = Mathf.Max(s.y, 8f);
-                box.size = s;
-                Vector3 c = box.center;
-                c.y = s.y * 0.5f;
-                box.center = c;
-                EditorUtility.SetDirty(box);
-                fixesApplied++;
-                Debug.Log($"[PhoneSetup] Expanded backpack box collider Y size on '{zone.name}'.", zone);
-            }
 
             Rigidbody packRigidbody = zone.GetComponentInParent<Rigidbody>();
             if (packRigidbody != null && (!packRigidbody.isKinematic || packRigidbody.useGravity))
@@ -348,24 +274,8 @@ namespace CognitiveVR.EditorTools
                 Debug.Log($"[PhoneSetup] Set parent backpack rigidbody to kinematic on '{packRigidbody.name}'.", packRigidbody);
             }
 
-            FieldInfo inventoryParentField = typeof(BackpackInventoryZone).GetField(
-                "inventoryParent", BindingFlags.NonPublic | BindingFlags.Instance);
-            if (inventoryParentField != null)
-            {
-                Transform current = inventoryParentField.GetValue(zone) as Transform;
-                if (current == null)
-                {
-                    Undo.RecordObject(zone, "Backpack: assign inventoryParent");
-                    inventoryParentField.SetValue(zone, zone.transform);
-                    EditorUtility.SetDirty(zone);
-                    fixesApplied++;
-                }
-            }
-
             FieldInfo slotListField = typeof(BackpackInventoryZone).GetField(
                 "slotTransforms", BindingFlags.NonPublic | BindingFlags.Instance);
-            FieldInfo metaSnapField = typeof(BackpackInventoryZone).GetField(
-                "metaSnapZones", BindingFlags.NonPublic | BindingFlags.Instance);
 
             int slotCount = 0;
             if (slotListField != null)
@@ -373,13 +283,6 @@ namespace CognitiveVR.EditorTools
                 if (slotListField.GetValue(zone) is List<Transform> existing)
                 {
                     foreach (Transform t in existing) if (t != null) slotCount++;
-                }
-            }
-            if (slotCount == 0 && metaSnapField != null)
-            {
-                if (metaSnapField.GetValue(zone) is List<MonoBehaviour> existingMeta)
-                {
-                    foreach (MonoBehaviour mb in existingMeta) if (mb != null) slotCount++;
                 }
             }
 
@@ -403,7 +306,7 @@ namespace CognitiveVR.EditorTools
                 fixesApplied += slotsEquipped;
             }
 
-            int bodyGrabsWired = AutoWireBodyGrabSuppression(zone, inventoryParentField);
+            int bodyGrabsWired = AutoWireBodyGrabSuppression(zone);
             if (bodyGrabsWired > 0)
             {
                 fixesApplied += bodyGrabsWired;
@@ -498,7 +401,8 @@ namespace CognitiveVR.EditorTools
                 if (box != null)
                 {
                     Undo.RecordObject(box, "Backpack slot: configure box collider");
-                    box.isTrigger = false;
+                    // Trigger so the slot's OnTriggerEnter/Exit item detection fires.
+                    box.isTrigger = true;
                     box.size = boxSize;
                     box.center = Vector3.zero;
                     EditorUtility.SetDirty(box);
@@ -573,11 +477,11 @@ namespace CognitiveVR.EditorTools
         /// <c>backpackBodyGrabbablesToSuppress</c> on the zone with the body's
         /// Grabbable / HandGrabInteractable components, so that the runtime
         /// can disable them while a hand is hovering an inventory slot.
-        /// Skips anything inside the inventory parent (the slots themselves).
+        /// Skips anything under the zone transform (the slots themselves).
         /// Does not overwrite a manually populated list.
         /// </summary>
         /// <returns>Number of body grabbables wired (0 if none / already configured).</returns>
-        private static int AutoWireBodyGrabSuppression(BackpackInventoryZone zone, FieldInfo inventoryParentField)
+        private static int AutoWireBodyGrabSuppression(BackpackInventoryZone zone)
         {
             if (zone == null) return 0;
 
@@ -600,15 +504,7 @@ namespace CognitiveVR.EditorTools
                 return 0;
             }
 
-            Transform inventoryParent = null;
-            if (inventoryParentField != null)
-            {
-                inventoryParent = inventoryParentField.GetValue(zone) as Transform;
-            }
-            if (inventoryParent == null)
-            {
-                inventoryParent = zone.transform;
-            }
+            Transform inventoryParent = zone.transform;
 
             Transform backpackRoot = zone.transform;
             while (backpackRoot.parent != null)
@@ -665,51 +561,6 @@ namespace CognitiveVR.EditorTools
 
             Debug.Log($"[PhoneSetup] Auto-wired {discovered.Count} body grabbable(s) to suppress on backpack '{backpackRoot.name}'.", zone);
             return discovered.Count;
-        }
-
-        private static int WireSmsSwapTrackerItemRefs(GameObject phoneInstance)
-        {
-            if (phoneInstance == null) return 0;
-
-            SmsSwapTracker tracker = phoneInstance.GetComponent<SmsSwapTracker>();
-            if (tracker == null) return 0;
-
-            int wired = 0;
-            InventoryItemMetaBridge[] all = UnityEngine.Object.FindObjectsByType<InventoryItemMetaBridge>(FindObjectsSortMode.None);
-
-            FieldInfo laptopField = typeof(SmsSwapTracker).GetField(
-                "_laptop", BindingFlags.NonPublic | BindingFlags.Instance);
-            FieldInfo tabletField = typeof(SmsSwapTracker).GetField(
-                "_tablet", BindingFlags.NonPublic | BindingFlags.Instance);
-
-            InventoryItemMetaBridge laptop = null;
-            InventoryItemMetaBridge tablet = null;
-            foreach (InventoryItemMetaBridge item in all)
-            {
-                if (item == null) continue;
-                if (item.ItemId == ItemId.Laptop && laptop == null) laptop = item;
-                if (item.ItemId == ItemId.Tablet && tablet == null) tablet = item;
-            }
-
-            if (laptopField != null && laptop != null && (laptopField.GetValue(tracker) as InventoryItemMetaBridge) == null)
-            {
-                Undo.RecordObject(tracker, "SmsSwapTracker: wire laptop");
-                laptopField.SetValue(tracker, laptop);
-                EditorUtility.SetDirty(tracker);
-                wired++;
-            }
-            if (tabletField != null && tablet != null && (tabletField.GetValue(tracker) as InventoryItemMetaBridge) == null)
-            {
-                Undo.RecordObject(tracker, "SmsSwapTracker: wire tablet");
-                tabletField.SetValue(tracker, tablet);
-                EditorUtility.SetDirty(tracker);
-                wired++;
-            }
-
-            if (laptop == null) Debug.LogWarning("[PhoneSetup] No InventoryItemMetaBridge tagged ItemId.Laptop found in scene.");
-            if (tablet == null) Debug.LogWarning("[PhoneSetup] No InventoryItemMetaBridge tagged ItemId.Tablet found in scene. SmsSwap completion will not fire without both items.");
-
-            return wired;
         }
 
         /// <summary>

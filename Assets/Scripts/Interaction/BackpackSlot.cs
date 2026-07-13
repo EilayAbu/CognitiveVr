@@ -1,18 +1,19 @@
+using System;
+using System.Collections.Generic;
 using Oculus.Interaction;
 using UnityEngine;
 
 namespace CognitiveVR.Interaction
 {
     /// <summary>
-    /// Per-slot grab zone inside the backpack. When the hand performs a grab
-    /// gesture on this slot's collider (via Meta HandGrabInteractable), the
-    /// stored item bound to this slot is released back to the world.
-    ///
-    /// The component is intentionally lightweight: it only requires a
-    /// <see cref="Grabbable"/> on the same GameObject for the hand-grab path
-    /// to fire. The full Meta stack (HandGrabInteractable / RayInteractable /
-    /// kinematic Rigidbody) is added by <c>PhoneSetupEditor</c>; if those are
-    /// missing at runtime the slot still acts as a passive position marker.
+    /// Self-contained storage slot inside the backpack. The slot owns a trigger
+    /// BoxCollider that detects inventory items; when an item is released while
+    /// inside the trigger, the slot snaps it to its own center and stores it.
+    /// While a hand hovers the slot the visual quad turns green so the user
+    /// knows they are touching the right spot for inserting/removing an item.
+    /// The slot only notifies the owning <see cref="BackpackInventoryZone"/>
+    /// (and any other listener) about what entered/exited through the
+    /// <see cref="WhenItemStored"/> / <see cref="WhenItemRemoved"/> events.
     /// </summary>
     [DisallowMultipleComponent]
     public class BackpackSlot : MonoBehaviour
@@ -22,7 +23,29 @@ namespace CognitiveVR.Interaction
         [SerializeField] private BoxCollider boxCollider;
         [SerializeField] private Vector3 colliderSize = Vector3.one;
 
+        [Header("Touch Feedback")]
+        [Tooltip("Optional. Renderer used for touch feedback. If empty, a small Quad child is created automatically.")]
+        [SerializeField] private Renderer highlightRenderer;
+        [Tooltip("Local size (X,Y) of the auto-created highlight quad.")]
+        [SerializeField] private Vector2 highlightQuadSize = new Vector2(0.12f, 0.12f);
+        [SerializeField] private Color idleColor = new Color(1f, 1f, 1f, 0.25f);
+        [SerializeField] private Color touchColor = new Color(0.2f, 1f, 0.2f, 0.8f);
+
+        [Header("Debug")]
+        [SerializeField] private bool enableDebugLogs;
+
+        /// <summary>Raised after an item has been snapped into this slot.</summary>
+        public event Action<BackpackSlot, InventoryItemMetaBridge> WhenItemStored;
+
+        /// <summary>Raised after an item has been released from this slot.</summary>
+        public event Action<BackpackSlot, InventoryItemMetaBridge> WhenItemRemoved;
+
+        private static readonly int ColorPropertyId = Shader.PropertyToID("_Color");
+        private static readonly int BaseColorPropertyId = Shader.PropertyToID("_BaseColor");
+
+        private readonly HashSet<InventoryItemMetaBridge> _itemsInside = new HashSet<InventoryItemMetaBridge>();
         private InventoryItemMetaBridge _storedItem;
+        private MaterialPropertyBlock _propertyBlock;
         private bool _warnedMissingGrabbable;
         private bool _isHovering;
 
@@ -32,10 +55,12 @@ namespace CognitiveVR.Interaction
         private void Awake()
         {
             EnsureBoxCollider();
+            EnsureHighlightRenderer();
             if (grabbable == null)
             {
                 grabbable = GetComponent<Grabbable>();
             }
+            ApplyHighlightColor(idleColor);
         }
 
         private void OnEnable()
@@ -58,6 +83,13 @@ namespace CognitiveVR.Interaction
                 zone.NotifyHoverExit(this);
             }
             _isHovering = false;
+            ApplyHighlightColor(idleColor);
+
+            foreach (InventoryItemMetaBridge item in _itemsInside)
+            {
+                UnsubscribeFromItem(item);
+            }
+            _itemsInside.Clear();
         }
 
         public void Bind(BackpackInventoryZone owningZone, Vector3 desiredColliderSize)
@@ -67,15 +99,152 @@ namespace CognitiveVR.Interaction
             EnsureBoxCollider();
         }
 
-        public void SetStoredItem(InventoryItemMetaBridge item)
+        // ------------------------------------------------------------------
+        // Item detection (trigger volume)
+        // ------------------------------------------------------------------
+
+        private void OnTriggerEnter(Collider other)
         {
-            _storedItem = item;
+            InventoryItemMetaBridge item = other.GetComponentInParent<InventoryItemMetaBridge>();
+            if (item == null || _itemsInside.Contains(item))
+            {
+                return;
+            }
+
+            _itemsInside.Add(item);
+            item.WhenItemReleased += HandleItemReleasedInside;
+
+            if (enableDebugLogs)
+            {
+                Debug.Log($"[{nameof(BackpackSlot)}] '{item.ItemName}' entered slot trigger '{name}'.", this);
+            }
         }
 
-        public void ClearStoredItem()
+        private void OnTriggerExit(Collider other)
         {
-            _storedItem = null;
+            InventoryItemMetaBridge item = other.GetComponentInParent<InventoryItemMetaBridge>();
+            if (item == null || !_itemsInside.Contains(item))
+            {
+                return;
+            }
+
+            _itemsInside.Remove(item);
+            UnsubscribeFromItem(item);
+
+            if (enableDebugLogs)
+            {
+                Debug.Log($"[{nameof(BackpackSlot)}] '{item.ItemName}' exited slot trigger '{name}'.", this);
+            }
         }
+
+        private void UnsubscribeFromItem(InventoryItemMetaBridge item)
+        {
+            if (item == null)
+            {
+                return;
+            }
+            item.WhenItemReleased -= HandleItemReleasedInside;
+        }
+
+        private void HandleItemReleasedInside(InventoryItemMetaBridge item)
+        {
+            if (item == null || item.IsStoredInInventory || HasItem)
+            {
+                return;
+            }
+
+            StoreItem(item);
+        }
+
+        // ------------------------------------------------------------------
+        // Storage
+        // ------------------------------------------------------------------
+
+        private void StoreItem(InventoryItemMetaBridge item)
+        {
+            _storedItem = item;
+            item.ApplyStoredState(transform);
+            item.WhenItemSelected += HandleStoredItemSelected;
+            WhenItemStored?.Invoke(this, item);
+
+            if (enableDebugLogs)
+            {
+                Debug.Log($"[{nameof(BackpackSlot)}] Stored '{item.ItemName}' at center of slot '{name}'.", this);
+            }
+        }
+
+        /// <summary>
+        /// Releases the stored item back to the world (restoring its original
+        /// scale, parent and physics) and notifies listeners.
+        /// </summary>
+        public void ReleaseStoredItem()
+        {
+            if (_storedItem == null)
+            {
+                return;
+            }
+
+            InventoryItemMetaBridge item = _storedItem;
+            _storedItem = null;
+            item.WhenItemSelected -= HandleStoredItemSelected;
+            item.RestoreFromStoredState();
+            WhenItemRemoved?.Invoke(this, item);
+
+            if (enableDebugLogs)
+            {
+                Debug.Log($"[{nameof(BackpackSlot)}] Released '{item.ItemName}' from slot '{name}'.", this);
+            }
+        }
+
+        private void HandleStoredItemSelected(InventoryItemMetaBridge item)
+        {
+            if (item == _storedItem)
+            {
+                ReleaseStoredItem();
+            }
+        }
+
+        // ------------------------------------------------------------------
+        // Hand hover / grab on the slot itself
+        // ------------------------------------------------------------------
+
+        private void HandlePointerEvent(PointerEvent pointerEvent)
+        {
+            switch (pointerEvent.Type)
+            {
+                case PointerEventType.Hover:
+                    if (!_isHovering)
+                    {
+                        _isHovering = true;
+                        ApplyHighlightColor(touchColor);
+                        if (zone != null)
+                        {
+                            zone.NotifyHoverEnter(this);
+                        }
+                    }
+                    break;
+
+                case PointerEventType.Unhover:
+                    if (_isHovering)
+                    {
+                        _isHovering = false;
+                        ApplyHighlightColor(idleColor);
+                        if (zone != null)
+                        {
+                            zone.NotifyHoverExit(this);
+                        }
+                    }
+                    break;
+
+                case PointerEventType.Select:
+                    ReleaseStoredItem();
+                    break;
+            }
+        }
+
+        // ------------------------------------------------------------------
+        // Setup helpers
+        // ------------------------------------------------------------------
 
         private void EnsureBoxCollider()
         {
@@ -88,47 +257,57 @@ namespace CognitiveVR.Interaction
                 boxCollider = gameObject.AddComponent<BoxCollider>();
             }
 
-            // Non-trigger so Meta HandGrabInteractable can detect the grab
-            // gesture against a solid surface. The parent volume's collider
-            // remains the trigger for OnTriggerEnter-based item storage.
-            boxCollider.isTrigger = false;
+            // Trigger so OnTriggerEnter/Exit fires for items dropped into the
+            // slot. Meta HandGrabInteractable still detects hover/grab against
+            // trigger colliders for the hand-touch feedback path.
+            boxCollider.isTrigger = true;
             boxCollider.size = colliderSize;
             boxCollider.center = Vector3.zero;
         }
 
-        private void HandlePointerEvent(PointerEvent pointerEvent)
+        private void EnsureHighlightRenderer()
         {
-            switch (pointerEvent.Type)
+            if (highlightRenderer != null)
             {
-                case PointerEventType.Hover:
-                    if (!_isHovering)
-                    {
-                        _isHovering = true;
-                        if (zone != null)
-                        {
-                            zone.NotifyHoverEnter(this);
-                        }
-                    }
-                    break;
-
-                case PointerEventType.Unhover:
-                    if (_isHovering)
-                    {
-                        _isHovering = false;
-                        if (zone != null)
-                        {
-                            zone.NotifyHoverExit(this);
-                        }
-                    }
-                    break;
-
-                case PointerEventType.Select:
-                    if (_storedItem != null && zone != null)
-                    {
-                        zone.ReleaseItemFromSlot(this);
-                    }
-                    break;
+                return;
             }
+
+            highlightRenderer = GetComponentInChildren<MeshRenderer>();
+            if (highlightRenderer != null)
+            {
+                return;
+            }
+
+            GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            quad.name = "SlotHighlight";
+
+            Collider quadCollider = quad.GetComponent<Collider>();
+            if (quadCollider != null)
+            {
+                Destroy(quadCollider);
+            }
+
+            quad.transform.SetParent(transform, false);
+            quad.transform.localPosition = Vector3.zero;
+            // Quad faces +Z by default; rotate to lie flat facing up.
+            quad.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+            quad.transform.localScale = new Vector3(highlightQuadSize.x, highlightQuadSize.y, 1f);
+
+            highlightRenderer = quad.GetComponent<MeshRenderer>();
+        }
+
+        private void ApplyHighlightColor(Color color)
+        {
+            if (highlightRenderer == null)
+            {
+                return;
+            }
+
+            _propertyBlock ??= new MaterialPropertyBlock();
+            highlightRenderer.GetPropertyBlock(_propertyBlock);
+            _propertyBlock.SetColor(ColorPropertyId, color);
+            _propertyBlock.SetColor(BaseColorPropertyId, color);
+            highlightRenderer.SetPropertyBlock(_propertyBlock);
         }
 
         private void Reset()
@@ -144,6 +323,11 @@ namespace CognitiveVR.Interaction
             {
                 colliderSize = Vector3.one;
             }
+
+            if (highlightQuadSize.x <= 0f || highlightQuadSize.y <= 0f)
+            {
+                highlightQuadSize = new Vector2(0.12f, 0.12f);
+            }
         }
 
         private void Start()
@@ -155,7 +339,7 @@ namespace CognitiveVR.Interaction
                 _warnedMissingGrabbable = true;
                 Debug.LogWarning(
                     $"[{nameof(BackpackSlot)}] No Oculus.Interaction.Grabbable on slot '{name}'. " +
-                    "Per-slot hand-grab release is disabled until you run 'CognitiveVR > Setup Smartphone In Scene'.",
+                    "Hand touch feedback and slot-grab release are disabled until you run 'CognitiveVR > Setup Smartphone In Scene'.",
                     this);
             }
         }
