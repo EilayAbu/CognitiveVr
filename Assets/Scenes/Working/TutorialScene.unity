@@ -1160,6 +1160,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
+--- !u!1 &477785364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5875643889754384620, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
+  m_PrefabInstance: {fileID: 477785363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &491613198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,6 +1817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.RigPocketTutorial
   pocket: {fileID: 1677979611}
   item: {fileID: 1977010750}
+  btnActivate: {fileID: 477785364}
   onlyOnce: 1
   enableDebugLogs: 0
 --- !u!65 &787006761

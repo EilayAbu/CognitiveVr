@@ -26,7 +26,10 @@ namespace CognitiveVR.Interaction
 
         [Tooltip("The item (phone) that connects to the pocket when it enters this trigger.")]
         [SerializeField] private GameObject item;
-
+        
+        [Tooltip("Button Activator")]
+        [SerializeField] private GameObject btnActivate;
+        
         [Tooltip("Only connect + initialize the first time the item enters.")]
         [SerializeField] private bool onlyOnce = true;
 
@@ -90,7 +93,8 @@ namespace CognitiveVR.Interaction
             pocket.enabled = true; // -> RigPocket.Start(): caches refs, subscribes, StoreItem()
 
             _done = true;
-
+            btnActivate.SetActive(true);
+            
             Destroy(gameObject);
 
             if (enableDebugLogs)

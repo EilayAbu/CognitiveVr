@@ -11481,9 +11481,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8919823123095703165, guid: 2eae282455ffa33499b408673cabf375, type: 3}
+      propertyPath: askClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e8e6a07a65b8716498f87efbb4ae5266, type: 3}
+    - target: {fileID: 8919823123095703165, guid: 2eae282455ffa33499b408673cabf375, type: 3}
       propertyPath: tickClip
       value: 
       objectReference: {fileID: 8300000, guid: 91c29be97bea40d4985225ec6409ef95, type: 3}
+    - target: {fileID: 8919823123095703165, guid: 2eae282455ffa33499b408673cabf375, type: 3}
+      propertyPath: agreeClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c991439ba793a0498ef7985059d021e, type: 3}
     - target: {fileID: 8919823123095703165, guid: 2eae282455ffa33499b408673cabf375, type: 3}
       propertyPath: enableKeyboardTest
       value: 1
