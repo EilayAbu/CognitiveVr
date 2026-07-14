@@ -60,6 +60,7 @@ namespace CognitiveVR.Interaction
             {
                 grabbable = GetComponent<Grabbable>();
             }
+            PreventSlotFromBeingGrabbed();
             ApplyHighlightColor(idleColor);
         }
 
@@ -113,6 +114,7 @@ namespace CognitiveVR.Interaction
 
             _itemsInside.Add(item);
             item.WhenItemReleased += HandleItemReleasedInside;
+            RefreshHighlight();
 
             if (enableDebugLogs)
             {
@@ -130,6 +132,7 @@ namespace CognitiveVR.Interaction
 
             _itemsInside.Remove(item);
             UnsubscribeFromItem(item);
+            RefreshHighlight();
 
             if (enableDebugLogs)
             {
@@ -165,6 +168,7 @@ namespace CognitiveVR.Interaction
             _storedItem = item;
             item.ApplyStoredState(transform);
             item.WhenItemSelected += HandleStoredItemSelected;
+            RefreshHighlight();
             WhenItemStored?.Invoke(this, item);
 
             if (enableDebugLogs)
@@ -188,6 +192,7 @@ namespace CognitiveVR.Interaction
             _storedItem = null;
             item.WhenItemSelected -= HandleStoredItemSelected;
             item.RestoreFromStoredState();
+            RefreshHighlight();
             WhenItemRemoved?.Invoke(this, item);
 
             if (enableDebugLogs)
@@ -216,7 +221,7 @@ namespace CognitiveVR.Interaction
                     if (!_isHovering)
                     {
                         _isHovering = true;
-                        ApplyHighlightColor(touchColor);
+                        RefreshHighlight();
                         if (zone != null)
                         {
                             zone.NotifyHoverEnter(this);
@@ -228,7 +233,7 @@ namespace CognitiveVR.Interaction
                     if (_isHovering)
                     {
                         _isHovering = false;
-                        ApplyHighlightColor(idleColor);
+                        RefreshHighlight();
                         if (zone != null)
                         {
                             zone.NotifyHoverExit(this);
@@ -296,6 +301,19 @@ namespace CognitiveVR.Interaction
             highlightRenderer = quad.GetComponent<MeshRenderer>();
         }
 
+        /// <summary>
+        /// Recomputes and applies the highlight color from the current
+        /// hover/occupancy state: green while a hand hovers the slot OR while
+        /// any item's collider overlaps an empty slot's trigger (so dropping
+        /// an item in gives immediate visual confirmation even without a
+        /// hand hovering), idle otherwise.
+        /// </summary>
+        private void RefreshHighlight()
+        {
+            bool shouldHighlight = _isHovering || (!HasItem && _itemsInside.Count > 0);
+            ApplyHighlightColor(shouldHighlight ? touchColor : idleColor);
+        }
+
         private void ApplyHighlightColor(Color color)
         {
             if (highlightRenderer == null)
@@ -327,6 +345,29 @@ namespace CognitiveVR.Interaction
             if (highlightQuadSize.x <= 0f || highlightQuadSize.y <= 0f)
             {
                 highlightQuadSize = new Vector2(0.12f, 0.12f);
+            }
+
+            PreventSlotFromBeingGrabbed();
+        }
+
+        /// <summary>
+        /// The slot itself must only ever report hover/select pointer events
+        /// (for the touch-feedback highlight and select-to-release) and must
+        /// never actually be picked up/dragged by hand. Grabbable clamps how
+        /// many active grab points its transformer will honor via
+        /// MaxGrabPoints; forcing it to 0 disables all movement while leaving
+        /// Hover/Select/Unselect events (and WhenPointerEventRaised) intact.
+        /// </summary>
+        private void PreventSlotFromBeingGrabbed()
+        {
+            if (grabbable == null)
+            {
+                grabbable = GetComponent<Grabbable>();
+            }
+
+            if (grabbable != null)
+            {
+                grabbable.MaxGrabPoints = 0;
             }
         }
 

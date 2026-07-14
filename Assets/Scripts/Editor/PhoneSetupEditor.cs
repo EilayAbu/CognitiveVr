@@ -76,6 +76,54 @@ namespace CognitiveVR.EditorTools
         }
 
         /// <summary>
+        /// Isolated fix-up for the backpack slots only. Unlike
+        /// <see cref="SetupSmartphoneInScene"/>, this does not touch the
+        /// Smartphone instance, SmsSwapTracker, SessionTimer, phone XR
+        /// components, or the EventSystem input module - so it is safe to run
+        /// after manually tweaking any of those without having them
+        /// overwritten. It also does not touch the backpack zone's own
+        /// Rigidbody, generate new slots, or rewire body-grab suppression;
+        /// it only ensures each existing slot transform carries
+        /// BackpackSlot + BoxCollider + Rigidbody + Grabbable +
+        /// HandGrabInteractable (and strips any stale RayInteractable).
+        /// </summary>
+        [MenuItem("CognitiveVR/Setup Backpack Slots Only")]
+        public static void SetupBackpackSlotsOnly()
+        {
+            BackpackInventoryZone zone = UnityEngine.Object.FindFirstObjectByType<BackpackInventoryZone>();
+            if (zone == null)
+            {
+                EditorUtility.DisplayDialog("Backpack Slots Setup",
+                    "No BackpackInventoryZone found in the scene.",
+                    "OK");
+                return;
+            }
+
+            FieldInfo slotListField = typeof(BackpackInventoryZone).GetField(
+                "slotTransforms", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            if (slotListField == null || !(slotListField.GetValue(zone) is List<Transform> slots) ||
+                slots.TrueForAll(t => t == null))
+            {
+                EditorUtility.DisplayDialog("Backpack Slots Setup",
+                    "No slot transforms found on the BackpackInventoryZone. Generate/assign slots first.",
+                    "OK");
+                return;
+            }
+
+            int totalChanged = EquipSlotsWithMetaComponents(zone, slotListField);
+
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+
+            EditorUtility.DisplayDialog("Backpack Slots Setup Complete",
+                totalChanged == 0
+                    ? "All backpack slots already have the required components."
+                    : $"Applied {totalChanged} component change(s) across the backpack slots.\n" +
+                      "(Only slot components were touched: BackpackSlot, BoxCollider, Rigidbody, Grabbable, HandGrabInteractable; any stale RayInteractable was removed.)",
+                "OK");
+        }
+
+        /// <summary>
         /// Finds the scene's EventSystem and replaces the default
         /// StandaloneInputModule with Meta's PointableCanvasModule so ray
         /// pointer events reach the phone canvas. Meta types are resolved via
@@ -337,11 +385,13 @@ namespace CognitiveVR.EditorTools
         /// <summary>
         /// Walks every slot transform on the zone and ensures it carries the
         /// Meta ISDK stack required for hand-grab interaction (kinematic
-        /// Rigidbody + Grabbable + HandGrabInteractable + RayInteractable +
-        /// BoxCollider). Meta types are added via reflection so the script
-        /// still compiles if the SDK is removed.
+        /// Rigidbody + Grabbable + HandGrabInteractable + BoxCollider).
+        /// RayInteractable is not needed for slots (hand touch is enough) and
+        /// is actively removed if present from an earlier setup pass. Meta
+        /// types are added via reflection so the script still compiles if the
+        /// SDK is removed.
         /// </summary>
-        /// <returns>Number of components added across all slots.</returns>
+        /// <returns>Number of components added plus components removed across all slots.</returns>
         private static int EquipSlotsWithMetaComponents(BackpackInventoryZone zone, FieldInfo slotListField)
         {
             if (zone == null || slotListField == null)
@@ -376,6 +426,7 @@ namespace CognitiveVR.EditorTools
             Type grabbableType = ResolveType("Oculus.Interaction.Grabbable");
             Type handGrabType = ResolveType("Oculus.Interaction.HandGrab.HandGrabInteractable");
             Type rayInteractableType = ResolveType("Oculus.Interaction.RayInteractable");
+            int totalRemoved = 0;
 
             int totalAdded = 0;
 
@@ -448,16 +499,16 @@ namespace CognitiveVR.EditorTools
                     }
                 }
 
-                if (rayInteractableType != null && slotGo.GetComponent(rayInteractableType) == null)
+                // Slots only need hand touch (HandGrabInteractable); a
+                // RayInteractable is not used here and can be left over from
+                // an earlier setup pass, so strip it if found.
+                if (rayInteractableType != null)
                 {
-                    try
+                    Component existingRay = slotGo.GetComponent(rayInteractableType);
+                    if (existingRay != null)
                     {
-                        Undo.AddComponent(slotGo, rayInteractableType);
-                        totalAdded++;
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.LogWarning($"[PhoneSetup] Could not add RayInteractable to slot '{slotGo.name}': {ex.Message}", slotGo);
+                        Undo.DestroyObjectImmediate(existingRay);
+                        totalRemoved++;
                     }
                 }
 
@@ -469,7 +520,12 @@ namespace CognitiveVR.EditorTools
                 Debug.Log($"[PhoneSetup] Equipped backpack slots with Meta components: {totalAdded} component(s) added across {slots.Count} slot(s).", zone);
             }
 
-            return totalAdded;
+            if (totalRemoved > 0)
+            {
+                Debug.Log($"[PhoneSetup] Removed {totalRemoved} stale RayInteractable component(s) from backpack slots.", zone);
+            }
+
+            return totalAdded + totalRemoved;
         }
 
         /// <summary>
