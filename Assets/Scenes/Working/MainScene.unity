@@ -3190,7 +3190,7 @@ MonoBehaviour:
   grabbable: {fileID: 264197521}
   boxCollider: {fileID: 264197519}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
-  highlightRenderer: {fileID: 0}
+  highlightRenderer: {fileID: 1907404630}
   highlightQuadSize: {x: 0.12, y: 0.12}
   idleColor: {r: 1, g: 1, b: 1, a: 0.25}
   touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
@@ -8135,7 +8135,7 @@ MonoBehaviour:
   grabbable: {fileID: 610994859}
   boxCollider: {fileID: 610994857}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
-  highlightRenderer: {fileID: 0}
+  highlightRenderer: {fileID: 261700951}
   highlightQuadSize: {x: 0.12, y: 0.12}
   idleColor: {r: 1, g: 1, b: 1, a: 0.25}
   touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
@@ -9077,7 +9077,7 @@ MonoBehaviour:
   grabbable: {fileID: 703485558}
   boxCollider: {fileID: 703485556}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
-  highlightRenderer: {fileID: 0}
+  highlightRenderer: {fileID: 1939378039}
   highlightQuadSize: {x: 0.12, y: 0.12}
   idleColor: {r: 1, g: 1, b: 1, a: 0.25}
   touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
@@ -10895,7 +10895,7 @@ MonoBehaviour:
   grabbable: {fileID: 804265423}
   boxCollider: {fileID: 804265421}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
-  highlightRenderer: {fileID: 0}
+  highlightRenderer: {fileID: 310194117}
   highlightQuadSize: {x: 0.12, y: 0.12}
   idleColor: {r: 1, g: 1, b: 1, a: 0.25}
   touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
@@ -11082,7 +11082,7 @@ MonoBehaviour:
   grabbable: {fileID: 815700900}
   boxCollider: {fileID: 815700898}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
-  highlightRenderer: {fileID: 0}
+  highlightRenderer: {fileID: 1275238078}
   highlightQuadSize: {x: 0.12, y: 0.12}
   idleColor: {r: 1, g: 1, b: 1, a: 0.25}
   touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
@@ -11700,7 +11700,7 @@ Transform:
   m_GameObject: {fileID: 853326913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.717, y: 1.076, z: -1.0507405}
+  m_LocalPosition: {x: -0.838, y: 1.076, z: -1.0507405}
   m_LocalScale: {x: 1.37, y: 5.97, z: 1.71}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15933,7 +15933,7 @@ Transform:
   m_GameObject: {fileID: 1200901691}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.336628, y: 2.980232e-10, z: -0.42445257}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18103,7 +18103,7 @@ MonoBehaviour:
   grabbable: {fileID: 1359814814}
   boxCollider: {fileID: 1359814812}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
-  highlightRenderer: {fileID: 0}
+  highlightRenderer: {fileID: 2074591686}
   highlightQuadSize: {x: 0.12, y: 0.12}
   idleColor: {r: 1, g: 1, b: 1, a: 0.25}
   touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
@@ -19322,7 +19322,7 @@ MonoBehaviour:
   grabbable: {fileID: 1437360094}
   boxCollider: {fileID: 1437360092}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
-  highlightRenderer: {fileID: 0}
+  highlightRenderer: {fileID: 5826442837214861042}
   highlightQuadSize: {x: 0.12, y: 0.12}
   idleColor: {r: 1, g: 1, b: 1, a: 0.25}
   touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
@@ -20372,6 +20372,118 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1537422702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1537422703}
+  - component: {fileID: 1537422706}
+  - component: {fileID: 1537422705}
+  - component: {fileID: 1537422704}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1537422703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537422702}
+  serializedVersion: 2
+  m_LocalRotation: {x: -1, y: -0, z: -0, w: 0}
+  m_LocalPosition: {x: 0.08700014, y: 1.0718175, z: 1.0640002}
+  m_LocalScale: {x: 0.13999999, y: 2.0999994, z: 0.04}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1832525608}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &1537422704
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537422702}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1537422705
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537422702}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1537422706
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537422702}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1541655403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21274,7 +21386,7 @@ MonoBehaviour:
   grabbable: {fileID: 1626132101}
   boxCollider: {fileID: 1626132099}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
-  highlightRenderer: {fileID: 0}
+  highlightRenderer: {fileID: 1467403858}
   highlightQuadSize: {x: 0.12, y: 0.12}
   idleColor: {r: 1, g: 1, b: 1, a: 0.25}
   touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
@@ -24664,6 +24776,7 @@ Transform:
   - {fileID: 1800878859}
   - {fileID: 1564174854}
   - {fileID: 381815558}
+  - {fileID: 1537422703}
   m_Father: {fileID: 509629269}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!54 &1832525609
@@ -27664,6 +27777,8 @@ GameObject:
   - component: {fileID: 1939378037}
   - component: {fileID: 1939378040}
   - component: {fileID: 1939378039}
+  - component: {fileID: 1939378042}
+  - component: {fileID: 1939378041}
   m_Layer: 0
   m_Name: SnapLocation_1
   m_TagString: Untagged
@@ -27743,6 +27858,90 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939378036}
   m_Mesh: {fileID: -5907167373430802886, guid: af70fc3edbd215e438037aab32711dfd, type: 3}
+--- !u!114 &1939378041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939378036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.InteractableUnityEventWrapper
+  _interactableView: {fileID: 1939378042}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1939378042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939378036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.GrabInteractable
+  _interactorFilters: []
+  _maxInteractors: -1
+  _maxSelectingInteractors: -1
+  _data: {fileID: 0}
+  _pointableElement: {fileID: 703485558}
+  _rigidbody: {fileID: 703485559}
+  _grabSource: {fileID: 0}
+  _useClosestPointAsGrabSource: 0
+  _releaseDistance: 0
+  _resetGrabOnGrabsUpdated: 1
+  _physicsGrabbable: {fileID: 0}
 --- !u!1001 &1948652881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27909,7 +28108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7540392249784072301, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.9992084
+      value: 0.9382215
       objectReference: {fileID: 0}
     - target: {fileID: 7540392249784072301, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
       propertyPath: m_LocalRotation.y
@@ -27917,7 +28116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7540392249784072301, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.039782926
+      value: 0.34603524
       objectReference: {fileID: 0}
     - target: {fileID: 7540392249784072301, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -27925,7 +28124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7540392249784072301, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -4.56
+      value: -40.49
       objectReference: {fileID: 0}
     - target: {fileID: 8872012399676109368, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
       propertyPath: m_Name
@@ -28558,7 +28757,7 @@ MonoBehaviour:
   grabbable: {fileID: 1990267976}
   boxCollider: {fileID: 1990267974}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
-  highlightRenderer: {fileID: 0}
+  highlightRenderer: {fileID: 2120415802}
   highlightQuadSize: {x: 0.12, y: 0.12}
   idleColor: {r: 1, g: 1, b: 1, a: 0.25}
   touchColor: {r: 0.2, g: 1, b: 0.2, a: 0.8}
@@ -33747,6 +33946,8 @@ GameObject:
   - component: {fileID: 4245633266693176320}
   - component: {fileID: 1587540435983801862}
   - component: {fileID: 5826442837214861042}
+  - component: {fileID: 5826442837214861044}
+  - component: {fileID: 5826442837214861043}
   m_Layer: 0
   m_Name: SnapLocation_1
   m_TagString: Untagged
@@ -34624,6 +34825,108 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5826442837214861043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645445344422970828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a7676b01585ce43908639a27765dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.HandGrab.HandGrabInteractable
+  _interactorFilters: []
+  _maxInteractors: -1
+  _maxSelectingInteractors: -1
+  _data: {fileID: 0}
+  _pointableElement: {fileID: 1437360094}
+  _rigidbody: {fileID: 1437360095}
+  _physicsGrabbable: {fileID: 0}
+  _resetGrabOnGrabsUpdated: 1
+  _scoringModifier:
+    _positionRotationWeight: 0.8
+  _slippiness: 0
+  _supportedGrabTypes: 3
+  _pinchGrabRules:
+    _thumbRequirement: 1
+    _indexRequirement: 1
+    _middleRequirement: 1
+    _ringRequirement: 0
+    _pinkyRequirement: 0
+    _unselectMode: 0
+  _palmGrabRules:
+    _thumbRequirement: 1
+    _indexRequirement: 2
+    _middleRequirement: 2
+    _ringRequirement: 2
+    _pinkyRequirement: 1
+    _unselectMode: 0
+  _movementProvider: {fileID: 0}
+  _handAligment: 1
+  _handGrabPoses: []
+--- !u!114 &5826442837214861044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645445344422970828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1464721f2283eb14e94a33e812b47be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.InteractableUnityEventWrapper
+  _interactableView: {fileID: 5826442837214861043}
+  _whenHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1437360090}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenUnhover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1437360090}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _whenSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenUnselect:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  _whenSelectingInteractorViewRemoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5915213917718551262
 GameObject:
   m_ObjectHideFlags: 0
