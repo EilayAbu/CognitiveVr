@@ -85,7 +85,8 @@ namespace CognitiveVR.EditorTools
         /// Rigidbody, generate new slots, or rewire body-grab suppression;
         /// it only ensures each existing slot transform carries
         /// BackpackSlot + BoxCollider + Rigidbody + Grabbable +
-        /// HandGrabInteractable (and strips any stale RayInteractable).
+        /// HandGrabInteractable + SnapInteractable (and strips any stale
+        /// RayInteractable).
         /// </summary>
         [MenuItem("CognitiveVR/Setup Backpack Slots Only")]
         public static void SetupBackpackSlotsOnly()
@@ -119,7 +120,7 @@ namespace CognitiveVR.EditorTools
                 totalChanged == 0
                     ? "All backpack slots already have the required components."
                     : $"Applied {totalChanged} component change(s) across the backpack slots.\n" +
-                      "(Only slot components were touched: BackpackSlot, BoxCollider, Rigidbody, Grabbable, HandGrabInteractable; any stale RayInteractable was removed.)",
+                      "(Only slot components were touched: BackpackSlot, BoxCollider, Rigidbody, Grabbable, HandGrabInteractable, SnapInteractable; any stale RayInteractable was removed.)",
                 "OK");
         }
 
@@ -384,8 +385,9 @@ namespace CognitiveVR.EditorTools
 
         /// <summary>
         /// Walks every slot transform on the zone and ensures it carries the
-        /// Meta ISDK stack required for hand-grab interaction (kinematic
-        /// Rigidbody + Grabbable + HandGrabInteractable + BoxCollider).
+        /// Meta ISDK stack required for hand-touch feedback and item snapping
+        /// (kinematic Rigidbody + Grabbable + HandGrabInteractable +
+        /// SnapInteractable + BoxCollider).
         /// RayInteractable is not needed for slots (hand touch is enough) and
         /// is actively removed if present from an earlier setup pass. Meta
         /// types are added via reflection so the script still compiles if the
@@ -425,6 +427,7 @@ namespace CognitiveVR.EditorTools
 
             Type grabbableType = ResolveType("Oculus.Interaction.Grabbable");
             Type handGrabType = ResolveType("Oculus.Interaction.HandGrab.HandGrabInteractable");
+            Type snapInteractableType = ResolveType("Oculus.Interaction.SnapInteractable");
             Type rayInteractableType = ResolveType("Oculus.Interaction.RayInteractable");
             int totalRemoved = 0;
 
@@ -496,6 +499,24 @@ namespace CognitiveVR.EditorTools
                     catch (Exception ex)
                     {
                         Debug.LogWarning($"[PhoneSetup] Could not add HandGrabInteractable to slot '{slotGo.name}': {ex.Message}", slotGo);
+                    }
+                }
+
+                // Snap target: items carry a SnapInteractor (see
+                // InventoryItemMetaBridge) that snaps into this interactable
+                // when released over the slot. Its Reset() picks up the
+                // kinematic Rigidbody added above; one-item-per-slot limits
+                // are enforced at runtime by BackpackSlot.
+                if (snapInteractableType != null && slotGo.GetComponent(snapInteractableType) == null)
+                {
+                    try
+                    {
+                        Undo.AddComponent(slotGo, snapInteractableType);
+                        totalAdded++;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogWarning($"[PhoneSetup] Could not add SnapInteractable to slot '{slotGo.name}': {ex.Message}", slotGo);
                     }
                 }
 

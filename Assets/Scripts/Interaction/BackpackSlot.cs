@@ -1,25 +1,32 @@
 using System;
-using System.Collections.Generic;
 using Oculus.Interaction;
+using Oculus.Interaction.HandGrab;
 using UnityEngine;
 
 namespace CognitiveVR.Interaction
 {
     /// <summary>
-    /// Self-contained storage slot inside the backpack. The slot owns a trigger
-    /// BoxCollider that detects inventory items; when an item is released while
-    /// inside the trigger, the slot snaps it to its own center and stores it.
-    /// While a hand hovers the slot the visual quad turns green so the user
-    /// knows they are touching the right spot for inserting/removing an item.
-    /// The slot only notifies the owning <see cref="BackpackInventoryZone"/>
-    /// (and any other listener) about what entered/exited through the
-    /// <see cref="WhenItemStored"/> / <see cref="WhenItemRemoved"/> events.
+    /// Self-contained storage slot inside the backpack, built on Meta ISDK's
+    /// snap system. The slot owns a <see cref="SnapInteractable"/> (plus the
+    /// kinematic Rigidbody and trigger BoxCollider it requires): while an item
+    /// is held over the slot the SnapInteractable reports Hover, and when the
+    /// item is released its <see cref="SnapInteractor"/> selects this slot and
+    /// eases the item to the slot center. Grabbing the stored item transfers
+    /// it back to the hand (via Grabbable.TransferOnSecondSelection),
+    /// which unselects the snap and restores the item.
+    /// While a hand or a held item hovers the slot the visual quad turns green
+    /// so the user knows they are touching the right spot.
+    /// The slot notifies the owning <see cref="BackpackInventoryZone"/> (and
+    /// any other listener) through <see cref="WhenItemStored"/> /
+    /// <see cref="WhenItemRemoved"/>.
     /// </summary>
     [DisallowMultipleComponent]
     public class BackpackSlot : MonoBehaviour
     {
         [SerializeField] private BackpackInventoryZone zone;
         [SerializeField] private Grabbable grabbable;
+        [SerializeField] private HandGrabInteractable handGrabInteractable;
+        [SerializeField] private SnapInteractable snapInteractable;
         [SerializeField] private BoxCollider boxCollider;
         [SerializeField] private Vector3 colliderSize = Vector3.one;
 
@@ -43,11 +50,11 @@ namespace CognitiveVR.Interaction
         private static readonly int ColorPropertyId = Shader.PropertyToID("_Color");
         private static readonly int BaseColorPropertyId = Shader.PropertyToID("_BaseColor");
 
-        private readonly HashSet<InventoryItemMetaBridge> _itemsInside = new HashSet<InventoryItemMetaBridge>();
         private InventoryItemMetaBridge _storedItem;
         private MaterialPropertyBlock _propertyBlock;
         private bool _warnedMissingGrabbable;
-        private bool _isHovering;
+        private bool _isHandHovering;
+        private bool _isItemHovering;
 
         public bool HasItem => _storedItem != null;
         public InventoryItemMetaBridge StoredItem => _storedItem;
@@ -55,12 +62,18 @@ namespace CognitiveVR.Interaction
         private void Awake()
         {
             EnsureBoxCollider();
+            EnsureSnapInteractable();
             EnsureHighlightRenderer();
             if (grabbable == null)
             {
                 grabbable = GetComponent<Grabbable>();
             }
+            if (handGrabInteractable == null)
+            {
+                handGrabInteractable = GetComponent<HandGrabInteractable>();
+            }
             PreventSlotFromBeingGrabbed();
+            RefreshHandGrabAvailability();
             ApplyHighlightColor(idleColor);
         }
 
@@ -69,6 +82,13 @@ namespace CognitiveVR.Interaction
             if (grabbable != null)
             {
                 grabbable.WhenPointerEventRaised += HandlePointerEvent;
+            }
+
+            if (snapInteractable != null)
+            {
+                snapInteractable.WhenStateChanged += HandleSnapStateChanged;
+                snapInteractable.WhenSelectingInteractorViewAdded += HandleSnapSelected;
+                snapInteractable.WhenSelectingInteractorViewRemoved += HandleSnapUnselected;
             }
         }
 
@@ -79,18 +99,20 @@ namespace CognitiveVR.Interaction
                 grabbable.WhenPointerEventRaised -= HandlePointerEvent;
             }
 
-            if (_isHovering && zone != null)
+            if (snapInteractable != null)
+            {
+                snapInteractable.WhenStateChanged -= HandleSnapStateChanged;
+                snapInteractable.WhenSelectingInteractorViewAdded -= HandleSnapSelected;
+                snapInteractable.WhenSelectingInteractorViewRemoved -= HandleSnapUnselected;
+            }
+
+            if (_isHandHovering && zone != null)
             {
                 zone.NotifyHoverExit(this);
             }
-            _isHovering = false;
+            _isHandHovering = false;
+            _isItemHovering = false;
             ApplyHighlightColor(idleColor);
-
-            foreach (InventoryItemMetaBridge item in _itemsInside)
-            {
-                UnsubscribeFromItem(item);
-            }
-            _itemsInside.Clear();
         }
 
         public void Bind(BackpackInventoryZone owningZone, Vector3 desiredColliderSize)
@@ -101,97 +123,40 @@ namespace CognitiveVR.Interaction
         }
 
         // ------------------------------------------------------------------
-        // Item detection (trigger volume)
+        // Snap interactable (item store / remove)
         // ------------------------------------------------------------------
 
-        private void OnTriggerEnter(Collider other)
+        private void HandleSnapSelected(IInteractorView interactorView)
         {
-            InventoryItemMetaBridge item = other.GetComponentInParent<InventoryItemMetaBridge>();
-            if (item == null || _itemsInside.Contains(item))
-            {
-                return;
-            }
-
-            _itemsInside.Add(item);
-            item.WhenItemReleased += HandleItemReleasedInside;
-            RefreshHighlight();
-
-            if (enableDebugLogs)
-            {
-                Debug.Log($"[{nameof(BackpackSlot)}] '{item.ItemName}' entered slot trigger '{name}'.", this);
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            InventoryItemMetaBridge item = other.GetComponentInParent<InventoryItemMetaBridge>();
-            if (item == null || !_itemsInside.Contains(item))
-            {
-                return;
-            }
-
-            _itemsInside.Remove(item);
-            UnsubscribeFromItem(item);
-            RefreshHighlight();
-
-            if (enableDebugLogs)
-            {
-                Debug.Log($"[{nameof(BackpackSlot)}] '{item.ItemName}' exited slot trigger '{name}'.", this);
-            }
-        }
-
-        private void UnsubscribeFromItem(InventoryItemMetaBridge item)
-        {
+            InventoryItemMetaBridge item = ResolveItem(interactorView);
             if (item == null)
             {
                 return;
             }
-            item.WhenItemReleased -= HandleItemReleasedInside;
-        }
 
-        private void HandleItemReleasedInside(InventoryItemMetaBridge item)
-        {
-            if (item == null || item.IsStoredInInventory || HasItem)
-            {
-                return;
-            }
-
-            StoreItem(item);
-        }
-
-        // ------------------------------------------------------------------
-        // Storage
-        // ------------------------------------------------------------------
-
-        private void StoreItem(InventoryItemMetaBridge item)
-        {
             _storedItem = item;
-            item.ApplyStoredState(transform);
-            item.WhenItemSelected += HandleStoredItemSelected;
+            item.ApplyStoredState();
+            RefreshHandGrabAvailability();
             RefreshHighlight();
             WhenItemStored?.Invoke(this, item);
 
             if (enableDebugLogs)
             {
-                Debug.Log($"[{nameof(BackpackSlot)}] Stored '{item.ItemName}' at center of slot '{name}'.", this);
+                Debug.Log($"[{nameof(BackpackSlot)}] Stored '{item.ItemName}' in slot '{name}'.", this);
             }
         }
 
-        /// <summary>
-        /// Releases the stored item back to the world (restoring its original
-        /// scale, parent and physics) and notifies listeners.
-        /// </summary>
-        public void ReleaseStoredItem()
+        private void HandleSnapUnselected(IInteractorView interactorView)
         {
-            if (_storedItem == null)
+            InventoryItemMetaBridge item = ResolveItem(interactorView);
+            if (item == null || item != _storedItem)
             {
                 return;
             }
 
-            InventoryItemMetaBridge item = _storedItem;
             _storedItem = null;
-            item.WhenItemSelected -= HandleStoredItemSelected;
             item.RestoreFromStoredState();
+            RefreshHandGrabAvailability();
             RefreshHighlight();
             WhenItemRemoved?.Invoke(this, item);
 
@@ -201,16 +166,30 @@ namespace CognitiveVR.Interaction
             }
         }
 
-        private void HandleStoredItemSelected(InventoryItemMetaBridge item)
+        private void HandleSnapStateChanged(InteractableStateChangeArgs args)
         {
-            if (item == _storedItem)
+            bool itemHovering = args.NewState == InteractableState.Hover;
+            if (itemHovering == _isItemHovering)
             {
-                ReleaseStoredItem();
+                return;
             }
+
+            _isItemHovering = itemHovering;
+            RefreshHighlight();
+        }
+
+        private static InventoryItemMetaBridge ResolveItem(IInteractorView interactorView)
+        {
+            if (!(interactorView is SnapInteractor snapInteractor) || snapInteractor.Rigidbody == null)
+            {
+                return null;
+            }
+
+            return snapInteractor.Rigidbody.GetComponentInParent<InventoryItemMetaBridge>();
         }
 
         // ------------------------------------------------------------------
-        // Hand hover / grab on the slot itself
+        // Hand hover on the slot itself
         // ------------------------------------------------------------------
 
         private void HandlePointerEvent(PointerEvent pointerEvent)
@@ -218,9 +197,9 @@ namespace CognitiveVR.Interaction
             switch (pointerEvent.Type)
             {
                 case PointerEventType.Hover:
-                    if (!_isHovering)
+                    if (!_isHandHovering)
                     {
-                        _isHovering = true;
+                        _isHandHovering = true;
                         RefreshHighlight();
                         if (zone != null)
                         {
@@ -230,19 +209,15 @@ namespace CognitiveVR.Interaction
                     break;
 
                 case PointerEventType.Unhover:
-                    if (_isHovering)
+                    if (_isHandHovering)
                     {
-                        _isHovering = false;
+                        _isHandHovering = false;
                         RefreshHighlight();
                         if (zone != null)
                         {
                             zone.NotifyHoverExit(this);
                         }
                     }
-                    break;
-
-                case PointerEventType.Select:
-                    ReleaseStoredItem();
                     break;
             }
         }
@@ -262,12 +237,48 @@ namespace CognitiveVR.Interaction
                 boxCollider = gameObject.AddComponent<BoxCollider>();
             }
 
-            // Trigger so OnTriggerEnter/Exit fires for items dropped into the
-            // slot. Meta HandGrabInteractable still detects hover/grab against
-            // trigger colliders for the hand-touch feedback path.
+            // Trigger so the snap registry's InteractableTriggerBroadcaster
+            // detects held items overlapping the slot. Meta HandGrabInteractable
+            // still detects hover against trigger colliders for the
+            // hand-touch feedback path.
             boxCollider.isTrigger = true;
             boxCollider.size = colliderSize;
             boxCollider.center = Vector3.zero;
+        }
+
+        /// <summary>
+        /// The snap system requires a (kinematic) Rigidbody on the slot: the
+        /// SDK's CollisionInteractionRegistry adds a trigger broadcaster to
+        /// the interactable's Rigidbody GameObject to find snap candidates by
+        /// collider overlap. One item per slot is enforced through
+        /// MaxInteractors / MaxSelectingInteractors.
+        /// </summary>
+        private void EnsureSnapInteractable()
+        {
+            Rigidbody slotRigidbody = GetComponent<Rigidbody>();
+            if (slotRigidbody == null)
+            {
+                slotRigidbody = gameObject.AddComponent<Rigidbody>();
+            }
+            slotRigidbody.isKinematic = true;
+            slotRigidbody.useGravity = false;
+
+            if (snapInteractable == null)
+            {
+                snapInteractable = GetComponent<SnapInteractable>();
+            }
+            if (snapInteractable == null)
+            {
+                snapInteractable = gameObject.AddComponent<SnapInteractable>();
+            }
+
+            if (snapInteractable.Rigidbody == null)
+            {
+                snapInteractable.InjectRigidbody(slotRigidbody);
+            }
+
+            snapInteractable.MaxInteractors = 1;
+            snapInteractable.MaxSelectingInteractors = 1;
         }
 
         private void EnsureHighlightRenderer()
@@ -302,15 +313,13 @@ namespace CognitiveVR.Interaction
         }
 
         /// <summary>
-        /// Recomputes and applies the highlight color from the current
-        /// hover/occupancy state: green while a hand hovers the slot OR while
-        /// any item's collider overlaps an empty slot's trigger (so dropping
-        /// an item in gives immediate visual confirmation even without a
-        /// hand hovering), idle otherwise.
+        /// Recomputes and applies the highlight color from the current hover
+        /// state: green while a hand touches the slot OR while a held item
+        /// hovers the slot's snap volume, idle otherwise.
         /// </summary>
         private void RefreshHighlight()
         {
-            bool shouldHighlight = _isHovering || (!HasItem && _itemsInside.Count > 0);
+            bool shouldHighlight = _isHandHovering || _isItemHovering;
             ApplyHighlightColor(shouldHighlight ? touchColor : idleColor);
         }
 
@@ -331,6 +340,8 @@ namespace CognitiveVR.Interaction
         private void Reset()
         {
             grabbable = GetComponent<Grabbable>();
+            handGrabInteractable = GetComponent<HandGrabInteractable>();
+            snapInteractable = GetComponent<SnapInteractable>();
             boxCollider = GetComponent<BoxCollider>();
             EnsureBoxCollider();
         }
@@ -351,12 +362,12 @@ namespace CognitiveVR.Interaction
         }
 
         /// <summary>
-        /// The slot itself must only ever report hover/select pointer events
-        /// (for the touch-feedback highlight and select-to-release) and must
-        /// never actually be picked up/dragged by hand. Grabbable clamps how
-        /// many active grab points its transformer will honor via
-        /// MaxGrabPoints; forcing it to 0 disables all movement while leaving
-        /// Hover/Select/Unselect events (and WhenPointerEventRaised) intact.
+        /// The slot itself must only ever report hover pointer events (for the
+        /// touch-feedback highlight) and must never actually be picked
+        /// up/dragged by hand. Grabbable clamps how many active grab points
+        /// its transformer will honor via MaxGrabPoints; forcing it to 0
+        /// disables all movement while leaving Hover/Unhover events (and
+        /// WhenPointerEventRaised) intact.
         /// </summary>
         private void PreventSlotFromBeingGrabbed()
         {
@@ -371,6 +382,34 @@ namespace CognitiveVR.Interaction
             }
         }
 
+        /// <summary>
+        /// While a slot holds an item, its own HandGrabInteractable occupies
+        /// the same space as the (shrunk) stored item's HandGrabInteractable,
+        /// so a hand reaching for the tiny item can get scored onto the slot
+        /// instead. Disabling the slot's interactable while occupied removes
+        /// that competing target; Interactable.Disable() cleanly cancels any
+        /// active hover/select on the slot itself, so hover bookkeeping
+        /// (_isHandHovering / RefreshHighlight) never gets stuck. Re-enabled
+        /// the moment the slot goes empty again so hover feedback still works
+        /// for dropping a new item in.
+        /// </summary>
+        private void RefreshHandGrabAvailability()
+        {
+            if (handGrabInteractable == null)
+            {
+                return;
+            }
+
+            if (HasItem)
+            {
+                handGrabInteractable.Disable();
+            }
+            else
+            {
+                handGrabInteractable.Enable();
+            }
+        }
+
         private void Start()
         {
             // Defer the warning to Start so the editor setup pass has a chance
@@ -380,7 +419,7 @@ namespace CognitiveVR.Interaction
                 _warnedMissingGrabbable = true;
                 Debug.LogWarning(
                     $"[{nameof(BackpackSlot)}] No Oculus.Interaction.Grabbable on slot '{name}'. " +
-                    "Hand touch feedback and slot-grab release are disabled until you run 'CognitiveVR > Setup Smartphone In Scene'.",
+                    "Hand touch feedback is disabled until you run 'CognitiveVR > Setup Smartphone In Scene'.",
                     this);
             }
         }

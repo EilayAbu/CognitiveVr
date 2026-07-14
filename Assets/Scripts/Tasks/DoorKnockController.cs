@@ -98,7 +98,7 @@ namespace CognitiveVR.Tasks
         {
             if (_knockRoutine == null)
                 return;
-
+            audioSource = null;
             StopCoroutine(_knockRoutine);
             _knockRoutine = null;
         }
