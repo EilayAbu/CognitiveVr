@@ -1775,6 +1775,135 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4208036053595098, guid: 45160131b2685e34ca32858b6d6d2dfa, type: 3}
   m_PrefabInstance: {fileID: 182350668}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &220936016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 220936018}
+  - component: {fileID: 220936017}
+  m_Layer: 4
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &220936017
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220936016}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 8dd8bdc75c89ab54b84117c2c3b4db10, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &220936018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220936016}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.71841586, w: 0.6956139}
+  m_LocalPosition: {x: -2.389, y: 1.486, z: -2.363}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &238566666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2255,6 +2384,20 @@ MonoBehaviour:
   _rigidbody: {fileID: 249482133}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &249482140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249482131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!1 &250680558
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,7 +3028,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 65d6f16160a054c42b939a44d303bfb7, type: 3}
+  m_Resource: {fileID: 8300000, guid: 678223e95abdf7240b164475d309a827, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4104,7 +4247,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8321669900693040279, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 35595774}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4680597426246073374, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 359896944}
   m_SourcePrefab: {fileID: 100100000, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
 --- !u!114 &359896940 stripped
 MonoBehaviour:
@@ -4127,6 +4273,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4771200758581805565, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
   m_PrefabInstance: {fileID: 359896939}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &359896943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4680597426246073374, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+  m_PrefabInstance: {fileID: 359896939}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &359896944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359896943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!1001 &365552535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5141,6 +5306,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2816692464965174648, guid: 5bec33889b09d4e8896c0e36a4f04945, type: 3}
       insertIndex: -1
       addedObject: {fileID: 557276125}
+    - targetCorrespondingSourceObject: {fileID: 2816692464965174648, guid: 5bec33889b09d4e8896c0e36a4f04945, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 557276126}
   m_SourcePrefab: {fileID: 100100000, guid: 5bec33889b09d4e8896c0e36a4f04945, type: 3}
 --- !u!4 &436603596 stripped
 Transform:
@@ -5158,6 +5326,7 @@ GameObject:
   - component: {fileID: 438924787}
   - component: {fileID: 438924789}
   - component: {fileID: 438924788}
+  - component: {fileID: 438924790}
   m_Layer: 0
   m_Name: Backpack
   m_TagString: Untagged
@@ -5233,12 +5402,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &438924790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438924786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!114 &439471892 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4224942424827236506, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
   m_PrefabInstance: {fileID: 127944573824485320}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 127944573824485321}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
@@ -6125,6 +6308,20 @@ MonoBehaviour:
   _targetGazeGlow: {fileID: 1465447095}
   _targetGrabbable: {fileID: 2126779954}
   _verboseLogs: 0
+--- !u!114 &557276126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557276120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!1001 &585434830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7922,6 +8119,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4662812201562109299, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1753917437}
+    - targetCorrespondingSourceObject: {fileID: 4662812201562109299, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1753917438}
   m_SourcePrefab: {fileID: 100100000, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
 --- !u!1001 &758285234
 PrefabInstance:
@@ -9489,6 +9689,7 @@ GameObject:
   - component: {fileID: 853326915}
   - component: {fileID: 853326914}
   - component: {fileID: 853326919}
+  - component: {fileID: 853326920}
   m_Layer: 0
   m_Name: Laptop
   m_TagString: Untagged
@@ -9659,6 +9860,20 @@ MonoBehaviour:
   _rigidbody: {fileID: 853326917}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &853326920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853326913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!1 &860912375
 GameObject:
   m_ObjectHideFlags: 0
@@ -11338,6 +11553,7 @@ GameObject:
   - component: {fileID: 1077798305}
   - component: {fileID: 1077798307}
   - component: {fileID: 1077798308}
+  - component: {fileID: 1077798309}
   m_Layer: 0
   m_Name: Tablet
   m_TagString: Untagged
@@ -11452,6 +11668,20 @@ MonoBehaviour:
   _rigidbody: {fileID: 1077798303}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &1077798309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077798302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!4 &1080199422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6903557532094659035, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
@@ -11489,7 +11719,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109196390}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.75004804}
+  m_LocalPosition: {x: 0, y: 0, z: -0.686}
   m_LocalScale: {x: 0.0682256, y: 0.07457975, z: 0.06822559}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11497,7 +11727,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.115, y: 0.085}
+  m_AnchoredPosition: {x: -0.384, y: 0.085}
   m_SizeDelta: {x: 13.5494, y: 4.5751}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1109196392
@@ -11533,17 +11763,28 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u05E2\u05DC\u05D9\u05DA \u05DC\u05D4\u05D2\u05D9\u05E2 \u05DC\u05E8\u05D5\u05E4\u05D0
-    \u05D1\u05E9\u05E2\u05D4 \u05EA\u05E9\u05E2 \u05D1\u05D1\u05D5\u05E7\u05E8. \n\u05DC\u05D0\u05E8\u05D5\u05D6
-    \u05D0\u05EA \u05D4\u05EA\u05D9\u05E7 \u05DC\u05E4\u05D9 \u05D4\u05E8\u05E9\u05D9\u05DE\u05D4
-    \u05E9\u05E2\u05DC \u05D4\u05DE\u05E7\u05E8\u05E8.\n \u05DC\u05D4\u05DB\u05E0\u05D9\u05E1
-    \u05D8\u05D5\u05E1\u05D8 \u05DC\u05D8\u05D5\u05E1\u05D8\u05E8.\n \u05DC\u05D1\u05D3\u05D5\u05E7
-    \u05D0\u05EA \u05DE\u05D6\u05D2 \u05D4\u05D0\u05D5\u05D5\u05D9\u05E8 \u05D1\u05D8\u05DC\u05E4\u05D5\u05DF.
-    \n\u05D0\u05E1\u05D5\u05E8 \u05DC\u05D4\u05E0\u05D9\u05D7 \u05D7\u05E4\u05E6\u05D9\u05DD
-    \u05E2\u05DC \u05D4\u05E8\u05E6\u05E4\u05D4. \n\u05D0\u05EA\u05D4 \u05D9\u05DB\u05D5\u05DC
-    \u05DC\u05D4\u05E9\u05EA\u05DE\u05E9 \u05D1\u05DB\u05DC \u05DE\u05D4 \u05E9\u05D0\u05EA\u05D4
-    \u05E8\u05D5\u05E6\u05D4.\n \u05DC\u05D7\u05E5 \u05E2\u05DC \u05D4\u05EA\u05D7\u05DC
-    \u05DB\u05E9\u05D0\u05EA\u05D4 \u05DE\u05D5\u05DB\u05DF."
+  m_text: "\u05D0\u05EA\u05D4 \u05E0\u05DE\u05E6\u05D0 \u05DB\u05E2\u05EA \u05D1\u05D1\u05D9\u05EA\u05DA
+    \u05D5\u05DE\u05EA\u05DB\u05D5\u05E0\u05DF \u05DC\u05E6\u05D0\u05EA \u05DE\u05D4\u05D1\u05D9\u05EA
+    \u05D1\u05E2\u05D5\u05D3 \u05D6\u05DE\u05DF \u05E7\u05E6\u05E8.\r\n\r\n\u05D1\u05DE\u05D4\u05DC\u05DA
+    \u05D4\u05D6\u05DE\u05DF \u05D4\u05E2\u05D5\u05DE\u05D3 \u05DC\u05E8\u05E9\u05D5\u05EA\u05DA
+    \u05E2\u05DC\u05D9\u05DA:\r\n\r\n\u05DC\u05E7\u05E8\u05D5\u05D0 \u05D0\u05EA
+    \u05E8\u05E9\u05D9\u05DE\u05EA \u05D4\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD \u05E9\u05E2\u05DC
+    \u05D4\u05DE\u05E7\u05E8\u05E8.\r\n\r\n\u05DC\u05D0\u05EA\u05E8 \u05D0\u05EA
+    \u05D4\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD \u05E9\u05D1\u05E8\u05E9\u05D9\u05DE\u05D4
+    \u05D5\u05DC\u05D0\u05E1\u05D5\u05E3 \u05D0\u05D5\u05EA\u05DD \u05DC\u05EA\u05D9\u05E7.\r\n\r\n\u05DC\u05D4\u05DB\u05D9\u05DF
+    \u05DC\u05E2\u05E6\u05DE\u05DA \u05D8\u05D5\u05E1\u05D8 \u05DC\u05D0\u05E8\u05D5\u05D7\u05EA
+    \u05D4\u05D1\u05D5\u05E7\u05E8.\r\n\u05D1\u05DE\u05D4\u05DC\u05DA \u05D4\u05E4\u05E2\u05D9\u05DC\u05D5\u05EA
+    \u05E2\u05E9\u05D5\u05D9\u05D9\u05DD \u05DC\u05D4\u05EA\u05E7\u05D9\u05D9\u05DD
+    \u05DE\u05E1\u05E4\u05E8 \u05EA\u05E8\u05D7\u05D9\u05E9\u05D9\u05DD, \u05E2\u05DC\u05D9\u05D9\u05DA
+    \u05DC\u05D4\u05D2\u05D9\u05D1 \u05D1\u05D4\u05EA\u05D0\u05DD.\r\n\r\n\u05E4\u05E2\u05DC
+    \u05DB\u05E4\u05D9 \u05E9\u05D4\u05D9\u05D9\u05EA \u05E4\u05D5\u05E2\u05DC \u05D1\u05D1\u05D9\u05EA\u05DA
+    \u05D1\u05D7\u05D9\u05D9 \u05D4\u05D9\u05D5\u05DD\u05BE\u05D9\u05D5\u05DD, \u05D5\u05E7\u05D1\u05DC
+    \u05D4\u05D7\u05DC\u05D8\u05D5\u05EA \u05D1\u05D4\u05EA\u05D0\u05DD \u05DC\u05DE\u05D4
+    \u05E9\u05E0\u05E8\u05D0\u05D4 \u05DC\u05DA \u05D7\u05E9\u05D5\u05D1 \u05D5\u05D3\u05D7\u05D5\u05E3
+    \u05D1\u05DB\u05DC \u05E8\u05D2\u05E2.\r\n\r\n\u05D1\u05DB\u05DC \u05E9\u05DC\u05D1
+    \u05E0\u05D9\u05EA\u05DF \u05DC\u05DC\u05D7\u05D5\u05E5 \u05E2\u05DC \u05DB\u05E4\u05EA\u05D5\u05E8
+    \"\u05E2\u05D6\u05E8\u05D4\" \u05DB\u05D3\u05D9 \u05DC\u05D7\u05D6\u05D5\u05E8
+    \u05E2\u05DC \u05D4\u05D4\u05E0\u05D7\u05D9\u05D5\u05EA."
   m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: 69c77a16602981d4f8b13b30f665a297, type: 2}
   m_sharedMaterial: {fileID: 1618551924624043618, guid: 69c77a16602981d4f8b13b30f665a297, type: 2}
@@ -11609,7 +11850,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 7.1033254, y: 1.6425666, z: -0.13597488, w: 0.14218545}
+  m_margin: {x: 4.44298, y: 1.6425666, z: -1.7033844, w: -0.4458479}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -14950,6 +15191,20 @@ MonoBehaviour:
   _rigidbody: {fileID: 1447055048}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &1447055051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473423437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!1001 &1448137289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15193,6 +15448,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1463268662}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1463268663}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!4 &1463268656 stripped
 Transform:
@@ -15223,6 +15481,20 @@ MonoBehaviour:
   _rigidbody: {fileID: 1463268660}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &1463268663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097269140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!1 &1465447094
 GameObject:
   m_ObjectHideFlags: 0
@@ -16443,7 +16715,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 65d6f16160a054c42b939a44d303bfb7, type: 3}
+  m_Resource: {fileID: 8300000, guid: 678223e95abdf7240b164475d309a827, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -16588,6 +16860,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 7646b197488207c43b663bcc5e1ce627, type: 3}
   m_PrefabInstance: {fileID: 1579633170}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1600710854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1600710856}
+  - component: {fileID: 1600710855}
+  m_Layer: 0
+  m_Name: ExperimentManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1600710855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600710854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3074673e6e85eeb41a804a1f06a7b6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ExperimentDataManager
+  participantId: P00
+  outputSubfolder: ExperimentLogs
+  logToConsole: 1
+  sessionTimer: {fileID: 965045159}
+  freezeDetector: {fileID: 1002337703}
+  backpack: {fileID: 1115826131}
+  poseSampleInterval: 1
+--- !u!4 &1600710856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600710854}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1603488525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17905,6 +18228,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1926970128}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1926970129}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!1 &1724126313
 GameObject:
@@ -18412,6 +18738,20 @@ MonoBehaviour:
   _rigidbody: {fileID: 1337815778}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &1753917438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753917430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!1001 &1767120069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19880,6 +20220,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8923645764558780387, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
       insertIndex: -1
       addedObject: {fileID: 249482139}
+    - targetCorrespondingSourceObject: {fileID: 8923645764558780387, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 249482140}
     - targetCorrespondingSourceObject: {fileID: 5512584492143924765, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
       insertIndex: -1
       addedObject: {fileID: 15423770}
@@ -20097,15 +20440,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883188908}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.75004804}
-  m_LocalScale: {x: 0.0682256, y: 0.07457976, z: 0.06822559}
+  m_LocalPosition: {x: 0, y: 0, z: -0.686}
+  m_LocalScale: {x: 0.0682256, y: 0.07457975, z: 0.06822559}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1955499488}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.115, y: 0.085}
+  m_AnchoredPosition: {x: -0.374, y: 0.085}
   m_SizeDelta: {x: 13.5494, y: 4.5751}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1883188910
@@ -20128,17 +20471,28 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u05E2\u05DC\u05D9\u05DA \u05DC\u05D4\u05D2\u05D9\u05E2 \u05DC\u05E8\u05D5\u05E4\u05D0
-    \u05D1\u05E9\u05E2\u05D4 \u05EA\u05E9\u05E2 \u05D1\u05D1\u05D5\u05E7\u05E8. \n\u05DC\u05D0\u05E8\u05D5\u05D6
-    \u05D0\u05EA \u05D4\u05EA\u05D9\u05E7 \u05DC\u05E4\u05D9 \u05D4\u05E8\u05E9\u05D9\u05DE\u05D4
-    \u05E9\u05E2\u05DC \u05D4\u05DE\u05E7\u05E8\u05E8.\n \u05DC\u05D4\u05DB\u05E0\u05D9\u05E1
-    \u05D8\u05D5\u05E1\u05D8 \u05DC\u05D8\u05D5\u05E1\u05D8\u05E8.\n \u05DC\u05D1\u05D3\u05D5\u05E7
-    \u05D0\u05EA \u05DE\u05D6\u05D2 \u05D4\u05D0\u05D5\u05D5\u05D9\u05E8 \u05D1\u05D8\u05DC\u05E4\u05D5\u05DF.
-    \n\u05D0\u05E1\u05D5\u05E8 \u05DC\u05D4\u05E0\u05D9\u05D7 \u05D7\u05E4\u05E6\u05D9\u05DD
-    \u05E2\u05DC \u05D4\u05E8\u05E6\u05E4\u05D4. \n\u05D0\u05EA\u05D4 \u05D9\u05DB\u05D5\u05DC
-    \u05DC\u05D4\u05E9\u05EA\u05DE\u05E9 \u05D1\u05DB\u05DC \u05DE\u05D4 \u05E9\u05D0\u05EA\u05D4
-    \u05E8\u05D5\u05E6\u05D4.\n \u05DC\u05D7\u05E5 \u05E2\u05DC \u05D4\u05EA\u05D7\u05DC
-    \u05DB\u05E9\u05D0\u05EA\u05D4 \u05DE\u05D5\u05DB\u05DF."
+  m_text: "\u05D0\u05EA\u05D4 \u05E0\u05DE\u05E6\u05D0 \u05DB\u05E2\u05EA \u05D1\u05D1\u05D9\u05EA\u05DA
+    \u05D5\u05DE\u05EA\u05DB\u05D5\u05E0\u05DF \u05DC\u05E6\u05D0\u05EA \u05DE\u05D4\u05D1\u05D9\u05EA
+    \u05D1\u05E2\u05D5\u05D3 \u05D6\u05DE\u05DF \u05E7\u05E6\u05E8.\r\n\r\n\u05D1\u05DE\u05D4\u05DC\u05DA
+    \u05D4\u05D6\u05DE\u05DF \u05D4\u05E2\u05D5\u05DE\u05D3 \u05DC\u05E8\u05E9\u05D5\u05EA\u05DA
+    \u05E2\u05DC\u05D9\u05DA:\r\n\r\n\u05DC\u05E7\u05E8\u05D5\u05D0 \u05D0\u05EA
+    \u05E8\u05E9\u05D9\u05DE\u05EA \u05D4\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD \u05E9\u05E2\u05DC
+    \u05D4\u05DE\u05E7\u05E8\u05E8.\r\n\r\n\u05DC\u05D0\u05EA\u05E8 \u05D0\u05EA
+    \u05D4\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD \u05E9\u05D1\u05E8\u05E9\u05D9\u05DE\u05D4
+    \u05D5\u05DC\u05D0\u05E1\u05D5\u05E3 \u05D0\u05D5\u05EA\u05DD \u05DC\u05EA\u05D9\u05E7.\r\n\r\n\u05DC\u05D4\u05DB\u05D9\u05DF
+    \u05DC\u05E2\u05E6\u05DE\u05DA \u05D8\u05D5\u05E1\u05D8 \u05DC\u05D0\u05E8\u05D5\u05D7\u05EA
+    \u05D4\u05D1\u05D5\u05E7\u05E8.\r\n\u05D1\u05DE\u05D4\u05DC\u05DA \u05D4\u05E4\u05E2\u05D9\u05DC\u05D5\u05EA
+    \u05E2\u05E9\u05D5\u05D9\u05D9\u05DD \u05DC\u05D4\u05EA\u05E7\u05D9\u05D9\u05DD
+    \u05DE\u05E1\u05E4\u05E8 \u05EA\u05E8\u05D7\u05D9\u05E9\u05D9\u05DD, \u05E2\u05DC\u05D9\u05D9\u05DA
+    \u05DC\u05D4\u05D2\u05D9\u05D1 \u05D1\u05D4\u05EA\u05D0\u05DD.\r\n\r\n\u05E4\u05E2\u05DC
+    \u05DB\u05E4\u05D9 \u05E9\u05D4\u05D9\u05D9\u05EA \u05E4\u05D5\u05E2\u05DC \u05D1\u05D1\u05D9\u05EA\u05DA
+    \u05D1\u05D7\u05D9\u05D9 \u05D4\u05D9\u05D5\u05DD\u05BE\u05D9\u05D5\u05DD, \u05D5\u05E7\u05D1\u05DC
+    \u05D4\u05D7\u05DC\u05D8\u05D5\u05EA \u05D1\u05D4\u05EA\u05D0\u05DD \u05DC\u05DE\u05D4
+    \u05E9\u05E0\u05E8\u05D0\u05D4 \u05DC\u05DA \u05D7\u05E9\u05D5\u05D1 \u05D5\u05D3\u05D7\u05D5\u05E3
+    \u05D1\u05DB\u05DC \u05E8\u05D2\u05E2.\r\n\r\n\u05D1\u05DB\u05DC \u05E9\u05DC\u05D1
+    \u05E0\u05D9\u05EA\u05DF \u05DC\u05DC\u05D7\u05D5\u05E5 \u05E2\u05DC \u05DB\u05E4\u05EA\u05D5\u05E8
+    \"\u05E2\u05D6\u05E8\u05D4\" \u05DB\u05D3\u05D9 \u05DC\u05D7\u05D6\u05D5\u05E8
+    \u05E2\u05DC \u05D4\u05D4\u05E0\u05D7\u05D9\u05D5\u05EA."
   m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: 69c77a16602981d4f8b13b30f665a297, type: 2}
   m_sharedMaterial: {fileID: 1618551924624043618, guid: 69c77a16602981d4f8b13b30f665a297, type: 2}
@@ -20204,7 +20558,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 7.1033254, y: 1.6425666, z: -0.13597488, w: 0.14218545}
+  m_margin: {x: 4.465803, y: 1.6425666, z: -2.5656319, w: 0.14218545}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -20467,6 +20821,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1887566634}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1887566635}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!4 &1887566627 stripped
 Transform:
@@ -20497,6 +20854,20 @@ MonoBehaviour:
   _rigidbody: {fileID: 1887566631}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &1887566635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687003031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!1001 &1887765986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21179,6 +21550,20 @@ MonoBehaviour:
   _rigidbody: {fileID: 1926970125}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &1926970129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926970121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!1001 &1932842891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21956,7 +22341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889754384620, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21983,7 +22368,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 0be24083721fc4f4daada97d7e5843bd, type: 3}
+  m_Resource: {fileID: 8300000, guid: 052f756e1c9abae46baf964a72e93492, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -23868,6 +24253,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1447055050}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1447055051}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!1001 &2126612951
 PrefabInstance:
@@ -24502,6 +24890,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3306443841478427267, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 127944573824485322}
     - targetCorrespondingSourceObject: {fileID: 6619952778693023293, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -24509,6 +24900,25 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+--- !u!1 &127944573824485321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3306443841478427267, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+  m_PrefabInstance: {fileID: 127944573824485320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &127944573824485322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127944573824485321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!114 &233759339255074993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26921,6 +27331,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8048862798381006008}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8048862798381006009}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!4 &4004336272059460941
 Transform:
@@ -29949,6 +30362,20 @@ MonoBehaviour:
   _rigidbody: {fileID: 8048862798381006005}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &8048862798381006009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883893441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
 --- !u!1 &8063627002457752766
 GameObject:
   m_ObjectHideFlags: 0
@@ -30599,6 +31026,7 @@ SceneRoots:
   - {fileID: 728712912}
   - {fileID: 170573598}
   - {fileID: 463348322}
+  - {fileID: 1600710856}
   - {fileID: 7764317389931646544}
   - {fileID: 965045157}
   - {fileID: 1002337702}
@@ -30608,3 +31036,4 @@ SceneRoots:
   - {fileID: 1955499483}
   - {fileID: 287540762}
   - {fileID: 1569246735}
+  - {fileID: 220936018}
