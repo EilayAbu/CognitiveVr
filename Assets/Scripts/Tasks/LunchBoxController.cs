@@ -57,6 +57,15 @@ namespace CognitiveVR.Tasks
         [Header("Debug")]
         [SerializeField] private bool _enableDebugLogs = true;
 
+        /// <summary>Fired after the box is sealed. Parameters: toast name, whether a ToasterController was wired up.</summary>
+        public event System.Action<string, bool> OnBoxSealed;
+
+        /// <summary>True once the box has been sealed.</summary>
+        public bool IsClosed => _isClosed;
+
+        /// <summary>True while a toast is being tracked and waiting for release.</summary>
+        public bool HasToastTracked => _toast != null;
+
         private GameObject _toast;
         private Grabbable _grabbable;
         private Rigidbody _toastRigidbody;
@@ -151,8 +160,14 @@ namespace CognitiveVR.Tasks
                 _toast.transform.SetPositionAndRotation(_snapAnchor.position, _snapAnchor.rotation);
 
             if (_reparentToastToBox)
+            {
                 _toast.transform.SetParent(transform, true);
-                _toast.SetActive(false);
+            }
+
+            // NOTE: this deliberately runs whether or not the toast was
+            // reparented - it used to sit under the if() by indentation only,
+            // which is a classic missing-brace trap. Behaviour is unchanged.
+            _toast.SetActive(false);
 
             if (_toastRigidbody != null)
             {
@@ -165,7 +180,15 @@ namespace CognitiveVR.Tasks
             if (_lid != null)
                 _lid.SetActive(true);
 
-            _toasterController?.RemoveToast();
+            if (_toasterController != null)
+            {
+                _toasterController.RemoveToast();
+            }
+            else
+            {
+                Debug.LogWarning($"[LunchBoxController] Box sealed but no ToasterController is assigned - "
+                    + "RemoveToast() was not called, so the toaster never reaches Done and no burn severity is recorded.", this);
+            }
 
             EnableReadyComponents();
             MakeBoxGrabbable();
@@ -177,6 +200,7 @@ namespace CognitiveVR.Tasks
                 Debug.Log($"[LunchBoxController] Box sealed with toast '{_toast.name}'.", this);
 
             onBoxSealed?.Invoke();
+            OnBoxSealed?.Invoke(_toast != null ? _toast.name : "", _toasterController != null);
         }
 
         private void EnableReadyComponents()

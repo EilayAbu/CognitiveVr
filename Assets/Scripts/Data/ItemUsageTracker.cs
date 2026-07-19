@@ -32,6 +32,21 @@ namespace CognitiveVR.Data
         private int _hoverCount;
         private string _itemName;
 
+        /// <summary>
+        /// The name this item is logged under. Read by GazeObjectTracker so that
+        /// gaze rows use exactly the same key as interaction and backpack rows.
+        /// </summary>
+        public string ItemName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_itemName))
+                    _itemName = ResolveItemName();
+
+                return _itemName;
+            }
+        }
+
         private static ExperimentDataManager Manager => ExperimentDataManager.Instance;
 
         private void Awake()

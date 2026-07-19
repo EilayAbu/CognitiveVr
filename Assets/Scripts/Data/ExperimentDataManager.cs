@@ -10,15 +10,19 @@ using CognitiveVR.Interaction;
 namespace CognitiveVR.Data
 {
     /// <summary>
-    /// Central experiment logger. Writes one timestamped CSV of every event
+    /// Central experiment logger. Writes timestamped CSV(s) of every event
     /// plus a JSON summary at session end. Purely a subscriber: it hooks into
-    /// the existing SessionTimer, FreezeDetector and BackpackInventoryZone
+    /// the existing SessionTimer, GazeObjectTracker and BackpackInventoryZone
     /// events without modifying any of them.
     ///
     /// Item interactions arrive either from <see cref="ItemUsageTracker"/>
     /// components (recommended, zero wiring) or from Inspector-wired
     /// UnityEvents calling the public Log* methods (e.g. an
     /// InteractableUnityEventWrapper "When Select" list).
+    ///
+    /// Gaze dwell and freeze data come from <see cref="GazeObjectTracker"/>,
+    /// which writes its rows through this logger and is read here at session
+    /// end for the summary totals.
     ///
     /// Every row carries four clocks:
     ///  - real_time    : local system clock (HH:mm:ss.fff)
@@ -38,27 +42,40 @@ namespace CognitiveVR.Data
         [Tooltip("Mirror every event (except pose samples) to the Console.")]
         [SerializeField] private bool logToConsole = true;
 
+        [Header("File Splitting")]
+        [Tooltip("ON  = two CSVs: *_events.csv (touching / session) and *_gaze.csv (looking / freezes).\n" +
+                 "OFF = everything in one *_events.csv, separated by the 'category' column.")]
+        [SerializeField] private bool separateGazeFile = true;
+
         [Header("Scene References (auto-found if left empty)")]
         [SerializeField] private SessionTimer sessionTimer;
-        [SerializeField] private FreezeDetector freezeDetector;
+        [SerializeField] private GazeObjectTracker gazeTracker;
         [SerializeField] private BackpackInventoryZone backpack;
 
         [Header("Continuous Tracking")]
-        [Tooltip("Seconds between head/hand pose samples written to the CSV. 0 = disabled.")]
+        [Tooltip("Seconds between head pose samples written to the CSV. 0 = disabled.")]
         [SerializeField] private float poseSampleInterval = 1f;
 
         // ------------------------------------------------------------------ //
 
         private static readonly CultureInfo Inv = CultureInfo.InvariantCulture;
 
+        private const string CsvHeader =
+            "real_time,t_logger_s,t_session_s,wall_clock,category,event,object,value,details";
+
         private StreamWriter _writer;
+        private StreamWriter _gazeWriter;
         private string _csvPath;
+        private string _gazeCsvPath;
         private string _summaryPath;
 
         private float _loggerStartRealtime;
         private DateTime _startedAt;
         private int _eventCount;
         private bool _sessionStarted;
+        private bool _finalized;
+        private List<string> _finalContents = new List<string>();
+        private bool _hasFinalContents;
 
         // Interaction bookkeeping (keyed by item name).
         private readonly Dictionary<string, float> _selectStartTimes = new Dictionary<string, float>();
@@ -75,6 +92,13 @@ namespace CognitiveVR.Data
         /// <summary>Seconds since the logger started (unscaled, pause-proof).</summary>
         public float LoggerElapsed => Time.realtimeSinceStartup - _loggerStartRealtime;
 
+        /// <summary>
+        /// Wall-clock seconds since the logger started. Unlike LoggerElapsed this
+        /// stays correct during editor play-mode teardown, where
+        /// Time.realtimeSinceStartup jumps backwards.
+        /// </summary>
+        public float LoggerDurationSeconds => (float)(DateTime.Now - _startedAt).TotalSeconds;
+
         // ------------------------------------------------------------------ //
         // Lifecycle
         // ------------------------------------------------------------------ //
@@ -90,7 +114,7 @@ namespace CognitiveVR.Data
             Instance = this;
 
             if (sessionTimer == null) sessionTimer = FindFirstObjectByType<SessionTimer>();
-            if (freezeDetector == null) freezeDetector = FindFirstObjectByType<FreezeDetector>();
+            if (gazeTracker == null) gazeTracker = FindFirstObjectByType<GazeObjectTracker>();
             if (backpack == null) backpack = FindFirstObjectByType<BackpackInventoryZone>();
 
             OpenLogFile();
@@ -106,18 +130,15 @@ namespace CognitiveVR.Data
                 sessionTimer.OnTimeWarning += HandleTimeWarning;
             }
 
-            if (freezeDetector != null)
-            {
-                freezeDetector.OnFreezeStarted += HandleFreezeStarted;
-                freezeDetector.OnFreezeEnded += HandleFreezeEnded;
-                freezeDetector.OnGazeFreezeReported += HandleGazeFreezeReported;
-            }
-
             if (backpack != null)
             {
                 backpack.WhenItemEntered += HandleBackpackItemEntered;
                 backpack.WhenItemExited += HandleBackpackItemExited;
             }
+
+            // Note: gaze and freeze rows are written by GazeObjectTracker itself
+            // through the public Log methods below, so there is nothing to
+            // subscribe to here. Its totals are read in WriteSummary().
         }
 
         private void OnDisable()
@@ -128,13 +149,6 @@ namespace CognitiveVR.Data
                 sessionTimer.OnSessionEnded -= HandleSessionEnded;
                 sessionTimer.OnScheduledEventTriggered -= HandleScheduledEvent;
                 sessionTimer.OnTimeWarning -= HandleTimeWarning;
-            }
-
-            if (freezeDetector != null)
-            {
-                freezeDetector.OnFreezeStarted -= HandleFreezeStarted;
-                freezeDetector.OnFreezeEnded -= HandleFreezeEnded;
-                freezeDetector.OnGazeFreezeReported -= HandleGazeFreezeReported;
             }
 
             if (backpack != null)
@@ -159,6 +173,7 @@ namespace CognitiveVR.Data
             if (paused)
             {
                 _writer?.Flush();
+                _gazeWriter?.Flush();
                 WriteSummary();
             }
         }
@@ -167,17 +182,58 @@ namespace CognitiveVR.Data
         {
             if (Instance != this) return;
 
-            WriteSummary();
+            // Order matters: the tracker's own OnDisable may run after this, by
+            // which point the writers are gone. Flush its totals first.
+            FinalizeSession("logger_destroyed");
 
             if (_writer != null)
             {
-                Log("session", "logger_stop", "", LoggerElapsed, null);
+                Log("session", "logger_stop", "", LoggerDurationSeconds, null);
                 _writer.Flush();
                 _writer.Dispose();
                 _writer = null;
             }
 
+            if (_gazeWriter != null)
+            {
+                _gazeWriter.Flush();
+                _gazeWriter.Dispose();
+                _gazeWriter = null;
+            }
+
             Instance = null;
+        }
+
+        /// <summary>
+        /// Flushes per-object gaze totals, writes a session_end row and dumps the
+        /// JSON summary. Safe to call more than once - only the first call writes
+        /// the session_end row. Call this from an end-of-session trigger, a UI
+        /// button, or leave it to OnDestroy.
+        /// </summary>
+        public void FinalizeSession(string reason)
+        {
+            if (gazeTracker != null)
+                gazeTracker.DumpTotalsToLog();
+
+            if (!_finalized)
+            {
+                _finalized = true;
+
+                // Snapshot the backpack NOW. By the time OnDestroy runs, the zone
+                // may already have been torn down and would report empty.
+                _finalContents = backpack != null
+                    ? new List<string>(backpack.StoredItemNames)
+                    : new List<string>();
+                _hasFinalContents = true;
+
+                Log("session", "session_end", "", sessionTimer != null ? sessionTimer.ElapsedTime : (float?)null,
+                    $"reason={reason}");
+            }
+
+            WriteSummary();
+
+            _writer?.Flush();
+            _gazeWriter?.Flush();
         }
 
         // ------------------------------------------------------------------ //
@@ -243,10 +299,7 @@ namespace CognitiveVR.Data
             Log("interaction", "button_press", buttonName, null, null);
         }
 
-        /// <summary>
-        /// Optional hook for per-object gaze scripts (e.g. GazeFreezeReporter)
-        /// to record EVERY glance, not only long-stare freezes.
-        /// </summary>
+        /// <summary>Called by GazeObjectTracker when a look begins.</summary>
         public void LogGazeEnter(string objectName)
         {
             Log("gaze", "gaze_enter", objectName, null, null);
@@ -277,9 +330,7 @@ namespace CognitiveVR.Data
 
         private void HandleSessionEnded()
         {
-            Log("session", "session_end", "",
-                sessionTimer != null ? sessionTimer.ElapsedTime : (float?)null, null);
-            WriteSummary();
+            FinalizeSession("session_timer");
         }
 
         private void HandleScheduledEvent(SessionTimer.ScheduledEvent evt)
@@ -290,26 +341,6 @@ namespace CognitiveVR.Data
         private void HandleTimeWarning(float elapsed)
         {
             Log("session", "time_warning", "", elapsed, null);
-        }
-
-        private void HandleFreezeStarted(float idleTime, Vector3 gazePos)
-        {
-            Log("freeze", "freeze_start", "", idleTime, $"gaze_pos={V(gazePos)}");
-        }
-
-        private void HandleFreezeEnded(float duration, Vector3 gazePos)
-        {
-            Log("freeze", "freeze_end", "", duration, $"gaze_pos={V(gazePos)}");
-        }
-
-        private void HandleGazeFreezeReported(GazeFreezeRecord record)
-        {
-            ItemSummary stats = GetStats(record.ObjectName);
-            stats.gazeFreezeCount++;
-            stats.gazeFreezeTotalSeconds += record.Duration;
-
-            Log("gaze", "gaze_freeze", record.ObjectName, record.Duration,
-                $"distance_m={record.Distance.ToString("F2", Inv)}");
         }
 
         private void HandleBackpackItemEntered(string itemName, BackpackSlot slot)
@@ -337,29 +368,46 @@ namespace CognitiveVR.Data
 
         /// <summary>
         /// Writes one CSV row. All public Log* methods and handlers funnel here.
+        /// Gaze and freeze categories go to the gaze file when splitting is on.
         /// </summary>
         public void Log(string category, string eventName, string objectName, float? value, string details)
         {
-            if (_writer == null) return;
+            StreamWriter target = SelectWriter(category);
+            if (target == null) return;
 
             _eventCount++;
 
             string realTime = DateTime.Now.ToString("HH:mm:ss.fff", Inv);
-            string tLogger = LoggerElapsed.ToString("F3", Inv);
+            // During editor play-mode teardown Time.realtimeSinceStartup jumps
+            // backwards, so fall back to the wall clock for those last rows.
+            float tLoggerValue = LoggerElapsed;
+            if (tLoggerValue < 0f) tLoggerValue = LoggerDurationSeconds;
+            string tLogger = tLoggerValue.ToString("F3", Inv);
             string tSession = (_sessionStarted && sessionTimer != null)
                 ? sessionTimer.ElapsedTime.ToString("F3", Inv)
                 : "";
             string wallClock = sessionTimer != null ? sessionTimer.WallClockFormatted : "";
             string valueStr = value.HasValue ? value.Value.ToString("F3", Inv) : "";
 
-            _writer.WriteLine(string.Join(",",
+            target.WriteLine(string.Join(",",
                 Esc(realTime), Esc(tLogger), Esc(tSession), Esc(wallClock),
                 Esc(category), Esc(eventName), Esc(objectName), Esc(valueStr), Esc(details ?? "")));
 
-            if (logToConsole && category != "tracking")
+            if (logToConsole && category != "tracking" && category != "gaze")
             {
                 Debug.Log($"[Data {tLogger}s] {category}/{eventName} {objectName} {details}");
             }
+        }
+
+        /// <summary>Routes a category to the right file.</summary>
+        private StreamWriter SelectWriter(string category)
+        {
+            if (separateGazeFile && _gazeWriter != null &&
+                (category == "gaze" || category == "freeze"))
+            {
+                return _gazeWriter;
+            }
+            return _writer;
         }
 
         private void OpenLogFile()
@@ -369,11 +417,18 @@ namespace CognitiveVR.Data
 
             string stamp = DateTime.Now.ToString("yyyyMMdd_HHmmss", Inv);
             _csvPath = Path.Combine(dir, $"{participantId}_{stamp}_events.csv");
+            _gazeCsvPath = Path.Combine(dir, $"{participantId}_{stamp}_gaze.csv");
             _summaryPath = Path.Combine(dir, $"{participantId}_{stamp}_summary.json");
 
             // UTF-8 with BOM so Hebrew display names open correctly in Excel.
             _writer = new StreamWriter(_csvPath, false, new UTF8Encoding(true)) { AutoFlush = true };
-            _writer.WriteLine("real_time,t_logger_s,t_session_s,wall_clock,category,event,object,value,details");
+            _writer.WriteLine(CsvHeader);
+
+            if (separateGazeFile)
+            {
+                _gazeWriter = new StreamWriter(_gazeCsvPath, false, new UTF8Encoding(true)) { AutoFlush = true };
+                _gazeWriter.WriteLine(CsvHeader);
+            }
 
             _loggerStartRealtime = Time.realtimeSinceStartup;
             _startedAt = DateTime.Now;
@@ -383,12 +438,14 @@ namespace CognitiveVR.Data
                 $"participant={participantId}|date={_startedAt.ToString("yyyy-MM-dd", Inv)}");
 
             Debug.Log($"[{nameof(ExperimentDataManager)}] Logging to: {_csvPath}");
+            if (separateGazeFile)
+                Debug.Log($"[{nameof(ExperimentDataManager)}] Gaze log: {_gazeCsvPath}");
         }
 
         private void SamplePose()
         {
-            Transform head = freezeDetector != null
-                ? freezeDetector.HeadTransform
+            Transform head = gazeTracker != null
+                ? gazeTracker.HeadTransform
                 : (Camera.main != null ? Camera.main.transform : null);
 
             if (head == null) return;
@@ -400,15 +457,13 @@ namespace CognitiveVR.Data
             _lastHeadPos = head.position;
             _hasLastHeadPos = true;
 
-            var sb = new StringBuilder(96);
+            var sb = new StringBuilder(64);
             sb.Append("pos=").Append(V(head.position)).Append("|rot=").Append(V(head.eulerAngles));
 
-            if (freezeDetector != null)
+            if (gazeTracker != null)
             {
-                if (freezeDetector.LeftHand != null)
-                    sb.Append("|left=").Append(V(freezeDetector.LeftHand.position));
-                if (freezeDetector.RightHand != null)
-                    sb.Append("|right=").Append(V(freezeDetector.RightHand.position));
+                sb.Append("|looking_at=").Append(gazeTracker.CurrentlyLookingAt);
+                if (gazeTracker.IsFrozen) sb.Append("|frozen=1");
             }
 
             Log("tracking", "pose", "head", null, sb.ToString());
@@ -418,28 +473,35 @@ namespace CognitiveVR.Data
         {
             if (string.IsNullOrEmpty(_summaryPath)) return;
 
+            MergeGazeStats();
+
             var summary = new SessionSummary
             {
                 participantId = participantId,
                 startedAtIso = _startedAt.ToString("yyyy-MM-dd HH:mm:ss", Inv),
                 writtenAtIso = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", Inv),
-                loggerDurationSeconds = LoggerElapsed,
+                loggerDurationSeconds = LoggerDurationSeconds,
                 sessionElapsedSeconds = sessionTimer != null ? sessionTimer.ElapsedTime : 0f,
                 totalEvents = _eventCount,
                 headPathMeters = _headPathMeters,
-                freezeCount = freezeDetector != null ? freezeDetector.FreezeCount : 0,
-                totalFreezeSeconds = freezeDetector != null ? freezeDetector.TotalFreezeTime : 0f,
+                freezeCount = gazeTracker != null ? gazeTracker.FreezeCount : 0,
+                totalFreezeSeconds = gazeTracker != null ? gazeTracker.TotalFreezeTime : 0f,
+                objectsLookedAt = 0,
                 packingOrder = new List<string>(_packingOrder),
-                finalBackpackContents = backpack != null
-                    ? new List<string>(backpack.StoredItemNames)
-                    : new List<string>()
+                finalBackpackContents = _hasFinalContents
+                    ? new List<string>(_finalContents)
+                    : (backpack != null ? new List<string>(backpack.StoredItemNames) : new List<string>())
             };
 
             foreach (KeyValuePair<string, ItemSummary> pair in _itemStats)
             {
                 pair.Value.inBackpackAtEnd = summary.finalBackpackContents.Contains(pair.Key);
+                if (pair.Value.lookCount > 0) summary.objectsLookedAt++;
                 summary.items.Add(pair.Value);
             }
+
+            // Most-looked-at first: usually the interesting ordering.
+            summary.items.Sort((a, b) => b.totalGazeSeconds.CompareTo(a.totalGazeSeconds));
 
             try
             {
@@ -448,6 +510,26 @@ namespace CognitiveVR.Data
             catch (Exception e)
             {
                 Debug.LogError($"[{nameof(ExperimentDataManager)}] Failed to write summary: {e.Message}", this);
+            }
+        }
+
+        /// <summary>
+        /// Folds the tracker's per-object dwell totals into the item table so
+        /// objects that were only looked at (never grabbed) still appear.
+        /// </summary>
+        private void MergeGazeStats()
+        {
+            if (gazeTracker == null) return;
+
+            foreach (GazeObjectTracker.GazeObjectStats g in gazeTracker.GetResults())
+            {
+                ItemSummary stats = GetStats(g.ObjectName);
+                stats.totalGazeSeconds = g.TotalGazeTime;
+                stats.lookCount = g.LookCount;
+                stats.longestStareSeconds = g.LongestStare;
+                stats.firstLookAt = g.FirstLookTime;
+                stats.gazeFreezeCount = g.FreezeCount;
+                stats.gazeFreezeTotalSeconds = g.FreezeSeconds;
             }
         }
 
@@ -489,14 +571,22 @@ namespace CognitiveVR.Data
         public class ItemSummary
         {
             public string name;
+
+            // Touching.
             public int selectCount;
             public float totalHeldSeconds;
             public float firstInteractionAt = -1f;
-            public int gazeFreezeCount;
-            public float gazeFreezeTotalSeconds;
             public int backpackInCount;
             public int backpackOutCount;
             public bool inBackpackAtEnd;
+
+            // Looking.
+            public float totalGazeSeconds;
+            public int lookCount;
+            public float longestStareSeconds;
+            public float firstLookAt = -1f;
+            public int gazeFreezeCount;
+            public float gazeFreezeTotalSeconds;
         }
 
         [Serializable]
@@ -511,6 +601,7 @@ namespace CognitiveVR.Data
             public float headPathMeters;
             public int freezeCount;
             public float totalFreezeSeconds;
+            public int objectsLookedAt;
             public List<string> packingOrder = new List<string>();
             public List<string> finalBackpackContents = new List<string>();
             public List<ItemSummary> items = new List<ItemSummary>();

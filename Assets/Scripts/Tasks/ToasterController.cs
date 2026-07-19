@@ -83,6 +83,15 @@ namespace CognitiveVR.Tasks
         public float CookingElapsed => _cookingElapsed;
         public bool IsPoweredOn => _isPoweredOn;
 
+        /// <summary>True while the toast is inside the toaster's trigger zone.</summary>
+        public bool ToastInside => _toastInside;
+
+        /// <summary>
+        /// Burn severity implied by the cooking time so far. Read-only view of
+        /// the same value RemoveToast() hands to the metrics.
+        /// </summary>
+        public BurnSeverity CurrentBurnSeverity => GetCurrentBurnSeverity();
+
         public event Action<ToasterState> OnStateChanged;
         public event Action<bool> OnPowerChanged;
 
