@@ -38,6 +38,7 @@ namespace CognitiveVR.Tasks
         [SerializeField] private bool enableDebugLogs = true;
 
         private Coroutine _knockRoutine;
+        private bool isOpen = false;
 
         private void Awake()
         {
@@ -96,9 +97,12 @@ namespace CognitiveVR.Tasks
         /// </summary>
         public void StopKnocking()
         {
+            isOpen = true;
+            Debug.Log("StopKnocking");
             if (_knockRoutine == null)
                 return;
             audioSource = null;
+           
             StopCoroutine(_knockRoutine);
             _knockRoutine = null;
         }
@@ -107,7 +111,7 @@ namespace CognitiveVR.Tasks
         {
             yield return new WaitForSeconds(initialDelaySeconds);
 
-            while (doorStateEvents == null || !doorStateEvents.IsOpen)
+            while ((doorStateEvents == null || !doorStateEvents.IsOpen) && !isOpen)
             {
                 PlayKnock();
                 yield return new WaitForSeconds(repeatIntervalSeconds);
@@ -118,12 +122,13 @@ namespace CognitiveVR.Tasks
 
         private void PlayKnock()
         {
-            if (audioSource == null || knockClip == null)
+            if ((audioSource == null || knockClip == null) && !isOpen)
             {
                 if (enableDebugLogs)
                     Debug.LogWarning("[DoorKnockController] Missing AudioSource or knock clip.", this);
                 return;
             }
+            if (isOpen) return;
 
             audioSource.PlayOneShot(knockClip);
 

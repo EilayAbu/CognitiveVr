@@ -2845,7 +2845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
   zone: {fileID: 1115826131}
   grabbable: {fileID: 264197521}
-  handGrabInteractable: {fileID: 1907404632}
+  handGrabInteractable: {fileID: 0}
   snapInteractable: {fileID: 0}
   boxCollider: {fileID: 264197519}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
@@ -6920,7 +6920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
   zone: {fileID: 1115826131}
   grabbable: {fileID: 610994859}
-  handGrabInteractable: {fileID: 261700953}
+  handGrabInteractable: {fileID: 0}
   snapInteractable: {fileID: 0}
   boxCollider: {fileID: 610994857}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
@@ -7512,7 +7512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
   zone: {fileID: 1115826131}
   grabbable: {fileID: 703485558}
-  handGrabInteractable: {fileID: 1939378041}
+  handGrabInteractable: {fileID: 0}
   snapInteractable: {fileID: 0}
   boxCollider: {fileID: 703485556}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
@@ -8894,7 +8894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
   zone: {fileID: 1115826131}
   grabbable: {fileID: 804265423}
-  handGrabInteractable: {fileID: 310194119}
+  handGrabInteractable: {fileID: 0}
   snapInteractable: {fileID: 0}
   boxCollider: {fileID: 804265421}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
@@ -9097,7 +9097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
   zone: {fileID: 1115826131}
   grabbable: {fileID: 815700900}
-  handGrabInteractable: {fileID: 1275238080}
+  handGrabInteractable: {fileID: 0}
   snapInteractable: {fileID: 0}
   boxCollider: {fileID: 815700898}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
@@ -14599,7 +14599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
   zone: {fileID: 1115826131}
   grabbable: {fileID: 1359814814}
-  handGrabInteractable: {fileID: 2074591688}
+  handGrabInteractable: {fileID: 0}
   snapInteractable: {fileID: 0}
   boxCollider: {fileID: 1359814812}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
@@ -15226,7 +15226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
   zone: {fileID: 1115826131}
   grabbable: {fileID: 1437360094}
-  handGrabInteractable: {fileID: 5826442837214861043}
+  handGrabInteractable: {fileID: 0}
   snapInteractable: {fileID: 0}
   boxCollider: {fileID: 1437360092}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
@@ -15442,7 +15442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15450,23 +15450,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -17344,7 +17344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
   zone: {fileID: 1115826131}
   grabbable: {fileID: 1626132101}
-  handGrabInteractable: {fileID: 1467403860}
+  handGrabInteractable: {fileID: 0}
   snapInteractable: {fileID: 0}
   boxCollider: {fileID: 1626132099}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
@@ -18426,7 +18426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 0.293
       objectReference: {fileID: 0}
     - target: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18434,11 +18434,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: m_LocalRotation.y
@@ -18450,7 +18450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -18475,6 +18475,10 @@ PrefabInstance:
     - target: {fileID: 8078490972394777427, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: itemId
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078490972394777427, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      propertyPath: storedScale
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8078490972394777427, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: enableDebugLogs
@@ -23086,7 +23090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.BackpackSlot
   zone: {fileID: 1115826131}
   grabbable: {fileID: 1990267976}
-  handGrabInteractable: {fileID: 2120415804}
+  handGrabInteractable: {fileID: 0}
   snapInteractable: {fileID: 0}
   boxCollider: {fileID: 1990267974}
   colliderSize: {x: 1.5, y: 1.5, z: 1.5}
