@@ -76,6 +76,7 @@ namespace CognitiveVR.Data
         private bool _finalized;
         private List<string> _finalContents = new List<string>();
         private bool _hasFinalContents;
+        private float _finalSessionElapsed;
 
         // Interaction bookkeeping (keyed by item name).
         private readonly Dictionary<string, float> _selectStartTimes = new Dictionary<string, float>();
@@ -226,6 +227,10 @@ namespace CognitiveVR.Data
                     : new List<string>();
                 _hasFinalContents = true;
 
+                // Same reason: the SessionTimer may be stopped or reset by the
+                // time OnDestroy rewrites the summary, reporting 0 elapsed.
+                _finalSessionElapsed = sessionTimer != null ? sessionTimer.ElapsedTime : 0f;
+
                 Log("session", "session_end", "", sessionTimer != null ? sessionTimer.ElapsedTime : (float?)null,
                     $"reason={reason}");
             }
@@ -287,6 +292,18 @@ namespace CognitiveVR.Data
         public void LogHoverExit(string itemName)
         {
             Log("interaction", "hover_exit", itemName, null, null);
+        }
+
+        /// <summary>
+        /// An item hit the floor. Counted per item in the JSON summary so you can
+        /// see who fumbled what, and how often.
+        /// </summary>
+        public void LogItemDropped(string itemName, float impactSpeed, string details)
+        {
+            ItemSummary stats = GetStats(itemName);
+            stats.dropCount++;
+
+            Log("interaction", "item_dropped", itemName, impactSpeed, details);
         }
 
         /// <summary>Convenience for simple UI / poke buttons wired in the Inspector.</summary>
@@ -481,7 +498,9 @@ namespace CognitiveVR.Data
                 startedAtIso = _startedAt.ToString("yyyy-MM-dd HH:mm:ss", Inv),
                 writtenAtIso = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", Inv),
                 loggerDurationSeconds = LoggerDurationSeconds,
-                sessionElapsedSeconds = sessionTimer != null ? sessionTimer.ElapsedTime : 0f,
+                sessionElapsedSeconds = _hasFinalContents
+                    ? _finalSessionElapsed
+                    : (sessionTimer != null ? sessionTimer.ElapsedTime : 0f),
                 totalEvents = _eventCount,
                 headPathMeters = _headPathMeters,
                 freezeCount = gazeTracker != null ? gazeTracker.FreezeCount : 0,
@@ -579,6 +598,7 @@ namespace CognitiveVR.Data
             public int backpackInCount;
             public int backpackOutCount;
             public bool inBackpackAtEnd;
+            public int dropCount;
 
             // Looking.
             public float totalGazeSeconds;

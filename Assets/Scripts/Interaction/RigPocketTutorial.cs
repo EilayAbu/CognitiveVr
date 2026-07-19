@@ -30,8 +30,6 @@ namespace CognitiveVR.Interaction
           [Tooltip("The audio played at the end")]
         [SerializeField] private AudioSource endAudio;
         
-        [Tooltip("Button Activator")]
-        [SerializeField] private GameObject btnActivate;
         
         [Tooltip("Only connect + initialize the first time the item enters.")]
         [SerializeField] private bool onlyOnce = true;
@@ -97,7 +95,6 @@ namespace CognitiveVR.Interaction
 
             _done = true;
             endAudio.Play();
-            btnActivate.SetActive(true);
             
             Destroy(gameObject);
 
