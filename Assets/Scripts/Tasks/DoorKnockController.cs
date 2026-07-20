@@ -98,11 +98,16 @@ namespace CognitiveVR.Tasks
         public void StopKnocking()
         {
             isOpen = true;
-            Debug.Log("StopKnocking");
+
+            if (enableDebugLogs)
+                Debug.Log("[DoorKnockController] StopKnocking called.", this);
+
+            if (audioSource != null)
+                audioSource.Stop();
+
             if (_knockRoutine == null)
                 return;
-            audioSource = null;
-           
+
             StopCoroutine(_knockRoutine);
             _knockRoutine = null;
         }
