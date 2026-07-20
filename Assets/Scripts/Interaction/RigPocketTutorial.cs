@@ -26,9 +26,6 @@ namespace CognitiveVR.Interaction
 
         [Tooltip("The item (phone) that connects to the pocket when it enters this trigger.")]
         [SerializeField] private GameObject item;
-
-          [Tooltip("The audio played at the end")]
-        [SerializeField] private AudioSource endAudio;
         
         
         [Tooltip("Only connect + initialize the first time the item enters.")]
@@ -94,7 +91,6 @@ namespace CognitiveVR.Interaction
             pocket.enabled = true; // -> RigPocket.Start(): caches refs, subscribes, StoreItem()
 
             _done = true;
-            endAudio.Play();
             
             Destroy(gameObject);
 
