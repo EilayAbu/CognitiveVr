@@ -2405,7 +2405,7 @@ MonoBehaviour:
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
@@ -10494,10 +10494,10 @@ PrefabInstance:
       addedObject: {fileID: 2126779954}
     - targetCorrespondingSourceObject: {fileID: 1778431460351612, guid: 029596afd3d6d6242814fbad48e492a4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2126779957}
+      addedObject: {fileID: 2126779960}
     - targetCorrespondingSourceObject: {fileID: 1778431460351612, guid: 029596afd3d6d6242814fbad48e492a4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2126779960}
+      addedObject: {fileID: 2126779961}
   m_SourcePrefab: {fileID: 100100000, guid: 029596afd3d6d6242814fbad48e492a4, type: 3}
 --- !u!4 &967641740 stripped
 Transform:
@@ -12108,8 +12108,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4890764, y: 0.5, z: 0.4831721}
-  m_Center: {x: 0, y: -0.25, z: 0}
+  m_Size: {x: 0.4890764, y: 0.83490604, z: 0.4831721}
+  m_Center: {x: 0, y: -0.08254694, z: 0}
 --- !u!23 &1113401098
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14037,7 +14037,7 @@ MonoBehaviour:
   _whenUnselect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2126779957}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CognitiveVR.Tasks.ChairZonePlacement, Assembly-CSharp
         m_MethodName: OnChairReleased
         m_Mode: 1
@@ -14315,8 +14315,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1855764, y: 1.8721482, z: 1.6985173}
+  m_Center: {x: 0.3738706, y: 0.19579381, z: 0.1203298}
 --- !u!23 &1338647273
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15414,7 +15414,7 @@ MonoBehaviour:
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
@@ -15711,7 +15711,7 @@ MonoBehaviour:
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
@@ -19089,7 +19089,7 @@ MonoBehaviour:
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
@@ -20570,7 +20570,7 @@ MonoBehaviour:
   _whenUnselect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2126779957}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CognitiveVR.Tasks.ChairZonePlacement, Assembly-CSharp
         m_MethodName: OnChairReleased
         m_Mode: 1
@@ -21140,7 +21140,7 @@ MonoBehaviour:
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
@@ -24717,22 +24717,6 @@ MonoBehaviour:
   _kinematicWhileSelected: 0
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
---- !u!114 &2126779957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126779951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcfbba20017fcfe41846ec88b33e038f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ChairZonePlacement
-  zoneTag: ChairZone
-  chairCollider: {fileID: 2126779952}
-  secondaryObject: {fileID: 1113401095}
-  enableDebugLogs: 0
 --- !u!114 &2126779960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24746,6 +24730,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ChairGrabState
   enableDebugLogs: 0
+--- !u!114 &2126779961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126779951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5326abd3cc914f42933b0b938de89d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
+  overrideItemName: 
+  trackHover: 1
+  trackFloorContact: 1
+  floorLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  floorCooldown: 1
+  onlyAfterFirstGrab: 1
+  minImpactSpeed: 0.3
 --- !u!1 &2141713038
 GameObject:
   m_ObjectHideFlags: 0
@@ -31768,7 +31773,7 @@ PrefabInstance:
       objectReference: {fileID: 439471892}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.352
+      value: 1.692
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -31776,7 +31781,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.281
+      value: -1.494
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -32217,7 +32222,7 @@ MonoBehaviour:
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
