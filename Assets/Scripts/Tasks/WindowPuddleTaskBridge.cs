@@ -10,9 +10,9 @@ namespace CognitiveVR.Tasks
     /// <summary>
     /// Treats window-closing and puddle-cleaning as ONE combined task and
     /// reports them as a single block. Purely a subscriber: it listens to the
-    /// existing WindowTaskController events, the window's DoorStateEvents and
-    /// the PuddleCleaner UnityEvents without modifying any of them, so
-    /// PuddleDataBridge and any Inspector wiring keep working untouched.
+    /// existing WindowTaskController events and the PuddleCleaner UnityEvents
+    /// without modifying any of them, so PuddleDataBridge and any Inspector
+    /// wiring keep working untouched.
     ///
     /// The task clock starts when the window is requested to open
     /// (RequestOpenWindow). From that anchor the bridge measures:
@@ -22,10 +22,8 @@ namespace CognitiveVR.Tasks
     ///     puddle fully cleaned) and when,
     ///   - which part was completed first.
     ///
-    /// Window open/closed detection reads <see cref="DoorStateEvents"/> directly
-    /// (angle-threshold based), so it works even if the WindowTaskController's own
-    /// task-active chain is not fully wired. The controller events are kept as a
-    /// backup source; guards make sure nothing is double-counted.
+    /// Window open/closed detection comes from the controller's own
+    /// WindowOpened/WindowClosed events (rotation-based, measured internally).
     ///
     /// All timestamps use <see cref="SessionTimer.ElapsedTime"/> (seconds since
     /// the session started), so they line up with the rest of the experiment.
@@ -48,8 +46,6 @@ namespace CognitiveVR.Tasks
         [Header("References (drag in Inspector)")]
         [Tooltip("The window task controller whose RequestOpen anchors the task clock.")]
         [SerializeField] private WindowTaskController windowController;
-        [Tooltip("Reports the physical open/closed state of the window. Auto-found on the controller's GameObject if left empty.")]
-        [SerializeField] private DoorStateEvents doorStateEvents;
         [Tooltip("The puddle that must be cleaned as the second half of the task.")]
         [SerializeField] private PuddleCleaner puddle;
         [Tooltip("Source of the session clock. Auto-found in the scene if left empty.")]
@@ -68,9 +64,6 @@ namespace CognitiveVR.Tasks
 
         private void Awake()
         {
-            if (doorStateEvents == null && windowController != null)
-                doorStateEvents = windowController.GetComponent<DoorStateEvents>();
-
             if (sessionTimer == null)
                 sessionTimer = FindFirstObjectByType<SessionTimer>();
         }
@@ -80,22 +73,13 @@ namespace CognitiveVR.Tasks
             if (windowController != null)
             {
                 windowController.RequestOpen += HandleTaskStart;
+                windowController.WindowOpened += HandleWindowOpened;
                 windowController.CloseAttempt += HandleWindowAttempt;
                 windowController.WindowClosed += HandleWindowClosed;
             }
             else
             {
                 Debug.LogWarning($"[{nameof(WindowPuddleTaskBridge)}] No WindowTaskController assigned.", this);
-            }
-
-            if (doorStateEvents != null)
-            {
-                doorStateEvents.DoorOpened += HandleWindowOpened;
-                doorStateEvents.DoorClosed += HandleWindowClosed;
-            }
-            else
-            {
-                Debug.LogWarning($"[{nameof(WindowPuddleTaskBridge)}] No DoorStateEvents assigned; window open/closed will rely on the controller only.", this);
             }
 
             if (puddle != null)
@@ -114,14 +98,9 @@ namespace CognitiveVR.Tasks
             if (windowController != null)
             {
                 windowController.RequestOpen -= HandleTaskStart;
+                windowController.WindowOpened -= HandleWindowOpened;
                 windowController.CloseAttempt -= HandleWindowAttempt;
                 windowController.WindowClosed -= HandleWindowClosed;
-            }
-
-            if (doorStateEvents != null)
-            {
-                doorStateEvents.DoorOpened -= HandleWindowOpened;
-                doorStateEvents.DoorClosed -= HandleWindowClosed;
             }
 
             if (puddle != null)

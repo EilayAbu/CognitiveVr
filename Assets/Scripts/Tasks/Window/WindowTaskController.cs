@@ -9,16 +9,26 @@ namespace CognitiveVR.Tasks.Window
     /// manages the task state, and broadcasts events (both UnityEvents for Inspector
     /// wiring and C# events for code) that View components react to.
     ///
-    /// Detection of the physical open/closed state comes from <see cref="DoorStateEvents"/>.
+    /// Open/closed detection is built in: every frame the controller measures the
+    /// absolute angular difference between the pivot's current rotation and the
+    /// rotation it had at startup (assumed closed) using Quaternion.Angle. This is
+    /// axis- and direction-agnostic, so it works regardless of the pivot's initial
+    /// orientation (e.g. a 180-degree X flip) or which way the window swings.
     /// </summary>
     public class WindowTaskController : MonoBehaviour
     {
         [Header("Model")]
         [SerializeField] private WindowTaskModel model = new WindowTaskModel();
 
-        [Header("References")]
-        [Tooltip("Reports the physical open/closed state of the window.")]
-        [SerializeField] private DoorStateEvents doorStateEvents;
+        [Header("Detection")]
+        [Tooltip("The transform that physically rotates when the window opens. Falls back to this transform.")]
+        [SerializeField] private Transform windowPivot;
+
+        [Tooltip("Degrees away from the closed rotation to count as OPEN.")]
+        [SerializeField] private float openAngleThreshold = 45f;
+
+        [Tooltip("Degrees away from the closed rotation to count as CLOSED again (must be below the open threshold).")]
+        [SerializeField] private float closedAngleThreshold = 8f;
 
         [Header("UnityEvents (wire in Inspector)")]
         public UnityEvent OnRequestOpen;
@@ -36,11 +46,29 @@ namespace CognitiveVR.Tasks.Window
 
         public WindowTaskModel Model => model;
 
+        /// <summary>Current angular offset from the closed rotation, in degrees.</summary>
+        public float CurrentAngle { get; private set; }
+
+        /// <summary>True while the window is physically detected as open.</summary>
+        public bool IsOpen => _isOpen;
+
+        private Quaternion _closedRotation;
+        private bool _isOpen;
         private bool _isTaskActive;
         private bool _closed;
         private bool _attempted;
         private float _openTime;
         private float _firstAttemptTime;
+
+        private void Awake()
+        {
+            if (windowPivot == null)
+                windowPivot = transform;
+
+            // The scene starts with the window shut, so whatever rotation the pivot
+            // has right now is the "closed" reference.
+            _closedRotation = windowPivot.localRotation;
+        }
 
         private void Start()
         {
@@ -48,21 +76,19 @@ namespace CognitiveVR.Tasks.Window
                 Invoke(nameof(RequestOpenWindow), model.OpenDelay);
         }
 
-        private void OnEnable()
+        private void Update()
         {
-            if (doorStateEvents != null)
-            {
-                doorStateEvents.DoorOpened += HandleWindowOpened;
-                doorStateEvents.DoorClosed += HandleWindowClosed;
-            }
-        }
+            CurrentAngle = Quaternion.Angle(_closedRotation, windowPivot.localRotation);
 
-        private void OnDisable()
-        {
-            if (doorStateEvents != null)
+            if (!_isOpen && CurrentAngle > openAngleThreshold)
             {
-                doorStateEvents.DoorOpened -= HandleWindowOpened;
-                doorStateEvents.DoorClosed -= HandleWindowClosed;
+                _isOpen = true;
+                HandleWindowOpened();
+            }
+            else if (_isOpen && CurrentAngle < closedAngleThreshold)
+            {
+                _isOpen = false;
+                HandleWindowClosed();
             }
         }
 
@@ -84,6 +110,8 @@ namespace CognitiveVR.Tasks.Window
             _isTaskActive = true;
             _openTime = Time.time;
 
+            Debug.Log($"[WindowTask] Window opened (angle {CurrentAngle:F0}).", this);
+
             OnWindowOpened?.Invoke();
             WindowOpened?.Invoke();
         }
@@ -94,6 +122,8 @@ namespace CognitiveVR.Tasks.Window
                 return;
 
             _closed = true;
+
+            Debug.Log($"[WindowTask] Window closed (angle {CurrentAngle:F0}).", this);
 
             OnWindowClosed?.Invoke();
             WindowClosed?.Invoke();
