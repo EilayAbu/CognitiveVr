@@ -13,6 +13,13 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class KeyKnockZone : MonoBehaviour
 {
+    /// <summary>Umbrella hit fast enough - the key is flying down. Arg = hit speed (m/s).</summary>
+    public event System.Action<float> KeyKnockedByUmbrella;
+    /// <summary>An umbrella end touched the zone but was too slow to count. Arg = hit speed (m/s).</summary>
+    public event System.Action<float> UmbrellaHitTooSlow;
+    /// <summary>The key was taken directly by hand (stool route), no umbrella involved.</summary>
+    public event System.Action KeyTakenByHand;
+
     [Header("Refs")]
     [Tooltip("The key sitting on the shelf, inside this zone.")]
     public Transform key;
@@ -54,10 +61,20 @@ public class KeyKnockZone : MonoBehaviour
 
         // Umbrella route
         var striker = other.GetComponentInParent<UmbrellaStriker>();
-        if (striker != null && striker.IsFastEnough)
+        if (striker != null)
         {
-            _consumed = true;
-            StartCoroutine(FlyThenDestroy());
+            float speed = striker.Velocity.magnitude;
+
+            if (striker.IsFastEnough)
+            {
+                _consumed = true;
+                KeyKnockedByUmbrella?.Invoke(speed);
+                StartCoroutine(FlyThenDestroy());
+            }
+            else
+            {
+                UmbrellaHitTooSlow?.Invoke(speed);
+            }
         }
     }
 
@@ -70,6 +87,7 @@ public class KeyKnockZone : MonoBehaviour
         if (other.transform == key || other.transform.IsChildOf(key))
         {
             _consumed = true;
+            KeyTakenByHand?.Invoke();
             Destroy(gameObject);
         }
     }
@@ -83,6 +101,7 @@ public class KeyKnockZone : MonoBehaviour
     {
         if (_consumed) return;
         _consumed = true;
+        KeyTakenByHand?.Invoke();
         Destroy(gameObject);
     }
 

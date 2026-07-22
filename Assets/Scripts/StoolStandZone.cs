@@ -24,6 +24,17 @@ namespace CognitiveVR.Interaction
     [RequireComponent(typeof(Collider))]
     public class StoolStandZone : MonoBehaviour
     {
+        /// <summary>Player entered the stand zone (walked up to the stool spot).</summary>
+        public event System.Action PlayerEnteredZone;
+        /// <summary>Player left the stand zone.</summary>
+        public event System.Action PlayerExitedZone;
+        /// <summary>
+        /// The stool became a valid standing surface (true) or stopped being one
+        /// (false). True means the player is in the zone and not holding the stool
+        /// - i.e. positioned to climb it.
+        /// </summary>
+        public event System.Action<bool> StandableChanged;
+
         public enum GateMode
         {
             /// <summary>Simple. Stool is non-solid outside the zone (hands pass through it).</summary>
@@ -101,14 +112,18 @@ namespace CognitiveVR.Interaction
         private void OnTriggerEnter(Collider other)
         {
             if (!PassesFilter(other)) return;
+            bool wasInZone = _playerInZone;
             _playerInZone = true;
+            if (!wasInZone) PlayerEnteredZone?.Invoke();
             Evaluate();
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (!PassesFilter(other)) return;
+            bool wasInZone = _playerInZone;
             _playerInZone = false;
+            if (wasInZone) PlayerExitedZone?.Invoke();
             Evaluate();
         }
 
@@ -133,7 +148,9 @@ namespace CognitiveVR.Interaction
         private void SetStandable(bool standable, bool force = false)
         {
             if (standable == _standable && !force) return;
+            bool changed = standable != _standable;
             _standable = standable;
+            if (changed) StandableChanged?.Invoke(standable);
 
             foreach (Collider c in standColliders)
             {

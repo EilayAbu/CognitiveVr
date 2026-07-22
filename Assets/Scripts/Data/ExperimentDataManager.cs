@@ -51,6 +51,9 @@ namespace CognitiveVR.Data
         [SerializeField] private SessionTimer sessionTimer;
         [SerializeField] private GazeObjectTracker gazeTracker;
         [SerializeField] private BackpackInventoryZone backpack;
+        [SerializeField] private CognitiveVR.Tasks.ToasterDataBridge toasterBridge;
+        [SerializeField] private CognitiveVR.Tasks.WindowPuddleTaskBridge windowPuddleBridge;
+        [SerializeField] private CognitiveVR.Tasks.KeyTaskBridge keyTaskBridge;
 
         [Header("Continuous Tracking")]
         [Tooltip("Seconds between head pose samples written to the CSV. 0 = disabled.")]
@@ -77,6 +80,14 @@ namespace CognitiveVR.Data
         private List<string> _finalContents = new List<string>();
         private bool _hasFinalContents;
         private float _finalSessionElapsed;
+        private CognitiveVR.Tasks.ToasterDataBridge.ToasterTaskSummary _finalToasterSummary;
+
+        // The guide (neighbor) task uses a push model: GuideDataBridge registers
+        // its summary object here while it is active, so the manager never has to
+        // find the bridge (which sits on an object that is inactive at scene load).
+        private GuideDataBridge.GuideTaskSummary _guideSummary;
+        private CognitiveVR.Tasks.WindowPuddleTaskBridge.WindowPuddleTaskSummary _finalWindowPuddleSummary;
+        private CognitiveVR.Tasks.KeyTaskBridge.KeyTaskSummary _finalKeyTaskSummary;
 
         // Interaction bookkeeping (keyed by item name).
         private readonly Dictionary<string, float> _selectStartTimes = new Dictionary<string, float>();
@@ -92,6 +103,12 @@ namespace CognitiveVR.Data
 
         /// <summary>Seconds since the logger started (unscaled, pause-proof).</summary>
         public float LoggerElapsed => Time.realtimeSinceStartup - _loggerStartRealtime;
+
+        /// <summary>
+        /// Seconds since SessionTimer.StartSession(). -1 when no timer is present.
+        /// Uses the wired SessionTimer reference, so callers never need their own.
+        /// </summary>
+        public float SessionElapsed => sessionTimer != null ? sessionTimer.ElapsedTime : -1f;
 
         /// <summary>
         /// Wall-clock seconds since the logger started. Unlike LoggerElapsed this
@@ -117,6 +134,12 @@ namespace CognitiveVR.Data
             if (sessionTimer == null) sessionTimer = FindFirstObjectByType<SessionTimer>();
             if (gazeTracker == null) gazeTracker = FindFirstObjectByType<GazeObjectTracker>();
             if (backpack == null) backpack = FindFirstObjectByType<BackpackInventoryZone>();
+            if (toasterBridge == null) toasterBridge = FindFirstObjectByType<CognitiveVR.Tasks.ToasterDataBridge>();
+            // guideBridge is intentionally NOT searched here: it lives on an object
+            // that is inactive at scene load. It registers itself via
+            // RegisterGuideSummary() once it becomes active (push model).
+            if (windowPuddleBridge == null) windowPuddleBridge = FindFirstObjectByType<CognitiveVR.Tasks.WindowPuddleTaskBridge>();
+            if (keyTaskBridge == null) keyTaskBridge = FindFirstObjectByType<CognitiveVR.Tasks.KeyTaskBridge>();
 
             OpenLogFile();
         }
@@ -231,6 +254,20 @@ namespace CognitiveVR.Data
                 // time OnDestroy rewrites the summary, reporting 0 elapsed.
                 _finalSessionElapsed = sessionTimer != null ? sessionTimer.ElapsedTime : 0f;
 
+                // Snapshot the toaster report too - the bridge may be destroyed
+                // before OnDestroy rewrites the summary.
+                if (toasterBridge != null)
+                    _finalToasterSummary = toasterBridge.BuildSummary();
+
+                // _guideSummary is kept live by the bridge via RegisterGuideSummary;
+                // nothing to snapshot here.
+
+                if (windowPuddleBridge != null)
+                    _finalWindowPuddleSummary = windowPuddleBridge.BuildSummary();
+
+                if (keyTaskBridge != null)
+                    _finalKeyTaskSummary = keyTaskBridge.BuildSummary();
+
                 Log("session", "session_end", "", sessionTimer != null ? sessionTimer.ElapsedTime : (float?)null,
                     $"reason={reason}");
             }
@@ -332,6 +369,18 @@ namespace CognitiveVR.Data
         public void LogCustom(string message)
         {
             Log("custom", "note", "", null, message);
+        }
+
+        /// <summary>
+        /// Called by <see cref="GuideDataBridge"/> when it becomes active. The
+        /// manager holds the reference to the same summary object the bridge keeps
+        /// updating, so the neighbor-task section of the JSON is always current at
+        /// session end - no need to find the (initially inactive) bridge.
+        /// </summary>
+        public void RegisterGuideSummary(GuideDataBridge.GuideTaskSummary summary)
+        {
+            if (summary != null)
+                _guideSummary = summary;
         }
 
         // ------------------------------------------------------------------ //
@@ -509,7 +558,14 @@ namespace CognitiveVR.Data
                 packingOrder = new List<string>(_packingOrder),
                 finalBackpackContents = _hasFinalContents
                     ? new List<string>(_finalContents)
-                    : (backpack != null ? new List<string>(backpack.StoredItemNames) : new List<string>())
+                    : (backpack != null ? new List<string>(backpack.StoredItemNames) : new List<string>()),
+                toasterTask = _finalToasterSummary
+                    ?? (toasterBridge != null ? toasterBridge.BuildSummary() : new CognitiveVR.Tasks.ToasterDataBridge.ToasterTaskSummary()),
+                guideTask = _guideSummary ?? new GuideDataBridge.GuideTaskSummary(),
+                windowPuddleTask = _finalWindowPuddleSummary
+                    ?? (windowPuddleBridge != null ? windowPuddleBridge.BuildSummary() : new CognitiveVR.Tasks.WindowPuddleTaskBridge.WindowPuddleTaskSummary()),
+                keyTask = _finalKeyTaskSummary
+                    ?? (keyTaskBridge != null ? keyTaskBridge.BuildSummary() : new CognitiveVR.Tasks.KeyTaskBridge.KeyTaskSummary())
             };
 
             foreach (KeyValuePair<string, ItemSummary> pair in _itemStats)
@@ -624,6 +680,14 @@ namespace CognitiveVR.Data
             public int objectsLookedAt;
             public List<string> packingOrder = new List<string>();
             public List<string> finalBackpackContents = new List<string>();
+            public CognitiveVR.Tasks.ToasterDataBridge.ToasterTaskSummary toasterTask =
+                new CognitiveVR.Tasks.ToasterDataBridge.ToasterTaskSummary();
+            public GuideDataBridge.GuideTaskSummary guideTask =
+                new GuideDataBridge.GuideTaskSummary();
+            public CognitiveVR.Tasks.WindowPuddleTaskBridge.WindowPuddleTaskSummary windowPuddleTask =
+                new CognitiveVR.Tasks.WindowPuddleTaskBridge.WindowPuddleTaskSummary();
+            public CognitiveVR.Tasks.KeyTaskBridge.KeyTaskSummary keyTask =
+                new CognitiveVR.Tasks.KeyTaskBridge.KeyTaskSummary();
             public List<ItemSummary> items = new List<ItemSummary>();
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using CognitiveVR.Core;
 using UnityEngine;
@@ -5,6 +6,16 @@ using UnityEngine.Events;
 
 public class GuideActionController : MonoBehaviour
 {
+    // C# events for pure subscribers (e.g. GuideDataBridge). Fired at the
+    // existing code points; no logic changes.
+    public event Action OnMissionStarted;
+    public event Action<int> OnTickPlayed;
+    public event Action OnMissionDoorOpenedEvent;
+    public event Action OnScenarioStarted;
+    public event Action OnChoiceShown;
+    public event Action<bool> OnChoiceMade;
+    public event Action<bool> OnScenarioEnded;
+
     [Header("References")]
     [SerializeField] private GuideScenarioController guideAudio;
     [SerializeField] private GameObject choiceCanvas;
@@ -27,6 +38,7 @@ public class GuideActionController : MonoBehaviour
 
     private bool missionStarted;
     private bool doorOpened;
+    private int tickNumber;
 
     private void Awake()
     {
@@ -76,11 +88,17 @@ public class GuideActionController : MonoBehaviour
 
         missionStarted = true;
         doorOpened = false;
+        tickNumber = 0;
 
         Debug.Log("Mission started - tick.");
 
+        OnMissionStarted?.Invoke();
+
         if (guideAudio != null)
             guideAudio.PlayTick();
+
+        tickNumber++;
+        OnTickPlayed?.Invoke(tickNumber);
 
         StartCoroutine(TickReminderLoop());
     }
@@ -90,6 +108,8 @@ public class GuideActionController : MonoBehaviour
     {
         doorOpened = true;
         Debug.Log("Mission door opened.");
+
+        OnMissionDoorOpenedEvent?.Invoke();
     }
 
     private IEnumerator TickReminderLoop()
@@ -103,6 +123,9 @@ public class GuideActionController : MonoBehaviour
 
             if (guideAudio != null)
                 guideAudio.PlayTick();
+
+            tickNumber++;
+            OnTickPlayed?.Invoke(tickNumber);
         }
     }
 
@@ -114,6 +137,7 @@ public class GuideActionController : MonoBehaviour
         Debug.Log("Guide scenario started.");
 
         scenarioStarted = true;
+        OnScenarioStarted?.Invoke();
         StartCoroutine(Run());
     }
 
@@ -140,6 +164,8 @@ public class GuideActionController : MonoBehaviour
             Debug.LogWarning("GuideActionController: Choice Canvas is not assigned.");
         }
 
+        OnChoiceShown?.Invoke();
+
         yield return new WaitUntil(() => choiceMade);
 
         if (choiceCanvas != null)
@@ -156,6 +182,7 @@ public class GuideActionController : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeDisappear);
 
         onScenarioEnd?.Invoke();
+        OnScenarioEnded?.Invoke(agreed);
 
         if (guide != null)
         {
@@ -170,6 +197,8 @@ public class GuideActionController : MonoBehaviour
 
         agreed = true;
         choiceMade = true;
+
+        OnChoiceMade?.Invoke(true);
     }
 
     public void OnRefuseClicked()
@@ -178,6 +207,8 @@ public class GuideActionController : MonoBehaviour
 
         agreed = false;
         choiceMade = true;
+
+        OnChoiceMade?.Invoke(false);
     }
 
     public void ResetScenario()
