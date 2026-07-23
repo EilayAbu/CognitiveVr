@@ -29,6 +29,9 @@ namespace CognitiveVR.Data
     ///  - t_logger_s   : seconds since this logger started (scene load)
     ///  - t_session_s  : seconds since SessionTimer.StartSession() (empty before)
     ///  - wall_clock   : the in-scene 08:52-based clock from SessionTimer
+    ///
+    /// The JSON summary uses ONE clock everywhere: t_logger_s. The
+    /// sessionStartLoggerSeconds field is the bridge to t_session_s.
     /// </summary>
     public class ExperimentDataManager : MonoBehaviour
     {
@@ -58,6 +61,8 @@ namespace CognitiveVR.Data
         [Header("Continuous Tracking")]
         [Tooltip("Seconds between head pose samples written to the CSV. 0 = disabled.")]
         [SerializeField] private float poseSampleInterval = 1f;
+        [Tooltip("headPathMeters accumulates every frame, but only once the head has drifted this far (m) from its last counted position. Filters tracking jitter without losing slow drift. The old behavior - summing the 1 Hz pose samples - cut every corner and underestimated locomotion.")]
+        [SerializeField] private float headPathMinStep = 0.01f;
 
         // ------------------------------------------------------------------ //
 
@@ -100,11 +105,16 @@ namespace CognitiveVR.Data
         private readonly Dictionary<string, ItemSummary> _itemStats = new Dictionary<string, ItemSummary>();
         private readonly List<string> _packingOrder = new List<string>();
 
-        // Pose sampling.
+        // Pose sampling / head path.
         private float _nextPoseSampleAt;
-        private Vector3 _lastHeadPos;
-        private bool _hasLastHeadPos;
+        private Vector3 _headPathAnchor;
+        private bool _hasHeadPathAnchor;
         private float _headPathMeters;
+
+        // Logger time at which SessionTimer.StartSession() fired. -1 = never.
+        // This is the bridge between the two CSV clocks:
+        //   t_session_s = t_logger_s - sessionStartLoggerSeconds
+        private float _sessionStartLoggerSeconds = -1f;
 
         /// <summary>Seconds since the logger started (unscaled, pause-proof).</summary>
         public float LoggerElapsed => Time.realtimeSinceStartup - _loggerStartRealtime;
@@ -192,11 +202,51 @@ namespace CognitiveVR.Data
             if (_loggingClosed)
                 return;
 
+            // Every frame, not once per pose sample: summing the 1 Hz samples
+            // systematically undercounted (straight-line chords through every
+            // turn). Verified against run 160758: the 1 Hz sum reproduced the
+            // reported 21.13 m exactly, i.e. all sub-second movement was lost.
+            AccumulateHeadPath();
+
             if (poseSampleInterval > 0f && Time.realtimeSinceStartup >= _nextPoseSampleAt)
             {
                 _nextPoseSampleAt = Time.realtimeSinceStartup + poseSampleInterval;
                 SamplePose();
             }
+        }
+
+        private void AccumulateHeadPath()
+        {
+            Transform head = ResolveHead();
+            if (head == null) return;
+
+            Vector3 pos = head.position;
+
+            if (!_hasHeadPathAnchor)
+            {
+                _headPathAnchor = pos;
+                _hasHeadPathAnchor = true;
+                return;
+            }
+
+            // Anchor-gated (same pattern as the freeze detector): per-frame
+            // deltas on a real headset are dominated by tracking noise, which
+            // would inflate the path by meters per minute. Distance only counts
+            // once the head is genuinely elsewhere; slow drift still accumulates
+            // because the anchor stays put until the threshold is crossed.
+            float d = Vector3.Distance(pos, _headPathAnchor);
+            if (d >= headPathMinStep)
+            {
+                _headPathMeters += d;
+                _headPathAnchor = pos;
+            }
+        }
+
+        private Transform ResolveHead()
+        {
+            if (gazeTracker != null)
+                return gazeTracker.HeadTransform;
+            return Camera.main != null ? Camera.main.transform : null;
         }
 
         private void OnApplicationPause(bool paused)
@@ -461,6 +511,9 @@ namespace CognitiveVR.Data
         private void HandleSessionStarted()
         {
             _sessionStarted = true;
+            if (_sessionStartLoggerSeconds < 0f)
+                _sessionStartLoggerSeconds = LoggerElapsed;
+
             Log("session", "session_start", "", null,
                 sessionTimer != null ? $"wall_clock_start={sessionTimer.WallClockFormatted}" : null);
         }
@@ -599,25 +652,18 @@ namespace CognitiveVR.Data
 
         private void SamplePose()
         {
-            Transform head = gazeTracker != null
-                ? gazeTracker.HeadTransform
-                : (Camera.main != null ? Camera.main.transform : null);
-
+            Transform head = ResolveHead();
             if (head == null) return;
-
-            if (_hasLastHeadPos)
-            {
-                _headPathMeters += Vector3.Distance(head.position, _lastHeadPos);
-            }
-            _lastHeadPos = head.position;
-            _hasLastHeadPos = true;
 
             var sb = new StringBuilder(64);
             sb.Append("pos=").Append(V(head.position)).Append("|rot=").Append(V(head.eulerAngles));
 
             if (gazeTracker != null)
             {
-                sb.Append("|looking_at=").Append(gazeTracker.CurrentlyLookingAt);
+                // RawGazeTarget, not CurrentlyLookingAt: the tracker now ignores
+                // floor/wall/ceiling for dwell stats, but the continuous stream
+                // should keep showing what the head is physically pointed at.
+                sb.Append("|looking_at=").Append(gazeTracker.RawGazeTarget);
                 if (gazeTracker.IsFrozen) sb.Append("|frozen=1");
             }
 
@@ -637,6 +683,7 @@ namespace CognitiveVR.Data
                 writtenAtIso = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", Inv),
                 endReason = string.IsNullOrEmpty(_endReason) ? "in_progress" : _endReason,
                 loggerDurationSeconds = LoggerDurationSeconds,
+                sessionStartLoggerSeconds = _sessionStartLoggerSeconds,
                 sessionElapsedSeconds = _hasFinalContents
                     ? _finalSessionElapsed
                     : (sessionTimer != null ? sessionTimer.ElapsedTime : 0f),
@@ -693,6 +740,8 @@ namespace CognitiveVR.Data
                 stats.lookCount = g.LookCount;
                 stats.longestStareSeconds = g.LongestStare;
                 stats.firstLookAt = g.FirstLookTime;
+                stats.glanceCount = g.GlanceCount;
+                stats.glanceSeconds = g.GlanceSeconds;
                 stats.gazeFreezeCount = g.FreezeCount;
                 stats.gazeFreezeTotalSeconds = g.FreezeSeconds;
             }
@@ -746,11 +795,14 @@ namespace CognitiveVR.Data
             public bool inBackpackAtEnd;
             public int dropCount;
 
-            // Looking.
+            // Looking. Times are t_logger_s. lookCount counts registered
+            // fixations (>= Min Look Duration); glanceCount counts shorter hits.
             public float totalGazeSeconds;
             public int lookCount;
             public float longestStareSeconds;
             public float firstLookAt = -1f;
+            public int glanceCount;
+            public float glanceSeconds;
             public int gazeFreezeCount;
             public float gazeFreezeTotalSeconds;
         }
@@ -765,7 +817,11 @@ namespace CognitiveVR.Data
             public string endReason;
             /// <summary>Which window the gaze/hold numbers cover. Removes any ambiguity at analysis time.</summary>
             public string gazeWindow = "logger_start..session_end";
+            /// <summary>Every *At / *Seconds timestamp in this file is on this clock unless its name says otherwise.</summary>
+            public string timebase = "t_logger_s (seconds since logger_start)";
             public float loggerDurationSeconds;
+            /// <summary>t_logger_s at SessionTimer.StartSession(). -1 = session never started. t_session_s = t_logger_s - this.</summary>
+            public float sessionStartLoggerSeconds = -1f;
             public float sessionElapsedSeconds;
             public int totalEvents;
             public float headPathMeters;

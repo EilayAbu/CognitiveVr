@@ -122,6 +122,28 @@ namespace CognitiveVR.Tasks
 
                 RecordEvent(toastInside ? "toast_inserted" : "toast_removed",
                     $"state={_toaster.State}|lid={(lidOpen ? "open" : "closed")}");
+
+                // Completion. The controller's Done state never fires from a
+                // normal insert-cook-remove cycle (run 160758: a perfect cycle
+                // still ended with doneAt=-1), so the natural end of the task is
+                // defined here: taking the toast OUT after cooking has finished.
+                // Outcome fields are snapshotted at this moment - the established
+                // finalize pattern - so nothing the toaster does afterwards can
+                // rewrite the result.
+                if (!toastInside && _summary.doneAt < 0f &&
+                    (_toaster.State == ToasterState.Ready || _toaster.State == ToasterState.Burnt))
+                {
+                    _summary.doneAt = LoggerNow();
+                    _summary.completedBy = "toast_removed_" + _toaster.State.ToString().ToLowerInvariant();
+                    _summary.burnSeverity = _toaster.CurrentBurnSeverity.ToString();
+                    _summary.totalCookSeconds = _toaster.CookingElapsed;
+
+                    Manager?.Log("task", "toaster_done", logName, _toaster.CookingElapsed,
+                        $"severity={_toaster.CurrentBurnSeverity}|state={_toaster.State}" +
+                        $"|cook_s={_toaster.CookingElapsed.ToString("F2", Inv)}");
+                    RecordEvent("done",
+                        $"severity={_toaster.CurrentBurnSeverity}|state={_toaster.State}");
+                }
             }
         }
 
@@ -148,7 +170,13 @@ namespace CognitiveVR.Tasks
                     if (_summary.toastReadyAt < 0f) _summary.toastReadyAt = now;
                     break;
                 case ToasterState.Done:
-                    if (_summary.doneAt < 0f) _summary.doneAt = now;
+                    if (_summary.doneAt < 0f)
+                    {
+                        _summary.doneAt = now;
+                        _summary.completedBy = "controller_done";
+                        _summary.burnSeverity = _toaster.CurrentBurnSeverity.ToString();
+                        _summary.totalCookSeconds = _toaster.CookingElapsed;
+                    }
                     break;
             }
 
@@ -176,9 +204,16 @@ namespace CognitiveVR.Tasks
         public ToasterTaskSummary BuildSummary()
         {
             _summary.finalState = _toaster.State.ToString();
-            _summary.burnSeverity = _toaster.CurrentBurnSeverity.ToString();
-            _summary.totalCookSeconds = _toaster.CookingElapsed;
-            _summary.taskCompleted = _toaster.State == ToasterState.Done;
+
+            // Only fill outcome fields live if no completion snapshotted them.
+            // Once done, the result at the moment of completion is the result.
+            if (string.IsNullOrEmpty(_summary.completedBy))
+            {
+                _summary.burnSeverity = _toaster.CurrentBurnSeverity.ToString();
+                _summary.totalCookSeconds = _toaster.CookingElapsed;
+            }
+
+            _summary.taskCompleted = _summary.doneAt >= 0f;
             return _summary;
         }
 
@@ -229,6 +264,8 @@ namespace CognitiveVR.Tasks
             public string burnSeverity;
             public float totalCookSeconds;
             public bool taskCompleted;
+            /// <summary>"toast_removed_ready" / "toast_removed_burnt" / "controller_done". Empty = not completed.</summary>
+            public string completedBy = "";
 
             // Full timeline of everything that happened at the toaster.
             public List<ToasterEvent> events = new List<ToasterEvent>();

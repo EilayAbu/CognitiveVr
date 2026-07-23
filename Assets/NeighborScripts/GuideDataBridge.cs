@@ -23,6 +23,8 @@ using CognitiveVR.Data;
 /// The same events accumulate into a <see cref="GuideTaskSummary"/> which
 /// ExperimentDataManager embeds in the session summary JSON. Read it via
 /// <see cref="BuildSummary"/>.
+///
+/// All timestamps are t_logger_s - the CSV clock shared by every task bridge.
 /// </summary>
 [RequireComponent(typeof(GuideActionController))]
 public class GuideDataBridge : MonoBehaviour
@@ -198,22 +200,29 @@ public class GuideDataBridge : MonoBehaviour
         _summary.events.Add(new GuideEvent
         {
             eventName = eventName,
-            tSessionSeconds = Now(),
+            tLoggerSeconds = Now(),
             details = details ?? ""
         });
     }
 
-    /// <summary>Session seconds (SessionTimer clock), -1 before the session starts.</summary>
+    /// <summary>
+    /// Logger seconds (t_logger_s) - the SAME clock as every other task bridge
+    /// and the CSV's second column. This bridge previously used SessionElapsed,
+    /// which made guideTask the only summary block on the session clock: its
+    /// timestamps read 17.4s earlier than the toaster/key blocks for the same
+    /// wall moment. Convert to session time in analysis via
+    /// summary.sessionStartLoggerSeconds if needed.
+    /// </summary>
     private static float Now()
     {
-        return Manager != null ? Manager.SessionElapsed : -1f;
+        return Manager != null ? Manager.LoggerElapsed : -1f;
     }
 
     [Serializable]
     public class GuideEvent
     {
         public string eventName;
-        public float tSessionSeconds;
+        public float tLoggerSeconds;
         public string details;
     }
 
@@ -223,7 +232,10 @@ public class GuideDataBridge : MonoBehaviour
         // Counters.
         public int tickCount;
 
-        // Key timestamps (SessionTimer clock, i.e. seconds into the session). -1 = never.
+        // Key timestamps (t_logger_s clock, same as the CSV and every other
+        // task block). -1 = never. Note: missionStartedAt = -1 is EXPECTED in
+        // short test runs - the neighbor_knock scheduled event fires at 180s,
+        // so opening the door before then legitimately leaves it unset.
         public float missionStartedAt = -1f;
         public float doorOpenedAt = -1f;
         public float scenarioStartedAt = -1f;

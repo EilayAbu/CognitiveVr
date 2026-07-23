@@ -42,14 +42,18 @@ namespace CognitiveVR.Core
             public float LongestStare;
             [Tooltip("Head-to-object distance at the end of the most recent look (meters).")]
             public float LastDistance;
-            [Tooltip("Time.time when the object was first looked at.")]
+            [Tooltip("Logger seconds (t_logger_s, same clock as the CSV) when the first REGISTERED look began. -1 = only glanced, never fixated.")]
             public float FirstLookTime;
-            [Tooltip("Time.time when the most recent look ended.")]
+            [Tooltip("Logger seconds (t_logger_s) when the most recent registered look ended.")]
             public float LastLookTime;
             [Tooltip("How many freezes (no movement at all) happened while looking at this object.")]
             public int FreezeCount;
             [Tooltip("Total frozen time accumulated while looking at this object (seconds).")]
             public float FreezeSeconds;
+            [Tooltip("Looks shorter than Min Look Duration. Counted here so lookCount=0 no longer means 'never looked'; they produce no gaze_enter/exit rows.")]
+            public int GlanceCount;
+            [Tooltip("Total time accumulated by sub-threshold glances (seconds).")]
+            public float GlanceSeconds;
         }
 
         [Header("Gaze Source")]
@@ -69,6 +73,17 @@ namespace CognitiveVR.Core
         [SerializeField] private float _minLookDuration = 0.2f;
         [Tooltip("If gaze slips into empty space and returns to the same object within this time, it still counts as one continuous look.")]
         [SerializeField] private float _lookAwayGrace = 0.1f;
+        [Tooltip("Record sub-threshold looks as 'glances' in the per-object totals (no CSV rows). Distinguishes 'never looked' from 'looked too briefly to fixate'.")]
+        [SerializeField] private bool _countGlances = true;
+
+        [Header("Target Filtering")]
+        [Tooltip("Resolved names excluded from gaze tracking, matched exactly OR as a prefix ('LobbyWall' also catches 'LobbyWall (2)'). Hits on these behave like empty space: no dwell, no rows, no stats. The raw hit still shows in the pose rows' looking_at, so 'looking at the floor while walking' stays visible there.")]
+        [SerializeField] private List<string> _ignoredNamePrefixes = new List<string>
+        {
+            "FloorCollider", "LobbyWall", "LobbyCeiling"
+        };
+        [Tooltip("Rename map applied after ItemUsageTracker resolution. Use it to fold generically-named child colliders into their logical object, e.g. Hinge -> Toaster, Rigidbody -> Sandwich, so their rows join in the summary.")]
+        [SerializeField] private List<NameAlias> _nameAliases = new List<NameAlias>();
 
         [Header("Freeze Detection")]
         [Tooltip("Turn off if you only want dwell times.")]
@@ -138,8 +153,16 @@ namespace CognitiveVR.Core
 
         // --- Public state ---
 
-        /// <summary>Name of the object currently under the gaze ray ("" if none).</summary>
+        /// <summary>Name of the tracked object currently under the gaze ray ("" if none or ignored).</summary>
         public string CurrentlyLookingAt => _currentlyLookingAt;
+
+        /// <summary>
+        /// Whatever the ray actually hits, INCLUDING ignored surfaces like the
+        /// floor ("" if nothing). This is what the pose rows' looking_at field
+        /// should use, so ignoring the floor for dwell stats does not erase
+        /// "looking down while walking" from the continuous tracking stream.
+        /// </summary>
+        public string RawGazeTarget => _rawGazeTarget;
 
         /// <summary>Seconds spent on the current object so far.</summary>
         public float CurrentLookTime => _currentLookTime;
@@ -191,6 +214,7 @@ namespace CognitiveVR.Core
         // Dwell state.
         private GameObject _currentTarget;
         private string _currentName;
+        private string _rawGazeTarget = "";
         private float _currentLookTime;
         private float _currentLookStartedAt;
         private float _lastHitDistance;
@@ -284,6 +308,7 @@ namespace CognitiveVR.Core
 
             GameObject hitObject = null;
             float hitDistance = 0f;
+            string rawName = null;
 
             if (Physics.Raycast(eye.position, eye.forward, out RaycastHit hit, _maxGazeDistance, _gazeLayers,
                     _hitTriggers ? QueryTriggerInteraction.Collide : QueryTriggerInteraction.Ignore))
@@ -291,7 +316,15 @@ namespace CognitiveVR.Core
                 Rigidbody rb = hit.collider.attachedRigidbody;
                 hitObject = rb != null ? rb.gameObject : hit.collider.gameObject;
                 hitDistance = hit.distance;
+
+                // Resolve now (cached, so this is a dictionary lookup) so ignored
+                // scenery can be filtered before it enters the dwell state machine.
+                rawName = ResolveName(hitObject);
+                if (IsIgnored(rawName))
+                    hitObject = null; // behaves exactly like empty space below
             }
+
+            _rawGazeTarget = rawName ?? "";
 
             if (_drawGazeRay)
                 Debug.DrawRay(eye.position, eye.forward * _maxGazeDistance,
@@ -334,7 +367,11 @@ namespace CognitiveVR.Core
             _currentTarget = target;
             _currentName = ResolveName(target);
             _currentLookTime = 0f;
-            _currentLookStartedAt = Time.time;
+            // Logger clock (t_logger_s), NOT Time.time: Time.time starts counting
+            // at app launch, the CSV clock starts at ExperimentDataManager.Awake.
+            // The old mismatch is why first_at_s ran ~3.2-3.4s ahead of the
+            // gaze_enter rows - the gap was exactly the scene load time.
+            _currentLookStartedAt = LoggerNow();
             _lastHitDistance = distance;
             _graceTimer = 0f;
             _currentLookRegistered = false;
@@ -364,14 +401,18 @@ namespace CognitiveVR.Core
 
             if (_currentLookRegistered)
             {
-                GazeObjectStats s = GetStats(_currentName, _currentLookStartedAt);
+                GazeObjectStats s = GetStats(_currentName);
+
+                // First REGISTERED look wins; earlier glances/freezes leave it -1.
+                if (s.FirstLookTime < 0f)
+                    s.FirstLookTime = _currentLookStartedAt;
 
                 s.TotalGazeTime += _currentLookTime;
                 s.LookCount++;
                 if (_currentLookTime > s.LongestStare)
                     s.LongestStare = _currentLookTime;
                 s.LastDistance = _lastHitDistance;
-                s.LastLookTime = Time.time;
+                s.LastLookTime = LoggerNow();
 
                 _stats[_currentName] = s;
                 _totalsDirty = true;
@@ -381,6 +422,18 @@ namespace CognitiveVR.Core
 
                 if (_logToDataManager)
                     ExperimentDataManager.Instance?.LogGazeExit(_currentName, _currentLookTime);
+            }
+            else if (_countGlances && _currentLookTime > 0f)
+            {
+                // Sub-threshold look: no rows, but count it so lookCount 0 with
+                // glanceCount > 0 reads as "looked, too briefly to fixate" instead
+                // of being indistinguishable from "never looked at all".
+                GazeObjectStats s = GetStats(_currentName);
+                s.GlanceCount++;
+                s.GlanceSeconds += _currentLookTime;
+                _stats[_currentName] = s;
+                _totalsDirty = true;
+                UpdateRegistryEntry(s);
             }
 
             _currentTarget = null;
@@ -436,7 +489,7 @@ namespace CognitiveVR.Core
                     // Credit the freeze to whatever is under the gaze ray.
                     if (!string.IsNullOrEmpty(_freezeStartObject))
                     {
-                        GazeObjectStats s = GetStats(_freezeStartObject, Time.time);
+                        GazeObjectStats s = GetStats(_freezeStartObject);
                         s.FreezeCount++;
                         _stats[_freezeStartObject] = s;
                         UpdateRegistryEntry(s);
@@ -458,7 +511,7 @@ namespace CognitiveVR.Core
 
                     if (!string.IsNullOrEmpty(_freezeStartObject))
                     {
-                        GazeObjectStats s = GetStats(_freezeStartObject, Time.time);
+                        GazeObjectStats s = GetStats(_freezeStartObject);
                         s.FreezeSeconds += Time.deltaTime;
                         _stats[_freezeStartObject] = s;
                         UpdateRegistryEntry(s);
@@ -558,16 +611,19 @@ namespace CognitiveVR.Core
                     s = new GazeObjectStats
                     {
                         ObjectName = _currentName,
-                        FirstLookTime = _currentLookStartedAt
+                        FirstLookTime = -1f
                     };
                 }
+
+                if (s.FirstLookTime < 0f)
+                    s.FirstLookTime = _currentLookStartedAt;
 
                 s.TotalGazeTime += _currentLookTime;
                 s.LookCount++;
                 if (_currentLookTime > s.LongestStare)
                     s.LongestStare = _currentLookTime;
                 s.LastDistance = _lastHitDistance;
-                s.LastLookTime = Time.time;
+                s.LastLookTime = LoggerNow();
                 merged[_currentName] = s;
             }
 
@@ -614,6 +670,7 @@ namespace CognitiveVR.Core
 
             _trackingStopped = true;
             _currentlyLookingAt = "";
+            _rawGazeTarget = "";
         }
 
         /// <summary>
@@ -636,8 +693,10 @@ namespace CognitiveVR.Core
                     $"pass={_dumpPass}|" +
                     $"looks={s.LookCount}" +
                     $"|longest_s={s.LongestStare.ToString("F3", Inv)}" +
-                    $"|first_at_s={s.FirstLookTime.ToString("F1", Inv)}" +
+                    $"|first_at_s={s.FirstLookTime.ToString("F2", Inv)}" +
                     $"|last_dist_m={s.LastDistance.ToString("F2", Inv)}" +
+                    $"|glances={s.GlanceCount}" +
+                    $"|glance_s={s.GlanceSeconds.ToString("F3", Inv)}" +
                     $"|freezes={s.FreezeCount}" +
                     $"|freeze_s={s.FreezeSeconds.ToString("F3", Inv)}");
             }
@@ -664,6 +723,7 @@ namespace CognitiveVR.Core
             _graceTimer = 0f;
             _currentLookRegistered = false;
             _currentlyLookingAt = "";
+            _rawGazeTarget = "";
 
             _isFrozen = false;
             _currentIdleTime = 0f;
@@ -699,18 +759,52 @@ namespace CognitiveVR.Core
             if (usage != null && !string.IsNullOrWhiteSpace(usage.ItemName))
                 resolved = usage.ItemName;
 
+            // Explicit aliases win last, so a generically-named child collider
+            // (Hinge, Rigidbody, ...) can be folded into its logical object.
+            for (int i = 0; i < _nameAliases.Count; i++)
+            {
+                if (_nameAliases[i].from == resolved && !string.IsNullOrWhiteSpace(_nameAliases[i].to))
+                {
+                    resolved = _nameAliases[i].to;
+                    break;
+                }
+            }
+
             _nameCache[target] = resolved;
             return resolved;
         }
 
-        private GazeObjectStats GetStats(string objectName, float firstLookTime)
+        /// <summary>Exact or prefix match against the ignore list.</summary>
+        private bool IsIgnored(string resolvedName)
+        {
+            for (int i = 0; i < _ignoredNamePrefixes.Count; i++)
+            {
+                string p = _ignoredNamePrefixes[i];
+                if (string.IsNullOrEmpty(p)) continue;
+                if (resolvedName.StartsWith(p, StringComparison.Ordinal))
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// The CSV clock (t_logger_s). Falls back to Time.time only if no
+        /// ExperimentDataManager exists, e.g. when testing the tracker alone.
+        /// </summary>
+        private static float LoggerNow()
+        {
+            ExperimentDataManager mgr = ExperimentDataManager.Instance;
+            return mgr != null ? mgr.LoggerElapsed : Time.time;
+        }
+
+        private GazeObjectStats GetStats(string objectName)
         {
             if (!_stats.TryGetValue(objectName, out GazeObjectStats s))
             {
                 s = new GazeObjectStats
                 {
                     ObjectName = objectName,
-                    FirstLookTime = firstLookTime
+                    FirstLookTime = -1f
                 };
             }
             return s;
@@ -733,6 +827,16 @@ namespace CognitiveVR.Core
         private static string V(Vector3 v)
         {
             return $"({v.x.ToString("F2", Inv)};{v.y.ToString("F2", Inv)};{v.z.ToString("F2", Inv)})";
+        }
+
+        /// <summary>Inspector-editable rename rule for <see cref="ResolveName"/>.</summary>
+        [Serializable]
+        public struct NameAlias
+        {
+            [Tooltip("Resolved name as it currently appears in the logs.")]
+            public string from;
+            [Tooltip("Name it should be logged as instead.")]
+            public string to;
         }
     }
 }
