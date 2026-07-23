@@ -77,6 +77,11 @@ namespace CognitiveVR.Data
         private int _eventCount;
         private bool _sessionStarted;
         private bool _finalized;
+        // Latched at the very end of FinalizeSession. Once set, Log() drops
+        // rows instead of writing them, so nothing that happens after the
+        // participant leaves the exit zone can reach the CSV or the summary.
+        private bool _loggingClosed;
+        private string _endReason = "";
         private List<string> _finalContents = new List<string>();
         private bool _hasFinalContents;
         private float _finalSessionElapsed;
@@ -184,6 +189,9 @@ namespace CognitiveVR.Data
 
         private void Update()
         {
+            if (_loggingClosed)
+                return;
+
             if (poseSampleInterval > 0f && Time.realtimeSinceStartup >= _nextPoseSampleAt)
             {
                 _nextPoseSampleAt = Time.realtimeSinceStartup + poseSampleInterval;
@@ -198,7 +206,11 @@ namespace CognitiveVR.Data
             {
                 _writer?.Flush();
                 _gazeWriter?.Flush();
-                WriteSummary();
+
+                // After finalize the summary is already final; rewriting it here
+                // could only ever make it disagree with the CSV.
+                if (!_finalized)
+                    WriteSummary();
             }
         }
 
@@ -206,13 +218,17 @@ namespace CognitiveVR.Data
         {
             if (Instance != this) return;
 
-            // Order matters: the tracker's own OnDisable may run after this, by
-            // which point the writers are gone. Flush its totals first.
-            FinalizeSession("logger_destroyed");
+            // Fallback only. A normal run has already finalized itself at the
+            // exit zone; this catches aborted runs (headset removed, editor stop,
+            // app quit) so they still produce a complete file. The endReason
+            // field in the JSON is what tells the two apart at analysis time.
+            if (!_finalized)
+                FinalizeSession("quit");
 
             if (_writer != null)
             {
-                Log("session", "logger_stop", "", LoggerDurationSeconds, null);
+                // WriteRow, not Log: this is bookkeeping and must survive the gate.
+                WriteRow("session", "logger_stop", "", LoggerDurationSeconds, $"end_reason={_endReason}");
                 _writer.Flush();
                 _writer.Dispose();
                 _writer = null;
@@ -236,46 +252,99 @@ namespace CognitiveVR.Data
         /// </summary>
         public void FinalizeSession(string reason)
         {
+            // Idempotent. A second caller (OnDestroy, a re-entered exit zone, the
+            // SessionTimer expiring after a manual finalize) must NOT re-dump the
+            // gaze totals or rewrite the summary - that is what previously
+            // produced a second dwell_total pass disagreeing with the JSON.
+            if (_finalized)
+                return;
+
+            _finalized = true;
+            _endReason = reason;
+
+            // 1. Cut off producers that could still push rows at us. Note this
+            //    only stops them being LOGGED - a SessionTimer scheduled event
+            //    will still fire its own UnityEvents in the scene.
+            if (sessionTimer != null)
+                sessionTimer.OnScheduledEventTriggered -= HandleScheduledEvent;
+
+            // 2. Close anything still held. Writes real unselect rows through the
+            //    normal path, which is still open at this point - deliberately so.
+            CloseOpenHolds();
+
+            // 3. Close the in-progress look, emit the one and only dwell_total
+            //    pass, then stop the tracker's LateUpdate. After this call
+            //    GetResults() is frozen, so the summary below and the CSV rows
+            //    are guaranteed to be the same numbers.
             if (gazeTracker != null)
-                gazeTracker.DumpTotalsToLog();
+                gazeTracker.StopTracking();
 
-            if (!_finalized)
-            {
-                _finalized = true;
+            // 4. Snapshot the backpack NOW. By the time OnDestroy runs, the zone
+            //    may already have been torn down and would report empty.
+            _finalContents = backpack != null
+                ? new List<string>(backpack.StoredItemNames)
+                : new List<string>();
+            _hasFinalContents = true;
 
-                // Snapshot the backpack NOW. By the time OnDestroy runs, the zone
-                // may already have been torn down and would report empty.
-                _finalContents = backpack != null
-                    ? new List<string>(backpack.StoredItemNames)
-                    : new List<string>();
-                _hasFinalContents = true;
+            // Same reason: the SessionTimer may be stopped or reset by the
+            // time OnDestroy rewrites the summary, reporting 0 elapsed.
+            _finalSessionElapsed = sessionTimer != null ? sessionTimer.ElapsedTime : 0f;
 
-                // Same reason: the SessionTimer may be stopped or reset by the
-                // time OnDestroy rewrites the summary, reporting 0 elapsed.
-                _finalSessionElapsed = sessionTimer != null ? sessionTimer.ElapsedTime : 0f;
+            // Snapshot the toaster report too - the bridge may be destroyed
+            // before OnDestroy rewrites the summary.
+            if (toasterBridge != null)
+                _finalToasterSummary = toasterBridge.BuildSummary();
 
-                // Snapshot the toaster report too - the bridge may be destroyed
-                // before OnDestroy rewrites the summary.
-                if (toasterBridge != null)
-                    _finalToasterSummary = toasterBridge.BuildSummary();
+            // _guideSummary is kept live by the bridge via RegisterGuideSummary;
+            // nothing to snapshot here.
 
-                // _guideSummary is kept live by the bridge via RegisterGuideSummary;
-                // nothing to snapshot here.
+            if (windowPuddleBridge != null)
+                _finalWindowPuddleSummary = windowPuddleBridge.BuildSummary();
 
-                if (windowPuddleBridge != null)
-                    _finalWindowPuddleSummary = windowPuddleBridge.BuildSummary();
+            if (keyTaskBridge != null)
+                _finalKeyTaskSummary = keyTaskBridge.BuildSummary();
 
-                if (keyTaskBridge != null)
-                    _finalKeyTaskSummary = keyTaskBridge.BuildSummary();
-
-                Log("session", "session_end", "", sessionTimer != null ? sessionTimer.ElapsedTime : (float?)null,
-                    $"reason={reason}");
-            }
+            // 5. The closing row, then the JSON.
+            Log("session", "session_end", "", sessionTimer != null ? sessionTimer.ElapsedTime : (float?)null,
+                $"reason={reason}");
 
             WriteSummary();
 
             _writer?.Flush();
             _gazeWriter?.Flush();
+
+            // 6. Latch the log shut. Everything above has already been written.
+            _loggingClosed = true;
+
+            Debug.Log($"[{nameof(ExperimentDataManager)}] Session finalized ({reason}). " +
+                      $"Logging closed at t={LoggerElapsed.ToString("F2", Inv)}s.");
+        }
+
+        /// <summary>
+        /// Writes a closing unselect row for every item still held when the
+        /// session ended, so no hold stays open and no duration is computed
+        /// against a stale start stamp.
+        /// </summary>
+        private void CloseOpenHolds()
+        {
+            if (_selectStartTimes.Count == 0)
+                return;
+
+            float now = LoggerElapsed;
+            var stillHeld = new List<string>(_selectStartTimes.Keys);
+
+            foreach (string itemName in stillHeld)
+            {
+                float startedAt = _selectStartTimes[itemName];
+                float held = Mathf.Max(0f, now - startedAt);
+
+                GetStats(itemName).totalHeldSeconds += held;
+
+                Log("interaction", "unselect", itemName, held,
+                    $"held_s={held.ToString("F3", Inv)}|closed_by=session_end");
+            }
+
+            _selectStartTimes.Clear();
         }
 
         // ------------------------------------------------------------------ //
@@ -309,7 +378,9 @@ namespace CognitiveVR.Data
 
             if (_selectStartTimes.TryGetValue(itemName, out float startedAt))
             {
-                held = now - startedAt;
+                // Clamped: a negative duration means the start was stamped on a
+                // different clock, and a negative must never reach the CSV.
+                held = Mathf.Max(0f, now - startedAt);
                 _selectStartTimes.Remove(itemName);
                 GetStats(itemName).totalHeldSeconds += held.Value;
             }
@@ -438,6 +509,24 @@ namespace CognitiveVR.Data
         /// </summary>
         public void Log(string category, string eventName, string objectName, float? value, string details)
         {
+            if (_loggingClosed)
+            {
+                // Deliberately noisy: if something is still firing after the exit
+                // zone you want to see it in the Console, not silently lose it.
+                Debug.LogWarning($"[{nameof(ExperimentDataManager)}] Dropped post-session row: " +
+                                 $"{category}/{eventName} {objectName} {details}");
+                return;
+            }
+
+            WriteRow(category, eventName, objectName, value, details);
+        }
+
+        /// <summary>
+        /// Unconditional row write. Bypasses the post-session gate, so only
+        /// logger bookkeeping (logger_stop) should use it.
+        /// </summary>
+        private void WriteRow(string category, string eventName, string objectName, float? value, string details)
+        {
             StreamWriter target = SelectWriter(category);
             if (target == null) return;
 
@@ -546,6 +635,7 @@ namespace CognitiveVR.Data
                 participantId = participantId,
                 startedAtIso = _startedAt.ToString("yyyy-MM-dd HH:mm:ss", Inv),
                 writtenAtIso = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", Inv),
+                endReason = string.IsNullOrEmpty(_endReason) ? "in_progress" : _endReason,
                 loggerDurationSeconds = LoggerDurationSeconds,
                 sessionElapsedSeconds = _hasFinalContents
                     ? _finalSessionElapsed
@@ -671,6 +761,10 @@ namespace CognitiveVR.Data
             public string participantId;
             public string startedAtIso;
             public string writtenAtIso;
+            /// <summary>"exit_with_backpack", "manual", "session_timer" = complete run. "quit" = aborted.</summary>
+            public string endReason;
+            /// <summary>Which window the gaze/hold numbers cover. Removes any ambiguity at analysis time.</summary>
+            public string gazeWindow = "logger_start..session_end";
             public float loggerDurationSeconds;
             public float sessionElapsedSeconds;
             public int totalEvents;

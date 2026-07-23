@@ -160,6 +160,12 @@ namespace CognitiveVR.Core
         public IReadOnlyList<GazeObjectStats> Registry => _registry;
 
         /// <summary>
+        /// True once <see cref="StopTracking"/> has run. Gaze is frozen at its
+        /// session-end values and no further rows will be written.
+        /// </summary>
+        public bool IsTrackingStopped => _trackingStopped;
+
+        /// <summary>
         /// The transform the gaze ray comes out of. Explicit assignment wins,
         /// otherwise Camera.main.
         /// </summary>
@@ -193,6 +199,11 @@ namespace CognitiveVR.Core
         private bool _totalsDirty;
         private int _dumpPass;
 
+        // Latched by StopTracking() at session end. Once set, LateUpdate stops
+        // raycasting and the OnDisable / OnApplicationPause auto-dumps are
+        // suppressed, so exactly one dwell_total pass is ever written.
+        private bool _trackingStopped;
+
         // Freeze state. The anchor is the pose the player has been holding;
         // movement is drift away from it, not per-frame delta.
         private Vector3 _anchorPos;
@@ -224,6 +235,12 @@ namespace CognitiveVR.Core
             _gazePositionAction.action?.Disable();
             _gazeRotationAction.action?.Disable();
 
+            // If the session already closed itself, everything has been flushed
+            // and the log is shut. Dumping again here is what produced the
+            // spurious "pass=2" totals that disagreed with the JSON summary.
+            if (_trackingStopped)
+                return;
+
             EndCurrentLook();
 
             if (_autoDumpTotals && _totalsDirty)
@@ -239,12 +256,16 @@ namespace CognitiveVR.Core
         private void OnApplicationPause(bool paused)
         {
             // Quest apps can be killed while backgrounded - get the totals out.
-            if (paused && _autoDumpTotals && _totalsDirty)
+            if (paused && !_trackingStopped && _autoDumpTotals && _totalsDirty)
                 DumpTotalsToLog();
         }
 
         private void LateUpdate()
         {
+            // Session is over: no more raycasts, no more dwell accumulation.
+            if (_trackingStopped)
+                return;
+
             UpdateGaze();
 
             if (_detectFreezes)
@@ -556,6 +577,46 @@ namespace CognitiveVR.Core
         }
 
         /// <summary>
+        /// Closes the session cleanly: ends the look that is in progress (so its
+        /// gaze_exit row and its seconds are not lost), closes an open freeze,
+        /// writes the single dwell_total pass, and then latches tracking off so
+        /// LateUpdate stops raycasting.
+        ///
+        /// Called by ExperimentDataManager.FinalizeSession. After this returns,
+        /// GetResults() is final and will match the dwell_total rows exactly -
+        /// which is what makes the CSV and the JSON summary agree.
+        /// </summary>
+        public void StopTracking()
+        {
+            if (_trackingStopped)
+                return;
+
+            // Fold the in-progress look into the totals first. This must happen
+            // BEFORE the latch, because EndCurrentLook writes a gaze_exit row.
+            EndCurrentLook();
+
+            // Same for a freeze that is still open, so freeze_summary is final.
+            if (_isFrozen)
+            {
+                _isFrozen = false;
+                OnFreezeEnded?.Invoke(_currentIdleTime, _freezeStartPosition);
+
+                if (_logToDataManager)
+                {
+                    ExperimentDataManager.Instance?.Log("freeze", "freeze_end", _freezeStartObject,
+                        _currentIdleTime, $"gaze_pos={V(_freezeStartPosition)}|closed_by=session_end");
+                }
+            }
+
+            _currentIdleTime = 0f;
+
+            DumpTotalsToLog();
+
+            _trackingStopped = true;
+            _currentlyLookingAt = "";
+        }
+
+        /// <summary>
         /// Writes one "gaze / dwell_total" row per object plus a
         /// "freeze / freeze_summary" row to the ExperimentDataManager. Safe to
         /// call any time; also wired to OnDisable and OnApplicationPause when
@@ -613,6 +674,7 @@ namespace CognitiveVR.Core
 
             _totalsDirty = false;
             _dumpPass = 0;
+            _trackingStopped = false;
         }
 
         // ------------------------------------------------------------------ //

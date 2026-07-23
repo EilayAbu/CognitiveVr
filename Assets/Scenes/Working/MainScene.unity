@@ -1607,6 +1607,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4208036053595098, guid: 45160131b2685e34ca32858b6d6d2dfa, type: 3}
   m_PrefabInstance: {fileID: 182350668}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &184200690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 184200691}
+  - component: {fileID: 184200692}
+  m_Layer: 0
+  m_Name: Foodbox Gaze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &184200691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184200690}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1753917442}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &184200692
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184200690}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7833612, y: 0.55042416, z: 0.56585735}
+  m_Center: {x: -0.026006699, y: 0.24869841, z: -0.016870672}
 --- !u!1 &189066576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7922285821505399939, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
@@ -2145,6 +2198,11 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!4 &249482141 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7232164554413711188, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
+  m_PrefabInstance: {fileID: 1868555416}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &250680558
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,6 +3396,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4680597426246073374, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: m_Name
+      value: sendwich
+      objectReference: {fileID: 0}
     - target: {fileID: 4771200758581805565, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.9463608
@@ -3377,6 +3439,10 @@ PrefabInstance:
     - target: {fileID: 4771200758581805565, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975573625650651955, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: m_Name
+      value: Sendwich Gaze
       objectReference: {fileID: 0}
     - target: {fileID: 6971117305300726095, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -4000,6 +4066,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4680597426246073374, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 359896944}
+    - targetCorrespondingSourceObject: {fileID: 5975573625650651955, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1103499214}
   m_SourcePrefab: {fileID: 100100000, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
 --- !u!114 &359896940 stripped
 MonoBehaviour:
@@ -4565,7 +4634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8753802410830898768, guid: 89a23df635cd7fd479aa9a8c184faa26, type: 3}
       propertyPath: m_Name
-      value: PillBottle2
+      value: MedicineGaze
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4600,7 +4669,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -6465,6 +6534,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4357648352814910, guid: 8e6079fea218dbe4583c2ad5696a39d5, type: 3}
   m_PrefabInstance: {fileID: 615656693}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &630104650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 630104651}
+  - component: {fileID: 630104652}
+  m_Layer: 9
+  m_Name: Phone Gaze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &630104651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630104650}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 127944573824485324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &630104652
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630104650}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2442887, y: 0.9441166, z: 1}
+  m_Center: {x: 0.2396971, y: 0.054855358, z: 0}
 --- !u!1001 &633348955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7569,7 +7691,10 @@ PrefabInstance:
       objectReference: {fileID: 359896940}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 34740538353868533, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 184200691}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4662812201562109299, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
       insertIndex: -1
@@ -11215,11 +11340,90 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6903557532094659035, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
   m_PrefabInstance: {fileID: 7764317389931646544}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1083644299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1083644300}
+  - component: {fileID: 1083644301}
+  m_Layer: 0
+  m_Name: Key Gaze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1083644300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083644299}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1490151787}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1083644301
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083644299}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.026690448, y: 0.0076206923, z: 0.040145766}
+  m_Center: {x: -0.0016297546, y: -0.0006389618, z: 0.009924606}
 --- !u!1 &1097269140 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
   m_PrefabInstance: {fileID: 1463268655}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1103499212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5975573625650651955, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+  m_PrefabInstance: {fileID: 359896939}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1103499214
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103499212}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.37072682, y: 0.11049056, z: 0.36147863}
+  m_Center: {x: -0.008953324, y: 0.036502577, z: 0.010098903}
 --- !u!1 &1109196390
 GameObject:
   m_ObjectHideFlags: 0
@@ -13300,7 +13504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 493cc28d6b0974aee90f65dd172f8c88, type: 3}
       propertyPath: m_Name
-      value: GeneralGamingHeadset-FBX
+      value: Headset Gaze
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13315,6 +13519,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 493cc28d6b0974aee90f65dd172f8c88, type: 3}
   m_PrefabInstance: {fileID: 1325451281}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1327821480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1327821481}
+  - component: {fileID: 1327821482}
+  m_Layer: 0
+  m_Name: Water Bottle Gaze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1327821481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327821480}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 249482141}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1327821482
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327821480}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06598753, y: 0.2, z: 0.063224375}
+  m_Center: {x: 0.0032300055, y: 0, z: 0.0003784597}
 --- !u!1001 &1328270260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13572,7 +13829,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.WindowPuddleTaskBridge
   windowController: {fileID: 1832525613}
-  doorStateEvents: {fileID: 1832525615}
   puddle: {fileID: 728712914}
   sessionTimer: {fileID: 965045159}
   logName: RainTask
@@ -14246,7 +14502,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.336028, y: 0.3025123, z: 1.2912118}
   m_Center: {x: -0.6742212, y: 0.14881629, z: 0.0031417608}
@@ -14843,6 +15099,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!4 &1490151787 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2655394808490363447, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1493401437 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 493cc28d6b0974aee90f65dd172f8c88, type: 3}
@@ -14863,7 +15124,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -15064,7 +15325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7539617643218902078, guid: b4946278d85e545a5a3426cd92d87c5b, type: 3}
       propertyPath: m_Name
-      value: "\u05D1"
+      value: WalletGaze
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15099,9 +15360,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.06108734, y: 0.016360879, z: 0.06619692}
   m_Center: {x: -0.036750898, y: 0.007468164, z: 0}
@@ -16281,9 +16542,9 @@ MonoBehaviour:
   sessionTimer: {fileID: 965045159}
   gazeTracker: {fileID: 1002337703}
   backpack: {fileID: 1115826131}
-  toasterBridge: {fileID: 0}
-  windowPuddleBridge: {fileID: 0}
-  keyTaskBridge: {fileID: 0}
+  toasterBridge: {fileID: 359896947}
+  windowPuddleBridge: {fileID: 1347619570}
+  keyTaskBridge: {fileID: 6311198162863902259}
   poseSampleInterval: 1
 --- !u!4 &1600710856
 Transform:
@@ -17629,7 +17890,8 @@ PrefabInstance:
       propertyPath: enableDebugLogs
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6449303923237955856, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
@@ -18175,6 +18437,11 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!4 &1753917442 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 34740538353868533, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
+  m_PrefabInstance: {fileID: 752390977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1767120069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18928,7 +19195,9 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  doorStateEvents: {fileID: 1832525615}
+  windowPivot: {fileID: 0}
+  openAngleThreshold: 45
+  closedAngleThreshold: 8
   OnRequestOpen:
     m_PersistentCalls:
       m_Calls:
@@ -19090,7 +19359,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 951089203711257883, guid: 68c6378d41c8efd4eb04d8898a3f06ef, type: 3}
       propertyPath: m_Name
-      value: Speaker Variant
+      value: Speaker Variant Gaze
       objectReference: {fileID: 0}
     - target: {fileID: 952692001428242125, guid: 68c6378d41c8efd4eb04d8898a3f06ef, type: 3}
       propertyPath: m_LocalScale.x
@@ -19177,7 +19446,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -19518,7 +19787,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7232164554413711188, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1327821481}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8923645764558780387, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
       insertIndex: -1
@@ -23923,7 +24195,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7245726159278663635, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 630104651}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3306443841478427267, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       insertIndex: -1
@@ -23961,6 +24236,11 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!4 &127944573824485324 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7245726159278663635, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+  m_PrefabInstance: {fileID: 127944573824485320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &263374364880081887
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25524,7 +25804,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2655394808490363447, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1083644300}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3787894412627917875, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       insertIndex: -1
