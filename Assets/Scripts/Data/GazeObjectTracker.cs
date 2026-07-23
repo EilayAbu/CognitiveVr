@@ -237,6 +237,7 @@ namespace CognitiveVR.Core
         private Vector3 _freezeStartPosition;
         private string _freezeStartObject = "";
         private bool _wasTrackingLastFrame;
+        private bool _poseSourceAnnounced;
 
         // ------------------------------------------------------------------ //
         // Lifecycle
@@ -521,19 +522,34 @@ namespace CognitiveVR.Core
         }
 
         /// <summary>
-        /// Reads the pose used for movement comparison: bound eye-gaze actions if
-        /// present, otherwise the head transform.
+        /// Reads the pose used for movement comparison: live eye-gaze actions if
+        /// usable, otherwise the head transform.
+        ///
+        /// "Usable" means the actions actually resolve to controls on a real
+        /// device. An InputActionProperty left unbound in the Inspector is NOT
+        /// null - it is an empty action that reads a constant Vector3.zero and a
+        /// degenerate (0,0,0,0) quaternion. Quaternion.Angle against a degenerate
+        /// quaternion returns 180 degrees, so the old null-check made every frame
+        /// look like movement and no freeze was ever detected.
         /// </summary>
         private bool TryReadPose(out Vector3 pos, out Quaternion rot)
         {
             InputAction posAction = _gazePositionAction.action;
             InputAction rotAction = _gazeRotationAction.action;
 
-            if (posAction != null && rotAction != null)
+            if (posAction != null && rotAction != null &&
+                posAction.controls.Count > 0 && rotAction.controls.Count > 0)
             {
                 pos = posAction.ReadValue<Vector3>();
                 rot = rotAction.ReadValue<Quaternion>();
-                return true;
+
+                // A degenerate quaternion means the device produced no real
+                // sample this frame; fall through to the head transform.
+                if (rot.x * rot.x + rot.y * rot.y + rot.z * rot.z + rot.w * rot.w > 0.001f)
+                {
+                    WarnPoseSourceOnce("eye-gaze input actions");
+                    return true;
+                }
             }
 
             Transform eye = CenterEye;
@@ -544,9 +560,23 @@ namespace CognitiveVR.Core
                 return false;
             }
 
+            WarnPoseSourceOnce("head transform (CenterEye)");
             pos = eye.position;
             rot = eye.rotation;
             return true;
+        }
+
+        /// <summary>
+        /// Logs which pose source freeze detection ended up using, once per
+        /// session, so experiment logs make the measurement source explicit.
+        /// </summary>
+        private void WarnPoseSourceOnce(string source)
+        {
+            if (_poseSourceAnnounced)
+                return;
+
+            _poseSourceAnnounced = true;
+            Debug.Log($"[{nameof(GazeObjectTracker)}] Freeze detection pose source: {source}.", this);
         }
 
         /// <summary>
@@ -563,6 +593,17 @@ namespace CognitiveVR.Core
             if (!_wasTrackingLastFrame)
             {
                 _wasTrackingLastFrame = true;
+                SetAnchor(pos, rot);
+                return true;
+            }
+
+            // A degenerate anchor rotation (e.g. read before tracking was live)
+            // makes Quaternion.Angle report 180 degrees forever, which would
+            // register as movement every frame. Re-anchor and start over.
+            float anchorRotSqr = _anchorRot.x * _anchorRot.x + _anchorRot.y * _anchorRot.y +
+                                 _anchorRot.z * _anchorRot.z + _anchorRot.w * _anchorRot.w;
+            if (anchorRotSqr < 0.001f)
+            {
                 SetAnchor(pos, rot);
                 return true;
             }
