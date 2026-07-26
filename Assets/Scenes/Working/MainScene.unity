@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 2225f911b0bc10e4c84d36f23e6f597f, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 5b40f0e0f6f604b2e9f0667be6eddcff, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 35595776}
   - component: {fileID: 35595775}
   m_Layer: 0
-  m_Name: redLight (1)
+  m_Name: Grey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3454,11 +3454,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 97648659907749748, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 518034544426252585, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1462164827888868457, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _throwWhenUnselected
@@ -10440,6 +10440,18 @@ PrefabInstance:
     - target: {fileID: 7114584106185522999, guid: 146b394f487fd47dfbbb04a0ad3c8e91, type: 3}
       propertyPath: lengthInSec
       value: 7.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114584106185522999, guid: 146b394f487fd47dfbbb04a0ad3c8e91, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.9292453
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114584106185522999, guid: 146b394f487fd47dfbbb04a0ad3c8e91, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.77607274
+      objectReference: {fileID: 0}
+    - target: {fileID: 7114584106185522999, guid: 146b394f487fd47dfbbb04a0ad3c8e91, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
