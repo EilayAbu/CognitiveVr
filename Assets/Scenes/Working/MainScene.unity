@@ -303,12 +303,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35595773}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0085, y: 0.0085, z: 0.0085}
+  m_LocalRotation: {x: 0.35355335, y: -0.61237246, z: 0.35355335, w: 0.61237246}
+  m_LocalPosition: {x: -0.0082411785, y: 0.0043823523, z: -0.0030000024}
+  m_LocalScale: {x: 0.0004999999, y: 0.00049999997, z: 0.0005}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 359896941}
+  m_Father: {fileID: 359896942}
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!136 &35595775
 CapsuleCollider:
@@ -3754,11 +3754,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 97648659907749748, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 518034544426252585, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1462164827888868457, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _throwWhenUnselected
@@ -3839,7 +3839,7 @@ PrefabInstance:
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _powerIndicatorParent
       value: 
-      objectReference: {fileID: 795801381}
+      objectReference: {fileID: 359896941}
     - target: {fileID: 8862131710476740823, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: _onWellDone.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -4428,8 +4428,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4771200758581805565, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1920925490}
-    - targetCorrespondingSourceObject: {fileID: 8321669900693040279, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
-      insertIndex: -1
+    - targetCorrespondingSourceObject: {fileID: 4771200758581805565, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      insertIndex: 8
       addedObject: {fileID: 35595774}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7295833320737722201, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
@@ -4453,9 +4453,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfd099939b016c4e99a6b3c4d30fbe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ToasterController
---- !u!4 &359896941 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8321669900693040279, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+--- !u!1 &359896941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 97648659907749748, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
   m_PrefabInstance: {fileID: 359896939}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &359896942 stripped
