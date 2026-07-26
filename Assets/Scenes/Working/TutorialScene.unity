@@ -955,6 +955,7 @@ GameObject:
   - component: {fileID: 253178545}
   - component: {fileID: 253178547}
   - component: {fileID: 253178546}
+  - component: {fileID: 253178548}
   m_Layer: 6
   m_Name: first time instructions
   m_TagString: Untagged
@@ -1143,7 +1144,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: cf42f2b49757ca241ac2b684f6d828c7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1269,6 +1270,37 @@ MonoBehaviour:
   overlapMask: 0
   compositionMode: 2
   _overlayEnabled: 1
+--- !u!114 &253178548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253178540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791cecb6c7c536e4c9e0962938043d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DelayedAction
+  delay: 3
+  useUnscaledTime: 0
+  playOnEnable: 0
+  loop: 0
+  onComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 253178545}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &284608568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,7 +2825,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0ef1422dfe0b5164193b2a31e14d8cfb, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4021,8 +4053,9 @@ MonoBehaviour:
   - name: Climb
     instruction: "\u05E7\u05D7\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
       \u05D5\u05DE\u05E7\u05DE\u05D5 \u05DE\u05EA\u05D7\u05EA \u05DC\u05DB\u05E4\u05EA\u05D5\u05E8
-      \u05D4\u05D0\u05D3\u05D5\u05DD \u05DC\u05DE\u05E2\u05DC\u05D4 \u05DE\u05E9\u05DE\u05D0\u05DC
-      \u05DB\u05D3\u05D9 \u05DC\u05D4\u05DE\u05E9\u05D9\u05DA."
+      \u05D4\u05D0\u05D3\u05D5\u05DD \u05E9\u05E0\u05DE\u05E6\u05D0 \u05DC\u05DE\u05E2\u05DC\u05D4
+      \u05DE\u05E9\u05DE\u05D0\u05DC.\n\n\u05DC\u05D7\u05E6\u05D5 \u05E2\u05DC \u05D4\u05DB\u05E4\u05EA\u05D5\u05E8
+      \u05DB\u05D3\u05D9 \u05DC\u05D4\u05DE\u05E9\u05D9\u05DA"
     voiceClip: {fileID: 0}
     voiceSource: {fileID: 0}
     show:
@@ -4079,8 +4112,7 @@ MonoBehaviour:
     show:
     - {fileID: 477785364}
     hide:
-    - {fileID: 1510936613}
-    - {fileID: 1126805030}
+    - {fileID: 561922189}
     touchAny: []
     zone: {fileID: 0}
     mustEnterZone: {fileID: 0}
@@ -4177,7 +4209,7 @@ MonoBehaviour:
   _targetTransform: {fileID: 877336786}
   _maxGrabPoints: -1
   _rigidbody: {fileID: 877336781}
-  _kinematicWhileSelected: 1
+  _kinematicWhileSelected: 0
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
 --- !u!54 &877336781
@@ -4202,8 +4234,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -4222,7 +4254,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4813,8 +4845,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_Resource: {fileID: 8300000, guid: e701b43b423fe4646b0ab4e8ef84a16f, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -9611,7 +9643,7 @@ MonoBehaviour:
   _targetTransform: {fileID: 1765608408}
   _maxGrabPoints: -1
   _rigidbody: {fileID: 1765608403}
-  _kinematicWhileSelected: 1
+  _kinematicWhileSelected: 0
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
 --- !u!54 &1765608403
@@ -9636,8 +9668,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -9656,7 +9688,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -10807,6 +10839,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4674477750068995638, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705414776194366634, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5811260999413137013, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
