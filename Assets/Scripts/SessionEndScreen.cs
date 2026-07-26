@@ -38,6 +38,7 @@ namespace CognitiveVR.UI
         [TextArea(2, 4)]
         [SerializeField] private string message = "כל הכבוד! סיימת את המשימה";
         [SerializeField] private bool showMessage = true;
+        [SerializeField] private AudioSource audioEnd;
 
         [Header("Timing (seconds)")]
         [SerializeField] private float startDelay = 0f;

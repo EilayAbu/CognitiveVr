@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,6 +28,11 @@ public class DelayedAction : MonoBehaviour
     [SerializeField] private UnityEvent onComplete;
 
     private Coroutine routine;
+
+    private void Start()
+    {
+        Play();
+    }
 
     private void OnEnable()
     {
