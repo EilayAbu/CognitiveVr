@@ -17515,7 +17515,7 @@ MonoBehaviour:
     \u05D0\u05EA \u05D4\u05DE\u05E9\u05D9\u05DE\u05D4"
   showMessage: 0
   audioEnd: {fileID: 0}
-  startDelay: 0
+  startDelay: 10
   fadeToBlackDuration: 1.5
   messageFadeInDuration: 0.75
   holdDuration: -1
