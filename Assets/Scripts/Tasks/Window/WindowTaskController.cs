@@ -73,7 +73,17 @@ namespace CognitiveVR.Tasks.Window
         private void Start()
         {
             if (model.AutoOpenOnStart)
-                Invoke(nameof(RequestOpenWindow), model.OpenDelay);
+                ScheduleOpenWindow();
+        }
+
+        /// <summary>
+        /// Schedules RequestOpenWindow to run after the model's configured delay,
+        /// if auto-open is enabled.
+        /// </summary>
+        public void ScheduleOpenWindow()
+        {
+            
+            Invoke(nameof(RequestOpenWindow), model.OpenDelay);
         }
 
         private void Update()

@@ -4763,11 +4763,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c29219532d4fa04aa01e7bc83f65e3d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6568
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c29219532d4fa04aa01e7bc83f65e3d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.052
+      value: -1.055
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8c29219532d4fa04aa01e7bc83f65e3d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7191,7 +7191,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &667445937
 Transform:
   m_ObjectHideFlags: 0
@@ -16753,7 +16753,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564174853}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18578,6 +18578,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4904788206151579150, guid: c2f1754c64ea97b4b8c809defdbcbd5c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.45
+      objectReference: {fileID: 0}
     - target: {fileID: 5310854553548207900, guid: c2f1754c64ea97b4b8c809defdbcbd5c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -18593,6 +18597,14 @@ PrefabInstance:
     - target: {fileID: 7712919899092899617, guid: c2f1754c64ea97b4b8c809defdbcbd5c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997354364468541140, guid: c2f1754c64ea97b4b8c809defdbcbd5c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997354364468541140, guid: c2f1754c64ea97b4b8c809defdbcbd5c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.868
       objectReference: {fileID: 0}
     - target: {fileID: 8227744597286947609, guid: c2f1754c64ea97b4b8c809defdbcbd5c, type: 3}
       propertyPath: m_IsActive
@@ -18852,7 +18864,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d04388b6b1b243c4eb799d55780b2809, type: 2}
+  - {fileID: 2100000, guid: 4e499e77f62ac2a44a5e28c0457f0b46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20001,6 +20013,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6adda51a1854db84687c5a2dbe4aba60, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20582,7 +20598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: Window
-  trackHover: 1
+  trackHover: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -25262,7 +25278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: RequestOpenWindow
+      value: ScheduleOpenWindow
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
