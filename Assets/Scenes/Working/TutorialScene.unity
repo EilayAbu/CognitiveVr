@@ -934,13 +934,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8485313622021486982, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       insertIndex: -1
       addedObject: {fileID: 745450676}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6619952778693023293, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2852773674109873239, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
 --- !u!4 &215937478 stripped
 Transform:
@@ -3123,14 +3117,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639913203}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 787006758}
   m_Father: {fileID: 1677979610}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!65 &639913205
 BoxCollider:
   m_ObjectHideFlags: 0
