@@ -52,6 +52,7 @@ namespace CognitiveVR.Core
 
         // Events
         public event Action<ScheduledEvent> OnScheduledEventTriggered;
+        public event Action<ScheduledEvent> OnScheduledEventRescheduled;
         public event Action OnSessionStarted;
         public event Action OnSessionEnded;
         public event Action<float> OnTimeWarning;
@@ -120,6 +121,98 @@ namespace CognitiveVR.Core
                     OnScheduledEventTriggered?.Invoke(evt);
                 }
             }
+        }
+
+        /// <summary>
+        /// Finds a scheduled event by its Id. Returns null when no event matches.
+        /// </summary>
+        public ScheduledEvent GetEvent(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return null;
+
+            for (int i = 0; i < ScheduledEvents.Count; i++)
+            {
+                var evt = ScheduledEvents[i];
+                if (evt != null && evt.Id == id)
+                    return evt;
+            }
+
+            return null;
+        }
+
+        public bool TryGetEvent(string id, out ScheduledEvent evt)
+        {
+            evt = GetEvent(id);
+            return evt != null;
+        }
+
+        /// <summary>
+        /// Moves an event to fire <paramref name="delaySeconds"/> after the current
+        /// elapsed time. Use after finishing an action to chain the next event.
+        /// </summary>
+        public bool RescheduleEventFromNow(string id, float delaySeconds, bool allowRetrigger = true)
+        {
+            return SetEventTriggerTime(id, _elapsedTime + Mathf.Max(0f, delaySeconds), allowRetrigger);
+        }
+
+        /// <summary>
+        /// Adds <paramref name="offsetSeconds"/> to the event's existing trigger time.
+        /// </summary>
+        public bool ShiftEventTriggerTime(string id, float offsetSeconds, bool allowRetrigger = true)
+        {
+            var evt = GetEvent(id);
+            if (evt == null)
+            {
+                LogMissingEvent(id);
+                return false;
+            }
+
+            return SetEventTriggerTime(id, evt.TriggerTime + offsetSeconds, allowRetrigger);
+        }
+
+        /// <summary>
+        /// Sets an absolute trigger time (seconds from session start).
+        /// When <paramref name="allowRetrigger"/> is true the event may fire again
+        /// even if it already fired once.
+        /// </summary>
+        public bool SetEventTriggerTime(string id, float triggerTime, bool allowRetrigger = true)
+        {
+            var evt = GetEvent(id);
+            if (evt == null)
+            {
+                LogMissingEvent(id);
+                return false;
+            }
+
+            evt.TriggerTime = Mathf.Max(0f, triggerTime);
+            if (allowRetrigger)
+                evt.Triggered = false;
+
+            OnScheduledEventRescheduled?.Invoke(evt);
+            return true;
+        }
+
+        /// <summary>
+        /// Fires an event immediately, regardless of its trigger time.
+        /// </summary>
+        public bool TriggerEventNow(string id)
+        {
+            var evt = GetEvent(id);
+            if (evt == null)
+            {
+                LogMissingEvent(id);
+                return false;
+            }
+
+            evt.TriggerTime = _elapsedTime;
+            evt.Triggered = true;
+            OnScheduledEventTriggered?.Invoke(evt);
+            return true;
+        }
+
+        private void LogMissingEvent(string id)
+        {
+            Debug.LogWarning($"[{nameof(SessionTimer)}] No scheduled event with Id '{id}'.", this);
         }
 
         private void InitializeDefaultEvents()
