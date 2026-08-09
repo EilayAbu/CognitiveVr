@@ -66,6 +66,10 @@ namespace CognitiveVR.Tasks
         /// <summary>True while a toast is being tracked and waiting for release.</summary>
         public bool HasToastTracked => _toast != null;
 
+        /// <summary>True while this specific toast root is tracked inside the box.</summary>
+        public bool IsTracking(GameObject toast) =>
+            _toast != null && toast != null && _toast == toast;
+
         private GameObject _toast;
         private Grabbable _grabbable;
         private Rigidbody _toastRigidbody;

@@ -31,6 +31,13 @@ namespace CognitiveVR.Tasks
         private bool _originalIsKinematic;
         private bool _isFrozen;
 
+        /// <summary>True while a toast is currently tracked inside this zone.</summary>
+        public bool IsTrackingToast => _toast != null;
+
+        /// <summary>True while this specific toast root is tracked inside the zone.</summary>
+        public bool IsTracking(GameObject toast) =>
+            _toast != null && toast != null && _toast == toast;
+
         private void Awake()
         {
             _controller = GetComponentInParent<ToasterController>();
@@ -138,6 +145,17 @@ namespace CognitiveVR.Tasks
 
             if (enableDebugLogs)
                 Debug.Log($"[ToasterTriggerZone] Snapped toast '{_toast.name}' into place.", _toast);
+        }
+
+        /// <summary>
+        /// Unfreezes a snapped toast so an external tool (e.g. spatula) can pick
+        /// it up without waiting for a hand Select on the toast Grabbable.
+        /// Does not clear tracking or notify exit - that still happens when the
+        /// toast leaves the trigger.
+        /// </summary>
+        public void ReleaseSnapForPickup()
+        {
+            UnfreezeToast();
         }
 
         private void UnfreezeToast()
