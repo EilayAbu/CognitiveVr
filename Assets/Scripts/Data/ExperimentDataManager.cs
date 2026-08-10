@@ -464,6 +464,17 @@ namespace CognitiveVR.Data
             Log("interaction", "item_dropped", itemName, impactSpeed, details);
         }
 
+        /// <summary>
+        /// Flags an item as important (or not) in the JSON summary. Called once by
+        /// ItemUsageTracker.OnEnable with its Inspector-set value; does not write a
+        /// CSV row on its own - it just tags whatever ItemSummary the item ends up
+        /// with. Safe to call before any interaction is logged for that item.
+        /// </summary>
+        public void SetItemImportant(string itemName, bool important)
+        {
+            GetStats(itemName).isImportant = important;
+        }
+
         /// <summary>Convenience for simple UI / poke buttons wired in the Inspector.</summary>
         public void LogButtonPress(string buttonName)
         {
@@ -794,6 +805,8 @@ namespace CognitiveVR.Data
             public int backpackOutCount;
             public bool inBackpackAtEnd;
             public int dropCount;
+            /// <summary>Inspector flag set on the item's ItemUsageTracker. Default false.</summary>
+            public bool isImportant;
 
             // Looking. Times are t_logger_s. lookCount counts registered
             // fixations (>= Min Look Duration); glanceCount counts shorter hits.

@@ -2361,6 +2361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -2498,6 +2499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -3171,6 +3173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 1
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -5274,6 +5277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -6419,6 +6423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -9835,6 +9840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -11584,6 +11590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -14011,6 +14018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 1
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -17920,6 +17928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 1
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -18270,6 +18279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -22636,6 +22646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 1
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -23692,6 +23703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: Window
   trackHover: 0
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -25124,6 +25136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 1
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -26175,6 +26188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 1
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -27819,6 +27833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: Window
   trackHover: 0
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -30662,6 +30677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -32290,6 +32306,10 @@ PrefabInstance:
       value: chair&keymission
       objectReference: {fileID: 0}
     - target: {fileID: 5373057828212556911, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: isImportant
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373057828212556911, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: floorLayers.m_Bits
       value: 256
       objectReference: {fileID: 0}
@@ -32648,6 +32668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Data.ItemUsageTracker
   overrideItemName: 
   trackHover: 1
+  isImportant: 0
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2

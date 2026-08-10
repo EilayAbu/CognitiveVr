@@ -27,6 +27,9 @@ namespace CognitiveVR.Data
         [Tooltip("Also log hover enter/exit (hand approaching the item). Enables the hover_to_select hesitation metric.")]
         [SerializeField] private bool trackHover = true;
 
+        [Tooltip("Flag this item as important for analysis (e.g. a key task object). Purely descriptive - written once to the item's row/summary, does not change what gets logged.")]
+        [SerializeField] private bool isImportant = false;
+
         [Header("Floor Contact")]
         [Tooltip("Log an item_dropped row when this item hits the floor.")]
         [SerializeField] private bool trackFloorContact = true;
@@ -68,6 +71,9 @@ namespace CognitiveVR.Data
                 return _itemName;
             }
         }
+
+        /// <summary>Whether this item is flagged as important for analysis (Inspector-set, default false).</summary>
+        public bool IsImportant => isImportant;
 
         private static ExperimentDataManager Manager => ExperimentDataManager.Instance;
 
@@ -112,6 +118,11 @@ namespace CognitiveVR.Data
         {
             _selectCount = 0;
             _hoverCount = 0;
+
+            // Registered here rather than Awake: Unity does not guarantee this
+            // runs after ExperimentDataManager.Awake (which sets Instance), but
+            // it does run all Awakes before any OnEnable for scene objects.
+            Manager?.SetItemImportant(_itemName, isImportant);
 
             foreach (IInteractableView view in _views)
             {
