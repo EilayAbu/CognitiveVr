@@ -35,6 +35,7 @@ TagManager:
   - 'ChairZone '
   - ChairZone
   - Sponge
+  - Mop
   layers:
   - Default
   - TransparentFX
@@ -50,8 +51,8 @@ TagManager:
   - Chair
   - BackPACK
   - Laptop
-  - 
-  - 
+  - Sponge
+  - Mop
   - 
   - 
   - 
