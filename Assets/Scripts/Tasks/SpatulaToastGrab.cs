@@ -12,6 +12,9 @@ namespace CognitiveVR.Tasks
     /// box. Hand grab on the toast stays available when the spatula is not
     /// carrying it.
     ///
+    /// While carrying toast, the toast is NOT parented (avoids scale corruption
+    /// under non-uniform spatula tip hierarchy). It follows the attach point pose
+    /// each LateUpdate via position/rotation only.
     /// While carrying toast, if it enters the lunch box or toaster zone it is
     /// placed automatically (seal / snap) without needing to release the spatula.
     /// After any transfer (attach or place), the reverse transfer is blocked until
@@ -65,7 +68,6 @@ namespace CognitiveVR.Tasks
         private bool _cachedRigidbodyState;
         private bool _originalUseGravity;
         private bool _originalIsKinematic;
-        private Vector3 _originalLossyScale = Vector3.one;
 
         // After picking toast up inside a placement zone, ignore that zone for
         // auto-place until the toast fully leaves it once.
@@ -129,6 +131,11 @@ namespace CognitiveVR.Tasks
 
             UpdateAutoPlaceSuppression();
             TryAutoPlaceAttachedToast();
+        }
+
+        private void LateUpdate()
+        {
+            FollowAttachedToastPose();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -283,17 +290,21 @@ namespace CognitiveVR.Tasks
             CacheAndFreezeRigidbody();
             DisableToastGrabInteractables(toastRoot);
 
-            // Parent tip/spatula often has a non-1 scale; keep the toast's world size.
-            _originalLossyScale = _attachedToast.transform.lossyScale;
-
-            Transform attach = _attachPoint != null ? _attachPoint : transform;
-            _attachedToast.transform.SetParent(attach, worldPositionStays: false);
-            _attachedToast.transform.localPosition = Vector3.zero;
-            _attachedToast.transform.localRotation = Quaternion.identity;
-            SetWorldScale(_attachedToast.transform, _originalLossyScale);
+            // Do not parent under the spatula tip — non-uniform tip/cup scale
+            // corrupts toast localScale. Follow pose in LateUpdate instead.
+            FollowAttachedToastPose();
 
             if (_enableDebugLogs)
                 Debug.Log($"[SpatulaToastGrab] Attached toast '{_attachedToast.name}'.", _attachedToast);
+        }
+
+        private void FollowAttachedToastPose()
+        {
+            if (_attachedToast == null)
+                return;
+
+            Transform attach = _attachPoint != null ? _attachPoint : transform;
+            _attachedToast.transform.SetPositionAndRotation(attach.position, attach.rotation);
         }
 
         private void UpdateAutoPlaceSuppression()
@@ -397,9 +408,6 @@ namespace CognitiveVR.Tasks
             if (toast == null)
                 return;
 
-            toast.transform.SetParent(null, worldPositionStays: true);
-            // Re-apply in case unparenting under a scaled hierarchy left a tiny epsilon drift.
-            SetWorldScale(toast.transform, _originalLossyScale);
             RestoreToastGrabInteractables();
 
             bool placed = false;
@@ -507,7 +515,6 @@ namespace CognitiveVR.Tasks
             _attachedToast = null;
             _attachedToastRigidbody = null;
             _cachedRigidbodyState = false;
-            _originalLossyScale = Vector3.one;
             _suppressToasterAutoPlace = false;
             _suppressLunchBoxAutoPlace = false;
             _toasterLeftTimer = 0f;
@@ -515,34 +522,6 @@ namespace CognitiveVR.Tasks
             _toasterReadyTimer = 0f;
             _lunchBoxReadyTimer = 0f;
             // Keep _blockAttachToast / tip-exit settle - survives until tip exits that toast.
-        }
-
-        /// <summary>
-        /// Sets <paramref name="target"/> localScale so its world (lossy) scale
-        /// matches <paramref name="worldScale"/> under the current parent.
-        /// </summary>
-        private static void SetWorldScale(Transform target, Vector3 worldScale)
-        {
-            if (target == null)
-                return;
-
-            Transform parent = target.parent;
-            if (parent == null)
-            {
-                target.localScale = worldScale;
-                return;
-            }
-
-            Vector3 parentScale = parent.lossyScale;
-            target.localScale = new Vector3(
-                DivideScale(worldScale.x, parentScale.x),
-                DivideScale(worldScale.y, parentScale.y),
-                DivideScale(worldScale.z, parentScale.z));
-        }
-
-        private static float DivideScale(float world, float parent)
-        {
-            return Mathf.Abs(parent) < 0.0001f ? world : world / parent;
         }
     }
 }
