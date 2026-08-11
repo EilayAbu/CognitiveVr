@@ -1396,15 +1396,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5208020910940934889, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1707019471}
-    - targetCorrespondingSourceObject: {fileID: 5140177209844245597, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 4769844563418862261, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 2852773674109873239, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
 --- !u!4 &215937478 stripped
 Transform:
@@ -5278,6 +5269,7 @@ MonoBehaviour:
     - {fileID: 1015271364}
     hide:
     - {fileID: 1510936613}
+    - {fileID: 2067405274}
     touchAny: []
     zone: {fileID: 0}
     mustEnterZone: {fileID: 0}
