@@ -10370,6 +10370,8 @@ MonoBehaviour:
   - {fileID: 783986837}
   - {fileID: 522731958}
   - {fileID: 541552413}
+  - {fileID: 2076036252}
+  - {fileID: 1548926221}
 --- !u!1 &795801381 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 518034544426252585, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
@@ -19915,7 +19917,7 @@ Transform:
   m_GameObject: {fileID: 1548926221}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.37942, y: 1.1088, z: -0.94295}
+  m_LocalPosition: {x: 0.521, y: 1.1088, z: -1.198}
   m_LocalScale: {x: 0.1681609, y: 0.019810015, z: 0.055678125}
   m_ConstrainProportionsScale: 0
   m_Children:
