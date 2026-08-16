@@ -69,7 +69,7 @@ namespace CognitiveVR.Data
         private static readonly CultureInfo Inv = CultureInfo.InvariantCulture;
 
         private const string CsvHeader =
-            "real_time,t_logger_s,t_session_s,wall_clock,category,event,object,value,details,important";
+            "real_time,t_logger_s,t_session_s,wall_clock,category,event,object,value,details,BagCollection_Measurement,initiative_measurment";
 
         private StreamWriter _writer;
         private StreamWriter _gazeWriter;
@@ -465,14 +465,18 @@ namespace CognitiveVR.Data
         }
 
         /// <summary>
-        /// Flags an item as important (or not) in the JSON summary. Called once by
-        /// ItemUsageTracker.OnEnable with its Inspector-set value; does not write a
-        /// CSV row on its own - it just tags whatever ItemSummary the item ends up
-        /// with. Safe to call before any interaction is logged for that item.
+        /// Tags an item with its two measurement flags (bag-collection and
+        /// initiative). Called once by ItemUsageTracker.OnEnable with its
+        /// Inspector-set values; does not write a CSV row on its own - it just
+        /// tags whatever ItemSummary the item ends up with, and those tags then
+        /// appear in the two trailing CSV columns and the JSON summary. Safe to
+        /// call before any interaction is logged for that item.
         /// </summary>
-        public void SetItemImportant(string itemName, bool important)
+        public void SetItemMeasurements(string itemName, bool bagCollectionMeasurement, bool initiativeMeasurement)
         {
-            GetStats(itemName).isImportant = important;
+            ItemSummary stats = GetStats(itemName);
+            stats.bagCollectionMeasurement = bagCollectionMeasurement;
+            stats.initiativeMeasurement = initiativeMeasurement;
         }
 
         /// <summary>Convenience for simple UI / poke buttons wired in the Inspector.</summary>
@@ -609,12 +613,14 @@ namespace CognitiveVR.Data
             string valueStr = value.HasValue ? value.Value.ToString("F3", Inv) : "";
 
             // "true"/"false" for a known item row, "" for rows with no item
-            // (session, pose, custom). Matches the trailing header column.
-            string important = ImportantColumnFor(objectName);
+            // (session, pose, custom). Matches the two trailing header columns.
+            string bagCollection = BagCollectionColumnFor(objectName);
+            string initiative = InitiativeColumnFor(objectName);
 
             target.WriteLine(string.Join(",",
                 Esc(realTime), Esc(tLogger), Esc(tSession), Esc(wallClock),
-                Esc(category), Esc(eventName), Esc(objectName), Esc(valueStr), Esc(details ?? ""), Esc(important)));
+                Esc(category), Esc(eventName), Esc(objectName), Esc(valueStr), Esc(details ?? ""),
+                Esc(bagCollection), Esc(initiative)));
 
             if (logToConsole && category != "tracking" && category != "gaze")
             {
@@ -777,12 +783,21 @@ namespace CognitiveVR.Data
         }
 
         // Returns "true"/"false" if this row's object is a known item, or "" if
-        // the row has no item (session, pose, custom). Used for the CSV column.
-        private string ImportantColumnFor(string objectName)
+        // the row has no item (session, pose, custom). Used for the two
+        // trailing measurement columns.
+        private string BagCollectionColumnFor(string objectName)
         {
             if (string.IsNullOrEmpty(objectName)) return "";
             if (_itemStats.TryGetValue(objectName, out ItemSummary stats))
-                return stats.isImportant ? "true" : "false";
+                return stats.bagCollectionMeasurement ? "true" : "false";
+            return "";
+        }
+
+        private string InitiativeColumnFor(string objectName)
+        {
+            if (string.IsNullOrEmpty(objectName)) return "";
+            if (_itemStats.TryGetValue(objectName, out ItemSummary stats))
+                return stats.initiativeMeasurement ? "true" : "false";
             return "";
         }
 
@@ -820,7 +835,9 @@ namespace CognitiveVR.Data
             public bool inBackpackAtEnd;
             public int dropCount;
             /// <summary>Inspector flag set on the item's ItemUsageTracker. Default false.</summary>
-            public bool isImportant;
+            public bool bagCollectionMeasurement;
+            /// <summary>Inspector flag set on the item's ItemUsageTracker. Default false.</summary>
+            public bool initiativeMeasurement;
 
             // Looking. Times are t_logger_s. lookCount counts registered
             // fixations (>= Min Look Duration); glanceCount counts shorter hits.

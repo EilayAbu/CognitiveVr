@@ -27,8 +27,11 @@ namespace CognitiveVR.Data
         [Tooltip("Also log hover enter/exit (hand approaching the item). Enables the hover_to_select hesitation metric.")]
         [SerializeField] private bool trackHover = true;
 
-        [Tooltip("Flag this item as important for analysis (e.g. a key task object). Purely descriptive - written once to the item's row/summary, does not change what gets logged.")]
-        [SerializeField] private bool isImportant = false;
+        [Tooltip("Tag this item for the bag-collection measurement. Purely descriptive - written to the item's CSV rows and JSON summary, does not change what gets logged.")]
+        [SerializeField] private bool bagCollectionMeasurement = false;
+
+        [Tooltip("Tag this item for the initiative measurement. Purely descriptive - written to the item's CSV rows and JSON summary, does not change what gets logged.")]
+        [SerializeField] private bool initiativeMeasurement = false;
 
         [Header("Floor Contact")]
         [Tooltip("Log an item_dropped row when this item hits the floor.")]
@@ -72,8 +75,11 @@ namespace CognitiveVR.Data
             }
         }
 
-        /// <summary>Whether this item is flagged as important for analysis (Inspector-set, default false).</summary>
-        public bool IsImportant => isImportant;
+        /// <summary>Whether this item is tagged for the bag-collection measurement (Inspector-set, default false).</summary>
+        public bool BagCollectionMeasurement => bagCollectionMeasurement;
+
+        /// <summary>Whether this item is tagged for the initiative measurement (Inspector-set, default false).</summary>
+        public bool InitiativeMeasurement => initiativeMeasurement;
 
         private static ExperimentDataManager Manager => ExperimentDataManager.Instance;
 
@@ -122,7 +128,7 @@ namespace CognitiveVR.Data
             // Registered here rather than Awake: Unity does not guarantee this
             // runs after ExperimentDataManager.Awake (which sets Instance), but
             // it does run all Awakes before any OnEnable for scene objects.
-            Manager?.SetItemImportant(_itemName, isImportant);
+            Manager?.SetItemMeasurements(_itemName, bagCollectionMeasurement, initiativeMeasurement);
 
             foreach (IInteractableView view in _views)
             {

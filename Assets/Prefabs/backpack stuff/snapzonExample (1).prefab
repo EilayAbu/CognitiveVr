@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.Grabbable
-  _transferOnSecondSelection: 0
+  _transferOnSecondSelection: 1
   _addNewPointsToFront: 0
   _forwardElement: {fileID: 0}
   _oneGrabTransformer: {fileID: 0}
@@ -276,7 +276,7 @@ MonoBehaviour:
   _targetTransform: {fileID: 7330173000128386259}
   _maxGrabPoints: -1
   _rigidbody: {fileID: 4803241399698043381}
-  _kinematicWhileSelected: 0
+  _kinematicWhileSelected: 1
   _throwWhenUnselected: 0
   _forceKinematicDisabled: 0
 --- !u!114 &8078490972394777427
@@ -291,8 +291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd929e6a9bd458842a4ac5f362c83d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.InventoryItemMetaBridge
-  itemId: 0
+  storedScale: 0.2
+  disableWhileStored: []
   grabbable: {fileID: 7679593782855481520}
+  snapInteractor: {fileID: 0}
   enableDebugLogs: 0
 --- !u!114 &2322779962754284495
 MonoBehaviour:
