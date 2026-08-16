@@ -19755,6 +19755,7 @@ GameObject:
   - component: {fileID: 1548926223}
   - component: {fileID: 1548926222}
   - component: {fileID: 1548926229}
+  - component: {fileID: 1548926230}
   m_Layer: 0
   m_Name: Sun Glasses
   m_TagString: Untagged
@@ -19774,7 +19775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.Grabbable
-  _transferOnSecondSelection: 0
+  _transferOnSecondSelection: 1
   _addNewPointsToFront: 0
   _forwardElement: {fileID: 0}
   _oneGrabTransformer: {fileID: 0}
@@ -19807,8 +19808,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -19827,7 +19828,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -19948,6 +19949,23 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &1548926230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548926221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd929e6a9bd458842a4ac5f362c83d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.InventoryItemMetaBridge
+  storedScale: 0.2
+  disableWhileStored: []
+  grabbable: {fileID: 1548926222}
+  snapInteractor: {fileID: 0}
+  enableDebugLogs: 0
 --- !u!1 &1554263479 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 80952c8c5eda20040b0f6ea4a66ff484, type: 3}
@@ -29399,6 +29417,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 43208a0ea830c174cb7f64cb3dad5bc3, type: 3}
   m_PrefabInstance: {fileID: 2051100119}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2064460437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064460438}
+  - component: {fileID: 2064460439}
+  m_Layer: 0
+  m_Name: clockGaze
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2064460438
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064460437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -6.8}
+  m_LocalScale: {x: 327.88144, y: 169.02463, z: 15.365875}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3441484485947626858}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 104.68}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!65 &2064460439
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064460437}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &2071547279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6157800864077516953, guid: 146b394f487fd47dfbbb04a0ad3c8e91, type: 3}
@@ -29680,6 +29755,7 @@ GameObject:
   - component: {fileID: 2076036254}
   - component: {fileID: 2076036253}
   - component: {fileID: 2076036260}
+  - component: {fileID: 2076036261}
   m_Layer: 0
   m_Name: TissueBox
   m_TagString: Untagged
@@ -29699,7 +29775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.Grabbable
-  _transferOnSecondSelection: 0
+  _transferOnSecondSelection: 1
   _addNewPointsToFront: 0
   _forwardElement: {fileID: 0}
   _oneGrabTransformer: {fileID: 0}
@@ -29732,8 +29808,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -29752,7 +29828,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -29873,6 +29949,23 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &2076036261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076036252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd929e6a9bd458842a4ac5f362c83d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.InventoryItemMetaBridge
+  storedScale: 0.2
+  disableWhileStored: []
+  grabbable: {fileID: 2076036253}
+  snapInteractor: {fileID: 0}
+  enableDebugLogs: 0
 --- !u!114 &2077729397 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3425276718554526647, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
@@ -32592,6 +32685,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 157295439}
+    - targetCorrespondingSourceObject: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2064460438}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
 --- !u!224 &3441484485947626858 stripped
