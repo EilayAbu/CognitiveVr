@@ -17471,7 +17471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.BackpackItemChecklist
   requiredItems:
-  - Laptop
+  - Tablet
   - Medicine
   backpack: {fileID: 1115826131}
   rescheduler: {fileID: 1347619571}
