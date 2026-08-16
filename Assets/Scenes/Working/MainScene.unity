@@ -1544,6 +1544,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 7b63da01fb11adc4bb207d770d4076a9, type: 3}
   m_PrefabInstance: {fileID: 122899997}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &124591146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 124591147}
+  m_Layer: 0
+  m_Name: StartLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &124591147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124591146}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1.176, y: 0.058, z: -2.558}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 496040284}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &125948585
 GameObject:
   m_ObjectHideFlags: 0
@@ -3696,7 +3728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 279216426}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6789,6 +6821,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1460884762386744, guid: 1f828eb4776dd294a8f9a033704319a5, type: 3}
   m_PrefabInstance: {fileID: 1029236232}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &496040284 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
+  m_PrefabInstance: {fileID: 7764317389931646544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &502067448
 GameObject:
   m_ObjectHideFlags: 0
@@ -8279,6 +8316,52 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8637210290946620485, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
   m_PrefabInstance: {fileID: 359896939}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &659378352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4539927084851576453, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &659378356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659378352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a7676b01585ce43908639a27765dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.HandGrab.HandGrabInteractable
+  _interactorFilters: []
+  _maxInteractors: -1
+  _maxSelectingInteractors: -1
+  _data: {fileID: 0}
+  _pointableElement: {fileID: 712619831}
+  _rigidbody: {fileID: 712619832}
+  _physicsGrabbable: {fileID: 0}
+  _resetGrabOnGrabsUpdated: 1
+  _scoringModifier:
+    _positionRotationWeight: 0.8
+  _slippiness: 0
+  _supportedGrabTypes: 3
+  _pinchGrabRules:
+    _thumbRequirement: 1
+    _indexRequirement: 1
+    _middleRequirement: 1
+    _ringRequirement: 0
+    _pinkyRequirement: 0
+    _unselectMode: 0
+  _palmGrabRules:
+    _thumbRequirement: 1
+    _indexRequirement: 2
+    _middleRequirement: 2
+    _ringRequirement: 2
+    _pinkyRequirement: 1
+    _unselectMode: 0
+  _movementProvider: {fileID: 0}
+  _handAligment: 1
+  _handGrabPoses: []
 --- !u!1001 &659867666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8868,6 +8951,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.Surfaces.ColliderSurface
   _collider: {fileID: 703485556}
+--- !u!114 &712619831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8973115410173013274, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.Grabbable
+--- !u!54 &712619832 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2989906921890670786, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &712619834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6670753701486306317, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca08a014db25d64493da100eabb9c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ChairGrabState
 --- !u!1001 &719289158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15031,8 +15141,8 @@ Transform:
   m_GameObject: {fileID: 1130447459}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.03, z: 0}
-  m_LocalScale: {x: 0.07, y: 0.07, z: 0.045}
+  m_LocalPosition: {x: -0.007, y: 0.03, z: -0.0045}
+  m_LocalScale: {x: 0.04160903, y: 0.04160903, z: 0.026748665}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1123735103}
@@ -15317,7 +15427,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1155948641}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20095,7 +20205,7 @@ GameObject:
   - component: {fileID: 1596490079}
   - component: {fileID: 1596490078}
   - component: {fileID: 1596490077}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22500,7 +22610,7 @@ GameObject:
   - component: {fileID: 1739986494}
   - component: {fileID: 1739986496}
   - component: {fileID: 1739986495}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24442,7 +24552,7 @@ GameObject:
   - component: {fileID: 1860806108}
   - component: {fileID: 1860806107}
   - component: {fileID: 1860806106}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24698,7 +24808,7 @@ GameObject:
   - component: {fileID: 1877097002}
   - component: {fileID: 1877097001}
   - component: {fileID: 1877097000}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24896,28 +25006,27 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u05D0\u05EA\u05D4 \u05E0\u05DE\u05E6\u05D0 \u05DB\u05E2\u05EA \u05D1\u05D1\u05D9\u05EA\u05DA
-    \u05D5\u05DE\u05EA\u05DB\u05D5\u05E0\u05DF \u05DC\u05E6\u05D0\u05EA \u05DE\u05D4\u05D1\u05D9\u05EA
-    \u05D1\u05E2\u05D5\u05D3 \u05D6\u05DE\u05DF \u05E7\u05E6\u05E8.\r\n\r\n\u05D1\u05DE\u05D4\u05DC\u05DA
+  m_text: "\u05D0\u05EA\u05DD \u05E0\u05DE\u05E6\u05D0\u05D9\u05DD \u05DB\u05E2\u05EA
+    \u05D1\u05D1\u05D9\u05EA\u05DA \u05D5\u05DE\u05EA\u05DB\u05D5\u05E0\u05DF \u05DC\u05E6\u05D0\u05EA
+    \u05DE\u05D4\u05D1\u05D9\u05EA \u05D1\u05E2\u05D5\u05D3 \u05D6\u05DE\u05DF \u05E7\u05E6\u05E8.\r\n\r\n\u05D1\u05DE\u05D4\u05DC\u05DA
     \u05D4\u05D6\u05DE\u05DF \u05D4\u05E2\u05D5\u05DE\u05D3 \u05DC\u05E8\u05E9\u05D5\u05EA\u05DA
-    \u05E2\u05DC\u05D9\u05DA:\r\n\r\n\u05DC\u05E7\u05E8\u05D5\u05D0 \u05D0\u05EA
+    \u05E2\u05DC\u05D9\u05DB\u05DD:\r\n\r\n\u05DC\u05E7\u05E8\u05D5\u05D0 \u05D0\u05EA
     \u05E8\u05E9\u05D9\u05DE\u05EA \u05D4\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD \u05E9\u05E2\u05DC
     \u05D4\u05DE\u05E7\u05E8\u05E8.\r\n\r\n\u05DC\u05D0\u05EA\u05E8 \u05D0\u05EA
     \u05D4\u05E4\u05E8\u05D9\u05D8\u05D9\u05DD \u05E9\u05D1\u05E8\u05E9\u05D9\u05DE\u05D4
-    \u05D5\u05DC\u05D0\u05E1\u05D5\u05E3 \u05D0\u05D5\u05EA\u05DD \u05DC\u05EA\u05D9\u05E7.\r\n\r\n\u05DC\u05D4\u05DB\u05D9\u05DF
-    \u05DC\u05E2\u05E6\u05DE\u05DA \u05D8\u05D5\u05E1\u05D8 \u05DC\u05D0\u05E8\u05D5\u05D7\u05EA
-    \u05D4\u05D1\u05D5\u05E7\u05E8.\r\n\u05D1\u05DE\u05D4\u05DC\u05DA \u05D4\u05E4\u05E2\u05D9\u05DC\u05D5\u05EA
-    \u05E2\u05E9\u05D5\u05D9\u05D9\u05DD \u05DC\u05D4\u05EA\u05E7\u05D9\u05D9\u05DD
-    \u05DE\u05E1\u05E4\u05E8 \u05EA\u05E8\u05D7\u05D9\u05E9\u05D9\u05DD, \u05E2\u05DC\u05D9\u05D9\u05DA
-    \u05DC\u05D4\u05D2\u05D9\u05D1 \u05D1\u05D4\u05EA\u05D0\u05DD.\r\n\r\n\u05E4\u05E2\u05DC
-    \u05DB\u05E4\u05D9 \u05E9\u05D4\u05D9\u05D9\u05EA \u05E4\u05D5\u05E2\u05DC \u05D1\u05D1\u05D9\u05EA\u05DA
-    \u05D1\u05D7\u05D9\u05D9 \u05D4\u05D9\u05D5\u05DD\u05BE\u05D9\u05D5\u05DD, \u05D5\u05E7\u05D1\u05DC
-    \u05D4\u05D7\u05DC\u05D8\u05D5\u05EA \u05D1\u05D4\u05EA\u05D0\u05DD \u05DC\u05DE\u05D4
-    \u05E9\u05E0\u05E8\u05D0\u05D4 \u05DC\u05DA \u05D7\u05E9\u05D5\u05D1 \u05D5\u05D3\u05D7\u05D5\u05E3
-    \u05D1\u05DB\u05DC \u05E8\u05D2\u05E2.\r\n\r\n\u05D1\u05DB\u05DC \u05E9\u05DC\u05D1
-    \u05E0\u05D9\u05EA\u05DF \u05DC\u05DC\u05D7\u05D5\u05E5 \u05E2\u05DC \u05DB\u05E4\u05EA\u05D5\u05E8
-    \"\u05E2\u05D6\u05E8\u05D4\" \u05DB\u05D3\u05D9 \u05DC\u05D7\u05D6\u05D5\u05E8
-    \u05E2\u05DC \u05D4\u05D4\u05E0\u05D7\u05D9\u05D5\u05EA."
+    \u05D5\u05DC\u05D0\u05E1\u05D5\u05E3 \u05D0\u05D5\u05EA\u05DD \u05DC\u05EA\u05D9\u05E7.\r\n\r\n\u05DC\u05D4\u05DB\u05D9\u05DF 
+    \u05D8\u05D5\u05E1\u05D8 \u05DC\u05D0\u05E8\u05D5\u05D7\u05EA \u05D4\u05D1\u05D5\u05E7\u05E8.\r\n\u05D1\u05DE\u05D4\u05DC\u05DA
+    \u05D4\u05E4\u05E2\u05D9\u05DC\u05D5\u05EA \u05E2\u05E9\u05D5\u05D9\u05D9\u05DD
+    \u05DC\u05D4\u05EA\u05E7\u05D9\u05D9\u05DD \u05DE\u05E1\u05E4\u05E8 \u05EA\u05E8\u05D7\u05D9\u05E9\u05D9\u05DD,
+    \u05E2\u05DC\u05D9\u05D9\u05DA \u05DC\u05D4\u05D2\u05D9\u05D1 \u05D1\u05D4\u05EA\u05D0\u05DD.\r\n\r\n\u05E4\u05E2\u05DC\u05D5
+    \u05DB\u05E4\u05D9 \u05E9\u05D4\u05D9\u05D9\u05EA\u05DD \u05E4\u05D5\u05E2\u05DC\u05D9\u05DD
+    \u05D1\u05D1\u05D9\u05EA\u05DB\u05DD \u05D1\u05D7\u05D9\u05D9 \u05D4\u05D9\u05D5\u05DD\u05BE\u05D9\u05D5\u05DD,
+    \u05D5\u05E7\u05D1\u05DC\u05D5 \u05D4\u05D7\u05DC\u05D8\u05D5\u05EA \u05D1\u05D4\u05EA\u05D0\u05DD
+    \u05DC\u05DE\u05D4 \u05E9\u05E0\u05E8\u05D0\u05D4 \u05DC\u05DB\u05DD \u05D7\u05E9\u05D5\u05D1
+    \u05D5\u05D3\u05D7\u05D5\u05E3 \u05D1\u05DB\u05DC \u05E8\u05D2\u05E2.\r\n\r\n\u05D1\u05DB\u05DC
+    \u05E9\u05DC\u05D1 \u05E0\u05D9\u05EA\u05DF \u05DC\u05DC\u05D7\u05D5\u05E5 \u05E2\u05DC
+    \u05DB\u05E4\u05EA\u05D5\u05E8 \"\u05E2\u05D6\u05E8\u05D4\" \u05DB\u05D3\u05D9
+    \u05DC\u05D7\u05D6\u05D5\u05E8 \u05E2\u05DC \u05D4\u05D4\u05E0\u05D7\u05D9\u05D5\u05EA."
   m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: 69c77a16602981d4f8b13b30f665a297, type: 2}
   m_sharedMaterial: {fileID: 1618551924624043618, guid: 69c77a16602981d4f8b13b30f665a297, type: 2}
@@ -29032,7 +29141,7 @@ GameObject:
   - component: {fileID: 2089771469}
   - component: {fileID: 2089771468}
   - component: {fileID: 2089771467}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29195,7 +29304,7 @@ GameObject:
   - component: {fileID: 2110363453}
   - component: {fileID: 2110363452}
   - component: {fileID: 2110363451}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32514,11 +32623,11 @@ PrefabInstance:
       objectReference: {fileID: 1080199422}
     - target: {fileID: 1930232080957122054, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.397
+      value: 0.502
       objectReference: {fileID: 0}
     - target: {fileID: 1930232080957122054, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.305
+      value: -4.058
       objectReference: {fileID: 0}
     - target: {fileID: 1935635856779313697, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_LocalPosition.z
@@ -32568,6 +32677,22 @@ PrefabInstance:
       propertyPath: floorLayers.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 6035962161384970226, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035962161384970226, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 712619834}
+    - target: {fileID: 6035962161384970226, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnChairUngrabbed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6035962161384970226, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CognitiveVR.Tasks.ChairGrabState, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6284939458276148047, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.754
@@ -32616,6 +32741,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.135
       objectReference: {fileID: 0}
+    - target: {fileID: 6807270560868727151, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807270560868727151, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 712619834}
+    - target: {fileID: 6807270560868727151, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnChairUngrabbed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807270560868727151, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CognitiveVR.Tasks.ChairGrabState, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7123659092518147241, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8792106594492663717, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -32631,6 +32776,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3787894412627917875, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6311198162863902259}
+    - targetCorrespondingSourceObject: {fileID: 4539927084851576453, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 659378356}
     - targetCorrespondingSourceObject: {fileID: 5141138821769818825, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6311198162863902255}
@@ -32799,7 +32947,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 124591147}
     m_Modifications:
     - target: {fileID: 824113091687133964, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: _maxStep
@@ -32847,19 +32995,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.426
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.058
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.558
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -32867,7 +33015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -32879,7 +33027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7473621172789481844, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -32986,7 +33134,7 @@ SceneRoots:
   - {fileID: 1598272362}
   - {fileID: 463348322}
   - {fileID: 1600710856}
-  - {fileID: 7764317389931646544}
+  - {fileID: 124591147}
   - {fileID: 965045157}
   - {fileID: 1002337702}
   - {fileID: 247030206}

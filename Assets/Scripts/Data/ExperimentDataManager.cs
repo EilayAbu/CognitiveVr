@@ -69,7 +69,7 @@ namespace CognitiveVR.Data
         private static readonly CultureInfo Inv = CultureInfo.InvariantCulture;
 
         private const string CsvHeader =
-            "real_time,t_logger_s,t_session_s,wall_clock,category,event,object,value,details";
+            "real_time,t_logger_s,t_session_s,wall_clock,category,event,object,value,details,important";
 
         private StreamWriter _writer;
         private StreamWriter _gazeWriter;
@@ -608,9 +608,13 @@ namespace CognitiveVR.Data
             string wallClock = sessionTimer != null ? sessionTimer.WallClockFormatted : "";
             string valueStr = value.HasValue ? value.Value.ToString("F3", Inv) : "";
 
+            // "true"/"false" for a known item row, "" for rows with no item
+            // (session, pose, custom). Matches the trailing header column.
+            string important = ImportantColumnFor(objectName);
+
             target.WriteLine(string.Join(",",
                 Esc(realTime), Esc(tLogger), Esc(tSession), Esc(wallClock),
-                Esc(category), Esc(eventName), Esc(objectName), Esc(valueStr), Esc(details ?? "")));
+                Esc(category), Esc(eventName), Esc(objectName), Esc(valueStr), Esc(details ?? ""), Esc(important)));
 
             if (logToConsole && category != "tracking" && category != "gaze")
             {
@@ -770,6 +774,16 @@ namespace CognitiveVR.Data
                 _itemStats[itemName] = stats;
             }
             return stats;
+        }
+
+        // Returns "true"/"false" if this row's object is a known item, or "" if
+        // the row has no item (session, pose, custom). Used for the CSV column.
+        private string ImportantColumnFor(string objectName)
+        {
+            if (string.IsNullOrEmpty(objectName)) return "";
+            if (_itemStats.TryGetValue(objectName, out ItemSummary stats))
+                return stats.isImportant ? "true" : "false";
+            return "";
         }
 
         /// <summary>Vector formatted with semicolons so it never fights CSV commas.</summary>
