@@ -13263,7 +13263,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3221229183
   _hitTriggers: 1
-  _minLookDuration: 0.2
+  _minLookDuration: 0.7
   _lookAwayGrace: 0.1
   _countGlances: 1
   _ignoredNamePrefixes:
@@ -17412,6 +17412,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1347619569}
   - component: {fileID: 1347619570}
+  - component: {fileID: 1347619572}
+  - component: {fileID: 1347619571}
   m_Layer: 0
   m_Name: RainTaskManager
   m_TagString: Untagged
@@ -17453,6 +17455,54 @@ MonoBehaviour:
   puddle: {fileID: 728712914}
   sessionTimer: {fileID: 965045159}
   logName: RainTask
+--- !u!114 &1347619571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347619568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a067bd0b717351e4ca73950bf44fb993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.ScheduledEventRescheduler
+  _sessionTimer: {fileID: 965045159}
+  _targets:
+  - EventId: rain_push
+    DelaySeconds: 30
+    Mode: 0
+    AllowRetrigger: 0
+  _onlyOnce: 1
+  _verboseLogs: 1
+  _onApplied:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1347619572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347619568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb353df0f728ef64dbe055678fcec578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.BackpackItemChecklist
+  requiredItems:
+  - Laptop
+  - Medicine
+  backpack: {fileID: 1115826131}
+  rescheduler: {fileID: 1347619571}
+  oneShot: 1
+  enableDebugLogs: 1
+  onAllItemsCollected:
+    m_PersistentCalls:
+      m_Calls: []
+  onProgressChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1359698831
 GameObject:
   m_ObjectHideFlags: 0
