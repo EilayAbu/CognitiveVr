@@ -19756,7 +19756,7 @@ GameObject:
   - component: {fileID: 1548926229}
   - component: {fileID: 1548926230}
   m_Layer: 0
-  m_Name: Sun Glasses
+  m_Name: Sunglasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25516,7 +25516,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8923645764558780387, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
       propertyPath: m_Name
-      value: WatterBottle
+      value: WaterBottle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
