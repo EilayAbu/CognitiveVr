@@ -8401,7 +8401,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 223a0cbd04dd39349a6cbc88b75c3af3, type: 2}
+  - {fileID: 1618551924624043618, guid: 69c77a16602981d4f8b13b30f665a297, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8563,7 +8563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &649607310
 Transform:
   m_ObjectHideFlags: 0
@@ -33248,16 +33248,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 127944573824485331}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
@@ -33267,7 +33271,19 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
@@ -33279,7 +33295,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 127944573824485331}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 127944573824485321}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StartFlashing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: SetTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
@@ -33291,6 +33319,14 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ScheduleOpenWindow
       objectReference: {fileID: 0}
@@ -33299,7 +33335,15 @@ PrefabInstance:
       value: SetTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: StartFlashing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: FlashBlinker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UnityEngine.Animator, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
@@ -33311,7 +33355,19 @@ PrefabInstance:
       value: UnityEngine.Animator, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: FlashBlinker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: Notfication
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
       value: Notfication
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
@@ -33319,7 +33375,19 @@ PrefabInstance:
       value: Notfication
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_StringArgument
+      value: Notfication
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_StringArgument
+      value: Notfication
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onBossMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
@@ -33328,6 +33396,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      propertyPath: _onWeatherMessageButtonShown.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2134869918941842109, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
@@ -33959,6 +34035,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3306443841478427267, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       insertIndex: -1
       addedObject: {fileID: 127944573824485322}
+    - targetCorrespondingSourceObject: {fileID: 3306443841478427267, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 127944573824485331}
     - targetCorrespondingSourceObject: {fileID: 6619952778693023293, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -33999,6 +34078,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7245726159278663635, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
   m_PrefabInstance: {fileID: 127944573824485320}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &127944573824485331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127944573824485321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6347ac4007cde44943d5fd0c1a2be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashBlinker
+  target: {fileID: 171073835}
+  flashCount: 5
+  duration: 2
+  onRatio: 0.5
+  playOnStart: 0
+  useUnscaledTime: 0
+  stateWhenFinished: 0
+  onFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!224 &263374364880081887
 RectTransform:
   m_ObjectHideFlags: 0

@@ -19,8 +19,12 @@ public class MultiPressButtonEvents : MonoBehaviour
         if (debugLogs) Debug.Log($"[MultiPressButtonEvents] press #{_pressCount}");
 
         if (_pressCount == 1)      OnInstructions?.Invoke();
-        else if (_pressCount == 2) OnStart?.Invoke();
         else                       OnHelp?.Invoke();
+    }
+    public void OnButtonStarted()
+    {
+        _pressCount++;
+        OnStart?.Invoke();
     }
 
     public void ResetCounter() => _pressCount = 0;
