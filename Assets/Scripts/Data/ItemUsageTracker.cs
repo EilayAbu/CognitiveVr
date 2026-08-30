@@ -51,7 +51,6 @@ namespace CognitiveVR.Data
 
         private readonly List<IInteractableView> _views = new List<IInteractableView>();
         private int _selectCount;
-        private int _hoverCount;
         private string _itemName;
         private bool _everGrabbed;
         private float _lastFloorLogTime = -999f;
@@ -123,7 +122,6 @@ namespace CognitiveVR.Data
         private void OnEnable()
         {
             _selectCount = 0;
-            _hoverCount = 0;
 
             // Registered here rather than Awake: Unity does not guarantee this
             // runs after ExperimentDataManager.Awake (which sets Instance), but
@@ -168,27 +166,6 @@ namespace CognitiveVR.Data
             }
 
             if (!trackHover) return;
-
-            // "Hovering" = the hand is on/near the item, so Select counts too.
-            bool wasHovering = wasSelect || args.PreviousState == InteractableState.Hover;
-            bool isHovering = isSelect || args.NewState == InteractableState.Hover;
-
-            if (isHovering && !wasHovering)
-            {
-                _hoverCount++;
-                if (_hoverCount == 1)
-                {
-                    Manager?.LogHoverEnter(_itemName);
-                }
-            }
-            else if (wasHovering && !isHovering)
-            {
-                _hoverCount = Mathf.Max(0, _hoverCount - 1);
-                if (_hoverCount == 0)
-                {
-                    Manager?.LogHoverExit(_itemName);
-                }
-            }
         }
 
         /// <summary>
