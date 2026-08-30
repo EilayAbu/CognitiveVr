@@ -7416,6 +7416,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 532398155994891255, guid: 46062098088f9a5468d8d180f6bc079f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 541552416}
+    - targetCorrespondingSourceObject: {fileID: 768957003056262984, guid: 46062098088f9a5468d8d180f6bc079f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1903802755}
   m_SourcePrefab: {fileID: 100100000, guid: 46062098088f9a5468d8d180f6bc079f, type: 3}
 --- !u!4 &541552412 stripped
 Transform:
@@ -20007,7 +20010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: m_Name
-      value: GamingHeadset
+      value: GamingHeadset_unimportant
       objectReference: {fileID: 0}
     - target: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       propertyPath: m_Layer
@@ -21016,7 +21019,7 @@ GameObject:
   - component: {fileID: 1548926229}
   - component: {fileID: 1548926230}
   m_Layer: 10
-  m_Name: Sunglasses
+  m_Name: Sunglasses_unimportant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25087,7 +25090,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c6837008c5d6e214a94c3cf9a369b4bb, type: 2}
     - target: {fileID: 919132149155446097, guid: dde1a7776e7d4fd428a1ee01a379e03d, type: 3}
       propertyPath: m_Name
-      value: box
+      value: TissueBox
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dde1a7776e7d4fd428a1ee01a379e03d, type: 3}
       propertyPath: m_Layer
@@ -28472,6 +28475,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4934658083179532, guid: e1729d5607d016947911ea92b8f622f5, type: 3}
   m_PrefabInstance: {fileID: 1896691952}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1903802753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 768957003056262984, guid: 46062098088f9a5468d8d180f6bc079f, type: 3}
+  m_PrefabInstance: {fileID: 541552411}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1903802755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903802753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1356812aafdb9ff4bbc2b7d9d59dfda4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UmbrellaStriker
+  minHitSpeed: 0.2
+  tool: 1
+  customToolName: 
 --- !u!1 &1905740987
 GameObject:
   m_ObjectHideFlags: 0
