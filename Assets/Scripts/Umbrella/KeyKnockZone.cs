@@ -4,8 +4,9 @@ using UnityEngine;
 /// <summary>
 /// Put this on a trigger-collider GameObject placed AROUND the key on the shelf.
 /// Two ways to clear the key, both consume the zone (it destroys itself afterward):
-///   1) Umbrella route: an UmbrellaStriker end enters the zone fast enough ->
-///      the key flies in a fixed parabolic arc to landingPoint, then the zone is gone.
+///   1) Tool route: an UmbrellaStriker end (umbrella, mop, ...) enters the zone
+///      fast enough -> the key flies in a fixed parabolic arc to landingPoint,
+///      then the zone is gone. The tool that hit is reported with the event.
 ///   2) Stool route: the player climbs and grabs the key directly; the key leaves
 ///      the zone -> the zone is gone (no flight).
 /// The key itself needs no script — just assign it in the Inspector.
@@ -13,12 +14,21 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class KeyKnockZone : MonoBehaviour
 {
-    /// <summary>Umbrella hit fast enough - the key is flying down. Arg = hit speed (m/s).</summary>
-    public event System.Action<float> KeyKnockedByUmbrella;
-    /// <summary>An umbrella end touched the zone but was too slow to count. Arg = hit speed (m/s).</summary>
-    public event System.Action<float> UmbrellaHitTooSlow;
-    /// <summary>The key was taken directly by hand (stool route), no umbrella involved.</summary>
+    /// <summary>
+    /// Tool hit fast enough - the key is flying down.
+    /// Args = hit speed (m/s), tool name ("umbrella", "mop", ...).
+    /// </summary>
+    public event System.Action<float, string> KeyKnockedByUmbrella;
+    /// <summary>
+    /// A tool end touched the zone but was too slow to count.
+    /// Args = hit speed (m/s), tool name ("umbrella", "mop", ...).
+    /// </summary>
+    public event System.Action<float, string> UmbrellaHitTooSlow;
+    /// <summary>The key was taken directly by hand (stool route), no tool involved.</summary>
     public event System.Action KeyTakenByHand;
+
+    /// <summary>Tool name of the last end that touched the zone, slow or not. Empty until then.</summary>
+    public string LastHitToolName { get; private set; } = "";
 
     [Header("Refs")]
     [Tooltip("The key sitting on the shelf, inside this zone.")]
@@ -59,21 +69,23 @@ public class KeyKnockZone : MonoBehaviour
     {
         if (_consumed) return;
 
-        // Umbrella route
+        // Tool route (umbrella, mop, ...)
         var striker = other.GetComponentInParent<UmbrellaStriker>();
         if (striker != null)
         {
             float speed = striker.Velocity.magnitude;
+            string tool = striker.ToolName;
+            LastHitToolName = tool;
 
             if (striker.IsFastEnough)
             {
                 _consumed = true;
-                KeyKnockedByUmbrella?.Invoke(speed);
+                KeyKnockedByUmbrella?.Invoke(speed, tool);
                 StartCoroutine(FlyThenDestroy());
             }
             else
             {
-                UmbrellaHitTooSlow?.Invoke(speed);
+                UmbrellaHitTooSlow?.Invoke(speed, tool);
             }
         }
     }
