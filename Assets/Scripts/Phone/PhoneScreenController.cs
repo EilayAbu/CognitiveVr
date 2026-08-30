@@ -55,8 +55,17 @@ namespace CognitiveVR.Phone
         /// <summary>Raised when the boss message is opened. For code subscribers.</summary>
         public event Action OnBossMessageButtonShownEvent;
         public event Action OnBossMessageOpenedEvent;
+        public event Action OnBossMessageClosedEvent;
         public event Action OnWeatherMessageButtonShownEvent;
         public event Action OnWeatherMessageOpenedEvent;
+        public event Action OnWeatherMessageClosedEvent;
+
+        // Visibility state, so an event fires once per transition no matter how
+        // many times the scene wiring calls Show/Hide.
+        private bool _bossMessageVisible;
+        private bool _weatherMessageVisible;
+        private bool _bossMessageButtonVisible;
+        private bool _weatherMessageButtonVisible;
 
         public PhoneNotificationManager NotificationManager => _notificationManager;
         public RectTransform NotificationContent => _notificationContent;
@@ -87,6 +96,11 @@ namespace CognitiveVR.Phone
                 if (_bossMessageButtonObject != null) _bossMessageButtonObject.SetActive(false);
                 if (_weatherMessageButtonObject != null) _weatherMessageButtonObject.SetActive(false);
             }
+
+            _bossMessageVisible = _bossMessageObject != null && _bossMessageObject.activeSelf;
+            _weatherMessageVisible = _weatherMessageObject != null && _weatherMessageObject.activeSelf;
+            _bossMessageButtonVisible = _bossMessageButtonObject != null && _bossMessageButtonObject.activeSelf;
+            _weatherMessageButtonVisible = _weatherMessageButtonObject != null && _weatherMessageButtonObject.activeSelf;
         }
 
         // --- Open-message buttons (lit when a message arrives) ---
@@ -94,6 +108,9 @@ namespace CognitiveVR.Phone
         public void ShowBossMessageButton()
         {
             if (_bossMessageButtonObject != null) _bossMessageButtonObject.SetActive(true);
+            if (_bossMessageButtonVisible) return;
+
+            _bossMessageButtonVisible = true;
             _onBossMessageButtonShown?.Invoke();
             OnBossMessageButtonShownEvent?.Invoke();
         }
@@ -101,11 +118,15 @@ namespace CognitiveVR.Phone
         public void HideBossMessageButton()
         {
             if (_bossMessageButtonObject != null) _bossMessageButtonObject.SetActive(false);
+            _bossMessageButtonVisible = false;
         }
 
         public void ShowWeatherMessageButton()
         {
             if (_weatherMessageButtonObject != null) _weatherMessageButtonObject.SetActive(true);
+            if (_weatherMessageButtonVisible) return;
+
+            _weatherMessageButtonVisible = true;
             _onWeatherMessageButtonShown?.Invoke();
             OnWeatherMessageButtonShownEvent?.Invoke();
         }
@@ -113,6 +134,7 @@ namespace CognitiveVR.Phone
         public void HideWeatherMessageButton()
         {
             if (_weatherMessageButtonObject != null) _weatherMessageButtonObject.SetActive(false);
+            _weatherMessageButtonVisible = false;
         }
 
         // --- Open message (invoked by the open-message button click) ---
@@ -121,38 +143,55 @@ namespace CognitiveVR.Phone
         {
             HideBossMessageButton();
             ShowBossMessage();
-            _onBossMessageOpened?.Invoke();
-            OnBossMessageOpenedEvent?.Invoke();
         }
 
         public void OpenWeatherMessage()
         {
             HideWeatherMessageButton();
             ShowWeatherMessage();
-            _onWeatherMessageOpened?.Invoke();
-            OnWeatherMessageOpenedEvent?.Invoke();
         }
 
         // --- Low-level message toggles ---
+        // The open/closed events live here, not in Open*Message: the scene wires
+        // its buttons straight to Show/Hide, so this is the only path guaranteed
+        // to run for every reveal.
 
         public void ShowBossMessage()
         {
             if (_bossMessageObject != null) _bossMessageObject.SetActive(true);
+            if (_bossMessageVisible) return;
+
+            _bossMessageVisible = true;
+            _onBossMessageOpened?.Invoke();
+            OnBossMessageOpenedEvent?.Invoke();
         }
 
         public void HideBossMessage()
         {
             if (_bossMessageObject != null) _bossMessageObject.SetActive(false);
+            if (!_bossMessageVisible) return;
+
+            _bossMessageVisible = false;
+            OnBossMessageClosedEvent?.Invoke();
         }
 
         public void ShowWeatherMessage()
         {
             if (_weatherMessageObject != null) _weatherMessageObject.SetActive(true);
+            if (_weatherMessageVisible) return;
+
+            _weatherMessageVisible = true;
+            _onWeatherMessageOpened?.Invoke();
+            OnWeatherMessageOpenedEvent?.Invoke();
         }
 
         public void HideWeatherMessage()
         {
             if (_weatherMessageObject != null) _weatherMessageObject.SetActive(false);
+            if (!_weatherMessageVisible) return;
+
+            _weatherMessageVisible = false;
+            OnWeatherMessageClosedEvent?.Invoke();
         }
 
         public void HideAllMessages()

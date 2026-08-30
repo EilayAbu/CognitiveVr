@@ -752,7 +752,7 @@ GameObject:
   - component: {fileID: 79100718}
   - component: {fileID: 79100717}
   - component: {fileID: 79100716}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2208,7 +2208,7 @@ GameObject:
   - component: {fileID: 172433233}
   - component: {fileID: 172433235}
   - component: {fileID: 172433234}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: audio (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3178,7 +3178,7 @@ GameObject:
   - component: {fileID: 250680562}
   - component: {fileID: 250680561}
   - component: {fileID: 250680560}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5326,7 +5326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 371135579}
   - component: {fileID: 371135580}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pane BR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5341,14 +5341,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371135578}
   serializedVersion: 2
-  m_LocalRotation: {x: -1, y: -0, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 2.149, z: -1.102}
+  m_LocalRotation: {x: -1, y: -0, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 2.1490002, z: -1.1019999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1150588308}
   - {fileID: 1007130503}
-  m_Father: {fileID: 509629269}
+  m_Father: {fileID: 394128144}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 180}
 --- !u!65 &371135580
 BoxCollider:
@@ -5567,7 +5567,7 @@ GameObject:
   - component: {fileID: 381815558}
   - component: {fileID: 381815560}
   - component: {fileID: 381815559}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5909,6 +5909,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386268540}
   m_Mesh: {fileID: 4300000, guid: 24709876c05d92b409218988a92bfd7b, type: 2}
+--- !u!1 &394128143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 394128144}
+  m_Layer: 0
+  m_Name: rightWindow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &394128144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394128143}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 371135579}
+  - {fileID: 702562718}
+  m_Father: {fileID: 509629269}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &408561813
 GameObject:
   m_ObjectHideFlags: 0
@@ -7009,8 +7042,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 509629269}
-  m_Layer: 7
-  m_Name: Window (Separated)
+  m_Layer: 0
+  m_Name: 'Window '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7030,8 +7063,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1832525608}
-  - {fileID: 371135579}
-  - {fileID: 702562718}
+  - {fileID: 394128144}
   - {fileID: 1712093624}
   - {fileID: 79100715}
   m_Father: {fileID: 695681806}
@@ -7766,6 +7798,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 125948586}
     m_Modifications:
+    - target: {fileID: 1426381375573354211, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946356430620407326, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337228584736002880, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3310482163316554887, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
       propertyPath: m_Name
       value: Door (1)
@@ -7830,7 +7874,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1946356430620407326, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
+    - {fileID: 1426381375573354211, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
+    - {fileID: 2337228584736002880, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7326370615599485689, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
@@ -8611,7 +8658,7 @@ GameObject:
   - component: {fileID: 667445940}
   - component: {fileID: 667445939}
   - component: {fileID: 667445938}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9226,7 +9273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 702562718}
   - component: {fileID: 702562719}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pane TR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9241,14 +9288,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 702562717}
   serializedVersion: 2
-  m_LocalRotation: {x: -1, y: -0, z: 0, w: 0}
+  m_LocalRotation: {x: -1, y: -0, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 2.1490002, z: -1.1019999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1042122892}
   - {fileID: 962082428}
-  m_Father: {fileID: 509629269}
+  m_Father: {fileID: 394128144}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 180}
 --- !u!65 &702562719
 BoxCollider:
@@ -12507,7 +12554,7 @@ GameObject:
   - component: {fileID: 870844477}
   - component: {fileID: 870844479}
   - component: {fileID: 870844478}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12886,7 +12933,7 @@ GameObject:
   - component: {fileID: 962082428}
   - component: {fileID: 962082430}
   - component: {fileID: 962082429}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13816,7 +13863,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3221290623
   _hitTriggers: 1
-  _minLookDuration: 0.7
+  _minLookDuration: 0.3
   _lookAwayGrace: 0.1
   _countGlances: 1
   _ignoredNamePrefixes:
@@ -13880,7 +13927,7 @@ GameObject:
   - component: {fileID: 1007130503}
   - component: {fileID: 1007130505}
   - component: {fileID: 1007130504}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14065,7 +14112,7 @@ GameObject:
   - component: {fileID: 1029194670}
   - component: {fileID: 1029194672}
   - component: {fileID: 1029194671}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14275,7 +14322,7 @@ GameObject:
   - component: {fileID: 1038309416}
   - component: {fileID: 1038309418}
   - component: {fileID: 1038309417}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14420,7 +14467,7 @@ GameObject:
   - component: {fileID: 1042122892}
   - component: {fileID: 1042122894}
   - component: {fileID: 1042122893}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15674,7 +15721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3144334074576996695, guid: 2eae282455ffa33499b408673cabf375, type: 3}
       propertyPath: m_Name
-      value: Guide Variant
+      value: Neighbor
       objectReference: {fileID: 0}
     - target: {fileID: 3144334074576996695, guid: 2eae282455ffa33499b408673cabf375, type: 3}
       propertyPath: m_IsActive
@@ -16053,7 +16100,7 @@ GameObject:
   - component: {fileID: 1150588308}
   - component: {fileID: 1150588310}
   - component: {fileID: 1150588309}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17609,7 +17656,7 @@ GameObject:
   - component: {fileID: 1280471240}
   - component: {fileID: 1280471242}
   - component: {fileID: 1280471241}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21328,7 +21375,7 @@ GameObject:
   - component: {fileID: 1564174856}
   - component: {fileID: 1564174859}
   - component: {fileID: 1564174858}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pane TL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25501,7 +25548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1800878859}
   - component: {fileID: 1800878860}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Pane BL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26088,8 +26135,8 @@ GameObject:
   - component: {fileID: 1832525617}
   - component: {fileID: 1832525618}
   - component: {fileID: 1832525619}
-  m_Layer: 7
-  m_Name: left
+  m_Layer: 0
+  m_Name: leftWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29238,7 +29285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4957f4ca20bf90e4faaf7ccbff23049e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GuideDataBridge
-  logName: Guide
+  logName: Neighbor
 --- !u!4 &1939070055 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2371492112226178029, guid: 2eae282455ffa33499b408673cabf375, type: 3}
@@ -31464,7 +31511,7 @@ GameObject:
   - component: {fileID: 2076036260}
   - component: {fileID: 2076036261}
   m_Layer: 10
-  m_Name: TissueBox
+  m_Name: TissueBox_unimportant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51838,8 +51885,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.02, y: 0.009915173, z: 0.04187082}
-  m_Center: {x: 0, y: 0.001006335, z: 0.009603558}
+  m_Size: {x: 0.02528063, y: 0.009915173, z: 0.048024643}
+  m_Center: {x: -0.0026403156, y: 0.001006335, z: 0.009694276}
 --- !u!1 &6311198162863902256 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3787894412627917875, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}

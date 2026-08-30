@@ -99,6 +99,11 @@ namespace CognitiveVR.Data
         private CognitiveVR.Tasks.WindowPuddleTaskBridge.WindowPuddleTaskSummary _finalWindowPuddleSummary;
         private CognitiveVR.Tasks.KeyTaskBridge.KeyTaskSummary _finalKeyTaskSummary;
 
+        // Same push model as the guide bridge: the phone can be inactive at
+        // scene load, so it registers itself once it wakes up.
+        private CognitiveVR.Phone.PhoneSessionEventBridge _phoneBridge;
+        private CognitiveVR.Phone.PhoneSessionEventBridge.PhoneMessagesSummary _finalPhoneMessagesSummary;
+
         // Interaction bookkeeping (keyed by item name).
         private readonly Dictionary<string, float> _selectStartTimes = new Dictionary<string, float>();
         private readonly Dictionary<string, float> _lastHoverEnter = new Dictionary<string, float>();
@@ -354,6 +359,14 @@ namespace CognitiveVR.Data
             if (keyTaskBridge != null)
                 _finalKeyTaskSummary = keyTaskBridge.BuildSummary();
 
+            // The phone writes its closing / never-opened rows here, while the
+            // log is still open - after the latch below they would be dropped.
+            if (_phoneBridge != null)
+            {
+                _phoneBridge.FlushSessionEnd();
+                _finalPhoneMessagesSummary = _phoneBridge.BuildSummary();
+            }
+
             // 5. The closing row, then the JSON.
             Log("session", "session_end", "", sessionTimer != null ? sessionTimer.ElapsedTime : (float?)null,
                 $"reason={reason}");
@@ -517,6 +530,18 @@ namespace CognitiveVR.Data
         {
             if (summary != null)
                 _guideSummary = summary;
+        }
+
+        /// <summary>
+        /// Called by <see cref="CognitiveVR.Phone.PhoneSessionEventBridge"/> when
+        /// it becomes active. Same push model as the guide bridge, and it lets
+        /// FinalizeSession give the phone a chance to write its closing rows
+        /// while the log is still open.
+        /// </summary>
+        public void RegisterPhoneMessagesBridge(CognitiveVR.Phone.PhoneSessionEventBridge bridge)
+        {
+            if (bridge != null)
+                _phoneBridge = bridge;
         }
 
         // ------------------------------------------------------------------ //
@@ -723,7 +748,9 @@ namespace CognitiveVR.Data
                 windowPuddleTask = _finalWindowPuddleSummary
                     ?? (windowPuddleBridge != null ? windowPuddleBridge.BuildSummary() : new CognitiveVR.Tasks.WindowPuddleTaskBridge.WindowPuddleTaskSummary()),
                 keyTask = _finalKeyTaskSummary
-                    ?? (keyTaskBridge != null ? keyTaskBridge.BuildSummary() : new CognitiveVR.Tasks.KeyTaskBridge.KeyTaskSummary())
+                    ?? (keyTaskBridge != null ? keyTaskBridge.BuildSummary() : new CognitiveVR.Tasks.KeyTaskBridge.KeyTaskSummary()),
+                phoneMessages = _finalPhoneMessagesSummary
+                    ?? (_phoneBridge != null ? _phoneBridge.BuildSummary() : new CognitiveVR.Phone.PhoneSessionEventBridge.PhoneMessagesSummary())
             };
 
             foreach (KeyValuePair<string, ItemSummary> pair in _itemStats)
@@ -882,6 +909,9 @@ namespace CognitiveVR.Data
                 new CognitiveVR.Tasks.WindowPuddleTaskBridge.WindowPuddleTaskSummary();
             public CognitiveVR.Tasks.KeyTaskBridge.KeyTaskSummary keyTask =
                 new CognitiveVR.Tasks.KeyTaskBridge.KeyTaskSummary();
+            /// <summary>Whether the phone messages were actually opened, when, and for how long.</summary>
+            public CognitiveVR.Phone.PhoneSessionEventBridge.PhoneMessagesSummary phoneMessages =
+                new CognitiveVR.Phone.PhoneSessionEventBridge.PhoneMessagesSummary();
             public List<ItemSummary> items = new List<ItemSummary>();
         }
     }
