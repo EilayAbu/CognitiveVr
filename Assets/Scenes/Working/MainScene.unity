@@ -865,7 +865,7 @@ GameObject:
   - component: {fileID: 88100078}
   - component: {fileID: 88100077}
   m_Layer: 10
-  m_Name: readyFlameGaze
+  m_Name: PerfectFlameGaze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9282,7 +9282,7 @@ GameObject:
   - component: {fileID: 702562718}
   - component: {fileID: 702562719}
   m_Layer: 0
-  m_Name: Pane TR
+  m_Name: window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20630,7 +20630,7 @@ MonoBehaviour:
   overrideItemName: 
   trackHover: 1
   bagCollectionMeasurement: 0
-  initiativeMeasurement: 0
+  initiativeMeasurement: 1
   trackFloorContact: 1
   floorLayers:
     serializedVersion: 2
@@ -20757,7 +20757,7 @@ GameObject:
   - component: {fileID: 1511611382}
   - component: {fileID: 1511611381}
   m_Layer: 10
-  m_Name: wellDoneFlameGaze
+  m_Name: overCoockedFlameGaze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22008,6 +22008,10 @@ PrefabInstance:
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875643889095611820, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
+      propertyPath: m_Name
+      value: InstractionButton
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889754384610, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: m_LocalScale.x
@@ -47486,7 +47490,7 @@ GameObject:
   - component: {fileID: 6440908187070240647}
   - component: {fileID: 4770338993533913842}
   m_Layer: 0
-  m_Name: readyFlame
+  m_Name: PerfectFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63147,7 +63151,7 @@ GameObject:
   - component: {fileID: 299955839097976132}
   - component: {fileID: 2267771232404351025}
   m_Layer: 0
-  m_Name: wellDoneFlame
+  m_Name: overCoockedFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
