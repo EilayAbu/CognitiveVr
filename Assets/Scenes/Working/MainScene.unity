@@ -3180,6 +3180,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.06191027, y: 0.21704054, z: 0.05931163}
   m_Center: {x: 0.00017866492, y: 0.0013762712, z: 0.00030219555}
+--- !u!114 &249482143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249482131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1 &250680558
 GameObject:
   m_ObjectHideFlags: 0
@@ -4398,6 +4415,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 777080240475418275, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1297837545444103231, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0056
@@ -4415,6 +4436,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1622706635936965941, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175181047347470202, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -5195,6 +5220,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4680597426246073374, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 359896944}
+    - targetCorrespondingSourceObject: {fileID: 4680597426246073374, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 359896945}
     - targetCorrespondingSourceObject: {fileID: 5975573625650651955, guid: 732303b814665ef47bde4234b2eb32ed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1103499214}
@@ -5248,6 +5276,23 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &359896945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359896943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!114 &359896947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6342,6 +6387,7 @@ GameObject:
   - component: {fileID: 438924789}
   - component: {fileID: 438924788}
   - component: {fileID: 438924790}
+  - component: {fileID: 438924791}
   m_Layer: 0
   m_Name: Backpack
   m_TagString: Untagged
@@ -6440,6 +6486,23 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &438924791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438924786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1001 &443994110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6687,7 +6750,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454965221}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7582,6 +7645,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 532398155994891255, guid: 46062098088f9a5468d8d180f6bc079f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 541552416}
+    - targetCorrespondingSourceObject: {fileID: 532398155994891255, guid: 46062098088f9a5468d8d180f6bc079f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 541552417}
     - targetCorrespondingSourceObject: {fileID: 768957003056262984, guid: 46062098088f9a5468d8d180f6bc079f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1903802755}
@@ -7687,6 +7753,23 @@ MonoBehaviour:
         Min: 1
         Max: 1
   _resetScaleResponsivenessOnConstraintOvershoot: 0
+--- !u!114 &541552417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541552413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1001 &585434830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10360,6 +10443,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4662812201562109299, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1753917438}
+    - targetCorrespondingSourceObject: {fileID: 4662812201562109299, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1753917443}
     - targetCorrespondingSourceObject: {fileID: 720609136352184358, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1700029363}
@@ -10918,6 +11004,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8310977768301547050, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
   m_PrefabInstance: {fileID: 6311198162863902253}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &783986838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783986837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1 &784923585
 GameObject:
   m_ObjectHideFlags: 0
@@ -12426,6 +12529,7 @@ GameObject:
   - component: {fileID: 853326915}
   - component: {fileID: 853326914}
   - component: {fileID: 853326920}
+  - component: {fileID: 853326922}
   m_Layer: 13
   m_Name: Laptop
   m_TagString: Untagged
@@ -12621,6 +12725,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.22, y: 0.006, z: 0.14}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &853326922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853326913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1 &860912375
 GameObject:
   m_ObjectHideFlags: 0
@@ -14991,6 +15112,7 @@ GameObject:
   - component: {fileID: 1077798306}
   - component: {fileID: 1077798307}
   - component: {fileID: 1077798309}
+  - component: {fileID: 1077798310}
   m_Layer: 10
   m_Name: Tablet
   m_TagString: Untagged
@@ -15109,6 +15231,23 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &1077798310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077798302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!4 &1080199422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6903557532094659035, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
@@ -20101,6 +20240,23 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &1447055052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473423437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1001 &1448137289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20394,6 +20550,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1463268663}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1463268664}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!4 &1463268656 stripped
 Transform:
@@ -20423,6 +20582,23 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &1463268664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097269140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1 &1467403855
 GameObject:
   m_ObjectHideFlags: 0
@@ -20693,6 +20869,7 @@ GameObject:
   - component: {fileID: 1490829086}
   - component: {fileID: 1490829085}
   - component: {fileID: 1490829088}
+  - component: {fileID: 1490829089}
   m_Layer: 0
   m_Name: Spatula
   m_TagString: Untagged
@@ -20791,6 +20968,23 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &1490829089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490829084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1001 &1494198062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21355,6 +21549,7 @@ GameObject:
   - component: {fileID: 1548926222}
   - component: {fileID: 1548926229}
   - component: {fileID: 1548926230}
+  - component: {fileID: 1548926231}
   m_Layer: 10
   m_Name: Sunglasses_unimportant
   m_TagString: Untagged
@@ -21565,6 +21760,23 @@ MonoBehaviour:
   grabbable: {fileID: 1548926222}
   snapInteractor: {fileID: 0}
   enableDebugLogs: 0
+--- !u!114 &1548926231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548926221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1 &1554263479 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 80952c8c5eda20040b0f6ea4a66ff484, type: 3}
@@ -24581,6 +24793,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1926970129}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1926970130}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!1 &1724126313
 GameObject:
@@ -25296,6 +25511,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34740538353868533, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
   m_PrefabInstance: {fileID: 752390977}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1753917443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753917430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1001 &1767120069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27388,6 +27620,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8923645764558780387, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
       insertIndex: -1
       addedObject: {fileID: 249482140}
+    - targetCorrespondingSourceObject: {fileID: 8923645764558780387, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 249482143}
     - targetCorrespondingSourceObject: {fileID: 5512584492143924765, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
       insertIndex: -1
       addedObject: {fileID: 15423770}
@@ -28338,6 +28573,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1887566635}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1887566636}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!4 &1887566627 stripped
 Transform:
@@ -28367,6 +28605,23 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &1887566636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687003031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1001 &1887765986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29279,6 +29534,23 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &1926970130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926970121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!1001 &1932842891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31680,6 +31952,7 @@ GameObject:
   - component: {fileID: 2076036253}
   - component: {fileID: 2076036260}
   - component: {fileID: 2076036261}
+  - component: {fileID: 2076036262}
   m_Layer: 10
   m_Name: TissueBox_unimportant
   m_TagString: Untagged
@@ -31890,6 +32163,23 @@ MonoBehaviour:
   grabbable: {fileID: 2076036253}
   snapInteractor: {fileID: 0}
   enableDebugLogs: 0
+--- !u!114 &2076036262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076036252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!114 &2077729397 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3425276718554526647, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
@@ -33246,6 +33536,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1447055051}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1447055052}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!1001 &2126612951
 PrefabInstance:
@@ -38413,6 +38706,7 @@ GameObject:
   - component: {fileID: 5525783083724485251}
   - component: {fileID: 2558493156911821559}
   - component: {fileID: 6749199820215235312}
+  - component: {fileID: 6749199820215235313}
   m_Layer: 10
   m_Name: Phone
   m_TagString: Untagged
@@ -52033,6 +52327,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8310977768301547050, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8792106594492663717, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -52051,12 +52349,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3787894412627917875, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6311198162863902259}
+    - targetCorrespondingSourceObject: {fileID: 8310977768301547050, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 783986838}
     - targetCorrespondingSourceObject: {fileID: 4539927084851576453, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       insertIndex: 1
       addedObject: {fileID: 659378356}
     - targetCorrespondingSourceObject: {fileID: 5141138821769818825, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6311198162863902255}
+    - targetCorrespondingSourceObject: {fileID: 5141138821769818825, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6311198162863902260}
   m_SourcePrefab: {fileID: 100100000, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
 --- !u!1 &6311198162863902254 stripped
 GameObject:
@@ -52126,6 +52430,23 @@ MonoBehaviour:
   keyZone: {fileID: 6311198162863902258}
   stoolZone: {fileID: 6311198162863902257}
   logName: KeyTask
+--- !u!114 &6311198162863902260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311198162863902254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!4 &6311198162863902262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6284939458276148047, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
@@ -61919,6 +62240,23 @@ MonoBehaviour:
   grabbable: {fileID: 6749199820215235311}
   snapInteractor: {fileID: 0}
   enableDebugLogs: 0
+--- !u!114 &6749199820215235313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316348281435632137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -1
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 1
 --- !u!4 &6782820250758874222
 Transform:
   m_ObjectHideFlags: 0
