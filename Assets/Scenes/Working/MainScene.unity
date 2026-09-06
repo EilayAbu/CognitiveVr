@@ -2372,7 +2372,7 @@ Transform:
   m_GameObject: {fileID: 175616362}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.23264433, y: -2.1990001, z: -0.15482025}
+  m_LocalPosition: {x: 0.23264433, y: -2.545, z: -0.15482025}
   m_LocalScale: {x: 0.9, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26413,18 +26413,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 728712911}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1832525619}
         m_TargetAssemblyTypeName: Oculus.Interaction.OneGrabRotateTransformer, Oculus.Interaction
         m_MethodName: changeMaxAngle
@@ -29647,40 +29635,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531867686224974268, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
       propertyPath: OnWindowOpened.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531867686224974268, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
-      propertyPath: OnWindowOpened.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3531867686224974268, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
       propertyPath: OnWindowOpened.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 381815559}
-    - target: {fileID: 3531867686224974268, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
-      propertyPath: OnWindowOpened.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 728712911}
-    - target: {fileID: 3531867686224974268, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
-      propertyPath: OnWindowOpened.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531867686224974268, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
-      propertyPath: OnWindowOpened.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531867686224974268, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
-      propertyPath: OnWindowOpened.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531867686224974268, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
-      propertyPath: OnWindowOpened.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531867686224974268, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
-      propertyPath: OnWindowOpened.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 3811952361984768894, guid: ee36d52120d803348bf828a4b9d4d361, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -30832,18 +30792,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 728712911}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
   OnWindowOpened:
     m_PersistentCalls:

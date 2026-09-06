@@ -6424,7 +6424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1015271365
 Transform:
   m_ObjectHideFlags: 0
@@ -6441,6 +6441,7 @@ Transform:
   - {fileID: 1784573187880547275}
   - {fileID: 6460682110075119840}
   - {fileID: 404523175}
+  - {fileID: 1604699203}
   - {fileID: 1275129417}
   - {fileID: 424481352}
   m_Father: {fileID: 439302038}
@@ -12232,6 +12233,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1937385644}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1604699202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604699203}
+  m_Layer: 7
+  m_Name: chairpoSE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1604699203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604699202}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -1.493, y: 0.092, z: -0.322}
+  m_LocalScale: {x: 0.9, y: 1, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1015271365}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1626113223
 GameObject:
@@ -21952,6 +21984,7 @@ GameObject:
   - component: {fileID: 8676425045676209032}
   - component: {fileID: 3260725185452009515}
   - component: {fileID: 6037197122626574647}
+  - component: {fileID: 8676425045676209033}
   m_Layer: 7
   m_Name: zone
   m_TagString: 'ChairZone '
@@ -22206,6 +22239,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3885533, y: 1.8721482, z: 2.7253249}
   m_Center: {x: 0.27238226, y: 0.19579381, z: -0.3930735}
+--- !u!114 &8676425045676209033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8098214008210202277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92aa7316c3751e40a86a5030fc88b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ChairSnapZone
+  _snapAnchor: {fileID: 1604699203}
+  enableDebugLogs: 0
 --- !u!1 &8702147650085859186
 GameObject:
   m_ObjectHideFlags: 0

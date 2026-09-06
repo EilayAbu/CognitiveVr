@@ -29,6 +29,7 @@ namespace CognitiveVR.Tasks
         private bool _cachedRigidbodyState;
         private bool _originalUseGravity;
         private bool _originalIsKinematic;
+        private RigidbodyConstraints _originalConstraints;
         private bool _isFrozen;
 
         /// <summary>True while a chair is currently tracked inside this zone.</summary>
@@ -55,6 +56,22 @@ namespace CognitiveVR.Tasks
         {
             UnfreezeChair();
             Unsubscribe();
+        }
+
+        private void FixedUpdate()
+        {
+            if (_isFrozen)
+            {
+                ApplyFreeze();
+            }
+        }
+
+        private void LateUpdate()
+        {
+            if (_isFrozen)
+            {
+                ApplyFreeze();
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -97,12 +114,26 @@ namespace CognitiveVR.Tasks
                 return;
             }
 
+            _overlapCount = 0;
+
+            // Snap/throw can shove the collider out of the trigger for a frame.
+            // Stay frozen and keep listening for a grab; only drop tracking if
+            // the chair left while it was still free to move.
+            if (_isFrozen)
+            {
+                if (enableDebugLogs)
+                {
+                    Debug.Log($"[ChairSnapZone] Chair left trigger while snapped; keeping freeze on '{_chair.name}'.", _chair);
+                }
+
+                return;
+            }
+
             if (enableDebugLogs)
             {
                 Debug.Log($"[ChairSnapZone] Chair exited zone: {_chair.name}", _chair);
             }
 
-            UnfreezeChair();
             Unsubscribe();
         }
 
@@ -172,22 +203,31 @@ namespace CognitiveVR.Tasks
                 return;
             }
 
-            if (_chairRigidbody != null)
-            {
-                CacheRigidbodyStateIfNeeded();
-                _chairRigidbody.linearVelocity = Vector3.zero;
-                _chairRigidbody.angularVelocity = Vector3.zero;
-                _chairRigidbody.useGravity = false;
-                _chairRigidbody.isKinematic = true;
-            }
-
-            _chair.transform.SetPositionAndRotation(_snapAnchor.position, _snapAnchor.rotation);
-
+            CacheRigidbodyStateIfNeeded();
+            ApplyFreeze();
             _isFrozen = true;
 
             if (enableDebugLogs)
             {
                 Debug.Log($"[ChairSnapZone] Snapped chair '{_chair.name}' into place.", _chair);
+            }
+        }
+
+        private void ApplyFreeze()
+        {
+            if (_chairRigidbody != null)
+            {
+                _chairRigidbody.linearVelocity = Vector3.zero;
+                _chairRigidbody.angularVelocity = Vector3.zero;
+                _chairRigidbody.useGravity = false;
+                _chairRigidbody.isKinematic = true;
+                _chairRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+                _chairRigidbody.Sleep();
+            }
+
+            if (_chair != null && _snapAnchor != null)
+            {
+                _chair.transform.SetPositionAndRotation(_snapAnchor.position, _snapAnchor.rotation);
             }
         }
 
@@ -200,8 +240,10 @@ namespace CognitiveVR.Tasks
 
             if (_cachedRigidbodyState)
             {
+                _chairRigidbody.constraints = _originalConstraints;
                 _chairRigidbody.isKinematic = _originalIsKinematic;
                 _chairRigidbody.useGravity = _originalUseGravity;
+                _chairRigidbody.WakeUp();
             }
 
             _isFrozen = false;
@@ -221,6 +263,7 @@ namespace CognitiveVR.Tasks
 
             _originalUseGravity = _chairRigidbody.useGravity;
             _originalIsKinematic = _chairRigidbody.isKinematic;
+            _originalConstraints = _chairRigidbody.constraints;
             _cachedRigidbodyState = true;
         }
 
