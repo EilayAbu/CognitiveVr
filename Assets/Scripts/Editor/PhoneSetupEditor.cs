@@ -125,6 +125,61 @@ namespace CognitiveVR.EditorTools
         }
 
         /// <summary>
+        /// Strips SnapInteractable from every inventory item in the scene.
+        /// A SnapInteractable makes its GameObject a snap *target*, so an item
+        /// carrying one competes with the backpack slots: once a slot is full
+        /// it drops out of the snap candidates (MaxSelectingInteractors = 1)
+        /// and the next released item snaps into the stored item instead,
+        /// becoming its child and shrinking to storedScale.
+        /// InventoryItemMetaBridge also removes these at runtime, but this
+        /// cleans the scene asset so the warning stops firing every play.
+        /// </summary>
+        [MenuItem("CognitiveVR/Fix Backpack Item Snap Targets")]
+        public static void FixBackpackItemSnapTargets()
+        {
+            Type snapInteractableType = ResolveType("Oculus.Interaction.SnapInteractable");
+            if (snapInteractableType == null)
+            {
+                EditorUtility.DisplayDialog("Fix Backpack Item Snap Targets",
+                    "Meta SnapInteractable type not found (SDK missing?).",
+                    "OK");
+                return;
+            }
+
+            InventoryItemMetaBridge[] items = UnityEngine.Object.FindObjectsByType<InventoryItemMetaBridge>(
+                FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+            int removed = 0;
+            foreach (InventoryItemMetaBridge item in items)
+            {
+                if (item == null) continue;
+
+                // GetComponents, not GetComponentsInChildren: an item stored in
+                // a slot sits under the slot, whose SnapInteractable is legit.
+                foreach (Component straySnapTarget in item.GetComponents(snapInteractableType))
+                {
+                    if (straySnapTarget == null) continue;
+
+                    Debug.Log($"[PhoneSetup] Removed stray SnapInteractable from inventory item '{item.name}'.", item);
+                    Undo.DestroyObjectImmediate(straySnapTarget);
+                    removed++;
+                }
+            }
+
+            if (removed > 0)
+            {
+                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            }
+
+            EditorUtility.DisplayDialog("Fix Backpack Item Snap Targets",
+                removed == 0
+                    ? $"Checked {items.Length} inventory item(s); none carried a SnapInteractable."
+                    : $"Removed {removed} stray SnapInteractable(s) across {items.Length} inventory item(s).\n" +
+                      "Items are snap sources only; the backpack slots are the snap targets.",
+                "OK");
+        }
+
+        /// <summary>
         /// Finds the scene's EventSystem and replaces the default
         /// StandaloneInputModule with Meta's PointableCanvasModule so ray
         /// pointer events reach the phone canvas. Meta types are resolved via

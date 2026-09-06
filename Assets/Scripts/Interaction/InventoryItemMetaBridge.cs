@@ -71,6 +71,7 @@ namespace CognitiveVR.Interaction
 
             _rigidbody = GetComponent<Rigidbody>();
             ConfigureGrabbable();
+            StripSelfSnapTarget();
             EnsureSnapInteractor();
 
             if (grabbable == null)
@@ -116,6 +117,30 @@ namespace CognitiveVR.Interaction
 
             grabbable.InjectOptionalKinematicWhileSelected(true);
             grabbable.TransferOnSecondSelection = true;
+        }
+
+        /// <summary>
+        /// An inventory item must be a snap *source* only. A SnapInteractable
+        /// on the item makes the item itself a snap target, so a second item
+        /// released nearby can snap into it (becoming its child and shrinking
+        /// to <see cref="storedScale"/>) instead of into a backpack slot.
+        /// Destroying it here in Awake happens before SnapInteractable.Start,
+        /// so it never registers with the snap registry and can never appear
+        /// as a candidate for any SnapInteractor. Only components on this
+        /// GameObject are considered: while stored, the owning slot's own
+        /// SnapInteractable sits on the parent and must stay untouched.
+        /// </summary>
+        private void StripSelfSnapTarget()
+        {
+            foreach (SnapInteractable straySnapTarget in GetComponents<SnapInteractable>())
+            {
+                Debug.LogWarning(
+                    $"[{nameof(InventoryItemMetaBridge)}] Removed a stray {nameof(SnapInteractable)} from item '{name}'. " +
+                    "Inventory items must not be snap targets, otherwise other items snap into them instead of into a backpack slot. " +
+                    "Run 'CognitiveVR > Fix Backpack Item Snap Targets' to clean this up in the scene asset.",
+                    this);
+                Destroy(straySnapTarget);
+            }
         }
 
         /// <summary>

@@ -2346,6 +2346,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &175616362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 175616363}
+  m_Layer: 7
+  m_Name: chairpoSE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &175616363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175616362}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.244, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 853170733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &182350668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3098,25 +3129,6 @@ MonoBehaviour:
   grabbable: {fileID: 249482132}
   snapInteractor: {fileID: 0}
   enableDebugLogs: 1
---- !u!114 &249482139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249482131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bd28341d3e86a4c8ab52b1a0269c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.SnapInteractable
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _rigidbody: {fileID: 249482133}
-  _snapPoseDelegate: {fileID: 0}
-  _movementProvider: {fileID: 0}
 --- !u!114 &249482140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10233,9 +10245,6 @@ PrefabInstance:
       addedObject: {fileID: 1753917431}
     - targetCorrespondingSourceObject: {fileID: 4662812201562109299, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1753917437}
-    - targetCorrespondingSourceObject: {fileID: 4662812201562109299, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1753917438}
     - targetCorrespondingSourceObject: {fileID: 720609136352184358, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
       insertIndex: -1
@@ -12288,6 +12297,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &853170733 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6603798932796669229, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &853326913
 GameObject:
   m_ObjectHideFlags: 0
@@ -12302,7 +12316,6 @@ GameObject:
   - component: {fileID: 853326916}
   - component: {fileID: 853326915}
   - component: {fileID: 853326914}
-  - component: {fileID: 853326919}
   - component: {fileID: 853326920}
   m_Layer: 13
   m_Name: Laptop
@@ -12455,25 +12468,6 @@ Transform:
   - {fileID: 1123735103}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &853326919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853326913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bd28341d3e86a4c8ab52b1a0269c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.SnapInteractable
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _rigidbody: {fileID: 853326917}
-  _snapPoseDelegate: {fileID: 0}
-  _movementProvider: {fileID: 0}
 --- !u!114 &853326920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14775,7 +14769,6 @@ GameObject:
   - component: {fileID: 1077798303}
   - component: {fileID: 1077798306}
   - component: {fileID: 1077798307}
-  - component: {fileID: 1077798308}
   - component: {fileID: 1077798309}
   m_Layer: 10
   m_Name: Tablet
@@ -14872,25 +14865,6 @@ MonoBehaviour:
   grabbable: {fileID: 1077798306}
   snapInteractor: {fileID: 0}
   enableDebugLogs: 1
---- !u!114 &1077798308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077798302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bd28341d3e86a4c8ab52b1a0269c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.SnapInteractable
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _rigidbody: {fileID: 1077798303}
-  _snapPoseDelegate: {fileID: 0}
-  _movementProvider: {fileID: 0}
 --- !u!114 &1077798309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17370,6 +17344,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 129528899}
     m_Modifications:
+    - target: {fileID: 116399770841008479, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 280045122193871318, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.097
@@ -17385,6 +17363,10 @@ PrefabInstance:
     - target: {fileID: 3579776804834900099, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994833201816663564, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7326370615599485689, guid: 12b56b743fddfd94eb78e7d0cd9078a7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19874,30 +19856,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.336028, y: 0.3025123, z: 1.2912118}
   m_Center: {x: -0.6742212, y: 0.14881629, z: 0.0031417608}
---- !u!54 &1447055048 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 4803241399698043381, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
-  m_PrefabInstance: {fileID: 2126511586}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1447055050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473423437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bd28341d3e86a4c8ab52b1a0269c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.SnapInteractable
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _rigidbody: {fileID: 1447055048}
-  _snapPoseDelegate: {fileID: 0}
-  _movementProvider: {fileID: 0}
 --- !u!114 &1447055051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20213,9 +20171,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1463268662}
-    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1463268663}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!4 &1463268656 stripped
@@ -20223,30 +20178,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
   m_PrefabInstance: {fileID: 1463268655}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1463268660 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 4803241399698043381, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
-  m_PrefabInstance: {fileID: 1463268655}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1463268662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1097269140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bd28341d3e86a4c8ab52b1a0269c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.SnapInteractable
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _rigidbody: {fileID: 1463268660}
-  _snapPoseDelegate: {fileID: 0}
-  _movementProvider: {fileID: 0}
 --- !u!114 &1463268663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24427,9 +24358,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1926970128}
-    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1926970129}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!1 &1724126313
@@ -25118,25 +25046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.Grabbable
---- !u!114 &1753917437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753917430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bd28341d3e86a4c8ab52b1a0269c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.SnapInteractable
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _rigidbody: {fileID: 1337815778}
-  _snapPoseDelegate: {fileID: 0}
-  _movementProvider: {fileID: 0}
 --- !u!114 &1753917438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27268,9 +27177,6 @@ PrefabInstance:
       addedObject: {fileID: 249482137}
     - targetCorrespondingSourceObject: {fileID: 8923645764558780387, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 249482139}
-    - targetCorrespondingSourceObject: {fileID: 8923645764558780387, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 249482140}
     - targetCorrespondingSourceObject: {fileID: 5512584492143924765, guid: 47db7e913e51b7d40b5d4ed47f081c48, type: 3}
       insertIndex: -1
@@ -28221,9 +28127,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1887566634}
-    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1887566635}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!4 &1887566627 stripped
@@ -28231,30 +28134,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
   m_PrefabInstance: {fileID: 1887566626}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1887566631 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 4803241399698043381, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
-  m_PrefabInstance: {fileID: 1887566626}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1887566634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687003031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bd28341d3e86a4c8ab52b1a0269c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.SnapInteractable
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _rigidbody: {fileID: 1887566631}
-  _snapPoseDelegate: {fileID: 0}
-  _movementProvider: {fileID: 0}
 --- !u!114 &1887566635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29167,30 +29046,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
   m_PrefabInstance: {fileID: 1721682706}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1926970125 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 4803241399698043381, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
-  m_PrefabInstance: {fileID: 1721682706}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1926970128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926970121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bd28341d3e86a4c8ab52b1a0269c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.SnapInteractable
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _rigidbody: {fileID: 1926970125}
-  _snapPoseDelegate: {fileID: 0}
-  _movementProvider: {fileID: 0}
 --- !u!114 &1926970129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33218,9 +33073,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1447055044}
-    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1447055050}
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1447055051}
@@ -48172,9 +48024,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8048862798381006008}
-    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8048862798381006009}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!114 &4014364389917327311
@@ -51981,6 +51830,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6393538932036144000, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _snapAnchor
+      value: 
+      objectReference: {fileID: 175616363}
     - target: {fileID: 6603798932796669229, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.249
@@ -52017,6 +51870,9 @@ PrefabInstance:
     - {fileID: 3650989587318852224, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6603798932796669229, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 175616363}
     - targetCorrespondingSourceObject: {fileID: 2655394808490363447, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1083644300}
@@ -63179,30 +63035,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7330173000128386259, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
   m_PrefabInstance: {fileID: 4000618213453774602}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &8048862798381006005 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 4803241399698043381, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
-  m_PrefabInstance: {fileID: 4000618213453774602}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8048862798381006008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1883893441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bd28341d3e86a4c8ab52b1a0269c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.SnapInteractable
-  _interactorFilters: []
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _data: {fileID: 0}
-  _rigidbody: {fileID: 8048862798381006005}
-  _snapPoseDelegate: {fileID: 0}
-  _movementProvider: {fileID: 0}
 --- !u!114 &8048862798381006009
 MonoBehaviour:
   m_ObjectHideFlags: 0

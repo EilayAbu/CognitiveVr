@@ -54,6 +54,10 @@ namespace CognitiveVR.Tasks
         [Tooltip("Name used in the 'object' column of the CSV rows.")]
         [SerializeField] private string logName = "RainTask";
 
+        [Header("Puddle spawn")]
+        [Tooltip("Seconds after RequestOpenWindow before the puddle appears.")]
+        [SerializeField] private float puddleActivateDelay = 15f;
+
         private static readonly CultureInfo Inv = CultureInfo.InvariantCulture;
 
         private readonly WindowPuddleTaskSummary _summary = new WindowPuddleTaskSummary();
@@ -95,6 +99,8 @@ namespace CognitiveVR.Tasks
 
         private void OnDisable()
         {
+            CancelInvoke(nameof(ActivatePuddle));
+
             if (windowController != null)
             {
                 windowController.RequestOpen -= HandleTaskStart;
@@ -121,6 +127,25 @@ namespace CognitiveVR.Tasks
             _summary.taskStartedAt = Now();
 
             Manager?.Log("task", "rain_task_start", logName, null, "trigger=request_open_window");
+
+            SchedulePuddleActivate();
+        }
+
+        private void SchedulePuddleActivate()
+        {
+            if (puddle == null) return;
+
+            CancelInvoke(nameof(ActivatePuddle));
+            if (puddleActivateDelay <= 0f)
+                ActivatePuddle();
+            else
+                Invoke(nameof(ActivatePuddle), puddleActivateDelay);
+        }
+
+        private void ActivatePuddle()
+        {
+            if (puddle != null)
+                puddle.gameObject.SetActive(true);
         }
 
         private void HandleWindowOpened()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
 using UnityEngine;
@@ -134,6 +135,12 @@ namespace CognitiveVR.Interaction
                 return;
             }
 
+            if (HasItem && _storedItem != item)
+            {
+                RejectExtraItem(interactorView, item);
+                return;
+            }
+
             _storedItem = item;
             item.ApplyStoredState();
             RefreshHandGrabAvailability();
@@ -163,6 +170,40 @@ namespace CognitiveVR.Interaction
             if (enableDebugLogs)
             {
                 Debug.Log($"[{nameof(BackpackSlot)}] Released '{item.ItemName}' from slot '{name}'.", this);
+            }
+        }
+
+        /// <summary>
+        /// Keeps the slot bound to the item it already holds and pushes a
+        /// second item back out. MaxSelectingInteractors = 1 should already
+        /// have filtered this slot out of the newcomer's candidates, so this
+        /// is a safety net: without it the slot would silently rebind to the
+        /// newcomer (leaking the first item, which then never raises
+        /// WhenItemRemoved) and both items would parent themselves here.
+        /// The eviction is deferred a frame because this runs inside the SDK's
+        /// AddSelectingInteractor call; removing the interactor synchronously
+        /// would mutate the interactable's selection bookkeeping mid-update.
+        /// </summary>
+        private void RejectExtraItem(IInteractorView interactorView, InventoryItemMetaBridge item)
+        {
+            Debug.LogWarning(
+                $"[{nameof(BackpackSlot)}] Slot '{name}' already holds '{_storedItem.ItemName}'; " +
+                $"rejecting '{item.ItemName}'.",
+                this);
+
+            if (isActiveAndEnabled)
+            {
+                StartCoroutine(EvictInteractorNextFrame(interactorView.Identifier));
+            }
+        }
+
+        private IEnumerator EvictInteractorNextFrame(int interactorIdentifier)
+        {
+            yield return null;
+
+            if (snapInteractable != null)
+            {
+                snapInteractable.RemoveInteractorByIdentifier(interactorIdentifier);
             }
         }
 
