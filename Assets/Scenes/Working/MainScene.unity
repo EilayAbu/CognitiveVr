@@ -18846,7 +18846,7 @@ MonoBehaviour:
   puddle: {fileID: 728712914}
   sessionTimer: {fileID: 965045159}
   logName: RainTask
-  puddleActivateDelay: 40
+  puddleActivateDelay: 8
 --- !u!114 &1347619571
 MonoBehaviour:
   m_ObjectHideFlags: 0
