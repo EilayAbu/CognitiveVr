@@ -26931,7 +26931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.Window.WindowAudioBridge
   controller: {fileID: 1832525613}
   audioSource: {fileID: 849958435}
-  openVolume: 0.7
+  openVolume: 1
   fadeDuration: 0.75
   scaleWithAngle: 0
   fullOpenAngle: 60
