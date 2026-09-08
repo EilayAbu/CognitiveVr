@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Studio Apartment 2/Apartment Scene.unity
     guid: 0ceb1e501fb03304fb244a59fd86a708
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Working/TutorialScene.unity
     guid: 454736a4dfa9dc949a65e200f773190e
   - enabled: 1
