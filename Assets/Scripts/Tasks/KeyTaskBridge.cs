@@ -113,13 +113,12 @@ namespace CognitiveVR.Tasks
             _summary.knockTool = tool;
             RegisterTool(tool);
 
-            RegisterFirstAttempt("umbrella", tool);
+            RegisterFirstAttempt(tool); // Logs first=mop instead of first=umbrella|tool=mop
 
-            Manager?.Log("task", "key_umbrella_knock", logName, speed,
-                $"tool={tool}" +
-                $"|hit_speed_mps={speed.ToString("F2", Inv)}");
+            Manager?.Log("task", $"key_{tool}_knock", logName, speed,
+                $"hit_speed_mps={speed.ToString("F2", Inv)}");
 
-            RegisterSolved("umbrella", tool);
+            RegisterSolved(tool); // Logs method=mop instead of method=umbrella|tool=mop
         }
 
         private void HandleUmbrellaTooSlow(float speed, string tool)
@@ -128,11 +127,10 @@ namespace CognitiveVR.Tasks
             _summary.triedUmbrella = true;
             RegisterTool(tool);
 
-            RegisterFirstAttempt("umbrella", tool);
+            RegisterFirstAttempt(tool);
 
-            Manager?.Log("task", "key_umbrella_too_slow", logName, speed,
-                $"tool={tool}" +
-                $"|hit_speed_mps={speed.ToString("F2", Inv)}" +
+            Manager?.Log("task", $"key_{tool}_too_slow", logName, speed,
+                $"hit_speed_mps={speed.ToString("F2", Inv)}" +
                 $"|slow_hits={_summary.umbrellaSlowHitCount}");
         }
 

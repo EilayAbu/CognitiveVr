@@ -1405,6 +1405,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3306443841478427267, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1977010753}
+    - targetCorrespondingSourceObject: {fileID: 3306443841478427267, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1977010754}
     - targetCorrespondingSourceObject: {fileID: 5208020910940934889, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1707019471}
@@ -5594,6 +5597,7 @@ GameObject:
   - component: {fileID: 877336782}
   - component: {fileID: 877336781}
   - component: {fileID: 877336780}
+  - component: {fileID: 877336787}
   m_Layer: 0
   m_Name: '[BuildingBlock] Cube'
   m_TagString: Untagged
@@ -5763,6 +5767,23 @@ Transform:
   - {fileID: 1390447715}
   m_Father: {fileID: 6139825904721827458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &877336787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877336779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -10
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 0
 --- !u!1 &902039265
 GameObject:
   m_ObjectHideFlags: 0
@@ -12699,6 +12720,7 @@ GameObject:
   - component: {fileID: 1765608403}
   - component: {fileID: 1765608402}
   - component: {fileID: 1765608409}
+  - component: {fileID: 1765608410}
   m_Layer: 0
   m_Name: '[BuildingBlock] Cube'
   m_TagString: Untagged
@@ -12933,6 +12955,23 @@ MonoBehaviour:
         Min: 1
         Max: 1
   _resetScaleResponsivenessOnConstraintOvershoot: 0
+--- !u!114 &1765608410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765608401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -5
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 0
 --- !u!114 &1769729410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13469,6 +13508,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1977010754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977010750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: 0
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 0
 --- !u!1001 &1989395016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15718,6 +15774,7 @@ GameObject:
   - component: {fileID: 6846305179658209334}
   - component: {fileID: 6498250348403249224}
   - component: {fileID: 6980882548319403155}
+  - component: {fileID: 6980882548319403156}
   m_Layer: 0
   m_Name: BagBox
   m_TagString: Untagged
@@ -18182,6 +18239,7 @@ GameObject:
   - component: {fileID: 8939955337791752338}
   - component: {fileID: 3632584630337295217}
   - component: {fileID: 6239952423713933189}
+  - component: {fileID: 8939955337791752339}
   m_Layer: 0
   m_Name: Backpack
   m_TagString: Untagged
@@ -21141,6 +21199,23 @@ MonoBehaviour:
   _rigidbody: {fileID: 4437823280688087564}
   _snapPoseDelegate: {fileID: 0}
   _movementProvider: {fileID: 0}
+--- !u!114 &6980882548319403156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386871165232125365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -5
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 0
 --- !u!4 &6992562028134138903
 Transform:
   m_ObjectHideFlags: 0
@@ -22027,6 +22102,7 @@ GameObject:
   - component: {fileID: 1784573187880547275}
   - component: {fileID: 769757876397458778}
   - component: {fileID: 3574697729885903368}
+  - component: {fileID: 8168151198915173352}
   m_Layer: 0
   m_Name: chair
   m_TagString: Untagged
@@ -22034,6 +22110,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8168151198915173352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8168151198915173351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -10
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 0
 --- !u!65 &8264228746460955123
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22498,6 +22591,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8939955337791752339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3900016323345102667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
+  _yThresholdForRespawn: -10
+  _whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  _sleepFrames: 0
 --- !u!33 &9006993787131800679
 MeshFilter:
   m_ObjectHideFlags: 0
