@@ -3258,14 +3258,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 249482131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!1 &250680558
 GameObject:
   m_ObjectHideFlags: 0
@@ -6714,14 +6720,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 438924786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!1001 &443994110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6919,8 +6931,9 @@ GameObject:
   - component: {fileID: 454965225}
   - component: {fileID: 454965224}
   - component: {fileID: 454965223}
+  - component: {fileID: 454965226}
   m_Layer: 7
-  m_Name: wall
+  m_Name: wallOutBoundry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6956,7 +6969,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -7019,6 +7032,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454965221}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &454965226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454965221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647a37c45a3c2a34b992a201bc51f5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.OutOfBoundsVolume
+  padding: 0
+  enableFloorCheck: 1
+  respawnBelowWorldY: -0.5
+  enableDebugLogs: 0
 --- !u!1001 &461702709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10774,7 +10803,7 @@ PrefabInstance:
       addedObject: {fileID: 1753917438}
     - targetCorrespondingSourceObject: {fileID: 4662812201562109299, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1753917443}
+      addedObject: {fileID: 1753917444}
     - targetCorrespondingSourceObject: {fileID: 720609136352184358, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1700029363}
@@ -13216,14 +13245,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 853326913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!1 &860912375
 GameObject:
   m_ObjectHideFlags: 0
@@ -15606,14 +15641,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1077798302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!4 &1080199422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6903557532094659035, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
@@ -20727,14 +20768,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 473423437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!1001 &1448137289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21077,14 +21124,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1097269140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!1 &1467403855
 GameObject:
   m_ObjectHideFlags: 0
@@ -22487,14 +22540,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1548926221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!1 &1554263479 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 80952c8c5eda20040b0f6ea4a66ff484, type: 3}
@@ -26398,7 +26457,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 34740538353868533, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
   m_PrefabInstance: {fileID: 752390977}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1753917443
+--- !u!114 &1753917444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26407,14 +26466,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1753917430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!1001 &1767120069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29502,14 +29567,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1687003031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!1001 &1887765986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30436,14 +30507,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1926970121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!1001 &1932842891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33297,14 +33374,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2076036252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f90e0b822fee24dace37e10b420faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.Samples.RespawnOnDropScene
-  _yThresholdForRespawn: -1
-  _whenRespawned:
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
     m_PersistentCalls:
       m_Calls: []
-  _sleepFrames: 1
+  enableDebugLogs: 0
 --- !u!114 &2077729397 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3425276718554526647, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
@@ -49620,6 +49703,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8048862798381006009}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8048862798381006010}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!114 &4014364389917327311
 MonoBehaviour:
@@ -64736,6 +64822,29 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &8048862798381006010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883893441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  enableDebugLogs: 0
 --- !u!1 &8079159415995541477
 GameObject:
   m_ObjectHideFlags: 0
