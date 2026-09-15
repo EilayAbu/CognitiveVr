@@ -3795,6 +3795,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.Surfaces.ColliderSurface
   _collider: {fileID: 264197519}
+--- !u!1 &267650087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 267650088}
+  - component: {fileID: 267650089}
+  m_Layer: 10
+  m_Name: MessageClip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &267650088
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267650087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8214178191656943547}
+  m_Father: {fileID: 878126885252103073}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &267650089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267650087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &279216425
 GameObject:
   m_ObjectHideFlags: 0
@@ -4271,6 +4322,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4923345734513016, guid: b4d64c9d1d074b743b55e02e20cd2a21, type: 3}
   m_PrefabInstance: {fileID: 307350662}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &310172259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 310172260}
+  - component: {fileID: 310172261}
+  m_Layer: 10
+  m_Name: MessageClip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &310172260
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310172259}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3275467548634527806}
+  m_Father: {fileID: 1992276758385705323}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &310172261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310172259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &310194114
 GameObject:
   m_ObjectHideFlags: 0
@@ -9417,7 +9519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &685717792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9453,7 +9555,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9539,7 +9641,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685717791}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -26768,7 +26870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1790385457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26804,7 +26906,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -26890,7 +26992,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790385456}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -40214,7 +40316,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -40386,7 +40488,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6129562330786379266}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -40439,6 +40541,8 @@ GameObject:
   - component: {fileID: 8214178191656943547}
   - component: {fileID: 1792330980122453845}
   - component: {fileID: 2256004057434530058}
+  - component: {fileID: 8214178191656943549}
+  - component: {fileID: 8214178191656943548}
   m_Layer: 10
   m_Name: RawImage
   m_TagString: Untagged
@@ -40761,7 +40865,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8010728214125290922}
-  - {fileID: 8214178191656943547}
+  - {fileID: 267650088}
   m_Father: {fileID: 4695297450138701856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -40950,7 +41054,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -41244,9 +41348,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974551629573414549}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0028, y: -0.0446, z: -0.0216}
-  m_LocalScale: {x: 0.049999993, y: 0.049999997, z: 0.049999997}
+  m_LocalRotation: {x: 0.0000000032596286, y: -0, z: -0.000000012107192, w: 1}
+  m_LocalPosition: {x: -0.27042073, y: -0.04863833, z: -0.00000002813339}
+  m_LocalScale: {x: 0.7872612, y: 0.08355599, z: 0.049999997}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8765929026105511015}
@@ -41921,7 +42025,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -42453,7 +42557,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9010452721100469650}
-  - {fileID: 3275467548634527806}
+  - {fileID: 310172260}
   m_Father: {fileID: 4695297450138701856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -42545,7 +42649,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8079159415995541477}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -48596,16 +48700,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5068650539851513165}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalRotation: {x: 0.0000000032596286, y: -0, z: -0.000000012107192, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.9995621}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1992276758385705323}
+  m_Father: {fileID: 310172260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -77}
+  m_AnchoredPosition: {x: 249.99957, y: -77.00001}
   m_SizeDelta: {x: 516.4, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3299680908455608935
@@ -50071,7 +50175,7 @@ MonoBehaviour:
     Enabled: 1
     MinNormal: 0.015
   _dragThresholds:
-    Enabled: 1
+    Enabled: 0
     DragNormal: 0.01
     DragTangent: 0.01
     DragEaseCurve:
@@ -50540,9 +50644,11 @@ MonoBehaviour:
   _visual: {fileID: 6540287908771073220}
   _visualCanvasGroup: {fileID: 2501747152515046908}
   _deleteButton: {fileID: 1794758442867437503}
+  _poke: {fileID: 0}
   _dismissDistance: 220
   _animSeconds: 0.18
   _offscreenDistance: 1200
+  _rightOnly: 0
   OnDismissed:
     m_PersistentCalls:
       m_Calls: []
@@ -50884,9 +50990,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6116577431793403955}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.050699983, z: 0}
-  m_LocalScale: {x: 0.049999993, y: 0.049999997, z: 0.049999997}
+  m_LocalRotation: {x: 0.0000000032596286, y: -0, z: -0.000000012107192, w: 1}
+  m_LocalPosition: {x: -0.27375895, y: -0.055771686, z: -0.00000040364262}
+  m_LocalScale: {x: 0.82793164, y: 0.09055769, z: 0.049999997}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 634348570021323278}
@@ -51080,7 +51186,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -51571,6 +51677,8 @@ GameObject:
   - component: {fileID: 3275467548634527806}
   - component: {fileID: 4925704525142455995}
   - component: {fileID: 2797859392242229924}
+  - component: {fileID: 5068650539851513167}
+  - component: {fileID: 5068650539851513166}
   m_Layer: 10
   m_Name: RawImage
   m_TagString: Untagged
@@ -51578,6 +51686,53 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5068650539851513166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5068650539851513165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70581fc6157118d408864c61dd472a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Phone.SwipeToDelete
+  _visual: {fileID: 3275467548634527806}
+  _visualCanvasGroup: {fileID: 5068650539851513167}
+  _deleteButton: {fileID: 0}
+  _poke: {fileID: 8773056798923669109}
+  _dismissDistance: 220
+  _animSeconds: 0.18
+  _offscreenDistance: 1200
+  _rightOnly: 1
+  OnDismissed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1873610982937579654}
+        m_TargetAssemblyTypeName: CognitiveVR.Phone.PhoneScreenController, Assembly-CSharp
+        m_MethodName: HideWeatherMessage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!225 &5068650539851513167
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5068650539851513165}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!23 &5102008740380652652
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51585,7 +51740,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873096700394996647}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -51634,7 +51789,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352754870387599176}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -52458,19 +52613,7 @@ MonoBehaviour:
       m_Calls: []
   _whenSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1873610982937579654}
-        m_TargetAssemblyTypeName: CognitiveVR.Phone.PhoneScreenController, Assembly-CSharp
-        m_MethodName: HideWeatherMessage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _whenUnselect:
     m_PersistentCalls:
       m_Calls: []
@@ -64426,9 +64569,11 @@ MonoBehaviour:
   _visual: {fileID: 1802637033908505335}
   _visualCanvasGroup: {fileID: 4864310999328234821}
   _deleteButton: {fileID: 2921290081577011051}
+  _poke: {fileID: 0}
   _dismissDistance: 220
   _animSeconds: 0.18
   _offscreenDistance: 1200
+  _rightOnly: 0
   OnDismissed:
     m_PersistentCalls:
       m_Calls: []
@@ -64976,18 +65121,65 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 687028996737192785}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalRotation: {x: 0.0000000032596286, y: -0, z: -0.000000012107192, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.0000281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 878126885252103073}
+  m_Father: {fileID: 267650088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 249, y: -66}
   m_SizeDelta: {x: 527.3, y: 133}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8214178191656943548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687028996737192785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70581fc6157118d408864c61dd472a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Phone.SwipeToDelete
+  _visual: {fileID: 8214178191656943547}
+  _visualCanvasGroup: {fileID: 8214178191656943549}
+  _deleteButton: {fileID: 0}
+  _poke: {fileID: 4134782188881271026}
+  _dismissDistance: 220
+  _animSeconds: 0.18
+  _offscreenDistance: 1200
+  _rightOnly: 1
+  OnDismissed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1873610982937579654}
+        m_TargetAssemblyTypeName: CognitiveVR.Phone.PhoneScreenController, Assembly-CSharp
+        m_MethodName: HideBossMessage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!225 &8214178191656943549
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687028996737192785}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &8226911622530013813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65367,7 +65559,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7474359627082810715}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -65814,7 +66006,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8401053461251128323}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -65877,19 +66069,7 @@ MonoBehaviour:
       m_Calls: []
   _whenSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1873610982937579654}
-        m_TargetAssemblyTypeName: CognitiveVR.Phone.PhoneScreenController, Assembly-CSharp
-        m_MethodName: HideBossMessage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _whenUnselect:
     m_PersistentCalls:
       m_Calls: []
@@ -65964,7 +66144,7 @@ MonoBehaviour:
     Enabled: 1
     MinNormal: 0.015
   _dragThresholds:
-    Enabled: 1
+    Enabled: 0
     DragNormal: 0.01
     DragTangent: 0.01
     DragEaseCurve:
