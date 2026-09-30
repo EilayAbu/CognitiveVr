@@ -28381,7 +28381,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1832525619}
-        m_TargetAssemblyTypeName: Oculus.Interaction.OneGrabRotateTransformer, Oculus.Interaction
+        m_TargetAssemblyTypeName: Oculus.Interaction.OneGrabRotateTransformerMod,
+          Assembly-CSharp
         m_MethodName: changeMaxAngle
         m_Mode: 4
         m_Arguments:
@@ -28393,7 +28394,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1832525619}
-        m_TargetAssemblyTypeName: Oculus.Interaction.OneGrabRotateTransformer, Oculus.Interaction
+        m_TargetAssemblyTypeName: Oculus.Interaction.OneGrabRotateTransformerMod,
+          Assembly-CSharp
         m_MethodName: changeMinAngle
         m_Mode: 4
         m_Arguments:
@@ -28532,7 +28534,7 @@ MonoBehaviour:
   _transferOnSecondSelection: 0
   _addNewPointsToFront: 0
   _forwardElement: {fileID: 0}
-  _oneGrabTransformer: {fileID: 1832525619}
+  _oneGrabTransformer: {fileID: 0}
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
@@ -28549,17 +28551,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1832525607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 124f4583f657475469a45ab6fca8f921, type: 3}
+  m_Script: {fileID: 11500000, guid: 415919933570bdf4bad0f79f59b62483, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Oculus.Interaction::Oculus.Interaction.OneGrabRotateTransformer
+  m_EditorClassIdentifier: Assembly-CSharp::Oculus.Interaction.OneGrabRotateTransformerMod
   _pivotTransform: {fileID: 0}
   _rotationAxis: 1
   _constraints:
     MinAngle:
-      Constrain: 1
-      Value: -90
+      Constrain: 0
+      Value: 0
     MaxAngle:
-      Constrain: 1
+      Constrain: 0
       Value: 0
 --- !u!1001 &1835102052
 PrefabInstance:
