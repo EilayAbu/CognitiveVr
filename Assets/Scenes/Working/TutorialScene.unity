@@ -1411,10 +1411,23 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5208020910940934889, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1707019471}
+    - targetCorrespondingSourceObject: {fileID: 2316538715597368888, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 279149262}
   m_SourcePrefab: {fileID: 100100000, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
 --- !u!4 &215937478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7245726159278663635, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+  m_PrefabInstance: {fileID: 215937477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &215937479 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1747503892696242037, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
+  m_PrefabInstance: {fileID: 215937477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &215937480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2316538715597368888, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
   m_PrefabInstance: {fileID: 215937477}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &222667881
@@ -2012,12 +2025,34 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2115809933348835826, guid: e4de47270d50c154f918e7bc1deeb223, type: 3}
   m_PrefabInstance: {fileID: 215937477}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 215937480}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1e2d3c4b5a69788776655443322110a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &279149262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215937480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 569d1885c4353a7479088eccd7d01c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Phone.PhoneRingRepeater
+  _phone: {fileID: 279149261}
+  _ringer: {fileID: 1707019471}
+  _ringSources:
+  - {fileID: 215937479}
+  _playSoundOnArrival: 0
+  _repeatForBossMessage: 1
+  _repeatForWeatherMessage: 1
+  _repeatCount: 3
+  _repeatInterval: 10
+  _verboseLogs: 1
 --- !u!1 &284608568
 GameObject:
   m_ObjectHideFlags: 0

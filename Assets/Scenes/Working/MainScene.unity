@@ -50986,6 +50986,7 @@ GameObject:
   - component: {fileID: 4302373805021816347}
   - component: {fileID: 4313747396963673719}
   - component: {fileID: 4321179685579797057}
+  - component: {fileID: 4321179685579797058}
   m_Layer: 10
   m_Name: Visual_Smartphone
   m_TagString: Untagged
@@ -51085,6 +51086,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4321179685579797058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4296967050154421941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d78c6c645fd4b40b15650b1d8e68a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhoneRinger
+  baseXAngle: 90
+  swingAmount: 1
+  defaultDuration: 1.5
+  defaultSpeed: 50
 --- !u!199 &4327235363703605490
 ParticleSystemRenderer:
   serializedVersion: 7
@@ -54171,6 +54188,7 @@ GameObject:
   - component: {fileID: 7291523857058208487}
   - component: {fileID: 7383544786289253046}
   - component: {fileID: 5575053417447239590}
+  - component: {fileID: 7383544786289253047}
   m_Layer: 10
   m_Name: Screenphone
   m_TagString: Untagged
@@ -64544,6 +64562,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemPrefab: {fileID: 3821886359986492596}
+--- !u!114 &7383544786289253047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6350557845068218291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 569d1885c4353a7479088eccd7d01c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Phone.PhoneRingRepeater
+  _phone: {fileID: 1873610982937579654}
+  _ringer: {fileID: 4321179685579797058}
+  _ringSources:
+  - {fileID: 2789007738328299703}
+  - {fileID: 1300198949}
+  _playSoundOnArrival: 0
+  _repeatForBossMessage: 1
+  _repeatForWeatherMessage: 1
+  _repeatCount: 3
+  _repeatInterval: 10
+  _verboseLogs: 1
 --- !u!114 &7417660541899698995
 MonoBehaviour:
   m_ObjectHideFlags: 0
