@@ -2042,7 +2042,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 06ce7dd48d6b64357a732d1ff0cbe8c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.319
+      value: 1.259
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06ce7dd48d6b64357a732d1ff0cbe8c8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2096,6 +2096,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3550600807444089717, guid: 06ce7dd48d6b64357a732d1ff0cbe8c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5399568338007485138, guid: 06ce7dd48d6b64357a732d1ff0cbe8c8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2104,6 +2108,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2c1056684a2ee4e6389809aabb79ce62, type: 2}
+    - target: {fileID: 8432402818583268007, guid: 06ce7dd48d6b64357a732d1ff0cbe8c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -4868149431256555987, guid: 06ce7dd48d6b64357a732d1ff0cbe8c8, type: 3}
@@ -2371,6 +2379,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 23902154605633124, guid: 2a0d1f273c5f09e4dbb83cd1132ed06f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a3f9aeaf732a095468fb43db3b2006d0, type: 2}
     m_RemovedComponents:
     - {fileID: 64073734650189148, guid: 2a0d1f273c5f09e4dbb83cd1132ed06f, type: 3}
     m_RemovedGameObjects: []
@@ -24482,6 +24494,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 23902154605633124, guid: 2a0d1f273c5f09e4dbb83cd1132ed06f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a3f9aeaf732a095468fb43db3b2006d0, type: 2}
     m_RemovedComponents:
     - {fileID: 64073734650189148, guid: 2a0d1f273c5f09e4dbb83cd1132ed06f, type: 3}
     m_RemovedGameObjects: []
@@ -27682,6 +27698,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 23902154605633124, guid: 2a0d1f273c5f09e4dbb83cd1132ed06f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a3f9aeaf732a095468fb43db3b2006d0, type: 2}
     m_RemovedComponents:
     - {fileID: 64073734650189148, guid: 2a0d1f273c5f09e4dbb83cd1132ed06f, type: 3}
     m_RemovedGameObjects: []
@@ -28172,6 +28192,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 23132345101371316, guid: 006b0e2601f79fb43b1e32a1340aa84c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a3f9aeaf732a095468fb43db3b2006d0, type: 2}
     m_RemovedComponents:
     - {fileID: 64936159785521720, guid: 006b0e2601f79fb43b1e32a1340aa84c, type: 3}
     m_RemovedGameObjects: []
@@ -55464,6 +55488,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4316804490542100890, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4954065539650187730, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -66116,7 +66144,7 @@ MonoBehaviour:
   _repeatForBossMessage: 1
   _repeatForWeatherMessage: 1
   _repeatCount: 3
-  _repeatInterval: 10
+  _repeatInterval: 40
   _verboseLogs: 1
 --- !u!114 &7383544786289253048
 MonoBehaviour:
