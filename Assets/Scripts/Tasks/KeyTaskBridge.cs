@@ -223,7 +223,8 @@ namespace CognitiveVR.Tasks
 
             Manager?.Log("task", "key_task_solved", logName, _summary.solvedAt,
                 $"method={method}" +
-                (string.IsNullOrEmpty(tool) ? "" : $"|tool={tool}") +
+                (string.IsNullOrEmpty(tool) ? "" : $"|tool={tool}")
+                +
                 $"|first_attempt={_summary.firstAttempt}" +
                 $"|umbrella_slow_hits={_summary.umbrellaSlowHitCount}" +
                 $"|stool_zone_visits={_summary.stoolZoneEnterCount}");
