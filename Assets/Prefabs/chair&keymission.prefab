@@ -1,5 +1,74 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &373384075456174513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5188181784818159992}
+  - component: {fileID: 3122178575794403285}
+  - component: {fileID: 7475514846456798526}
+  m_Layer: 2
+  m_Name: KeyReachZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5188181784818159992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373384075456174513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.16400003, y: 0.13199997, z: 0.09199999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6284939458276148047}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3122178575794403285
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373384075456174513}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.35, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7475514846456798526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373384075456174513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6192f2f089472874383bd2bcc19d6e53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.KeyReachZone
+  hands: []
+  minSecondsBetweenAttempts: 1
+  enableDebugLogs: 0
 --- !u!1 &1902194094874528533
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +446,7 @@ Transform:
   - {fileID: 6603798932796669229}
   - {fileID: 2655394808490363447}
   - {fileID: 3673037496395244702}
+  - {fileID: 5188181784818159992}
   - {fileID: 566344109541871070}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -1381,6 +1451,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1778431460351612, guid: 029596afd3d6d6242814fbad48e492a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3656063421388981247}
+    - targetCorrespondingSourceObject: {fileID: 1778431460351612, guid: 029596afd3d6d6242814fbad48e492a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5092320450142002015}
   m_SourcePrefab: {fileID: 100100000, guid: 029596afd3d6d6242814fbad48e492a4, type: 3}
 --- !u!4 &4299539167879275400 stripped
 Transform:
@@ -1499,6 +1572,28 @@ MonoBehaviour:
   floorCooldown: 1
   onlyAfterFirstGrab: 1
   minImpactSpeed: 0.3
+--- !u!114 &5092320450142002015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4304588017658596246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb89a441751de949805868a855b75b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.ChairNudge
+  _target: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  _grabState: {fileID: 0}
+  _grabbable: {fileID: 0}
+  _durationSeconds: 0.6
+  _tiltDegrees: 5
+  _hopHeight: 0.02
+  _swings: 3
+  _sound: {fileID: 0}
+  _verboseLogs: 0
 --- !u!1001 &6939510856745727921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1795,7 +1890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.DelayedGazeGlow
   _headTransformOverride: {fileID: 0}
-  _triggerObject: {fileID: 4299539167879275400}
+  _triggerObject: {fileID: 2655394808490363447}
   _enterAngleDegrees: 12
   _exitAngleDegrees: 18
   _useTriggerDistanceLimit: 1
@@ -1804,6 +1899,11 @@ MonoBehaviour:
   _delaySeconds: 120
   _targetGazeGlow: {fileID: 622383744777949335}
   _targetGrabbable: {fileID: 8973115410173013274}
+  _extraTargets: []
+  _nudge: {fileID: 5092320450142002015}
+  _nudgeDelaySeconds: 60
+  _nudgeRepeatSeconds: 20
+  _maxNudges: 0
   _verboseLogs: 0
 --- !u!114 &5373057828212556911
 MonoBehaviour:

@@ -28553,6 +28553,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1926970130}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1926970132}
+    - targetCorrespondingSourceObject: {fileID: 7782780505359410764, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1926970131}
   m_SourcePrefab: {fileID: 100100000, guid: a75e48b53dba69e468a4af69f56d6375, type: 3}
 --- !u!1 &1724126313
 GameObject:
@@ -33387,6 +33393,43 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   enableDebugLogs: 0
+--- !u!114 &1926970131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926970121}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa07cb734a0c754c857a5a06458a965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.GazeGlow
+  _headTransformOverride: {fileID: 1080199422}
+  _enterAngleDegrees: 12
+  _exitAngleDegrees: 18
+  _useDistanceLimit: 1
+  _maxDistance: 15.47
+  _outline: {fileID: 1926970132}
+  _verboseLogs: 0
+--- !u!114 &1926970132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926970121}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1932842891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36379,6 +36422,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ad4f1ddee798f45a20be4efda35c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2081887975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1516229641574428540, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311198162863902254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7dea5231fe72a43bfd2b54242fe7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.DelayedGazeGlow
+--- !u!114 &2081887976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7475514846456798526, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6192f2f089472874383bd2bcc19d6e53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.KeyReachZone
 --- !u!4 &2084691527 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5321268120154902367, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
@@ -56286,6 +56351,14 @@ PrefabInstance:
       propertyPath: _headTransformOverride
       value: 
       objectReference: {fileID: 1080199422}
+    - target: {fileID: 1516229641574428540, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _extraTargets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516229641574428540, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _extraTargets.Array.data[0].glow
+      value: 
+      objectReference: {fileID: 1926970131}
     - target: {fileID: 1930232080957122054, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.502
@@ -56353,6 +56426,18 @@ PrefabInstance:
     - target: {fileID: 5141138821769818825, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188181784818159992, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5770001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188181784818159992, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.68700004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188181784818159992, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.4850004
       objectReference: {fileID: 0}
     - target: {fileID: 5373057828212556911, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: isImportant
@@ -56478,6 +56563,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7475514846456798526, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: hands.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475514846456798526, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: 'hands.Array.data[0]'
+      value: 
+      objectReference: {fileID: 7764317389931646549}
+    - target: {fileID: 7475514846456798526, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: 'hands.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7764317389931646548}
     - target: {fileID: 8310977768301547050, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -56583,6 +56680,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.KeyTaskBridge
   keyZone: {fileID: 6311198162863902258}
   stoolZone: {fileID: 6311198162863902257}
+  hintRelay: {fileID: 2081887975}
+  reachZone: {fileID: 2081887976}
   logName: KeyTask
 --- !u!114 &6311198162863902260
 MonoBehaviour:
@@ -67704,6 +67803,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnEyeHeight
   rig: {fileID: 7764317389931646545}
   eyeHeight: 1.6
+--- !u!4 &7764317389931646548 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1062074143633013300, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
+  m_PrefabInstance: {fileID: 7764317389931646544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7764317389931646549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3888402183179375821, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
+  m_PrefabInstance: {fileID: 7764317389931646544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7878384039019696113
 Transform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using Oculus.Interaction;
 using UnityEngine;
 
@@ -10,15 +12,31 @@ namespace CognitiveVR.Interaction
     /// Watches the player's gaze on a "trigger" object (A). Once the player has
     /// continuously looked at A for <see cref="_requiredGazeSeconds"/>, schedules
     /// a one-shot timer that, after <see cref="_delaySeconds"/> seconds, enables
-    /// the <see cref="GazeGlow"/> on a "target" object (B).
+    /// the <see cref="GazeGlow"/> on a "target" object (B) and on every extra
+    /// hint target (e.g. the umbrella).
     ///
-    /// When B is grabbed (Oculus.Interaction <see cref="Grabbable"/> raises a
-    /// <see cref="PointerEventType.Select"/>), B's <see cref="GazeGlow"/> is
-    /// disabled and this relay turns itself off.
+    /// If a <see cref="ChairNudge"/> is assigned, after a further
+    /// <see cref="_nudgeDelaySeconds"/> it wiggles the chair every
+    /// <see cref="_nudgeRepeatSeconds"/> until the hints are stopped.
+    ///
+    /// When any hinted object is grabbed (Oculus.Interaction <see cref="Grabbable"/>
+    /// raises a <see cref="PointerEventType.Select"/>), or <see cref="StopHints"/>
+    /// is called (e.g. the task was solved), every glow is disabled, the wiggle
+    /// stops and this relay turns itself off.
     /// </summary>
     [DisallowMultipleComponent]
     public class DelayedGazeGlow : MonoBehaviour
     {
+        [Serializable]
+        public class HintTarget
+        {
+            [Tooltip("GazeGlow on the hinted object. Disabled on Awake, enabled together with the main target.")]
+            public GazeGlow glow;
+
+            [Tooltip("Optional: Grabbable on the hinted object. If empty, auto-discovered on the glow's GameObject (children first, then parents).")]
+            public Grabbable grabbable;
+        }
+
         [Header("Detection (Trigger - object A)")]
         [Tooltip("Optional override. Leave empty to auto-use Camera.main transform.")]
         [SerializeField] private Transform _headTransformOverride;
@@ -53,17 +71,52 @@ namespace CognitiveVR.Interaction
         [Tooltip("Optional: Grabbable on B. If empty, auto-discovered via GetComponentInChildren on the target GazeGlow's GameObject.")]
         [SerializeField] private Grabbable _targetGrabbable;
 
+        [Header("Extra hint targets")]
+        [Tooltip("Other objects that glow at the same moment as B (e.g. the umbrella). Grabbing any of them also stops the hints.")]
+        [SerializeField] private List<HintTarget> _extraTargets = new List<HintTarget>();
+
+        [Header("Nudge (after the glow)")]
+        [Tooltip("Optional: wiggles the chair if the glow hints didn't help.")]
+        [SerializeField] private ChairNudge _nudge;
+
+        [Tooltip("Seconds after the glows turn on before the first wiggle.")]
+        [SerializeField] private float _nudgeDelaySeconds = 60f;
+
+        [Tooltip("Seconds between wiggles.")]
+        [SerializeField] private float _nudgeRepeatSeconds = 20f;
+
+        [Tooltip("Maximum number of wiggles. 0 = unlimited.")]
+        [SerializeField] private int _maxNudges;
+
         [Header("Debug")]
         [SerializeField] private bool _verboseLogs;
 
+        /// <summary>The player looked at A long enough. Arg = head-to-A distance (m).</summary>
+        public event Action<float> TriggerGazeRegistered;
+        /// <summary>The delay elapsed and every hint glow was turned on.</summary>
+        public event Action HintGlowsEnabled;
+        /// <summary>The chair was wiggled. Arg = wiggle count so far.</summary>
+        public event Action<int> ChairNudged;
+        /// <summary>The hints were stopped. Arg = reason ("grabbed:&lt;name&gt;", "solved", ...).</summary>
+        public event Action<string> HintsStopped;
+
+        private readonly List<(Grabbable grabbable, Action<PointerEvent> handler)> _subscriptions =
+            new List<(Grabbable, Action<PointerEvent>)>();
+
         private Transform _cachedHead;
         private float _continuousGazeTime;
+        private float _lastTriggerDistance;
         private bool _gazeRegistered;
         private bool _delayScheduled;
-        private bool _grabbed;
+        private bool _glowsEnabled;
+        private bool _stopped;
+        private int _nudgeCount;
+        private Coroutine _hintRoutine;
 
         public bool IsGazeRegistered => _gazeRegistered;
         public bool IsTargetEnabled => _targetGazeGlow != null && _targetGazeGlow.enabled;
+        public bool AreGlowsEnabled => _glowsEnabled;
+        public int NudgeCount => _nudgeCount;
 
         private void Awake()
         {
@@ -75,6 +128,21 @@ namespace CognitiveVR.Interaction
             if (_targetGrabbable == null && _targetGazeGlow != null)
             {
                 _targetGrabbable = _targetGazeGlow.GetComponentInChildren<Grabbable>();
+            }
+
+            foreach (HintTarget target in _extraTargets)
+            {
+                if (target == null || target.glow == null)
+                    continue;
+
+                target.glow.enabled = false;
+
+                if (target.grabbable == null)
+                {
+                    target.grabbable = target.glow.GetComponentInChildren<Grabbable>();
+                    if (target.grabbable == null)
+                        target.grabbable = target.glow.GetComponentInParent<Grabbable>();
+                }
             }
 
             if (_targetGazeGlow == null && _verboseLogs)
@@ -89,18 +157,24 @@ namespace CognitiveVR.Interaction
 
         private void OnEnable()
         {
-            if (_targetGrabbable != null)
+            Subscribe(_targetGrabbable);
+
+            foreach (HintTarget target in _extraTargets)
             {
-                _targetGrabbable.WhenPointerEventRaised += HandleTargetPointerEvent;
+                if (target != null)
+                    Subscribe(target.grabbable);
             }
         }
 
         private void OnDisable()
         {
-            if (_targetGrabbable != null)
+            foreach (var subscription in _subscriptions)
             {
-                _targetGrabbable.WhenPointerEventRaised -= HandleTargetPointerEvent;
+                if (subscription.grabbable != null)
+                    subscription.grabbable.WhenPointerEventRaised -= subscription.handler;
             }
+
+            _subscriptions.Clear();
         }
 
         private void OnValidate()
@@ -116,11 +190,20 @@ namespace CognitiveVR.Interaction
 
             if (_triggerMaxDistance < 0.05f)
                 _triggerMaxDistance = 0.05f;
+
+            if (_nudgeDelaySeconds < 0f)
+                _nudgeDelaySeconds = 0f;
+
+            if (_nudgeRepeatSeconds < 0.1f)
+                _nudgeRepeatSeconds = 0.1f;
+
+            if (_maxNudges < 0)
+                _maxNudges = 0;
         }
 
         private void Update()
         {
-            if (_grabbed || _gazeRegistered)
+            if (_stopped || _gazeRegistered)
                 return;
 
             UpdateTriggerGaze();
@@ -159,6 +242,7 @@ namespace CognitiveVR.Interaction
             if (looking)
             {
                 _continuousGazeTime += Time.deltaTime;
+                _lastTriggerDistance = Mathf.Sqrt(sqr);
                 if (_continuousGazeTime >= _requiredGazeSeconds)
                 {
                     RegisterTriggerGaze();
@@ -177,64 +261,134 @@ namespace CognitiveVR.Interaction
 
             _gazeRegistered = true;
 
-            if (_verboseLogs)
-            {
-                Debug.Log(
-                    $"[{nameof(DelayedGazeGlow)}] Trigger gaze registered on '{(_triggerObject != null ? _triggerObject.name : "<null>")}'. " +
-                    $"Waiting {_delaySeconds:0.##}s before enabling target GazeGlow.",
-                    this);
-            }
+            Debug.Log(
+                $"[{nameof(DelayedGazeGlow)}] First look at '{(_triggerObject != null ? _triggerObject.name : "<null>")}' " +
+                $"at {_lastTriggerDistance:0.##}m. Hints in {_delaySeconds:0.##}s.",
+                this);
+
+            TriggerGazeRegistered?.Invoke(_lastTriggerDistance);
 
             if (!_delayScheduled)
             {
                 _delayScheduled = true;
-                StartCoroutine(WaitAndEnableTarget());
+                _hintRoutine = StartCoroutine(RunHintSequence());
             }
         }
 
-        private IEnumerator WaitAndEnableTarget()
+        private IEnumerator RunHintSequence()
         {
             if (_delaySeconds > 0f)
             {
                 yield return new WaitForSeconds(_delaySeconds);
             }
 
-            if (_grabbed)
+            if (_stopped)
                 yield break;
 
-            if (_targetGazeGlow != null)
-            {
-                _targetGazeGlow.enabled = true;
+            SetGlows(true);
+            _glowsEnabled = true;
 
-                if (_verboseLogs)
+            if (_verboseLogs)
+            {
+                Debug.Log($"[{nameof(DelayedGazeGlow)}] Delay elapsed -> enabled hint glows.", this);
+            }
+
+            HintGlowsEnabled?.Invoke();
+
+            if (_nudge == null)
+                yield break;
+
+            if (_nudgeDelaySeconds > 0f)
+            {
+                yield return new WaitForSeconds(_nudgeDelaySeconds);
+            }
+
+            while (!_stopped && (_maxNudges <= 0 || _nudgeCount < _maxNudges))
+            {
+                if (_nudge.Nudge())
                 {
-                    Debug.Log(
-                        $"[{nameof(DelayedGazeGlow)}] Delay elapsed -> enabled GazeGlow on '{_targetGazeGlow.name}'.",
-                        _targetGazeGlow);
+                    _nudgeCount++;
+
+                    if (_verboseLogs)
+                    {
+                        Debug.Log($"[{nameof(DelayedGazeGlow)}] Chair nudge #{_nudgeCount}.", this);
+                    }
+
+                    ChairNudged?.Invoke(_nudgeCount);
                 }
+
+                yield return new WaitForSeconds(_nudgeRepeatSeconds);
             }
         }
 
-        private void HandleTargetPointerEvent(PointerEvent pointerEvent)
+        /// <summary>
+        /// Ends the hint sequence: turns off every glow, stops the wiggle and
+        /// disables this relay. Safe to call more than once.
+        /// </summary>
+        public void StopHints(string reason)
+        {
+            if (_stopped)
+                return;
+
+            _stopped = true;
+
+            if (_hintRoutine != null)
+            {
+                StopCoroutine(_hintRoutine);
+                _hintRoutine = null;
+            }
+
+            SetGlows(false);
+
+            if (_nudge != null)
+            {
+                _nudge.Cancel();
+            }
+
+            if (_verboseLogs)
+            {
+                Debug.Log($"[{nameof(DelayedGazeGlow)}] Hints stopped ({reason}).", this);
+            }
+
+            HintsStopped?.Invoke(reason);
+
+            enabled = false;
+        }
+
+        private void SetGlows(bool on)
+        {
+            if (_targetGazeGlow != null)
+                _targetGazeGlow.enabled = on;
+
+            foreach (HintTarget target in _extraTargets)
+            {
+                if (target != null && target.glow != null)
+                    target.glow.enabled = on;
+            }
+        }
+
+        private void Subscribe(Grabbable grabbable)
+        {
+            if (grabbable == null)
+                return;
+
+            foreach (var subscription in _subscriptions)
+            {
+                if (subscription.grabbable == grabbable)
+                    return;
+            }
+
+            Action<PointerEvent> handler = pointerEvent => HandleTargetPointerEvent(pointerEvent, grabbable);
+            grabbable.WhenPointerEventRaised += handler;
+            _subscriptions.Add((grabbable, handler));
+        }
+
+        private void HandleTargetPointerEvent(PointerEvent pointerEvent, Grabbable grabbable)
         {
             if (pointerEvent.Type != PointerEventType.Select)
                 return;
 
-            _grabbed = true;
-
-            if (_targetGazeGlow != null)
-            {
-                _targetGazeGlow.enabled = false;
-
-                if (_verboseLogs)
-                {
-                    Debug.Log(
-                        $"[{nameof(DelayedGazeGlow)}] Target grabbed -> disabled GazeGlow on '{_targetGazeGlow.name}'.",
-                        _targetGazeGlow);
-                }
-            }
-
-            enabled = false;
+            StopHints($"grabbed:{(grabbable != null ? grabbable.name : "<null>")}");
         }
 
         private Transform ResolveHead()
