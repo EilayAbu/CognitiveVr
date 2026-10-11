@@ -69,8 +69,13 @@ namespace CognitiveVR.Core
         [SerializeField] private bool _hitTriggers = false;
 
         [Header("Dwell Filtering")]
-        [Tooltip("Looks shorter than this are discarded as flicks (seconds). 0 = register everything.")]
+        [Tooltip("Looks shorter than this are discarded as flicks (seconds). 0 = register everything. Objects listed in Min Look Overrides use their own value instead.")]
         [SerializeField] private float _minLookDuration = 0.2f;
+        [Tooltip("Per-object min look duration. Matched against the RESOLVED name (after ItemUsageTracker + aliases), exactly or as a prefix, first match wins. Everything not listed uses Min Look Duration above.")]
+        [SerializeField] private List<MinLookOverride> _minLookOverrides = new List<MinLookOverride>
+        {
+            new MinLookOverride { namePrefix = "clockGaze", minLookDuration = 0.1f }
+        };
         [Tooltip("If gaze slips into empty space and returns to the same object within this time, it still counts as one continuous look.")]
         [SerializeField] private float _lookAwayGrace = 0.1f;
         [Tooltip("Record sub-threshold looks as 'glances' in the per-object totals (no CSV rows). Distinguishes 'never looked' from 'looked too briefly to fixate'.")]
@@ -216,6 +221,7 @@ namespace CognitiveVR.Core
         private string _currentName;
         private string _rawGazeTarget = "";
         private float _currentLookTime;
+        private float _currentMinLook; // threshold for the object currently under the ray
         private float _currentLookStartedAt;
         private float _lastHitDistance;
         private float _graceTimer;
@@ -338,7 +344,7 @@ namespace CognitiveVR.Core
                 _lastHitDistance = hitDistance;
                 _graceTimer = 0f;
 
-                if (!_currentLookRegistered && _currentLookTime >= _minLookDuration)
+                if (!_currentLookRegistered && _currentLookTime >= _currentMinLook)
                     RegisterLookStart();
 
                 return;
@@ -367,6 +373,7 @@ namespace CognitiveVR.Core
         {
             _currentTarget = target;
             _currentName = ResolveName(target);
+            _currentMinLook = GetMinLookDuration(_currentName);
             _currentLookTime = 0f;
             // Logger clock (t_logger_s), NOT Time.time: Time.time starts counting
             // at app launch, the CSV clock starts at ExperimentDataManager.Awake.
@@ -379,7 +386,7 @@ namespace CognitiveVR.Core
             _currentlyLookingAt = _currentName;
 
             // With a zero threshold, register immediately.
-            if (_currentLookTime >= _minLookDuration)
+            if (_currentLookTime >= _currentMinLook)
                 RegisterLookStart();
         }
 
@@ -815,6 +822,23 @@ namespace CognitiveVR.Core
             return resolved;
         }
 
+        /// <summary>
+        /// Min look duration for a resolved name: the first matching override
+        /// (exact or prefix, same rule as the ignore list), else the global value.
+        /// Called once per BeginLook, not per frame.
+        /// </summary>
+        private float GetMinLookDuration(string resolvedName)
+        {
+            for (int i = 0; i < _minLookOverrides.Count; i++)
+            {
+                string p = _minLookOverrides[i].namePrefix;
+                if (string.IsNullOrEmpty(p)) continue;
+                if (resolvedName.StartsWith(p, StringComparison.Ordinal))
+                    return Mathf.Max(0f, _minLookOverrides[i].minLookDuration);
+            }
+            return _minLookDuration;
+        }
+
         /// <summary>Exact or prefix match against the ignore list.</summary>
         private bool IsIgnored(string resolvedName)
         {
@@ -878,6 +902,16 @@ namespace CognitiveVR.Core
             public string from;
             [Tooltip("Name it should be logged as instead.")]
             public string to;
+        }
+
+        /// <summary>Inspector-editable per-object dwell threshold.</summary>
+        [Serializable]
+        public struct MinLookOverride
+        {
+            [Tooltip("Resolved object name, matched exactly or as a prefix.")]
+            public string namePrefix;
+            [Tooltip("Looks at this object shorter than this are glances, not looks (seconds).")]
+            public float minLookDuration;
         }
     }
 }
