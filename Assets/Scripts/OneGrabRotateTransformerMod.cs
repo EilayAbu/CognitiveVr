@@ -105,6 +105,7 @@ namespace Oculus.Interaction
         private Vector3 _previousVectorInPivotSpace;
 
         private Quaternion _localRotation;
+        private Quaternion _closedLocalRotation;
         private float _startAngle = 0;
 
 
@@ -115,6 +116,22 @@ namespace Oculus.Interaction
         public void Initialize(IGrabbable grabbable)
         {
             _grabbable = grabbable;
+            _closedLocalRotation = grabbable.Transform.localRotation;
+        }
+
+        /// <summary>
+        /// Signed angle (degrees) of the target around the rotation axis, measured from the
+        /// rotation it had when <see cref="Initialize"/> ran. Constraints are applied to this value,
+        /// so rotations made by other scripts are taken into account.
+        /// </summary>
+        private float AngleFromClosed(Transform target, Vector3 localAxis)
+        {
+            Vector3 perpendicular = Vector3.zero;
+            perpendicular[((int)_rotationAxis + 1) % 3] = 1f;
+            return Vector3.SignedAngle(
+                _closedLocalRotation * perpendicular,
+                target.localRotation * perpendicular,
+                _closedLocalRotation * localAxis);
         }
 
         /// <summary>
@@ -147,13 +164,14 @@ namespace Oculus.Interaction
             var grabPoint = _grabbable.GrabPoints[0];
             var targetTransform = _grabbable.Transform;
 
+            Vector3 localAxis = Vector3.zero;
+            localAxis[(int)_rotationAxis] = 1f;
+
             if (_pivotTransform == null)
             {
                 _localRotation = targetTransform.localRotation;
+                _constrainedRelativeAngle = AngleFromClosed(targetTransform, localAxis);
             }
-
-            Vector3 localAxis = Vector3.zero;
-            localAxis[(int)_rotationAxis] = 1f;
 
             _worldPivotPose = ComputeWorldPivotPose();
             Vector3 rotationAxis = _worldPivotPose.rotation * localAxis;
