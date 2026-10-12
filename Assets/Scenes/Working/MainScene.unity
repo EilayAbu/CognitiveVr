@@ -30619,32 +30619,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1832525619}
-        m_TargetAssemblyTypeName: Oculus.Interaction.OneGrabRotateTransformerMod,
-          Assembly-CSharp
-        m_MethodName: changeMaxAngle
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 90
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1832525619}
-        m_TargetAssemblyTypeName: Oculus.Interaction.OneGrabRotateTransformerMod,
-          Assembly-CSharp
-        m_MethodName: changeMinAngle
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 849958435}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: set_volume
@@ -30757,7 +30731,7 @@ MonoBehaviour:
   openVolume: 1
   fadeDuration: 0.75
   scaleWithAngle: 0
-  fullOpenAngle: 60
+  fullOpenAngle: -60
 --- !u!114 &1832525618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30798,10 +30772,10 @@ MonoBehaviour:
   _constraints:
     MinAngle:
       Constrain: 1
-      Value: -1
+      Value: -90
     MaxAngle:
       Constrain: 1
-      Value: 90
+      Value: 0
 --- !u!1001 &1835102052
 PrefabInstance:
   m_ObjectHideFlags: 0
