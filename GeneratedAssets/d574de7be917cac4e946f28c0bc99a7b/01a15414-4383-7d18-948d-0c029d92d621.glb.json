@@ -1,0 +1,23 @@
+{
+    "asset": "d574de7be917cac4e946f28c0bc99a7b",
+    "fileName": "01a15414-4383-7d18-948d-0c029d92d621.glb",
+    "prompt": "",
+    "negativePrompt": "",
+    "model": "model3d-tripo-retopo",
+    "modelName": "Tripo Retopology",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Retopology",
+    "promptImageReferenceGuid": "",
+    "modelReferenceGuid": "d574de7be917cac4e946f28c0bc99a7b",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

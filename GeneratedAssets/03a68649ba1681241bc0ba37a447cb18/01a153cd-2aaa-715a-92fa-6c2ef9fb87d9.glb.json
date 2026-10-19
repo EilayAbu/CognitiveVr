@@ -1,0 +1,23 @@
+{
+    "asset": "03a68649ba1681241bc0ba37a447cb18",
+    "fileName": "01a153cd-2aaa-715a-92fa-6c2ef9fb87d9.glb",
+    "prompt": "Closed furled Japanese automatic umbrella with J-shaped hook handle, single object, game prop",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p2",
+    "modelName": "Tripo P2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "4b4c5ee23aaebf649b35483f2691a7a3",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}
