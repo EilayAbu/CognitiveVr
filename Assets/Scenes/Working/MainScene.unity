@@ -17437,10 +17437,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7021422259947431310, guid: 23e3f882979ca46419e432007ae145f5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23e3f882979ca46419e432007ae145f5, type: 3}
 --- !u!4 &1060369564 stripped
 Transform:
@@ -68597,7 +68594,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5795648613988497084, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: _trackingOriginType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5795648613988497084, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: _headPoseRelativeOffsetRotation.y
@@ -68682,41 +68679,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8088715708374865203, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       insertIndex: 4
       addedObject: {fileID: 125441173}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5647053038811554480, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7764317389931646547}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
---- !u!114 &7764317389931646545 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1467562356846594302, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
-  m_PrefabInstance: {fileID: 7764317389931646544}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9f338034892c44ebb62d97894772f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &7764317389931646546 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5647053038811554480, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
-  m_PrefabInstance: {fileID: 7764317389931646544}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7764317389931646547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7764317389931646546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62174d04906f6ef4f863a5352ea7ba46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnEyeHeight
-  rig: {fileID: 7764317389931646545}
-  eyeHeight: 1.6
 --- !u!4 &7764317389931646548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1062074143633013300, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}

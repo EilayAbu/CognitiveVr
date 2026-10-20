@@ -15360,7 +15360,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  enableDebugLogs: 1
+  enableDebugLogs: 0
 --- !u!4 &843118113
 Transform:
   m_ObjectHideFlags: 0
@@ -36051,7 +36051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5795648613988497084, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: _trackingOriginType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5811260999413137013, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_IsActive
@@ -36113,46 +36113,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6455883671842802705, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 639913204}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5647053038811554480, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2067405277}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
 --- !u!1 &2067405274 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2461567207039544056, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
   m_PrefabInstance: {fileID: 2067405273}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2067405275 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5647053038811554480, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
-  m_PrefabInstance: {fileID: 2067405273}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2067405276 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1467562356846594302, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
-  m_PrefabInstance: {fileID: 2067405273}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9f338034892c44ebb62d97894772f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2067405277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2067405275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62174d04906f6ef4f863a5352ea7ba46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpawnEyeHeight
-  rig: {fileID: 2067405276}
-  eyeHeight: 1.6
 --- !u!1 &2067746319
 GameObject:
   m_ObjectHideFlags: 0
