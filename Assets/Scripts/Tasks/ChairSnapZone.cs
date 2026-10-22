@@ -1,5 +1,6 @@
 using Oculus.Interaction;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CognitiveVR.Tasks
 {
@@ -20,6 +21,12 @@ namespace CognitiveVR.Tasks
         [SerializeField] private Transform _snapAnchor;
 
         [SerializeField] private bool enableDebugLogs;
+
+        [Tooltip("Raised each time the chair is released inside the zone and snapped into place.")]
+        [SerializeField] private UnityEvent onSnapped = new UnityEvent();
+
+        /// <summary>Raised each time the chair is released inside the zone and snapped into place.</summary>
+        public UnityEvent OnSnapped => onSnapped;
 
         private GameObject _chair;
         private Grabbable _grabbable;
@@ -211,6 +218,8 @@ namespace CognitiveVR.Tasks
             {
                 Debug.Log($"[ChairSnapZone] Snapped chair '{_chair.name}' into place.", _chair);
             }
+
+            onSnapped?.Invoke();
         }
 
         private void ApplyFreeze()
