@@ -54,6 +54,8 @@ public class KeyKnockZone : MonoBehaviour
     Collider[] _keyCols;
     bool _consumed;
 
+    public bool IsConsumed => _consumed;
+
     void Awake()
     {
         GetComponent<Collider>().isTrigger = true;
