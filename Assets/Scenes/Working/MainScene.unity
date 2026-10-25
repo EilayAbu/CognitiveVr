@@ -59262,7 +59262,7 @@ MonoBehaviour:
   shelf: {fileID: 1419784799}
   keyZone: {fileID: 6311198162863902258}
   reachZone: {fileID: 2081887976}
-  heightAboveEyes: 0.7
+  heightAboveEyes: 0.8
   shelfTopOffset: 0.03
   shelfSurfaceLimits: {x: 1.9, y: 2.9}
   stableSeconds: 0.75
