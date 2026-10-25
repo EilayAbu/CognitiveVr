@@ -25,6 +25,9 @@ namespace CognitiveVR.Tasks
         [Tooltip("Raised each time the chair is released inside the zone and snapped into place.")]
         [SerializeField] private UnityEvent onSnapped = new UnityEvent();
 
+        [Tooltip("Raise onSnapped only the first time the chair snaps. Snapping and freezing still happen every time.")]
+        [SerializeField] private bool raiseOnSnappedOnce;
+
         /// <summary>Raised each time the chair is released inside the zone and snapped into place.</summary>
         public UnityEvent OnSnapped => onSnapped;
 
@@ -38,6 +41,7 @@ namespace CognitiveVR.Tasks
         private bool _originalIsKinematic;
         private RigidbodyConstraints _originalConstraints;
         private bool _isFrozen;
+        private bool _raisedOnSnapped;
 
         /// <summary>True while a chair is currently tracked inside this zone.</summary>
         public bool IsTrackingChair => _chair != null;
@@ -219,6 +223,12 @@ namespace CognitiveVR.Tasks
                 Debug.Log($"[ChairSnapZone] Snapped chair '{_chair.name}' into place.", _chair);
             }
 
+            if (raiseOnSnappedOnce && _raisedOnSnapped)
+            {
+                return;
+            }
+
+            _raisedOnSnapped = true;
             onSnapped?.Invoke();
         }
 
