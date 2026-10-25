@@ -15321,7 +15321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &862893230
 Transform:
   m_ObjectHideFlags: 0
@@ -24113,6 +24113,18 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
@@ -24151,6 +24163,10 @@ PrefabInstance:
     - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763583564765440136, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5763583564765440139, guid: 7261b090d41af0745bcac239eae4492f, type: 3}
       propertyPath: m_Name
@@ -24676,7 +24692,7 @@ PrefabInstance:
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 790609520}
+      objectReference: {fileID: 1939070039}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -24715,7 +24731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnButtonPressed
+      value: OnAgreeClicked
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -24739,7 +24755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MultiPressButtonEvents, Assembly-CSharp
+      value: GuideActionController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -24817,6 +24833,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: InstractionButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5875643889398003319, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875643889542775275, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5875643889754384610, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: m_LocalScale.x
       value: 1000
@@ -24831,15 +24855,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889754384610, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.474373
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889754384610, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.03627
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889754384610, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 159.18445
+      value: 159.2
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889754384610, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31514,7 +31538,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -31543,7 +31567,7 @@ PrefabInstance:
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 790609520}
+      objectReference: {fileID: 1939070039}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -31582,7 +31606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnButtonPressed
+      value: OnRefuseClicked
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -31606,7 +31630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MultiPressButtonEvents, Assembly-CSharp
+      value: GuideActionController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -31683,6 +31707,14 @@ PrefabInstance:
     - target: {fileID: 5875643889095611820, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: m_Name
       value: InstractionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875643889398003319, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875643889542775275, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5875643889754384610, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: m_LocalScale.x
@@ -59230,7 +59262,7 @@ MonoBehaviour:
   shelf: {fileID: 1419784799}
   keyZone: {fileID: 6311198162863902258}
   reachZone: {fileID: 2081887976}
-  heightAboveEyes: 0.55
+  heightAboveEyes: 0.7
   shelfTopOffset: 0.03
   shelfSurfaceLimits: {x: 1.9, y: 2.9}
   stableSeconds: 0.75
