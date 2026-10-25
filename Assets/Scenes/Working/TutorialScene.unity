@@ -12446,7 +12446,7 @@ Transform:
   m_GameObject: {fileID: 651110706}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.201, y: 0.423, z: -0.395}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5443806, y: 0.7981764, z: 0.5827535}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15770,7 +15770,7 @@ MonoBehaviour:
     show:
     - {fileID: 561922189}
     hide:
-    - {fileID: 1015271364}
+    - {fileID: 974107980}
     touchAny:
     - {fileID: 877336780}
     zone: {fileID: 0}
@@ -16063,6 +16063,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ChairSnapZone
   _snapAnchor: {fileID: 626559882}
   enableDebugLogs: 0
+  onSnapped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &852023611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21839,6 +21842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ChairGrabState
   enableDebugLogs: 0
+  grabbable: {fileID: 0}
 --- !u!114 &1167135301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42341,7 +42345,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.5781948, y: 0.8311977, z: 0.58917516}
-  m_Center: {x: -0.0025753472, y: 0.41478074, z: 0.0077362554}
+  m_Center: {x: -0.0025753472, y: 0, z: 0.0077362554}
 --- !u!114 &3097941206126020174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43116,7 +43120,7 @@ Transform:
   m_GameObject: {fileID: 4157222664944803419}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.1108318, z: -0, w: 0.9938392}
-  m_LocalPosition: {x: 0.852, y: -1.81812, z: 1.746}
+  m_LocalPosition: {x: 0.836, y: -1.613, z: 1.674}
   m_LocalScale: {x: 0.7000002, y: 0.7, z: 0.7000002}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -43344,7 +43348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!33 &4423926441370444154
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -43649,7 +43653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tutorial.BackpackTutorialBridge
   tutorial: {fileID: 843118112}
   backpack: {fileID: 4572034040310137253}
-  targetLevelNumber: 6
+  targetLevelNumber: 7
   enableDebugLogs: 1
 --- !u!1 &4592352502771375593
 GameObject:
@@ -45812,6 +45816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ChairGrabState
   enableDebugLogs: 0
+  grabbable: {fileID: 0}
 --- !u!114 &6846305179658209334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45898,7 +45903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &6977168527687912279
 GameObject:
   m_ObjectHideFlags: 0
