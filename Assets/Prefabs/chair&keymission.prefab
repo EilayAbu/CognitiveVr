@@ -1035,6 +1035,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ChairSnapZone
   _snapAnchor: {fileID: 566344109541871070}
   enableDebugLogs: 0
+  onSnapped:
+    m_PersistentCalls:
+      m_Calls: []
+  raiseOnSnappedOnce: 0
 --- !u!1 &8310977768301547050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,10 +1086,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.GazeGlow
   _headTransformOverride: {fileID: 0}
-  _enterAngleDegrees: 12
-  _exitAngleDegrees: 18
+  _enterAngleDegrees: 20
+  _exitAngleDegrees: 28
   _useDistanceLimit: 1
   _maxDistance: 15.47
+  _gazePoint: {fileID: 4299539167879275400}
   _outline: {fileID: 3717295600852783045}
   _verboseLogs: 0
 --- !u!114 &3717295600852783045
@@ -1549,6 +1554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.ChairGrabState
   enableDebugLogs: 0
+  grabbable: {fileID: 0}
 --- !u!114 &3656063421388981247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1896,7 +1902,7 @@ MonoBehaviour:
   _useTriggerDistanceLimit: 1
   _triggerMaxDistance: 14.71
   _requiredGazeSeconds: 0.55
-  _delaySeconds: 120
+  _delaySeconds: 90
   _targetGazeGlow: {fileID: 622383744777949335}
   _targetGrabbable: {fileID: 8973115410173013274}
   _extraTargets: []

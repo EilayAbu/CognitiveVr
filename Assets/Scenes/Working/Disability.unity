@@ -14972,6 +14972,9 @@ MonoBehaviour:
     m_Bits: 3221290623
   _hitTriggers: 1
   _minLookDuration: 0.3
+  _minLookOverrides:
+  - namePrefix: clockGaze
+    minLookDuration: 0.1
   _lookAwayGrace: 0.1
   _countGlances: 1
   _ignoredNamePrefixes:
@@ -30501,6 +30504,28 @@ MonoBehaviour:
   _releaseDistance: 0
   _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 0}
+--- !u!114 &1895071506 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1516229641574428540, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6311198162863902254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7dea5231fe72a43bfd2b54242fe7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.DelayedGazeGlow
+--- !u!114 &1895071507 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7475514846456798526, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6192f2f089472874383bd2bcc19d6e53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.KeyReachZone
 --- !u!1 &1896373529
 GameObject:
   m_ObjectHideFlags: 0
@@ -54254,6 +54279,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.KeyTaskBridge
   keyZone: {fileID: 6311198162863902258}
   stoolZone: {fileID: 6311198162863902257}
+  hintRelay: {fileID: 1895071506}
+  reachZone: {fileID: 1895071507}
   logName: KeyTask
 --- !u!114 &6311198162863902260
 MonoBehaviour:

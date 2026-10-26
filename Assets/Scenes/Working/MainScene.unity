@@ -17622,10 +17622,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7021422259947431310, guid: 23e3f882979ca46419e432007ae145f5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23e3f882979ca46419e432007ae145f5, type: 3}
 --- !u!4 &1060369564 stripped
 Transform:
@@ -19496,10 +19493,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7021422259947431310, guid: 23e3f882979ca46419e432007ae145f5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23e3f882979ca46419e432007ae145f5, type: 3}
 --- !u!4 &1144165613 stripped
 Transform:
@@ -35172,10 +35166,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.GazeGlow
   _headTransformOverride: {fileID: 1080199422}
-  _enterAngleDegrees: 12
-  _exitAngleDegrees: 18
+  _enterAngleDegrees: 20
+  _exitAngleDegrees: 28
   _useDistanceLimit: 1
   _maxDistance: 15.47
+  _gazePoint: {fileID: 0}
   _outline: {fileID: 1926970132}
   _verboseLogs: 0
 --- !u!114 &1926970132
@@ -58848,6 +58843,10 @@ PrefabInstance:
       propertyPath: _headTransformOverride
       value: 
       objectReference: {fileID: 1080199422}
+    - target: {fileID: 1516229641574428540, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _delaySeconds
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 1516229641574428540, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: _headTransformOverride
       value: 

@@ -27,6 +27,9 @@ namespace CognitiveVR.Interaction
         [Tooltip("Maximum distance from camera at which the highlight can engage.")]
         [SerializeField] private float _maxDistance = 5f;
 
+        [Tooltip("Optional: point used for the gaze test. Leave empty to use this transform.")]
+        [SerializeField] private Transform _gazePoint;
+
         [Header("Highlight")]
         [Tooltip("QuickOutline component to toggle. Drag the Outline you added to this object here. If empty, GetComponent<Outline>() is used.")]
         [SerializeField] private Outline _outline;
@@ -84,7 +87,7 @@ namespace CognitiveVR.Interaction
 
             Vector3 camPos = head.position;
             Vector3 camFwd = head.forward;
-            Vector3 toObject = transform.position - camPos;
+            Vector3 toObject = (_gazePoint != null ? _gazePoint.position : transform.position) - camPos;
 
             float sqr = toObject.sqrMagnitude;
             if (sqr < 1e-6f)
