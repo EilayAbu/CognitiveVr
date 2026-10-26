@@ -43148,6 +43148,7 @@ GameObject:
   - component: {fileID: 9118510439100020951}
   - component: {fileID: 6818127849891557824}
   - component: {fileID: 3508706864122418738}
+  - component: {fileID: 9118510439100020952}
   m_Layer: 11
   m_Name: Chair_2
   m_TagString: Untagged
@@ -47460,6 +47461,42 @@ MonoBehaviour:
   _kinematicWhileSelected: 0
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
+--- !u!114 &9118510439100020952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157222664944803419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 923b12c3277042d7945c055b30e19560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.TwoHandSideHold
+  grabbable: {fileID: 9118510439100020951}
+  box: {fileID: 3091092622931593454}
+  body: {fileID: 3131079825629592847}
+  useLocalXFaces: 1
+  useLocalZFaces: 1
+  useLocalYFaces: 0
+  startDistance: 0.06
+  startDwell: 0.08
+  letGoSpread: 0.035
+  letGoDistance: 0.1
+  letGoDelay: 0.04
+  trackingLossGrace: 0.35
+  useHands: 1
+  useControllers: 1
+  skipWhenAlreadyGrabbed: 1
+  kinematicWhileHeld: 1
+  onSideHoldStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onSideHoldEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  enableDebugLogs: 0
+  drawGizmos: 1
 --- !u!114 &9219210179381719350
 MonoBehaviour:
   m_ObjectHideFlags: 0
