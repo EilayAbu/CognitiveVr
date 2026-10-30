@@ -15632,6 +15632,8 @@ MonoBehaviour:
     zoneDwell: 0
     signalsNeeded: 0
     autoCompleteAfter: 0
+    completeInstruction: 
+    completeVoiceClip: {fileID: 0}
     delayBeforeNext: 5
     successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
     onStart:
@@ -15641,9 +15643,10 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - name: Box
-    instruction: "\u05D4\u05DB\u05E0\u05D9\u05E1\u05D5 \u05D0\u05EA \u05D4\u05D1\u05D5\u05D1\u05D4
-      \u05DC\u05E7\u05D5\u05E4\u05E1\u05D0."
-    voiceClip: {fileID: 0}
+    instruction: "\u05D9\u05E9 \u05DC\u05DB\u05DD 5 \u05E9\u05E0\u05D9\u05D5\u05EA
+      \u05DC\u05D4\u05DB\u05E0\u05D9\u05E1 \u05D0\u05EA \u05D4\u05D1\u05D5\u05D1\u05D4
+      \u05DC\u05E7\u05D5\u05E4\u05E1\u05D0"
+    voiceClip: {fileID: 8300000, guid: 34f64feff602c7b4b8760433d3050ef2, type: 3}
     voiceSource: {fileID: 0}
     show:
     - {fileID: 154771274}
@@ -15655,8 +15658,13 @@ MonoBehaviour:
     zoneDwell: 1
     signalsNeeded: 0
     autoCompleteAfter: 0
-    delayBeforeNext: 2
-    successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
+    completeInstruction: "\u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3, \u05E9\u05D9\u05DE\u05D5
+      \u05DC\u05D1, \u05D4\u05E9\u05E2\u05D5\u05DF \u05D9\u05DC\u05D5\u05D5\u05D4
+      \u05D0\u05D5\u05EA\u05DB\u05DD \u05D1\u05DE\u05D4\u05DC\u05DA \u05DB\u05DC
+      \u05D4\u05E1\u05D9\u05DE\u05D5\u05DC\u05E6\u05D9\u05D4."
+    completeVoiceClip: {fileID: 8300000, guid: 132b6615c562a1b4e8f83e86eda93463, type: 3}
+    delayBeforeNext: 5.5
+    successClip: {fileID: 0}
     onStart:
       m_PersistentCalls:
         m_Calls: []
@@ -15671,7 +15679,7 @@ MonoBehaviour:
       \u05DC\u05E4\u05EA\u05D9\u05D7\u05EA \u05D4\u05D4\u05D5\u05D3\u05E2\u05D4,
       \u05D5\u05D0\u05D6 \u05D4\u05D7\u05DC\u05D9\u05E7\u05D5 \u05D0\u05D5\u05EA\u05D4
       \u05D9\u05DE\u05D9\u05E0\u05D4 \u05DC\u05DE\u05D7\u05D9\u05E7\u05D4"
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: cc735cbcc23b7f845967f663df077e81, type: 3}
     voiceSource: {fileID: 0}
     show:
     - {fileID: 1510936613}
@@ -15683,6 +15691,8 @@ MonoBehaviour:
     zoneDwell: 0
     signalsNeeded: 0
     autoCompleteAfter: 0
+    completeInstruction: 
+    completeVoiceClip: {fileID: 0}
     delayBeforeNext: 5
     successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
     onStart:
@@ -15707,8 +15717,13 @@ MonoBehaviour:
     instruction: "\u05E7\u05D7\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
       \u05D5\u05DE\u05E7\u05DE\u05D5 \u05D0\u05D5\u05EA\u05D4 \u05DE\u05EA\u05D7\u05EA
       \u05DC\u05DB\u05E4\u05EA\u05D5\u05E8 \u05D4\u05D0\u05D3\u05D5\u05DD \u05E9\u05E0\u05DE\u05E6\u05D0
-      \u05DC\u05DE\u05E2\u05DC\u05D4 \u05DE\u05E9\u05DE\u05D0\u05DC."
-    voiceClip: {fileID: 0}
+      \u05DC\u05DE\u05E2\u05DC\u05D4 \u05DE\u05E9\u05DE\u05D0\u05DC. \u05E9\u05D9\u05DE\u05D5
+      \u05DC\u05D1, \u05D0\u05EA\u05DD \u05D9\u05DB\u05D5\u05DC\u05D9\u05DD \u05DC\u05D4\u05D7\u05D6\u05D9\u05E7
+      \u05D5\u05DC\u05D4\u05D6\u05D9\u05D6 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
+      \u05DB\u05DE\u05D5 \u05E9\u05EA\u05E4\u05E1\u05EA\u05DD \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D5\u05EA
+      \u05D5\u05D4\u05D1\u05D5\u05D1\u05D4 \u05DE\u05D4\u05E9\u05DC\u05D1\u05D9\u05DD
+      \u05D4\u05E7\u05D5\u05D3\u05DE\u05D9\u05DD."
+    voiceClip: {fileID: 8300000, guid: 292e394e8d2e79b41a0739fb277fdf6d, type: 3}
     voiceSource: {fileID: 0}
     show:
     - {fileID: 1015271364}
@@ -15721,6 +15736,8 @@ MonoBehaviour:
     zoneDwell: 0
     signalsNeeded: 0
     autoCompleteAfter: 0
+    completeInstruction: "\u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3!"
+    completeVoiceClip: {fileID: 0}
     delayBeforeNext: 2
     successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
     onStart:
@@ -15731,12 +15748,12 @@ MonoBehaviour:
         m_Calls: []
   - name: Climb Part 2
     instruction: "\u05DC\u05DB\u05D5 \u05DC\u05DB\u05D9\u05D5\u05D5\u05DF \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
-      \u2013 \u05E6\u05E2\u05D3\u05D5 \u05E6\u05E2\u05D3 \u05E7\u05D3\u05D9\u05DE\u05D4
-      \u05D1\u05E8\u05D2\u05E2 \u05E9\u05EA\u05D2\u05D9\u05E2\u05D5 \u05DC\u05E9\u05DD,
-      \u05D0\u05D9\u05DF \u05E6\u05D5\u05E8\u05DA \u05DC\u05D8\u05E4\u05E1 \u05D1\u05D0\u05DE\u05EA,
-      \u05E6\u05E2\u05D3 \u05E7\u05D3\u05D9\u05DE\u05D4 \u05DE\u05E1\u05E4\u05D9\u05E7.\n\n\u05DC\u05D7\u05E6\u05D5
+      \u2013 \u05EA\u05E2\u05DC\u05D5 \u05E2\u05DC\u05D9\u05D4 \u05D1\u05E8\u05D2\u05E2
+      \u05E9\u05EA\u05D2\u05D9\u05E2\u05D5 \u05DC\u05E9\u05DD, \u05D0\u05D9\u05DF
+      \u05E6\u05D5\u05E8\u05DA \u05DC\u05D8\u05E4\u05E1 \u05D1\u05D0\u05DE\u05EA,
+      \u05D4\u05EA\u05E0\u05D5\u05E2\u05D4 \u05E7\u05D3\u05D9\u05DE\u05D4 \u05DE\u05E1\u05E4\u05D9\u05E7\u05D4!\n\n\u05DC\u05D7\u05E6\u05D5
       \u05E2\u05DC \u05D4\u05DB\u05E4\u05EA\u05D5\u05E8 \u05DB\u05D3\u05D9 \u05DC\u05D4\u05DE\u05E9\u05D9\u05DA."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 5a16a17398f2be2478e4f97efa0a0816, type: 3}
     voiceSource: {fileID: 0}
     show: []
     hide: []
@@ -15746,6 +15763,8 @@ MonoBehaviour:
     zoneDwell: 0
     signalsNeeded: 0
     autoCompleteAfter: 0
+    completeInstruction: 
+    completeVoiceClip: {fileID: 0}
     delayBeforeNext: 2
     successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
     onStart:
@@ -15758,8 +15777,7 @@ MonoBehaviour:
     instruction: "\u05E7\u05D7\u05D5 \u05D0\u05EA \u05D4\u05DE\u05E7\u05DC \u05D5\u05D4\u05E4\u05D9\u05DC\u05D5
       \u05D1\u05E2\u05D6\u05E8\u05EA\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
       \u05E9\u05E0\u05DE\u05E6\u05D0\u05EA \u05D2\u05D1\u05D5\u05D4 \u05E2\u05DC
-      \u05D4\u05E7\u05D9\u05E8 \u05E9\u05DE\u05D5\u05DC\u05DB\u05DD. \n\n\u05D4\u05E8\u05D9\u05DE\u05D5
-      \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4."
+      \u05D4\u05E7\u05D9\u05E8 \u05E9\u05DE\u05D5\u05DC\u05DB\u05DD."
     voiceClip: {fileID: 0}
     voiceSource: {fileID: 0}
     show:
@@ -15767,6 +15785,29 @@ MonoBehaviour:
     hide:
     - {fileID: 1015271364}
     - {fileID: 974107980}
+    touchAny: []
+    zone: {fileID: 1124919520}
+    mustEnterZone: {fileID: 877336786}
+    zoneDwell: 0.5
+    signalsNeeded: 0
+    autoCompleteAfter: 0
+    completeInstruction: "\u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3!"
+    completeVoiceClip: {fileID: 0}
+    delayBeforeNext: 2
+    successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
+    onStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onComplete:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: Pick Cube
+    instruction: "\u05D4\u05E8\u05D9\u05DE\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
+      \u05D5\u05D4\u05DB\u05E0\u05D9\u05E1\u05D5 \u05D0\u05D5\u05EA\u05D4 \u05DC\u05EA\u05D9\u05E7."
+    voiceClip: {fileID: 0}
+    voiceSource: {fileID: 0}
+    show: []
+    hide: []
     touchAny:
     - {fileID: 877336780}
     zone: {fileID: 0}
@@ -15774,6 +15815,8 @@ MonoBehaviour:
     zoneDwell: 0
     signalsNeeded: 0
     autoCompleteAfter: 0
+    completeInstruction: 
+    completeVoiceClip: {fileID: 0}
     delayBeforeNext: 2
     successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
     onStart:
@@ -15783,13 +15826,13 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - name: Bag
-    instruction: "\u05D4\u05E8\u05D9\u05DE\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
-      \u05D5\u05D4\u05DB\u05E0\u05D9\u05E1\u05D5 \u05D0\u05D5\u05EA\u05D4 \u05DC\u05EA\u05D9\u05E7.\n\n\u05D4\u05DE\u05E7\u05D5\u05DE\u05D5\u05EA
-      \u05D1\u05EA\u05D9\u05E7 \u05DE\u05E1\u05D5\u05DE\u05E0\u05D9\u05DD \u05D1\u05E2\u05D6\u05E8\u05EA
-      \u05E2\u05D9\u05D2\u05D5\u05DC\u05D9\u05DD - \u05D4\u05D7\u05D6\u05D9\u05E7\u05D5
-      \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4 \u05DC\u05D9\u05D3 \u05D4\u05E2\u05D9\u05D2\u05D5\u05DC
-      \u05E2\u05D3 \u05E9\u05D9\u05E9\u05EA\u05E0\u05D4 \u05DC\u05D9\u05E8\u05D5\u05E7
-      \u05D5\u05D0\u05D6 \u05E2\u05D6\u05D1\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4."
+    instruction: "\u05D4\u05DB\u05E0\u05D9\u05E1\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
+      \u05DC\u05EA\u05D9\u05E7.\n\n\u05D4\u05DE\u05E7\u05D5\u05DE\u05D5\u05EA \u05D1\u05EA\u05D9\u05E7
+      \u05DE\u05E1\u05D5\u05DE\u05E0\u05D9\u05DD \u05D1\u05E2\u05D6\u05E8\u05EA \u05E2\u05D9\u05D2\u05D5\u05DC\u05D9\u05DD
+      - \u05D4\u05D7\u05D6\u05D9\u05E7\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
+      \u05DC\u05D9\u05D3 \u05D4\u05E2\u05D9\u05D2\u05D5\u05DC \u05E2\u05D3 \u05E9\u05D9\u05E9\u05EA\u05E0\u05D4
+      \u05DC\u05D9\u05E8\u05D5\u05E7 \u05D5\u05D0\u05D6 \u05E2\u05D6\u05D1\u05D5
+      \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4."
     voiceClip: {fileID: 0}
     voiceSource: {fileID: 0}
     show:
@@ -15802,6 +15845,8 @@ MonoBehaviour:
     zoneDwell: 0
     signalsNeeded: 1
     autoCompleteAfter: 0
+    completeInstruction: 
+    completeVoiceClip: {fileID: 0}
     delayBeforeNext: 2
     successClip: {fileID: 0}
     onStart:
@@ -15827,6 +15872,8 @@ MonoBehaviour:
     zoneDwell: 0
     signalsNeeded: 0
     autoCompleteAfter: 0
+    completeInstruction: 
+    completeVoiceClip: {fileID: 0}
     delayBeforeNext: 0
     successClip: {fileID: 0}
     onStart:
@@ -20976,6 +21023,59 @@ Transform:
   - {fileID: 440004868}
   m_Father: {fileID: 1747176783}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1124919518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1124919519}
+  - component: {fileID: 1124919520}
+  m_Layer: 0
+  m_Name: CubeFallZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1124919519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124919518}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.4100001, y: -1.2030001, z: 0.02000004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6139825904721827458}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1124919520
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124919518}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.9999993, y: 1.7, z: 2.9999993}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1126805030
 GameObject:
   m_ObjectHideFlags: 0
@@ -44557,6 +44657,7 @@ Transform:
   - {fileID: 1788314483993237484}
   - {fileID: 3527686465106047315}
   - {fileID: 419277824393582611}
+  - {fileID: 1124919519}
   m_Father: {fileID: 561922190}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &6146338907657753728

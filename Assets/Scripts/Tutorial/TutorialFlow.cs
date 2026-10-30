@@ -71,6 +71,12 @@ namespace CognitiveVR.Tutorial
             public float autoCompleteAfter = 0f;
 
             [Header("Finish")]
+            [Tooltip("Shown once the goal is met, during 'Delay Before Next'. Leave empty to keep the instruction.")]
+            [TextArea(2, 4)] public string completeInstruction;
+
+            [Tooltip("Voice line for the Complete Instruction, played on the shared Speaker.")]
+            public AudioClip completeVoiceClip;
+
             [Tooltip("The 'var time' -- pause here before the next level starts.")]
             public float delayBeforeNext = 1.5f;
 
@@ -260,6 +266,8 @@ namespace CognitiveVR.Tutorial
             Level level = Current;
             Unhook();
 
+            if (!string.IsNullOrEmpty(level.completeInstruction)) SetInstruction(level.completeInstruction);
+            PlayOnSpeaker(level.completeVoiceClip);
             if (level.successClip != null && speaker != null) speaker.PlayOneShot(level.successClip);
             level.onComplete?.Invoke();
 
@@ -291,10 +299,15 @@ namespace CognitiveVR.Tutorial
                 return;
             }
 
-            if (level.voiceClip == null || speaker == null) return;
+            PlayOnSpeaker(level.voiceClip);
+        }
+
+        private void PlayOnSpeaker(AudioClip clip)
+        {
+            if (clip == null || speaker == null) return;
 
             speaker.Stop();               // cut the previous line off
-            speaker.clip = level.voiceClip;
+            speaker.clip = clip;
             speaker.Play();
         }
 
