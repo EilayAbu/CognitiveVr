@@ -54151,11 +54151,15 @@ PrefabInstance:
       objectReference: {fileID: 175616363}
     - target: {fileID: 6603798932796669229, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.249
+      value: 0.2308
+      objectReference: {fileID: 0}
+    - target: {fileID: 6603798932796669229, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.545
       objectReference: {fileID: 0}
     - target: {fileID: 6603798932796669229, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.135
+      value: -0.1494
       objectReference: {fileID: 0}
     - target: {fileID: 6807270560868727151, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: _whenUnselect.m_PersistentCalls.m_Calls.Array.size

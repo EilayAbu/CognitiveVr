@@ -16085,9 +16085,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852023608}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.4760001, y: 0.7089999, z: -0.639}
-  m_LocalScale: {x: 0.90000033, y: 1, z: 0.50000006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4824, y: 0.0133, z: -0.3898}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 974107981}
@@ -16143,7 +16143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.MaxStepTrigger
   targetController: {fileID: 2025205836}
-  newMaxStep: 0.5
+  newMaxStep: 0.75
   requiredTag: 
   heldGate: {fileID: 1167135300}
   enableDebugLogs: 0
@@ -16166,8 +16166,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3885533, y: 1.8721482, z: 2.7253249}
-  m_Center: {x: 0.27238226, y: 0.19579381, z: -0.3930735}
+  m_Size: {x: 2, y: 3.2, z: 2}
+  m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!23 &852023614
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42635,7 +42635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.MaxStepTrigger
   targetController: {fileID: 2025205836}
-  newMaxStep: 0.5
+  newMaxStep: 0.75
   requiredTag: 
   heldGate: {fileID: 6818127849891557824}
   enableDebugLogs: 0
@@ -45334,9 +45334,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8098214008210202277}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.4760001, y: 0.7089999, z: -0.639}
-  m_LocalScale: {x: 0.90000033, y: 1, z: 0.50000006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2757, y: 0.7754, z: 0.3624}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1015271365}
@@ -47197,8 +47197,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3885533, y: 1.8721482, z: 2.7253249}
-  m_Center: {x: 0.27238226, y: 0.19579381, z: -0.3930735}
+  m_Size: {x: 2, y: 3.2, z: 2}
+  m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!114 &8676425045676209033
 MonoBehaviour:
   m_ObjectHideFlags: 0

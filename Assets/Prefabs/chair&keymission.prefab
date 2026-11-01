@@ -899,9 +899,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8245878410496920424}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.86, z: 0.293}
-  m_LocalScale: {x: 0.9, y: 1, z: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2033, y: -1.358, z: 1.1801}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6284939458276148047}
@@ -982,8 +982,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1855764, y: 1.8721482, z: 1.6985173}
-  m_Center: {x: 0.3738706, y: 0.19579381, z: 0.1203298}
+  m_Size: {x: 2, y: 3.2, z: 2}
+  m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!114 &3408644674309864934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -997,7 +997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.MaxStepTrigger
   targetController: {fileID: 0}
-  newMaxStep: 0.5
+  newMaxStep: 0.75
   requiredTag: 
   heldGate: {fileID: 6670753701486306317}
   enableDebugLogs: 0
