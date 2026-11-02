@@ -1261,18 +1261,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 843118112}
-        m_TargetAssemblyTypeName: CognitiveVR.Tutorial.TutorialFlow, Assembly-CSharp
-        m_MethodName: CompleteLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!225 &113317862
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -15210,14 +15198,34 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4278228479
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2856876316667298307, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 544782536}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2869207507150323529, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2029033668}
   m_SourcePrefab: {fileID: 100100000, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
+--- !u!114 &790937505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5478239694363572113, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
+  m_PrefabInstance: {fileID: 790937504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &790937506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2869207507150323529, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
+  m_PrefabInstance: {fileID: 790937504}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &791776513
 GameObject:
   m_ObjectHideFlags: 0
@@ -15643,9 +15651,9 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - name: Box
-    instruction: "\u05D9\u05E9 \u05DC\u05DB\u05DD 5 \u05E9\u05E0\u05D9\u05D5\u05EA
-      \u05DC\u05D4\u05DB\u05E0\u05D9\u05E1 \u05D0\u05EA \u05D4\u05D1\u05D5\u05D1\u05D4
-      \u05DC\u05E7\u05D5\u05E4\u05E1\u05D0"
+    instruction: "\u05D4\u05DB\u05E0\u05D9\u05E1\u05D5 \u05D0\u05EA \u05D4\u05D1\u05D5\u05D1\u05D4
+      \u05DC\u05E7\u05D5\u05E4\u05E1\u05D4 \u05E2\u05D3 \u05D4\u05E9\u05E2\u05D4
+      8:52"
     voiceClip: {fileID: 8300000, guid: 34f64feff602c7b4b8760433d3050ef2, type: 3}
     voiceSource: {fileID: 0}
     show:
@@ -15655,7 +15663,7 @@ MonoBehaviour:
     touchAny: []
     zone: {fileID: 1088440598}
     mustEnterZone: {fileID: 81058440}
-    zoneDwell: 1
+    zoneDwell: 2
     signalsNeeded: 0
     autoCompleteAfter: 0
     completeInstruction: "\u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3, \u05E9\u05D9\u05DE\u05D5
@@ -15676,9 +15684,7 @@ MonoBehaviour:
       \u05E1\u05DE\u05E1\n\u05D9\u05E9 \u05DC\u05DB\u05DD \u05D8\u05DC\u05E4\u05D5\u05DF
       \u05E2\u05DC \u05D4\u05E9\u05D5\u05DC\u05D7\u05DF - \u05D4\u05E8\u05D9\u05DE\u05D5
       \u05D0\u05D5\u05EA\u05D5, \u05DC\u05D7\u05E6\u05D5 \u05E2\u05DD \u05D4\u05D0\u05E6\u05D1\u05E2
-      \u05DC\u05E4\u05EA\u05D9\u05D7\u05EA \u05D4\u05D4\u05D5\u05D3\u05E2\u05D4,
-      \u05D5\u05D0\u05D6 \u05D4\u05D7\u05DC\u05D9\u05E7\u05D5 \u05D0\u05D5\u05EA\u05D4
-      \u05D9\u05DE\u05D9\u05E0\u05D4 \u05DC\u05DE\u05D7\u05D9\u05E7\u05D4"
+      \u05DC\u05E4\u05EA\u05D9\u05D7\u05EA \u05D4\u05D4\u05D5\u05D3\u05E2\u05D4"
     voiceClip: {fileID: 8300000, guid: cc735cbcc23b7f845967f663df077e81, type: 3}
     voiceSource: {fileID: 0}
     show:
@@ -15717,12 +15723,7 @@ MonoBehaviour:
     instruction: "\u05E7\u05D7\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
       \u05D5\u05DE\u05E7\u05DE\u05D5 \u05D0\u05D5\u05EA\u05D4 \u05DE\u05EA\u05D7\u05EA
       \u05DC\u05DB\u05E4\u05EA\u05D5\u05E8 \u05D4\u05D0\u05D3\u05D5\u05DD \u05E9\u05E0\u05DE\u05E6\u05D0
-      \u05DC\u05DE\u05E2\u05DC\u05D4 \u05DE\u05E9\u05DE\u05D0\u05DC. \u05E9\u05D9\u05DE\u05D5
-      \u05DC\u05D1, \u05D0\u05EA\u05DD \u05D9\u05DB\u05D5\u05DC\u05D9\u05DD \u05DC\u05D4\u05D7\u05D6\u05D9\u05E7
-      \u05D5\u05DC\u05D4\u05D6\u05D9\u05D6 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
-      \u05DB\u05DE\u05D5 \u05E9\u05EA\u05E4\u05E1\u05EA\u05DD \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D5\u05EA
-      \u05D5\u05D4\u05D1\u05D5\u05D1\u05D4 \u05DE\u05D4\u05E9\u05DC\u05D1\u05D9\u05DD
-      \u05D4\u05E7\u05D5\u05D3\u05DE\u05D9\u05DD."
+      \u05DC\u05DE\u05E2\u05DC\u05D4 \u05DE\u05E9\u05DE\u05D0\u05DC"
     voiceClip: {fileID: 8300000, guid: 292e394e8d2e79b41a0739fb277fdf6d, type: 3}
     voiceSource: {fileID: 0}
     show:
@@ -15748,10 +15749,10 @@ MonoBehaviour:
         m_Calls: []
   - name: Climb Part 2
     instruction: "\u05DC\u05DB\u05D5 \u05DC\u05DB\u05D9\u05D5\u05D5\u05DF \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
-      \u2013 \u05EA\u05E2\u05DC\u05D5 \u05E2\u05DC\u05D9\u05D4 \u05D1\u05E8\u05D2\u05E2
-      \u05E9\u05EA\u05D2\u05D9\u05E2\u05D5 \u05DC\u05E9\u05DD, \u05D0\u05D9\u05DF
-      \u05E6\u05D5\u05E8\u05DA \u05DC\u05D8\u05E4\u05E1 \u05D1\u05D0\u05DE\u05EA,
-      \u05D4\u05EA\u05E0\u05D5\u05E2\u05D4 \u05E7\u05D3\u05D9\u05DE\u05D4 \u05DE\u05E1\u05E4\u05D9\u05E7\u05D4!\n\n\u05DC\u05D7\u05E6\u05D5
+      \u2013 \u05E6\u05E2\u05D3\u05D5 \u05E6\u05E2\u05D3 \u05E7\u05D3\u05D9\u05DE\u05D4
+      \u05D1\u05E8\u05D2\u05E2 \u05E9\u05EA\u05D2\u05D9\u05E2\u05D5 \u05DC\u05E9\u05DD,
+      \u05D0\u05D9\u05DF \u05E6\u05D5\u05E8\u05DA \u05DC\u05D8\u05E4\u05E1 \u05D1\u05D0\u05DE\u05EA,
+      \u05E6\u05E2\u05D3 \u05E7\u05D3\u05D9\u05DE\u05D4 \u05DE\u05E1\u05E4\u05D9\u05E7.\n\n\u05DC\u05D7\u05E6\u05D5
       \u05E2\u05DC \u05D4\u05DB\u05E4\u05EA\u05D5\u05E8 \u05DB\u05D3\u05D9 \u05DC\u05D4\u05DE\u05E9\u05D9\u05DA."
     voiceClip: {fileID: 8300000, guid: 5a16a17398f2be2478e4f97efa0a0816, type: 3}
     voiceSource: {fileID: 0}
@@ -15791,30 +15792,6 @@ MonoBehaviour:
     zoneDwell: 0.5
     signalsNeeded: 0
     autoCompleteAfter: 0
-    completeInstruction: "\u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3!"
-    completeVoiceClip: {fileID: 0}
-    delayBeforeNext: 2
-    successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
-    onStart:
-      m_PersistentCalls:
-        m_Calls: []
-    onComplete:
-      m_PersistentCalls:
-        m_Calls: []
-  - name: Pick Cube
-    instruction: "\u05D4\u05E8\u05D9\u05DE\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
-      \u05D5\u05D4\u05DB\u05E0\u05D9\u05E1\u05D5 \u05D0\u05D5\u05EA\u05D4 \u05DC\u05EA\u05D9\u05E7."
-    voiceClip: {fileID: 0}
-    voiceSource: {fileID: 0}
-    show: []
-    hide: []
-    touchAny:
-    - {fileID: 877336780}
-    zone: {fileID: 0}
-    mustEnterZone: {fileID: 0}
-    zoneDwell: 0
-    signalsNeeded: 0
-    autoCompleteAfter: 0
     completeInstruction: 
     completeVoiceClip: {fileID: 0}
     delayBeforeNext: 2
@@ -15826,13 +15803,13 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - name: Bag
-    instruction: "\u05D4\u05DB\u05E0\u05D9\u05E1\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
-      \u05DC\u05EA\u05D9\u05E7.\n\n\u05D4\u05DE\u05E7\u05D5\u05DE\u05D5\u05EA \u05D1\u05EA\u05D9\u05E7
-      \u05DE\u05E1\u05D5\u05DE\u05E0\u05D9\u05DD \u05D1\u05E2\u05D6\u05E8\u05EA \u05E2\u05D9\u05D2\u05D5\u05DC\u05D9\u05DD
-      - \u05D4\u05D7\u05D6\u05D9\u05E7\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
-      \u05DC\u05D9\u05D3 \u05D4\u05E2\u05D9\u05D2\u05D5\u05DC \u05E2\u05D3 \u05E9\u05D9\u05E9\u05EA\u05E0\u05D4
-      \u05DC\u05D9\u05E8\u05D5\u05E7 \u05D5\u05D0\u05D6 \u05E2\u05D6\u05D1\u05D5
-      \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4."
+    instruction: "\u05D4\u05E8\u05D9\u05DE\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
+      \u05D5\u05D4\u05DB\u05E0\u05D9\u05E1\u05D5 \u05D0\u05D5\u05EA\u05D4 \u05DC\u05EA\u05D9\u05E7.\n\n\u05D4\u05DE\u05E7\u05D5\u05DE\u05D5\u05EA
+      \u05D1\u05EA\u05D9\u05E7 \u05DE\u05E1\u05D5\u05DE\u05E0\u05D9\u05DD \u05D1\u05E2\u05D6\u05E8\u05EA
+      \u05E2\u05D9\u05D2\u05D5\u05DC\u05D9\u05DD - \u05D4\u05D7\u05D6\u05D9\u05E7\u05D5
+      \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4 \u05DC\u05D9\u05D3 \u05D4\u05E2\u05D9\u05D2\u05D5\u05DC
+      \u05E2\u05D3 \u05E9\u05D9\u05E9\u05EA\u05E0\u05D4 \u05DC\u05D9\u05E8\u05D5\u05E7
+      \u05D5\u05D0\u05D6 \u05E2\u05D6\u05D1\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4."
     voiceClip: {fileID: 0}
     voiceSource: {fileID: 0}
     show:
@@ -31911,7 +31888,7 @@ Transform:
   m_GameObject: {fileID: 1624440897}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000032596286, y: -0, z: -0.000000012107192, w: 1}
-  m_LocalPosition: {x: 2, y: 317, z: -50}
+  m_LocalPosition: {x: -4, y: 297, z: 2}
   m_LocalScale: {x: 250, y: 292.68564, z: 268.95715}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32102,6 +32079,18 @@ MonoBehaviour:
       - m_Target: {fileID: 279149261}
         m_TargetAssemblyTypeName: CognitiveVR.Phone.PhoneScreenController, Assembly-CSharp
         m_MethodName: HideBossMessageButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 843118112}
+        m_TargetAssemblyTypeName: CognitiveVR.Tutorial.TutorialFlow, Assembly-CSharp
+        m_MethodName: CompleteLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -37468,6 +37457,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
   m_PrefabInstance: {fileID: 790937504}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2029033668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790937506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c622ae17f236ee04dbf3301d0681e6ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialClock
+  clockText: {fileID: 790937505}
+  startHour: 8
+  startMinute: 50
+  startSecond: 0
 --- !u!1 &2033440781
 GameObject:
   m_ObjectHideFlags: 0
@@ -37990,6 +37995,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7512311045793624251, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8216753048638395104, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
       propertyPath: m_Name
       value: '[BuildingBlock] Camera Rig'
@@ -38220,7 +38229,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 15b1d5ff3d274694e8d0c6cb466a4ae6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -41141,7 +41150,7 @@ Transform:
   m_GameObject: {fileID: 1386871165232125365}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.23499998, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44252,7 +44261,7 @@ Transform:
   m_GameObject: {fileID: 3900016323345102667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.357, y: 0.051999927, z: 0.085}
+  m_LocalPosition: {x: -0.122, y: 0.051999927, z: 0.085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47197,8 +47206,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 3.2, z: 2}
-  m_Center: {x: 0, y: 1.15, z: 0}
+  m_Size: {x: 0.5640317, y: 3.2, z: 0.90596473}
+  m_Center: {x: -1.167253, y: 1.15, z: -0.7106095}
 --- !u!114 &8676425045676209033
 MonoBehaviour:
   m_ObjectHideFlags: 0
