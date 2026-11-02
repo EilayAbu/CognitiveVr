@@ -14499,7 +14499,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u05E2\u05D6\u05E8\u05D4"
+  m_text: "\u05D4\u05E0\u05D7\u05D9\u05D5\u05EA"
   m_isRightToLeft: 1
   m_fontAsset: {fileID: 11400000, guid: 69c77a16602981d4f8b13b30f665a297, type: 2}
   m_sharedMaterial: {fileID: 1618551924624043618, guid: 69c77a16602981d4f8b13b30f665a297, type: 2}
@@ -58458,15 +58458,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Size.x
-      value: 2
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Size.y
-      value: 3.2
+      value: 1.61
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Size.z
-      value: 2
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Center.x
@@ -58474,7 +58474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Center.y
-      value: 1.15
+      value: 0.79
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Center.z
