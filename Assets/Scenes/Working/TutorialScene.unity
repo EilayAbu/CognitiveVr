@@ -14093,7 +14093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &760664672
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15641,9 +15641,9 @@ MonoBehaviour:
     signalsNeeded: 0
     autoCompleteAfter: 0
     completeInstruction: 
-    completeVoiceClip: {fileID: 0}
+    completeVoiceClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
     delayBeforeNext: 5
-    successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
+    successClip: {fileID: 0}
     onStart:
       m_PersistentCalls:
         m_Calls: []
@@ -15671,7 +15671,7 @@ MonoBehaviour:
       \u05D0\u05D5\u05EA\u05DB\u05DD \u05D1\u05DE\u05D4\u05DC\u05DA \u05DB\u05DC
       \u05D4\u05E1\u05D9\u05DE\u05D5\u05DC\u05E6\u05D9\u05D4."
     completeVoiceClip: {fileID: 8300000, guid: 132b6615c562a1b4e8f83e86eda93463, type: 3}
-    delayBeforeNext: 5.5
+    delayBeforeNext: 6.5
     successClip: {fileID: 0}
     onStart:
       m_PersistentCalls:
@@ -15698,9 +15698,9 @@ MonoBehaviour:
     signalsNeeded: 0
     autoCompleteAfter: 0
     completeInstruction: 
-    completeVoiceClip: {fileID: 0}
+    completeVoiceClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
     delayBeforeNext: 5
-    successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
+    successClip: {fileID: 0}
     onStart:
       m_PersistentCalls:
         m_Calls:
@@ -15738,9 +15738,9 @@ MonoBehaviour:
     signalsNeeded: 0
     autoCompleteAfter: 0
     completeInstruction: "\u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3!"
-    completeVoiceClip: {fileID: 0}
+    completeVoiceClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
     delayBeforeNext: 2
-    successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
+    successClip: {fileID: 0}
     onStart:
       m_PersistentCalls:
         m_Calls: []
@@ -15765,9 +15765,9 @@ MonoBehaviour:
     signalsNeeded: 0
     autoCompleteAfter: 0
     completeInstruction: 
-    completeVoiceClip: {fileID: 0}
+    completeVoiceClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
     delayBeforeNext: 2
-    successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
+    successClip: {fileID: 0}
     onStart:
       m_PersistentCalls:
         m_Calls: []
@@ -15793,9 +15793,9 @@ MonoBehaviour:
     signalsNeeded: 0
     autoCompleteAfter: 0
     completeInstruction: 
-    completeVoiceClip: {fileID: 0}
+    completeVoiceClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
     delayBeforeNext: 2
-    successClip: {fileID: 8300000, guid: 574b93fbd115c9a468c0ec07d2ed4649, type: 3}
+    successClip: {fileID: 0}
     onStart:
       m_PersistentCalls:
         m_Calls: []
@@ -15837,7 +15837,7 @@ MonoBehaviour:
       \u05D4\u05D0\u05D1\u05D7\u05D5\u05DF.\n\n\u05DC\u05D7\u05E6\u05D5 \u05E2\u05DC
       \u05D4\u05DB\u05E4\u05EA\u05D5\u05E8 \u05D4\u05D0\u05D3\u05D5\u05DD \u05DB\u05D0\u05E9\u05E8
       \u05D0\u05EA\u05DD \u05DE\u05E8\u05D2\u05D9\u05E9\u05D9\u05DD \u05DE\u05D5\u05DB\u05E0\u05D9\u05DD."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 384370c328b486848a9b141cfc27211a, type: 3}
     voiceSource: {fileID: 0}
     show:
     - {fileID: 477785364}
