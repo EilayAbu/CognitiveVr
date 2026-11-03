@@ -10498,11 +10498,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561922189}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 0ef1422dfe0b5164193b2a31e14d8cfb, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -15108,15 +15108,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0015
+      value: 0.004
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0014999999
+      value: 0.004
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.0014999999
+      value: 0.004
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15128,35 +15128,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.9254
+      value: 2.518
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659258
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2588191
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.334
+      value: 1.698
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.8565
+      value: 2.173
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -15653,7 +15653,7 @@ MonoBehaviour:
   - name: Box
     instruction: "\u05D4\u05DB\u05E0\u05D9\u05E1\u05D5 \u05D0\u05EA \u05D4\u05D1\u05D5\u05D1\u05D4
       \u05DC\u05E7\u05D5\u05E4\u05E1\u05D4 \u05E2\u05D3 \u05D4\u05E9\u05E2\u05D4
-      8:52"
+      25:8"
     voiceClip: {fileID: 8300000, guid: 34f64feff602c7b4b8760433d3050ef2, type: 3}
     voiceSource: {fileID: 0}
     show:
@@ -15779,7 +15779,7 @@ MonoBehaviour:
       \u05D1\u05E2\u05D6\u05E8\u05EA\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4
       \u05E9\u05E0\u05DE\u05E6\u05D0\u05EA \u05D2\u05D1\u05D5\u05D4 \u05E2\u05DC
       \u05D4\u05E7\u05D9\u05E8 \u05E9\u05DE\u05D5\u05DC\u05DB\u05DD."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 0ef1422dfe0b5164193b2a31e14d8cfb, type: 3}
     voiceSource: {fileID: 0}
     show:
     - {fileID: 561922189}
@@ -15810,7 +15810,7 @@ MonoBehaviour:
       \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4 \u05DC\u05D9\u05D3 \u05D4\u05E2\u05D9\u05D2\u05D5\u05DC
       \u05E2\u05D3 \u05E9\u05D9\u05E9\u05EA\u05E0\u05D4 \u05DC\u05D9\u05E8\u05D5\u05E7
       \u05D5\u05D0\u05D6 \u05E2\u05D6\u05D1\u05D5 \u05D0\u05EA \u05D4\u05E7\u05D5\u05D1\u05D9\u05D4."
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: a0b55fb0d21ba124f92e2f664d912af4, type: 3}
     voiceSource: {fileID: 0}
     show:
     - {fileID: 1251997761}
@@ -18877,11 +18877,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974107980}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 4395ec6247a2a38479919e334595a943, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -23707,7 +23707,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: a0b55fb0d21ba124f92e2f664d912af4, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -43762,7 +43762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tutorial.BackpackTutorialBridge
   tutorial: {fileID: 843118112}
   backpack: {fileID: 4572034040310137253}
-  targetLevelNumber: 8
+  targetLevelNumber: 7
   enableDebugLogs: 1
 --- !u!1 &4592352502771375593
 GameObject:
@@ -44069,8 +44069,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0562241, y: 0.01, z: 0.06733495}
-  m_Center: {x: -0.013112054, y: 0, z: 0.011221905}
+  m_Size: {x: 0.0562241, y: 0.0457308, z: 0.057703078}
+  m_Center: {x: -0.013112054, y: 0.0061383694, z: -0.010950212}
 --- !u!64 &5160351984786900640
 MeshCollider:
   m_ObjectHideFlags: 0
