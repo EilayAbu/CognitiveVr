@@ -47,6 +47,11 @@ public class KeyKnockZone : MonoBehaviour
     [Tooltip("Turn OFF if your ISDK setup keeps the key kinematic until grabbed.")]
     public bool enablePhysicsOnLand = true;
 
+    [Header("Tool physics")]
+    [Tooltip("The tools (umbrella, mop, ...) never physically push the key — on the shelf or after landing. " +
+             "The key only moves by the scripted flight, so extra or hard hits can't throw it elsewhere.")]
+    public bool ignoreToolPhysics = true;
+
     [Header("Optional")]
     public AudioSource hitSound;
 
@@ -64,7 +69,13 @@ public class KeyKnockZone : MonoBehaviour
         {
             _keyRb = key.GetComponent<Rigidbody>();
             _keyCols = key.GetComponentsInChildren<Collider>();
+            IgnoreToolCollisions();
         }
+    }
+
+    void IgnoreToolCollisions()
+    {
+        if (ignoreToolPhysics) UmbrellaStriker.IgnorePhysicsWith(_keyCols);
     }
 
     void OnTriggerEnter(Collider other)
@@ -150,6 +161,7 @@ public class KeyKnockZone : MonoBehaviour
         key.SetPositionAndRotation(end, landingPoint.rotation);
 
         if (_keyCols != null) foreach (var c in _keyCols) c.enabled = true;
+        IgnoreToolCollisions(); // re-enabling the colliders reset the ignore state
 
         if (_keyRb != null)
         {
