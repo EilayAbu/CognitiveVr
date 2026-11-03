@@ -2913,7 +2913,7 @@ Transform:
   m_GameObject: {fileID: 175616362}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.181, y: -2.545, z: -1.387}
+  m_LocalPosition: {x: 0.239, y: -2.545, z: -1.387}
   m_LocalScale: {x: 0.9, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12620,6 +12620,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4586643924749162, guid: 52665f9f36518a645b5b48dda69dbe04, type: 3}
   m_PrefabInstance: {fileID: 758285234}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &763249613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243999650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176059dc5569e944996d43b4e45e9e9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.ChairTopStepLimiter
+  targetController: {fileID: 1057490806}
+  chairRoot: {fileID: 244130580}
+  maxStepOnChair: 0.05
+  probeDistance: 2.5
+  enableDebugLogs: 0
 --- !u!1 &764863660
 GameObject:
   m_ObjectHideFlags: 0
@@ -20675,6 +20692,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239328579}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1243999650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8245878410496920424, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+  m_PrefabInstance: {fileID: 6311198162863902253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1253138016
 GameObject:
   m_ObjectHideFlags: 0
@@ -58225,6 +58247,10 @@ PrefabInstance:
       value: -0.06862572
       objectReference: {fileID: 0}
     - target: {fileID: 3408644674309864934, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: newMaxStep
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3408644674309864934, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: targetController
       value: 
       objectReference: {fileID: 1057490806}
@@ -58458,7 +58484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Size.x
-      value: 0.46
+      value: 0.41896918
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Size.y
@@ -58470,7 +58496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Center.x
-      value: 0
+      value: 0.020515412
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Center.y
@@ -58478,7 +58504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8819533071626298949, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_Center.z
-      value: 0
+      value: 6.949699e-17
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3650989587318852224, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
@@ -58512,6 +58538,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4539927084851576453, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       insertIndex: 1
       addedObject: {fileID: 659378356}
+    - targetCorrespondingSourceObject: {fileID: 8245878410496920424, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 763249613}
     - targetCorrespondingSourceObject: {fileID: 5141138821769818825, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6311198162863902255}
@@ -58555,7 +58584,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5892382636242341114, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
   m_PrefabInstance: {fileID: 6311198162863902253}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1243999650}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ec55cf037679104ab572f6aea2e1270, type: 3}

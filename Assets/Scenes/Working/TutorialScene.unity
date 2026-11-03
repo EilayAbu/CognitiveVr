@@ -15148,7 +15148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.698
+      value: 2.323
       objectReference: {fileID: 0}
     - target: {fileID: 1275244780332293469, guid: c8160be9ed44a3c428712849ea98771d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -41196,6 +41196,7 @@ MonoBehaviour:
   arcHeight: 0.6
   tumbleSpeed: {x: 240, y: 90, z: 0}
   enablePhysicsOnLand: 1
+  ignoreToolPhysics: 1
   hitSound: {fileID: 1461780002085406970}
 --- !u!1 &1984043600418775046
 GameObject:
