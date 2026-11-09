@@ -950,7 +950,13 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -972,11 +978,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: dae8c2d6-2ce8-489c-83f3-ddeea2fdfb11
+  cloudProjectId: ce410d1d-62c1-4468-bf80-a7617ad697c3
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: CognitiveVr 2026-03-12_14-15-59
-  organizationId: eilay86
+  projectName: CognitiveVr
+  organizationId: arllabadmn
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

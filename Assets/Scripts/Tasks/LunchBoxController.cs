@@ -6,17 +6,30 @@ using UnityEngine.Events;
 namespace CognitiveVR.Tasks
 {
     /// <summary>
-    /// Place on the two-part lunch box base. The base starts static (kinematic
-    /// Rigidbody) with a trigger collider, and the lid GameObject starts hidden.
+    /// Place on the lunch box's trigger child (ToastTrigger). The lid GameObject
+    /// starts hidden; the box body (Rigidbody + solid collider + Grabbable) is a
+    /// normal grabbable prop from the start.
     ///
-    /// When the player drops the tagged toast inside the box and releases it
-    /// (Meta ISDK Unselect), the toast is snapped to the anchor pose, parented to
-    /// the box and frozen so it travels with it. The lid is then enabled and the
-    /// box is converted into a normal grabbable item (dynamic Rigidbody, solid
-    /// collider, previously-disabled Grabbable / InventoryItemMetaBridge enabled)
-    /// so it can be dropped into the backpack. If a <see cref="ToasterController"/>
-    /// is assigned, <c>RemoveToast()</c> is called on it when the box seals so the
-    /// toaster's indicator lights turn off and its task step is completed.
+    /// The toast (tagged GameObject) is placed when any of these happens while it
+    /// is inside the trigger:
+    ///   release - the LAST hand holding it lets go (Meta ISDK Unselect with no
+    ///             selecting points left, so a two-hand hold or a hand swap does
+    ///             not seal early),
+    ///   drop_in - it is inside, nobody holds it and it is a free physics body
+    ///             (released above the box and fell in),
+    ///   external - <see cref="PlaceToastAndSeal"/> was called directly (the
+    ///             spatula does this after its own settle delay).
+    /// Release/drop-in seals run on the next Update, outside the ISDK pointer
+    /// callback, so disabling the toast never re-enters the Grabbable mid-event.
+    ///
+    /// While the toast is tracked its colliders ignore the box body's colliders,
+    /// so pushing it into the box neither shoves the box away nor bounces the
+    /// toast out of the trigger. The ignore is undone if the toast leaves again.
+    ///
+    /// Sealing snaps the toast to the anchor, parents and hides it, enables the
+    /// lid and the <see cref="_componentsToEnableWhenReady"/>, and calls
+    /// <c>RemoveToast()</c> on the assigned <see cref="ToasterController"/> so
+    /// its lights turn off and its task step completes.
     ///
     /// The sequence is one-shot: once the box is sealed it will not re-trigger.
     /// </summary>
@@ -31,6 +44,12 @@ namespace CognitiveVR.Tasks
 
         [Tooltip("If true, the toast is parented to the box so it travels with it into the backpack.")]
         [SerializeField] private bool _reparentToastToBox = true;
+
+        [Tooltip("Seal when the toast is inside the box, nobody holds it and it is a free physics body (released above the box and fell in).")]
+        [SerializeField] private bool _sealOnDropIn = true;
+
+        [Tooltip("While the toast is inside the trigger, ignore collisions between it and the box body so it can't shove the box or bounce out.")]
+        [SerializeField] private bool _ignoreBoxCollisionWhileInside = true;
 
         [Header("Lid")]
         [Tooltip("Lid GameObject that starts inactive and is enabled when the toast is placed.")]
@@ -66,6 +85,9 @@ namespace CognitiveVR.Tasks
         /// <summary>True while a toast is being tracked and waiting for release.</summary>
         public bool HasToastTracked => _toast != null;
 
+        /// <summary>How the box was sealed: "release", "drop_in" or "external". Empty until sealed.</summary>
+        public string SealSource => _sealSource;
+
         /// <summary>True while this specific toast root is tracked inside the box.</summary>
         public bool IsTracking(GameObject toast) =>
             _toast != null && toast != null && _toast == toast;
@@ -74,6 +96,14 @@ namespace CognitiveVR.Tasks
         private Grabbable _grabbable;
         private Rigidbody _toastRigidbody;
         private bool _isClosed;
+        private string _sealSource = "";
+        private string _pendingSealSource;
+
+        // Toast colliders currently overlapping the trigger. The toast is only
+        // dropped when the last one leaves, so one collider's exit can't untrack it.
+        private readonly HashSet<Collider> _toastCollidersInside = new HashSet<Collider>();
+        private readonly List<Collider> _ignoredToastColliders = new List<Collider>();
+        private readonly List<Collider> _ignoredBoxColliders = new List<Collider>();
 
         private void Awake()
         {
@@ -89,7 +119,24 @@ namespace CognitiveVR.Tasks
 
         private void OnDisable()
         {
-            Unsubscribe();
+            _pendingSealSource = null;
+            ClearTracking();
+        }
+
+        private void Update()
+        {
+            if (_isClosed || _toast == null)
+                return;
+
+            if (_pendingSealSource == null && _sealOnDropIn && IsFreeAndUnheld())
+                _pendingSealSource = "drop_in";
+
+            if (_pendingSealSource != null)
+            {
+                string source = _pendingSealSource;
+                _pendingSealSource = null;
+                Seal(source);
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -97,8 +144,18 @@ namespace CognitiveVR.Tasks
             if (_isClosed || !other.CompareTag(_toastTag))
                 return;
 
-            if (_enableDebugLogs)
+            if (_enableDebugLogs && !_toastCollidersInside.Contains(other))
                 Debug.Log($"[LunchBoxController] Toast entered box: {other.name}", other);
+
+            TrackToast(other);
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            // Recovers a toast that is inside but not tracked (e.g. it was
+            // already overlapping when this component got enabled).
+            if (_isClosed || !other.CompareTag(_toastTag) || _toastCollidersInside.Contains(other))
+                return;
 
             TrackToast(other);
         }
@@ -108,13 +165,14 @@ namespace CognitiveVR.Tasks
             if (_isClosed || !other.CompareTag(_toastTag))
                 return;
 
-            if (_toast != null && other.transform.IsChildOf(_toast.transform))
-            {
-                if (_enableDebugLogs)
-                    Debug.Log($"[LunchBoxController] Toast exited box: {other.name}", other);
+            if (!_toastCollidersInside.Remove(other) || _toastCollidersInside.Count > 0)
+                return;
 
-                Unsubscribe();
-            }
+            if (_enableDebugLogs)
+                Debug.Log($"[LunchBoxController] Toast exited box: {other.name}", other);
+
+            _pendingSealSource = null;
+            ClearTracking();
         }
 
         private void TrackToast(Collider other)
@@ -126,10 +184,13 @@ namespace CognitiveVR.Tasks
                     ? other.attachedRigidbody.gameObject
                     : other.gameObject;
 
-            if (_toast == toastRoot && _grabbable == grabbable)
-                return;
+            if (_toast != null && _toast != toastRoot)
+                ClearTracking();
 
-            Unsubscribe();
+            _toastCollidersInside.Add(other);
+
+            if (_toast == toastRoot)
+                return;
 
             _toast = toastRoot;
             _grabbable = grabbable;
@@ -141,14 +202,38 @@ namespace CognitiveVR.Tasks
             }
             else if (_enableDebugLogs)
             {
-                Debug.LogWarning($"[LunchBoxController] Toast '{other.name}' has no Oculus.Interaction.Grabbable; place-on-release disabled.", other);
+                Debug.LogWarning($"[LunchBoxController] Toast '{other.name}' has no Oculus.Interaction.Grabbable; only drop-in / spatula placement will work.", other);
             }
+
+            if (_ignoreBoxCollisionWhileInside)
+                SetBoxCollisionIgnored(true);
         }
 
         private void HandlePointerEvent(PointerEvent pointerEvent)
         {
-            if (pointerEvent.Type == PointerEventType.Unselect)
-                PlaceToastAndSeal();
+            if (pointerEvent.Type != PointerEventType.Unselect && pointerEvent.Type != PointerEventType.Cancel)
+                return;
+
+            // PointableElement removes the point before raising the event, so 0
+            // here means the last hand just let go.
+            if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
+                return;
+
+            // Deferred to Update: sealing deactivates the toast, which must not
+            // happen inside the Grabbable's own pointer-event processing.
+            _pendingSealSource = "release";
+        }
+
+        /// <summary>
+        /// True when the tracked toast is lying loose in the box. A kinematic toast
+        /// is carried by the spatula or snapped somewhere and is left to that code.
+        /// </summary>
+        private bool IsFreeAndUnheld()
+        {
+            if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
+                return false;
+
+            return _toastRigidbody != null && !_toastRigidbody.isKinematic;
         }
 
         /// <summary>
@@ -157,8 +242,15 @@ namespace CognitiveVR.Tasks
         /// </summary>
         public void PlaceToastAndSeal()
         {
+            Seal("external");
+        }
+
+        private void Seal(string source)
+        {
             if (_isClosed || _toast == null)
                 return;
+
+            _sealSource = source;
 
             if (_snapAnchor != null)
                 _toast.transform.SetPositionAndRotation(_snapAnchor.position, _snapAnchor.rotation);
@@ -198,10 +290,17 @@ namespace CognitiveVR.Tasks
             MakeBoxGrabbable();
 
             _isClosed = true;
-            Unsubscribe();
+            _pendingSealSource = null;
+            UnsubscribeGrabbable();
+
+            // The toast is hidden for good; dropping the ignore list is enough
+            // (Unity already reset the ignores when its colliders deactivated).
+            _ignoredToastColliders.Clear();
+            _ignoredBoxColliders.Clear();
+            _toastCollidersInside.Clear();
 
             if (_enableDebugLogs)
-                Debug.Log($"[LunchBoxController] Box sealed with toast '{_toast.name}'.", this);
+                Debug.Log($"[LunchBoxController] Box sealed with toast '{_toast.name}' ({source}).", this);
 
             onBoxSealed?.Invoke();
             OnBoxSealed?.Invoke(_toast != null ? _toast.name : "", _toasterController != null);
@@ -228,18 +327,65 @@ namespace CognitiveVR.Tasks
             }
         }
 
-        private void Unsubscribe()
+        private void SetBoxCollisionIgnored(bool ignore)
+        {
+            if (ignore)
+            {
+                if (_toast == null || _boxRigidbody == null)
+                    return;
+
+                foreach (Collider toastCol in _toast.GetComponentsInChildren<Collider>())
+                {
+                    if (!toastCol.isTrigger)
+                        _ignoredToastColliders.Add(toastCol);
+                }
+
+                foreach (Collider boxCol in _boxRigidbody.GetComponentsInChildren<Collider>())
+                {
+                    // The lid, if it has colliders, is inactive here and skipped.
+                    if (!boxCol.isTrigger && boxCol.enabled && boxCol.gameObject.activeInHierarchy)
+                        _ignoredBoxColliders.Add(boxCol);
+                }
+            }
+
+            foreach (Collider toastCol in _ignoredToastColliders)
+            {
+                if (toastCol == null) continue;
+
+                foreach (Collider boxCol in _ignoredBoxColliders)
+                {
+                    if (boxCol != null && boxCol != toastCol)
+                        Physics.IgnoreCollision(toastCol, boxCol, ignore);
+                }
+            }
+
+            if (!ignore)
+            {
+                _ignoredToastColliders.Clear();
+                _ignoredBoxColliders.Clear();
+            }
+        }
+
+        private void UnsubscribeGrabbable()
         {
             if (_grabbable != null)
                 _grabbable.WhenPointerEventRaised -= HandlePointerEvent;
 
             _grabbable = null;
+        }
 
-            if (!_isClosed)
-            {
-                _toast = null;
-                _toastRigidbody = null;
-            }
+        /// <summary>Stops tracking an unsealed toast and restores its collisions with the box.</summary>
+        private void ClearTracking()
+        {
+            UnsubscribeGrabbable();
+
+            if (_isClosed)
+                return;
+
+            SetBoxCollisionIgnored(false);
+            _toastCollidersInside.Clear();
+            _toast = null;
+            _toastRigidbody = null;
         }
     }
 }

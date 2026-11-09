@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using Oculus.Interaction;
 using UnityEngine;
 using CognitiveVR.Core;
 using CognitiveVR.Data;
@@ -37,6 +39,17 @@ namespace CognitiveVR.Tasks
     ///   rain_task_complete       - both parts done. value = seconds since start,
     ///                              details carry the completion order.
     ///
+    /// Window hand contact (object = windowLogName), from the ISDK interactables
+    /// under the window, aggregated so HandGrab + Grab interactables on several
+    /// handles still give one clean pair:
+    ///   rain_task_window_touch      - hand entered grab range (Hover) of the window.
+    ///   rain_task_window_touch_end  - hand left. value = touch duration.
+    ///   rain_task_window_grab       - window grabbed (Select).
+    ///   rain_task_window_release    - window released. value = held seconds,
+    ///                                 details carry the angle change while held.
+    /// These are logged whether or not the task has started (since_task_start_s
+    /// is -1 before it does).
+    ///
     /// The same data is accumulated into a <see cref="WindowPuddleTaskSummary"/>
     /// which ExperimentDataManager embeds in the session summary JSON. Read it
     /// via <see cref="BuildSummary"/>.
@@ -54,6 +67,9 @@ namespace CognitiveVR.Tasks
         [Tooltip("Name used in the 'object' column of the CSV rows.")]
         [SerializeField] private string logName = "RainTask";
 
+        [Tooltip("Name used in the 'object' column of the window touch/grab rows. Keep it identical to the window's ItemUsageTracker / gaze name so the rows join.")]
+        [SerializeField] private string windowLogName = "Window";
+
         [Header("Puddle spawn")]
         [Tooltip("Seconds after RequestOpenWindow before the puddle appears.")]
         [SerializeField] private float puddleActivateDelay = 15f;
@@ -64,12 +80,34 @@ namespace CognitiveVR.Tasks
 
         private bool _completeLogged;
 
+        // Window hand contact, aggregated over every interactable on the window.
+        private readonly Dictionary<IInteractableView, InteractableState> _windowViews =
+            new Dictionary<IInteractableView, InteractableState>();
+        private bool _windowTouching;
+        private bool _windowGrabbing;
+        private bool _grabbedDuringTouch;
+        private float _touchStartedAt;
+        private float _grabStartedAt;
+        private float _grabStartAngle;
+
         private static ExperimentDataManager Manager => ExperimentDataManager.Instance;
 
         private void Awake()
         {
             if (sessionTimer == null)
                 sessionTimer = FindFirstObjectByType<SessionTimer>();
+
+            if (windowController != null)
+            {
+                foreach (MonoBehaviour mb in windowController.GetComponentsInChildren<MonoBehaviour>(true))
+                {
+                    if (mb is IInteractableView view)
+                        _windowViews[view] = InteractableState.Normal;
+                }
+
+                if (_windowViews.Count == 0)
+                    Debug.LogWarning($"[{nameof(WindowPuddleTaskBridge)}] No IInteractableView found under '{windowController.name}' - window touch/grab will not be logged.", this);
+            }
         }
 
         private void OnEnable()
@@ -84,6 +122,12 @@ namespace CognitiveVR.Tasks
             else
             {
                 Debug.LogWarning($"[{nameof(WindowPuddleTaskBridge)}] No WindowTaskController assigned.", this);
+            }
+
+            foreach (IInteractableView view in new List<IInteractableView>(_windowViews.Keys))
+            {
+                _windowViews[view] = view.State;
+                view.WhenStateChanged += HandleWindowViewStateChanged;
             }
 
             if (puddle != null)
@@ -108,6 +152,9 @@ namespace CognitiveVR.Tasks
                 windowController.CloseAttempt -= HandleWindowAttempt;
                 windowController.WindowClosed -= HandleWindowClosed;
             }
+
+            foreach (IInteractableView view in _windowViews.Keys)
+                view.WhenStateChanged -= HandleWindowViewStateChanged;
 
             if (puddle != null)
             {
@@ -215,6 +262,97 @@ namespace CognitiveVR.Tasks
             CheckBothComplete();
         }
 
+        /// <summary>
+        /// One interactable on the window changed state. Re-derives the aggregate
+        /// touching / grabbing flags and logs only when one of them flips.
+        /// </summary>
+        private void HandleWindowViewStateChanged(InteractableStateChangeArgs args)
+        {
+            foreach (IInteractableView view in new List<IInteractableView>(_windowViews.Keys))
+                _windowViews[view] = view.State;
+
+            bool touching = false;
+            bool grabbing = false;
+            foreach (InteractableState state in _windowViews.Values)
+            {
+                if (state == InteractableState.Hover || state == InteractableState.Select)
+                    touching = true;
+                if (state == InteractableState.Select)
+                    grabbing = true;
+            }
+
+            // Order matters for readable rows: touch before grab, release before touch end.
+            if (touching && !_windowTouching) BeginWindowTouch();
+            if (grabbing && !_windowGrabbing) BeginWindowGrab();
+            if (!grabbing && _windowGrabbing) EndWindowGrab();
+            if (!touching && _windowTouching) EndWindowTouch();
+        }
+
+        private void BeginWindowTouch()
+        {
+            _windowTouching = true;
+            _grabbedDuringTouch = false;
+            _touchStartedAt = Now();
+
+            _summary.windowTouchCount++;
+            if (_summary.firstWindowTouchAt < 0f)
+                _summary.firstWindowTouchAt = _touchStartedAt;
+
+            Manager?.Log("task", "rain_task_window_touch", windowLogName, null,
+                $"touch_number={_summary.windowTouchCount}" +
+                $"|angle_deg={WindowAngle().ToString("F1", Inv)}" +
+                $"|window_open={(WindowOpen() ? 1 : 0)}" +
+                $"|since_task_start_s={SinceStart(_touchStartedAt).ToString("F2", Inv)}");
+        }
+
+        private void EndWindowTouch()
+        {
+            _windowTouching = false;
+            float touchSeconds = Mathf.Max(0f, Now() - _touchStartedAt);
+
+            Manager?.Log("task", "rain_task_window_touch_end", windowLogName, touchSeconds,
+                $"touch_s={touchSeconds.ToString("F2", Inv)}" +
+                $"|grabbed={(_grabbedDuringTouch ? 1 : 0)}");
+        }
+
+        private void BeginWindowGrab()
+        {
+            _windowGrabbing = true;
+            _grabbedDuringTouch = true;
+            _grabStartedAt = Now();
+            _grabStartAngle = WindowAngle();
+
+            _summary.windowGrabCount++;
+            if (_summary.firstWindowGrabAt < 0f)
+                _summary.firstWindowGrabAt = _grabStartedAt;
+
+            Manager?.Log("task", "rain_task_window_grab", windowLogName, null,
+                $"grab_number={_summary.windowGrabCount}" +
+                $"|angle_deg={_grabStartAngle.ToString("F1", Inv)}" +
+                $"|window_open={(WindowOpen() ? 1 : 0)}" +
+                $"|since_task_start_s={SinceStart(_grabStartedAt).ToString("F2", Inv)}");
+        }
+
+        private void EndWindowGrab()
+        {
+            _windowGrabbing = false;
+            float heldSeconds = Mathf.Max(0f, Now() - _grabStartedAt);
+            float endAngle = WindowAngle();
+
+            _summary.totalWindowHoldSeconds += heldSeconds;
+
+            Manager?.Log("task", "rain_task_window_release", windowLogName, heldSeconds,
+                $"held_s={heldSeconds.ToString("F2", Inv)}" +
+                $"|angle_start_deg={_grabStartAngle.ToString("F1", Inv)}" +
+                $"|angle_end_deg={endAngle.ToString("F1", Inv)}" +
+                $"|angle_change_deg={(endAngle - _grabStartAngle).ToString("F1", Inv)}" +
+                $"|window_open={(WindowOpen() ? 1 : 0)}");
+        }
+
+        private float WindowAngle() => windowController != null ? windowController.CurrentAngle : -1f;
+
+        private bool WindowOpen() => windowController != null && windowController.IsOpen;
+
         // ------------------------------------------------------------------ //
         // Internals
         // ------------------------------------------------------------------ //
@@ -306,6 +444,13 @@ namespace CognitiveVR.Tasks
             public bool windowClosed;
             public float windowClosedAt = -1f;
             public float timeToCloseWindow = -1f;
+
+            // Window hand contact (touch = ISDK hover in grab range, grab = select).
+            public int windowTouchCount;
+            public int windowGrabCount;
+            public float firstWindowTouchAt = -1f;
+            public float firstWindowGrabAt = -1f;
+            public float totalWindowHoldSeconds;
 
             // Puddle half.
             public float puddleStartedAt = -1f;   // first wipe

@@ -12,6 +12,7 @@ namespace CognitiveVR.Tasks
     ///                  whether a ToasterController was wired up, which is the
     ///                  difference between "the toaster task finalized" and
     ///                  "the box sealed but the toaster never heard about it".
+    ///                  sealed_by = release | drop_in | external (spatula).
     ///   box_unsealed - session ended with the box never sealed (logged once on
     ///                  disable), so a missing seal is explicit in the data
     ///                  rather than just an absent row.
@@ -53,7 +54,8 @@ namespace CognitiveVR.Tasks
             _sealed = true;
 
             Manager?.Log("task", "box_sealed", logName, null,
-                $"toast={toastName}|toaster_wired={(toasterWired ? 1 : 0)}");
+                $"toast={toastName}|toaster_wired={(toasterWired ? 1 : 0)}" +
+                $"|sealed_by={_box.SealSource}");
         }
     }
 }

@@ -8990,7 +8990,7 @@ PrefabInstance:
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 477785367}
+      objectReference: {fileID: 253178545}
     - target: {fileID: 5875643889095611809, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
@@ -9077,9 +9077,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5875643889754384620, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 477785367}
-    - targetCorrespondingSourceObject: {fileID: 5875643889754384620, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 477785370}
   m_SourcePrefab: {fileID: 100100000, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
 --- !u!1 &477785364 stripped
@@ -9087,103 +9084,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5875643889754384620, guid: 19a380763df631b42889ebcd4d7f9897, type: 3}
   m_PrefabInstance: {fileID: 477785363}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &477785367
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477785364}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 3b9cec6da7388064c910f71fe18a3c54, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &477785370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15837,7 +15737,7 @@ MonoBehaviour:
       \u05D4\u05D0\u05D1\u05D7\u05D5\u05DF.\n\n\u05DC\u05D7\u05E6\u05D5 \u05E2\u05DC
       \u05D4\u05DB\u05E4\u05EA\u05D5\u05E8 \u05D4\u05D0\u05D3\u05D5\u05DD \u05DB\u05D0\u05E9\u05E8
       \u05D0\u05EA\u05DD \u05DE\u05E8\u05D2\u05D9\u05E9\u05D9\u05DD \u05DE\u05D5\u05DB\u05E0\u05D9\u05DD."
-    voiceClip: {fileID: 8300000, guid: 384370c328b486848a9b141cfc27211a, type: 3}
+    voiceClip: {fileID: 8300000, guid: 3b9cec6da7388064c910f71fe18a3c54, type: 3}
     voiceSource: {fileID: 0}
     show:
     - {fileID: 477785364}
@@ -47599,6 +47499,8 @@ MonoBehaviour:
   useControllers: 1
   skipWhenAlreadyGrabbed: 1
   kinematicWhileHeld: 1
+  freezeWhenSettled: 1
+  standUpWhenSettled: 1
   onSideHoldStart:
     m_PersistentCalls:
       m_Calls: []

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using CognitiveVR.Core;
 using UnityEngine;
 using UnityEngine.Events;
@@ -29,8 +30,18 @@ public class GuideActionController : MonoBehaviour
     [SerializeField] private string missionTriggerEventId = "neighbor_knock";
     [SerializeField] private float tickInterval = 20f;
 
+    [Header("Visibility")]
+    [Tooltip("Hide the neighbor's renderers and colliders until the mission starts. Audio, animator and scripts keep running.")]
+    [SerializeField] private bool hideUntilMissionStart = true;
+
+    [Tooltip("Door the neighbor waits behind. If it is already open when the mission starts, the conversation begins right away.")]
+    [SerializeField] private DoorStateEvents missionDoor;
+
     [Header("Events")]
     [SerializeField] private UnityEvent onScenarioEnd;
+
+    private Renderer[] _hiddenRenderers = new Renderer[0];
+    private Collider[] _hiddenColliders = new Collider[0];
 
     private bool scenarioStarted;
     private bool choiceMade;
@@ -47,6 +58,52 @@ public class GuideActionController : MonoBehaviour
 
         if (guideAudio == null)
             guideAudio = GetComponent<GuideScenarioController>();
+
+        if (hideUntilMissionStart && !missionStarted)
+        {
+            CollectGuideVisuals();
+            SetGuideVisible(false);
+        }
+    }
+
+    // Collects the renderers and colliders that make the neighbor visible and
+    // physical. The GameObject itself stays active, because it also carries the
+    // tick AudioSource, the mission logic and the data bridge.
+    private void CollectGuideVisuals()
+    {
+        GameObject root = guide != null ? guide : gameObject;
+        Transform canvasRoot = choiceCanvas != null ? choiceCanvas.transform : null;
+
+        var renderers = new List<Renderer>();
+        foreach (var r in root.GetComponentsInChildren<Renderer>(true))
+        {
+            if (r.enabled && !IsUnder(r.transform, canvasRoot))
+                renderers.Add(r);
+        }
+
+        var colliders = new List<Collider>();
+        foreach (var c in root.GetComponentsInChildren<Collider>(true))
+        {
+            if (c.enabled && !IsUnder(c.transform, canvasRoot))
+                colliders.Add(c);
+        }
+
+        _hiddenRenderers = renderers.ToArray();
+        _hiddenColliders = colliders.ToArray();
+    }
+
+    private static bool IsUnder(Transform t, Transform ancestor)
+    {
+        return ancestor != null && (t == ancestor || t.IsChildOf(ancestor));
+    }
+
+    private void SetGuideVisible(bool visible)
+    {
+        foreach (var r in _hiddenRenderers)
+            if (r != null) r.enabled = visible;
+
+        foreach (var c in _hiddenColliders)
+            if (c != null) c.enabled = visible;
     }
 
     private void OnEnable()
@@ -81,6 +138,7 @@ public class GuideActionController : MonoBehaviour
             StartMission();
     }
 
+    [ContextMenu("Start Mission (test)")]
     public void StartMission()
     {
         if (missionStarted)
@@ -89,6 +147,8 @@ public class GuideActionController : MonoBehaviour
         missionStarted = true;
         doorOpened = false;
         tickNumber = 0;
+
+        SetGuideVisible(true);
 
         Debug.Log("Mission started - tick.");
 
@@ -101,11 +161,26 @@ public class GuideActionController : MonoBehaviour
         OnTickPlayed?.Invoke(tickNumber);
 
         StartCoroutine(TickReminderLoop());
+
+        // DoorStateEvents only fires on a closed->open transition. If the door
+        // was opened before the mission (and ignored), start the scenario now.
+        if (missionDoor != null && missionDoor.IsOpen)
+        {
+            Debug.Log("Mission door already open at mission start - starting scenario.");
+            OnMissionDoorOpened();
+            OnDoorOpened();
+        }
     }
 
     // Wire this into DoorStateEvents.onDoorOpened in the inspector.
     public void OnMissionDoorOpened()
     {
+        if (!missionStarted)
+        {
+            Debug.Log("Mission door opened before mission start - ignored.");
+            return;
+        }
+
         doorOpened = true;
         Debug.Log("Mission door opened.");
 
@@ -131,6 +206,12 @@ public class GuideActionController : MonoBehaviour
 
     public void OnDoorOpened()
     {
+        if (!missionStarted)
+        {
+            Debug.Log("Door opened before mission start - guide scenario ignored.");
+            return;
+        }
+
         if (scenarioStarted)
             return;
 
