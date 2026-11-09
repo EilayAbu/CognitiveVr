@@ -34,11 +34,28 @@ namespace CognitiveVR.UI
         [Tooltip("Center eye / Main Camera. Auto-found from Camera.main if empty.")]
         [SerializeField] private Transform head;
 
+        [Tooltip("Smaller line under the message. Auto-built if empty.")]
+        [SerializeField] private TMP_Text subMessageText;
+
         [Header("Message")]
         [TextArea(2, 4)]
-        [SerializeField] private string message = "כל הכבוד! סיימת את המשימה";
+        [SerializeField] private string message = "כל הכבוד, סיימתם!";
+        [TextArea(1, 3)]
+        [SerializeField] private string subMessage = "אפשר להוריד את המשקפיים";
         [SerializeField] private bool showMessage = true;
         [SerializeField] private AudioSource audioEnd;
+
+        [Header("Text Look (auto-built labels)")]
+        [Tooltip("Font for the headline, e.g. Heebo-ExtraBold SDF. Uses the TMP default if empty.")]
+        [SerializeField] private TMP_FontAsset titleFont;
+        [Tooltip("Font for the smaller line, e.g. Heebo-Regular SDF. Uses the TMP default if empty.")]
+        [SerializeField] private TMP_FontAsset subFont;
+        [Tooltip("Headline size in world units (metres).")]
+        [SerializeField] private float titleFontSize = 0.035f;
+        [Tooltip("Smaller line size in world units (metres).")]
+        [SerializeField] private float subFontSize = 0.018f;
+        [Tooltip("Render the auto-built labels right-to-left (Hebrew).")]
+        [SerializeField] private bool rightToLeft = true;
 
         [Header("Timing (seconds)")]
         [SerializeField] private float startDelay = 0f;
@@ -97,9 +114,10 @@ namespace CognitiveVR.UI
             fadeGroup.alpha = 1f;
 
             // Reveal the message.
-            if (showMessage && messageText != null)
+            if (showMessage && (messageText != null || subMessageText != null))
             {
-                SetMessage(message);
+                SetMessage(messageText, message);
+                SetMessage(subMessageText, subMessage);
                 yield return Lerp(messageFadeInDuration, SetTextAlpha);
                 SetTextAlpha(1f);
             }
@@ -136,20 +154,43 @@ namespace CognitiveVR.UI
             }
         }
 
-        private void SetMessage(string s)
+        private static void SetMessage(TMP_Text label, string s)
         {
-            if (messageText == null) return;
+            if (label == null) return;
 
             // RTLTextMeshPro shapes Hebrew via its OriginalText property; writing
             // straight to .text bypasses shaping. Fall back to .text for plain TMP.
-            PropertyInfo prop = messageText.GetType().GetProperty("OriginalText");
-            if (prop != null && prop.CanWrite) prop.SetValue(messageText, s);
-            else messageText.text = s;
+            PropertyInfo prop = label.GetType().GetProperty("OriginalText");
+            if (prop != null && prop.CanWrite) prop.SetValue(label, s);
+            else label.text = s;
         }
 
         private void SetTextAlpha(float a)
         {
             if (messageText != null) messageText.alpha = a;
+            if (subMessageText != null) subMessageText.alpha = a;
+        }
+
+        private TMP_Text CreateLabel(Transform parent, string objName, TMP_FontAsset font, float size,
+            bool bold, Vector2 anchorMin, Vector2 anchorMax)
+        {
+            var go = new GameObject(objName);
+            go.transform.SetParent(parent, false);
+            var tmp = go.AddComponent<TextMeshProUGUI>();
+            if (font != null) tmp.font = font;
+            tmp.fontSize = size;
+            tmp.fontStyle = bold ? FontStyles.Bold : FontStyles.Normal;
+            tmp.isRightToLeftText = rightToLeft;
+            tmp.alignment = TextAlignmentOptions.Center;
+            tmp.textWrappingMode = TextWrappingModes.Normal;
+            tmp.color = Color.white;
+            tmp.raycastTarget = false;
+            var r = tmp.rectTransform;
+            r.anchorMin = anchorMin;
+            r.anchorMax = anchorMax;
+            r.offsetMin = Vector2.zero;
+            r.offsetMax = Vector2.zero;
+            return tmp;
         }
 
         private void EnsureOverlay()
@@ -192,21 +233,17 @@ namespace CognitiveVR.UI
             fillRT.offsetMin = Vector2.zero;
             fillRT.offsetMax = Vector2.zero;
 
-            // Fallback message (plain TMP - won't shape Hebrew; assign your own for that).
-            if (messageText == null && showMessage)
+            // Auto-built labels. The canvas is 4 m wide, so the labels use a narrow
+            // central band (~0.8 m) that stays well inside the field of view.
+            if (showMessage)
             {
-                var textGO = new GameObject("Message");
-                textGO.transform.SetParent(canvasGO.transform, false);
-                var tmp = textGO.AddComponent<TextMeshProUGUI>();
-                tmp.alignment = TextAlignmentOptions.Center;
-                tmp.fontSize = 0.4f; // world units
-                tmp.color = Color.white;
-                var textRT = tmp.rectTransform;
-                textRT.anchorMin = new Vector2(0.1f, 0.35f);
-                textRT.anchorMax = new Vector2(0.9f, 0.65f);
-                textRT.offsetMin = Vector2.zero;
-                textRT.offsetMax = Vector2.zero;
-                messageText = tmp;
+                if (messageText == null)
+                    messageText = CreateLabel(canvasGO.transform, "Message", titleFont, titleFontSize, true,
+                        new Vector2(0.4f, 0.5f), new Vector2(0.6f, 0.515f));
+
+                if (subMessageText == null && !string.IsNullOrEmpty(subMessage))
+                    subMessageText = CreateLabel(canvasGO.transform, "SubMessage", subFont, subFontSize, false,
+                        new Vector2(0.4f, 0.49f), new Vector2(0.6f, 0.5f));
             }
 
             SetTextAlpha(0f);
