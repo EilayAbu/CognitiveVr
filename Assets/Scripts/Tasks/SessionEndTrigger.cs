@@ -150,6 +150,22 @@ namespace CognitiveVR.Tasks
             onSessionComplete?.Invoke();
         }
 
+        /// <summary>
+        /// Automatic end when the simulation time limit is reached (called by
+        /// SimulationAutoEnd). Plays the same ending as a normal exit - end audio,
+        /// black screen and message - without needing the backpack at the door.
+        /// No CSV row is written: logging is normally already closed by then
+        /// (SessionTimer stops data collection earlier).
+        /// </summary>
+        public void CompleteByTimeout()
+        {
+            if (_hasFired && oneShot) return;
+
+            _hasFired = true;
+            Manager?.FinalizeSession("simulation_timeout"); // no-op if already finalized
+            onSessionComplete?.Invoke();
+        }
+
         /// <summary>Allows the trigger to fire again after a ResetPuddle-style restart.</summary>
         public void ResetTrigger()
         {
