@@ -1,6 +1,5 @@
 using System.Collections;
 using CognitiveVR.Core;
-using Oculus.Interaction;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -38,9 +37,6 @@ namespace CognitiveVR.Tasks
                 yield break;
             }
 
-            Transform key = keyZone.key;
-            var grabbable = key.GetComponent<Grabbable>();
-            Vector3 initialKeyPosition = key.position;
             float referenceHeight = 0f;
             float stableTime = 0f;
             float elapsed = 0f;
@@ -50,16 +46,6 @@ namespace CognitiveVR.Tasks
             {
                 yield return null;
                 elapsed += Time.unscaledDeltaTime;
-
-                // A late headset connection must never move a key already grabbed or knocked down.
-                if (keyZone == null || keyZone.IsConsumed || key == null ||
-                    (grabbable != null && grabbable.SelectingPointsCount > 0) ||
-                    Vector3.Distance(key.position, initialKeyPosition) > 0.15f)
-                {
-                    Debug.LogWarning("[KeyTaskHeight] Key was moved or grabbed before calibration; " +
-                                     "keeping the authored height.", this);
-                    yield break;
-                }
 
                 string waitReason = null;
                 float eyeHeight = 0f;
