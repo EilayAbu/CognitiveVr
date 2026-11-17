@@ -11,9 +11,11 @@ namespace CognitiveVR.Core
     /// Start), not scene load - the instructions phase is not counted.
     ///
     /// Uses its own clock on purpose: SessionTimer stops counting when its
-    /// SessionDuration (data collection, 7 min) runs out, while this one keeps
-    /// going until autoEndAfterSeconds (9 min) and then plays the regular
-    /// ending through SessionEndTrigger (end audio + black screen + message).
+    /// SessionDuration runs out. In MainScene SessionDuration is 545 s - a
+    /// backstop just after this component's 540 s - so data is collected all
+    /// the way to the ending, and the exit_timeout row (with the backpack
+    /// status) is written by SessionEndTrigger.CompleteByTimeout before the log
+    /// closes. Then the regular ending plays (end audio + black screen + message).
     /// If the participant already finished at the exit, the trigger is
     /// one-shot and the timeout does nothing.
     /// </summary>

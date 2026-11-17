@@ -48,6 +48,17 @@ namespace CognitiveVR.Phone
         [SerializeField] private SmsSwapTracker _smsSwapTracker;
         [SerializeField] private WeatherAppScreen _weatherAppScreen;
 
+        [Header("Read Detection (gaze while open)")]
+        [Tooltip("Resolved GazeObjectTracker names that count as 'looking at the phone' (exact match).")]
+        [SerializeField] private string[] _phoneGazeNames = { "Phone", "Phone Gaze" };
+        [Tooltip("Seconds of head gaze on the phone while a message is open before it counts as read (phone_msg_read).")]
+        [SerializeField] private float _readThresholdSeconds = 1.5f;
+
+        [Header("Umbrella vs. Rain Alert")]
+        [Tooltip("Backpack item name of the umbrella (InventoryItemMetaBridge = GameObject name).")]
+        [SerializeField] private string _umbrellaItemName = "umbrella";
+        [SerializeField] private CognitiveVR.Interaction.BackpackInventoryZone _backpack;
+
         [Header("Debug")]
         [SerializeField] private bool _verboseLogs = true;
 
@@ -68,14 +79,19 @@ namespace CognitiveVR.Phone
 
         private void Awake()
         {
+            Instance = this;
             ResolveReferences();
             EnsureTrackers();
         }
 
         private void OnEnable()
         {
+            Instance = this;
             ResolveReferences();
             EnsureTrackers();
+
+            if (_backpack != null)
+                _backpack.WhenItemEntered += HandleBackpackItemEntered;
 
             if (_phone != null)
             {
@@ -100,6 +116,9 @@ namespace CognitiveVR.Phone
 
         private void OnDisable()
         {
+            if (_backpack != null)
+                _backpack.WhenItemEntered -= HandleBackpackItemEntered;
+
             if (_phone != null)
             {
                 _phone.OnBossMessageButtonShownEvent -= HandleBossMessageArrived;
@@ -118,6 +137,8 @@ namespace CognitiveVR.Phone
 
         private void OnDestroy()
         {
+            if (Instance == this) Instance = null;
+
             // Fallback for aborted runs. A normal run has already been flushed by
             // ExperimentDataManager.FinalizeSession, while the log was still open.
             // Not OnDisable: the phone may legitimately be toggled off mid-session.
@@ -130,6 +151,57 @@ namespace CognitiveVR.Phone
             // message is still on screen - the manager reads the same object.
             TickOpenWindow(_bossTracker);
             TickOpenWindow(_weatherTracker);
+
+            bool lookingAtPhone = IsLookingAtPhone();
+            TickReadGaze(_bossTracker, lookingAtPhone);
+            TickReadGaze(_weatherTracker, lookingAtPhone);
+        }
+
+        // ------------------------------------------------------------------ //
+        // "Read" = head gaze on the phone while the message is on screen
+        // ------------------------------------------------------------------ //
+
+        private bool IsLookingAtPhone()
+        {
+            GazeObjectTracker gaze = GazeObjectTracker.Instance;
+            if (gaze == null || _phoneGazeNames == null) return false;
+
+            string current = gaze.CurrentlyLookingAt;
+            if (string.IsNullOrEmpty(current)) return false;
+
+            for (int i = 0; i < _phoneGazeNames.Length; i++)
+                if (current == _phoneGazeNames[i]) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Accumulates gaze-on-phone seconds while this message is open and writes
+        /// phone_msg_read the first time the total crosses the threshold.
+        /// </summary>
+        private void TickReadGaze(MessageTracker tracker, bool lookingAtPhone)
+        {
+            if (tracker == null || tracker.OpenStartedAt < 0f || !lookingAtPhone) return;
+
+            MessageStats stats = tracker.Stats;
+            float dt = Time.unscaledDeltaTime;
+            tracker.GazeThisOpen += dt;
+            stats.gazeWhileOpenSeconds += dt;
+
+            if (stats.read || stats.gazeWhileOpenSeconds < _readThresholdSeconds) return;
+
+            float now = LoggerNow();
+            stats.read = true;
+            stats.readAt = now;
+            stats.readAtSession = ResolveSessionTime();
+
+            float sinceOpen = Mathf.Max(0f, now - tracker.OpenStartedAt);
+            float sinceArrival = stats.arrivedAt >= 0f ? Mathf.Max(0f, now - stats.arrivedAt) : -1f;
+
+            Manager?.Log("task", "phone_msg_read", tracker.LogName, stats.gazeWhileOpenSeconds,
+                $"threshold_s={_readThresholdSeconds.ToString("F2", Inv)}" +
+                $"|since_open_s={sinceOpen.ToString("F2", Inv)}" +
+                (sinceArrival >= 0f ? $"|since_arrival_s={sinceArrival.ToString("F2", Inv)}" : "") +
+                $"|t_session_s={stats.readAtSession.ToString("F2", Inv)}");
         }
 
         /// <summary>
@@ -191,6 +263,7 @@ namespace CognitiveVR.Phone
             float now = LoggerNow();
 
             tracker.OpenStartedAt = now;
+            tracker.GazeThisOpen = 0f;
             stats.openCount++;
             stats.stillOpenAtEnd = true;
 
@@ -233,7 +306,9 @@ namespace CognitiveVR.Phone
                 $"|total_open_s={stats.totalOpenSeconds.ToString("F2", Inv)}" +
                 (openSeconds >= 0f
                     ? $"|open_s={openSeconds.ToString("F2", Inv)}"
-                    : "|open_not_recorded=1"));
+                    : "|open_not_recorded=1") +
+                $"|gaze_while_open_s={tracker.GazeThisOpen.ToString("F2", Inv)}" +
+                $"|read={(stats.read ? 1 : 0)}");
         }
 
         /// <summary>
@@ -294,7 +369,18 @@ namespace CognitiveVR.Phone
                     openSeconds >= 0f ? openSeconds : (float?)null,
                     $"open_count={stats.openCount}" +
                     $"|total_open_s={stats.totalOpenSeconds.ToString("F2", Inv)}" +
+                    $"|gaze_while_open_s={tracker.GazeThisOpen.ToString("F2", Inv)}" +
+                    $"|read={(stats.read ? 1 : 0)}" +
                     "|closed_by=session_end");
+            }
+
+            // Opened (or not) but never looked at long enough to count as read.
+            if (stats.arrived && !stats.read)
+            {
+                Manager?.Log("task", "phone_msg_never_read", tracker.LogName, stats.gazeWhileOpenSeconds,
+                    $"opened={(stats.opened ? 1 : 0)}" +
+                    $"|gaze_while_open_s={stats.gazeWhileOpenSeconds.ToString("F2", Inv)}" +
+                    $"|threshold_s={_readThresholdSeconds.ToString("F2", Inv)}");
             }
 
             if (!stats.arrived || stats.opened) return;
@@ -419,8 +505,52 @@ namespace CognitiveVR.Phone
             if (_phone != null)
                 _phone.ShowWeatherMessageButton();
 
+            LogUmbrellaAtRainAlert(now);
+
             if (_verboseLogs)
                 Debug.Log($"[{nameof(PhoneSessionEventBridge)}] Rain push dispatched at {now:F1}s ({timestampLabel}).", this);
+        }
+
+        // ------------------------------------------------------------------ //
+        // Umbrella vs. rain alert
+        // ------------------------------------------------------------------ //
+
+        /// <summary>
+        /// Writes task/umbrella_at_rain_alert the moment the rain alert is
+        /// dispatched. value = 1 if the umbrella was already in the backpack.
+        /// </summary>
+        private void LogUmbrellaAtRainAlert(float sessionNow)
+        {
+            _messagesSummary.rainAlertAtSession = sessionNow;
+
+            bool inBag = IsInBackpack(_umbrellaItemName);
+            _messagesSummary.umbrellaInBagBeforeRain = inBag ? 1 : 0;
+
+            Manager?.Log("task", "umbrella_at_rain_alert", _umbrellaItemName, inBag ? 1f : 0f,
+                $"in_bag={(inBag ? 1 : 0)}" +
+                $"|rain_alert_t_session_s={sessionNow.ToString("F2", Inv)}");
+        }
+
+        private void HandleBackpackItemEntered(string itemName, CognitiveVR.Interaction.BackpackSlot slot)
+        {
+            if (itemName != _umbrellaItemName) return;
+            if (_messagesSummary.rainAlertAtSession < 0f) return;          // alert not yet: nothing to measure
+            if (_messagesSummary.umbrellaBaggedAfterRainSeconds >= 0f) return; // first time only
+
+            float since = Mathf.Max(0f, ResolveSessionTime() - _messagesSummary.rainAlertAtSession);
+            _messagesSummary.umbrellaBaggedAfterRainSeconds = since;
+
+            Manager?.Log("task", "umbrella_bagged_after_rain", _umbrellaItemName, since,
+                $"since_rain_alert_s={since.ToString("F2", Inv)}" +
+                $"|was_in_bag_at_alert={_messagesSummary.umbrellaInBagBeforeRain}");
+        }
+
+        private bool IsInBackpack(string itemName)
+        {
+            if (_backpack == null || string.IsNullOrEmpty(itemName)) return false;
+            foreach (string stored in _backpack.StoredItemNames)
+                if (stored == itemName) return true;
+            return false;
         }
 
         private float ResolveSessionTime()
@@ -439,6 +569,15 @@ namespace CognitiveVR.Phone
 
         private void ResolveReferences()
         {
+            if (_backpack == null)
+            {
+#if UNITY_2023_1_OR_NEWER
+                _backpack = FindFirstObjectByType<CognitiveVR.Interaction.BackpackInventoryZone>();
+#else
+                _backpack = FindObjectOfType<CognitiveVR.Interaction.BackpackInventoryZone>();
+#endif
+            }
+
             if (_sessionTimer == null)
             {
 #if UNITY_2023_1_OR_NEWER
@@ -488,6 +627,8 @@ namespace CognitiveVR.Phone
             public float OpenStartedAt = -1f;
             /// <summary>Seconds from windows that have already been closed.</summary>
             public float CommittedOpenSeconds;
+            /// <summary>Gaze-on-phone seconds during the current/last open window.</summary>
+            public float GazeThisOpen;
 
             public MessageTracker(string logName, MessageStats stats)
             {
@@ -521,6 +662,13 @@ namespace CognitiveVR.Phone
             public float longestOpenSeconds;
             /// <summary>The message was still on screen when the session ended.</summary>
             public bool stillOpenAtEnd;
+
+            /// <summary>Head gaze on the phone accumulated while this message was open (all opens).</summary>
+            public float gazeWhileOpenSeconds;
+            /// <summary>gazeWhileOpenSeconds reached the read threshold.</summary>
+            public bool read;
+            public float readAt = -1f;
+            public float readAtSession = -1f;
         }
 
         [Serializable]
@@ -528,6 +676,22 @@ namespace CognitiveVR.Phone
         {
             public MessageStats bossSms = new MessageStats();
             public MessageStats weatherAlert = new MessageStats();
+
+            /// <summary>Session-clock seconds when the rain alert was dispatched. -1 = never.</summary>
+            public float rainAlertAtSession = -1f;
+            /// <summary>1 = umbrella already in the backpack when the rain alert arrived, 0 = not, -1 = alert never came.</summary>
+            public int umbrellaInBagBeforeRain = -1;
+            /// <summary>Session seconds after the alert that the umbrella was bagged. -1 = not bagged after the alert.</summary>
+            public float umbrellaBaggedAfterRainSeconds = -1f;
         }
+
+        /// <summary>
+        /// Session-clock (t_session_s) time of the rain alert, -1 if it has not
+        /// arrived yet. Read by WindowPuddleTaskBridge for since_rain_alert_s.
+        /// </summary>
+        public float RainAlertAtSession => _messagesSummary.rainAlertAtSession;
+
+        /// <summary>Last enabled bridge, so other task bridges can read the rain-alert time.</summary>
+        public static PhoneSessionEventBridge Instance { get; private set; }
     }
 }

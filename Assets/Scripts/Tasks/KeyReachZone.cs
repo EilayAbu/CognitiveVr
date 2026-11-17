@@ -5,27 +5,45 @@ using UnityEngine;
 namespace CognitiveVR.Tasks
 {
     /// <summary>
-    /// Counts attempts to reach the key by hand.
+    /// Counts attempts to reach the key - by hand OR with any object.
     ///
     /// Put on a trigger collider around the key and the front of the shelf
-    /// (larger than the KeyKnockZone). Each frame every assigned hand point is
-    /// tested against the collider; a hand going from outside to inside counts
-    /// as one reach attempt. Polling the transforms means the hands need no
-    /// colliders or Rigidbodies.
+    /// (larger than the KeyKnockZone). Two sources count as an attempt:
+    ///  1. Tracked points (e.g. LeftHandAnchor / RightHandAnchor) polled every
+    ///     frame against the collider - these need no colliders or Rigidbodies.
+    ///  2. Any physics object (umbrella, mop, chair, ...) whose collider enters
+    ///     the trigger (needs a Rigidbody, which every grabbable has). Turn off
+    ///     with Detect Any Object.
+    /// Something going from outside to inside counts as one attempt; re-entering
+    /// within Min Seconds Between Attempts does not.
+    ///
+    /// Objects already inside the zone when it starts (the key itself) and
+    /// anything under the same root as a tracked point (the player rig's own
+    /// hand colliders, which would double-count) are ignored.
     ///
     /// <see cref="KeyTaskBridge"/> subscribes to <see cref="ReachAttempt"/> and
-    /// writes the CSV rows.
+    /// writes the CSV rows (key_reach_attempt, obj=&lt;name&gt;).
     /// </summary>
     [RequireComponent(typeof(Collider))]
     public class KeyReachZone : MonoBehaviour
     {
-        /// <summary>A hand entered the zone. Args = hand name, total attempts so far.</summary>
+        /// <summary>Something entered the zone. Args = object name, total attempts so far.</summary>
         public event Action<string, int> ReachAttempt;
 
-        [Tooltip("Hand points to test (e.g. LeftHandAnchor / RightHandAnchor, or the palm transforms).")]
+        // Field keeps its old name so the hand anchors already assigned in the scene are kept.
+        [Tooltip("Points polled every frame (e.g. LeftHandAnchor / RightHandAnchor, or the palm transforms). Need no colliders.")]
         [SerializeField] private List<Transform> hands = new List<Transform>();
 
-        [Tooltip("Per hand: re-entering within this many seconds of leaving doesn't count as a new attempt.")]
+        [Tooltip("Also count any Rigidbody object (umbrella, mop, chair, ...) whose collider enters the zone.")]
+        [SerializeField] private bool detectAnyObject = true;
+
+        [Tooltip("Objects that never count (e.g. the key, the shelf). Matched by Rigidbody root or the object itself.")]
+        [SerializeField] private List<Transform> ignoredObjects = new List<Transform>();
+
+        [Tooltip("Anything inside the zone during this many seconds after it is enabled is ignored for good (the key sitting on the shelf).")]
+        [SerializeField] private float startupIgnoreSeconds = 0.5f;
+
+        [Tooltip("Per object: re-entering within this many seconds of leaving doesn't count as a new attempt.")]
         [SerializeField] private float minSecondsBetweenAttempts = 1f;
 
         [SerializeField] private bool enableDebugLogs;
@@ -34,6 +52,12 @@ namespace CognitiveVR.Tasks
         private bool[] _inside;
         private float[] _lastExitAt;
         private int _attemptCount;
+        private float _enabledAt;
+
+        // Physics objects: overlapping collider count and last exit, keyed by root.
+        private readonly Dictionary<Transform, int> _overlaps = new Dictionary<Transform, int>();
+        private readonly Dictionary<Transform, float> _objLastExitAt = new Dictionary<Transform, float>();
+        private readonly HashSet<Transform> _startupIgnored = new HashSet<Transform>();
 
         public int AttemptCount => _attemptCount;
 
@@ -46,6 +70,7 @@ namespace CognitiveVR.Tasks
         private void OnValidate()
         {
             if (minSecondsBetweenAttempts < 0f) minSecondsBetweenAttempts = 0f;
+            if (startupIgnoreSeconds < 0f) startupIgnoreSeconds = 0f;
         }
 
         private void Awake()
@@ -55,16 +80,22 @@ namespace CognitiveVR.Tasks
             _lastExitAt = new float[hands.Count];
             for (int i = 0; i < _lastExitAt.Length; i++) _lastExitAt[i] = float.NegativeInfinity;
 
-            if (hands.Count == 0)
+            if (hands.Count == 0 && !detectAnyObject)
             {
-                Debug.LogWarning($"[{nameof(KeyReachZone)}] No hands assigned on {name}. Reach attempts won't be counted.", this);
+                Debug.LogWarning($"[{nameof(KeyReachZone)}] No tracked points and Detect Any Object is off on {name}. Reach attempts won't be counted.", this);
             }
+        }
+
+        private void OnEnable()
+        {
+            _enabledAt = Time.time;
         }
 
         private void OnDisable()
         {
-            if (_inside == null) return;
-            for (int i = 0; i < _inside.Length; i++) _inside[i] = false;
+            if (_inside != null)
+                for (int i = 0; i < _inside.Length; i++) _inside[i] = false;
+            _overlaps.Clear();
         }
 
         private void Update()
@@ -87,20 +118,100 @@ namespace CognitiveVR.Tasks
 
                     if (Time.time - _lastExitAt[i] < minSecondsBetweenAttempts) continue;
 
-                    _attemptCount++;
-
-                    if (enableDebugLogs)
-                    {
-                        Debug.Log($"[{nameof(KeyReachZone)}] Reach attempt #{_attemptCount} by '{hand.name}'.", this);
-                    }
-
-                    ReachAttempt?.Invoke(hand.name, _attemptCount);
+                    CountAttempt(hand.name);
                 }
                 else
                 {
                     SetOutside(i);
                 }
             }
+        }
+
+        // ------------------------------------------------------------------ //
+        // Any physics object
+        // ------------------------------------------------------------------ //
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!detectAnyObject || !enabled) return;
+
+            Transform root = RootOf(other);
+            if (root == null || IsIgnored(root)) return;
+
+            if (Time.time - _enabledAt < startupIgnoreSeconds)
+            {
+                _startupIgnored.Add(root);
+                return;
+            }
+
+            _overlaps.TryGetValue(root, out int count);
+            _overlaps[root] = count + 1;
+            if (count > 0) return; // another collider of the same object - already inside
+
+            if (_objLastExitAt.TryGetValue(root, out float lastExit) &&
+                Time.time - lastExit < minSecondsBetweenAttempts)
+                return;
+
+            CountAttempt(root.name);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!detectAnyObject) return;
+
+            Transform root = RootOf(other);
+            if (root == null || !_overlaps.TryGetValue(root, out int count)) return;
+
+            count--;
+            if (count > 0)
+            {
+                _overlaps[root] = count;
+                return;
+            }
+
+            _overlaps.Remove(root);
+            _objLastExitAt[root] = Time.time;
+        }
+
+        private static Transform RootOf(Collider c)
+        {
+            if (c == null) return null;
+            return c.attachedRigidbody != null ? c.attachedRigidbody.transform : c.transform;
+        }
+
+        private bool IsIgnored(Transform root)
+        {
+            if (_startupIgnored.Contains(root)) return true;
+
+            for (int i = 0; i < ignoredObjects.Count; i++)
+            {
+                Transform t = ignoredObjects[i];
+                if (t != null && (root == t || root.IsChildOf(t))) return true;
+            }
+
+            // The player rig's own colliders (hand physics, controllers) would
+            // double-count what the tracked points already report.
+            for (int i = 0; i < hands.Count; i++)
+            {
+                Transform h = hands[i];
+                if (h != null && root.root == h.root) return true;
+            }
+
+            return false;
+        }
+
+        // ------------------------------------------------------------------ //
+
+        private void CountAttempt(string objectName)
+        {
+            _attemptCount++;
+
+            if (enableDebugLogs)
+            {
+                Debug.Log($"[{nameof(KeyReachZone)}] Reach attempt #{_attemptCount} by '{objectName}'.", this);
+            }
+
+            ReachAttempt?.Invoke(objectName, _attemptCount);
         }
 
         private void SetOutside(int i)

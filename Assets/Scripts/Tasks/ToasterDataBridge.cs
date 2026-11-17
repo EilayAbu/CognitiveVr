@@ -46,6 +46,11 @@ namespace CognitiveVR.Tasks
         private bool _toastWasInside;
         private bool _initialized;
 
+        // t_logger_s of the last power-on / toast-in and of the Idle->Cooking start. -1 = never.
+        private float _lastPowerOnAt = -1f;
+        private float _lastToastInAt = -1f;
+        private float _cookingStartedAt = -1f;
+
         private readonly ToasterTaskSummary _summary = new ToasterTaskSummary();
 
         private static ExperimentDataManager Manager => ExperimentDataManager.Instance;
@@ -113,9 +118,12 @@ namespace CognitiveVR.Tasks
             if (trackToastPresence && toastInside != _toastWasInside)
             {
                 _toastWasInside = toastInside;
+                if (toastInside) _lastToastInAt = LoggerNow();
+
                 Manager?.Log("task", toastInside ? "toast_inserted" : "toast_removed",
                     logName, _toaster.CookingElapsed,
-                    $"state={_toaster.State}|lid={(lidOpen ? "open" : "closed")}");
+                    $"state={_toaster.State}|lid={(lidOpen ? "open" : "closed")}" +
+                    $"|power_on={(_toaster.IsPoweredOn ? 1 : 0)}");
 
                 if (toastInside) _summary.toastInsertCount++;
                 else _summary.toastRemoveCount++;
@@ -158,13 +166,27 @@ namespace CognitiveVR.Tasks
                            $"|cook_s={_toaster.CookingElapsed.ToString("F2", Inv)}";
             }
 
+            float now = LoggerNow();
+
+            // Ready: cook_s should equal the scene's Cook Time (60 s in MainScene);
+            // wall_s - cook_s = seconds the cooking was paused (toast out / power off).
+            if (state == ToasterState.Ready && _cookingStartedAt >= 0f)
+            {
+                details += $"|cook_s={_toaster.CookingElapsed.ToString("F2", Inv)}" +
+                           $"|wall_s={(now - _cookingStartedAt).ToString("F2", Inv)}";
+            }
+
             Manager?.Log("task", "toaster_state", logName, _toaster.CookingElapsed, details);
 
-            float now = LoggerNow();
             switch (state)
             {
                 case ToasterState.Cooking:
                     if (_summary.activatedAt < 0f) _summary.activatedAt = now;
+                    if (_cookingStartedAt < 0f)
+                    {
+                        _cookingStartedAt = now;
+                        LogCookingStarted(now);
+                    }
                     break;
                 case ToasterState.Ready:
                     if (_summary.toastReadyAt < 0f) _summary.toastReadyAt = now;
@@ -183,10 +205,42 @@ namespace CognitiveVR.Tasks
             RecordEvent($"state_{state}", details);
         }
 
+        /// <summary>
+        /// toaster_cooking_started: written once, when the toaster goes Idle -> Cooking.
+        ///   order            = power_first (toaster turned on BEFORE the toast went in -
+        ///                      it was running empty) | toast_first (toast in, then power on)
+        ///   empty_run_s      = power_first only: seconds the toaster was on with no toast
+        ///   since_power_on_s / since_toast_in_s = seconds from each to the cooking start
+        /// </summary>
+        private void LogCookingStarted(float now)
+        {
+            // The toast can enter and cooking start in the same frame, before this
+            // bridge's Update has polled the insert. Treat that as "toast in now".
+            if (_toaster.ToastInside && !_toastWasInside)
+                _lastToastInAt = now;
+
+            bool powerFirst = _lastPowerOnAt >= 0f && (_lastToastInAt < 0f || _lastPowerOnAt <= _lastToastInAt);
+            _summary.cookingOrder = powerFirst ? "power_first" : "toast_first";
+
+            string details = $"order={_summary.cookingOrder}";
+            if (powerFirst && _lastToastInAt >= 0f)
+            {
+                _summary.emptyRunSeconds = _lastToastInAt - _lastPowerOnAt;
+                details += $"|empty_run_s={_summary.emptyRunSeconds.ToString("F2", Inv)}";
+            }
+            if (_lastPowerOnAt >= 0f) details += $"|since_power_on_s={(now - _lastPowerOnAt).ToString("F2", Inv)}";
+            if (_lastToastInAt >= 0f) details += $"|since_toast_in_s={(now - _lastToastInAt).ToString("F2", Inv)}";
+
+            Manager?.Log("task", "toaster_cooking_started", logName, null, details);
+        }
+
         private void HandlePowerChanged(bool on)
         {
+            if (on) _lastPowerOnAt = LoggerNow();
+
             Manager?.Log("task", "toaster_power", logName, _toaster.CookingElapsed,
-                on ? "power=on" : "power=off");
+                (on ? "power=on" : "power=off") +
+                $"|toast_inside={(_toaster.ToastInside ? 1 : 0)}|state={_toaster.State}");
 
             _summary.powerToggleCount++;
             RecordEvent(on ? "power_on" : "power_off", $"state={_toaster.State}");
@@ -266,6 +320,11 @@ namespace CognitiveVR.Tasks
             public bool taskCompleted;
             /// <summary>"toast_removed_ready" / "toast_removed_burnt" / "controller_done". Empty = not completed.</summary>
             public string completedBy = "";
+
+            /// <summary>"power_first" (toaster ran empty before the toast went in) / "toast_first". Empty = never cooked.</summary>
+            public string cookingOrder = "";
+            /// <summary>power_first only: seconds the toaster was on with no toast. -1 = n/a.</summary>
+            public float emptyRunSeconds = -1f;
 
             // Full timeline of everything that happened at the toaster.
             public List<ToasterEvent> events = new List<ToasterEvent>();

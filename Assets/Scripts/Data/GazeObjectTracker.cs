@@ -54,6 +54,8 @@ namespace CognitiveVR.Core
             public int GlanceCount;
             [Tooltip("Total time accumulated by sub-threshold glances (seconds).")]
             public float GlanceSeconds;
+            [Tooltip("Looks after merging: looks separated by less than Merge Gap Seconds count as one (see gaze_merged rows).")]
+            public int MergedLookCount;
         }
 
         [Header("Gaze Source")]
@@ -80,6 +82,11 @@ namespace CognitiveVR.Core
         [SerializeField] private float _lookAwayGrace = 0.1f;
         [Tooltip("Record sub-threshold looks as 'glances' in the per-object totals (no CSV rows). Distinguishes 'never looked' from 'looked too briefly to fixate'.")]
         [SerializeField] private bool _countGlances = true;
+
+        [Header("Look Merging")]
+        [Tooltip("Looks at the SAME object separated by at most this many seconds (e.g. list -> quick peek at the clock -> back to the list) " +
+                 "are merged into one gaze_merged row. Raw gaze_enter/gaze_exit rows are still written. 0 = off.")]
+        [SerializeField] private float _mergeGapSeconds = 3f;
 
         [Header("Target Filtering")]
         [Tooltip("Resolved names excluded from gaze tracking, matched exactly OR as a prefix ('LobbyWall' also catches 'LobbyWall (2)'). Hits on these behave like empty space: no dwell, no rows, no stats. The raw hit still shows in the pose rows' looking_at, so 'looking at the floor while walking' stays visible there.")]
@@ -229,6 +236,22 @@ namespace CognitiveVR.Core
         private bool _totalsDirty;
         private int _dumpPass;
 
+        // Look merging. One open episode per object; an episode is closed (and
+        // written as gaze_merged if it has 2+ segments) once more than
+        // _mergeGapSeconds pass without the player coming back to that object.
+        private sealed class GazeEpisode
+        {
+            public string Name;
+            public float Start;       // t_logger_s when the first segment began
+            public float LastEnd;     // t_logger_s when the latest segment ended
+            public float OnTarget;    // seconds actually on this object
+            public int Segments;
+            public readonly List<string> Interruptions = new List<string>(); // confirmed (between merged segments)
+            public readonly List<string> Pending = new List<string>();       // since LastEnd, not yet confirmed
+        }
+        private readonly Dictionary<string, GazeEpisode> _episodes = new Dictionary<string, GazeEpisode>();
+        private readonly List<string> _episodeScratch = new List<string>();
+
         // Latched by StopTracking() at session end. Once set, LateUpdate stops
         // raycasting and the OnDisable / OnApplicationPause auto-dumps are
         // suppressed, so exactly one dwell_total pass is ever written.
@@ -273,6 +296,7 @@ namespace CognitiveVR.Core
                 return;
 
             EndCurrentLook();
+            CloseExpiredEpisodes(force: true);
 
             if (_autoDumpTotals && _totalsDirty)
                 DumpTotalsToLog();
@@ -298,6 +322,7 @@ namespace CognitiveVR.Core
                 return;
 
             UpdateGaze();
+            CloseExpiredEpisodes(force: false);
 
             if (_detectFreezes)
                 UpdateFreeze();
@@ -430,8 +455,16 @@ namespace CognitiveVR.Core
 
                 if (_logToDataManager)
                     ExperimentDataManager.Instance?.LogGazeExit(_currentName, _currentLookTime);
+
+                AddSegmentToEpisodes(_currentName, _currentLookStartedAt, _currentLookTime);
             }
-            else if (_countGlances && _currentLookTime > 0f)
+            else if (_currentLookTime > 0f)
+            {
+                // A sub-threshold peek still interrupts any open episode.
+                NoteInterruption(_currentName);
+            }
+
+            if (!_currentLookRegistered && _countGlances && _currentLookTime > 0f)
             {
                 // Sub-threshold look: no rows, but count it so lookCount 0 with
                 // glanceCount > 0 reads as "looked, too briefly to fixate" instead
@@ -450,6 +483,125 @@ namespace CognitiveVR.Core
             _graceTimer = 0f;
             _currentLookRegistered = false;
             _currentlyLookingAt = "";
+        }
+
+        // ------------------------------------------------------------------ //
+        // Look merging (gaze_merged)
+        // ------------------------------------------------------------------ //
+
+        /// <summary>
+        /// A registered look at <paramref name="name"/> just ended. If an episode
+        /// for that object is still open (the previous look ended at most
+        /// _mergeGapSeconds before this one began), the look joins it and the
+        /// objects glanced at in between become confirmed interruptions.
+        /// Otherwise a new episode starts. Every OTHER open episode records this
+        /// object as a possible interruption.
+        /// </summary>
+        private void AddSegmentToEpisodes(string name, float start, float duration)
+        {
+            if (_mergeGapSeconds <= 0f || string.IsNullOrEmpty(name))
+                return;
+
+            float end = start + duration;
+
+            if (_episodes.TryGetValue(name, out GazeEpisode ep) && start - ep.LastEnd <= _mergeGapSeconds)
+            {
+                ep.OnTarget += duration;
+                ep.LastEnd = end;
+                ep.Segments++;
+                foreach (string p in ep.Pending)
+                    if (!ep.Interruptions.Contains(p)) ep.Interruptions.Add(p);
+                ep.Pending.Clear();
+            }
+            else
+            {
+                if (ep != null) CloseEpisode(ep); // too late to merge: close the old one first
+                ep = new GazeEpisode { Name = name, Start = start, LastEnd = end, OnTarget = duration, Segments = 1 };
+                _episodes[name] = ep;
+            }
+
+            NoteInterruption(name);
+        }
+
+        /// <summary>Adds <paramref name="name"/> as a pending interruption to every other open episode.</summary>
+        private void NoteInterruption(string name)
+        {
+            if (_mergeGapSeconds <= 0f || string.IsNullOrEmpty(name))
+                return;
+
+            foreach (GazeEpisode ep in _episodes.Values)
+            {
+                if (ep.Name == name) continue;
+                if (!ep.Pending.Contains(name)) ep.Pending.Add(name);
+            }
+        }
+
+        /// <summary>
+        /// Closes episodes whose merge window has run out. force = close all
+        /// (session end / disable).
+        /// </summary>
+        private void CloseExpiredEpisodes(bool force)
+        {
+            if (_episodes.Count == 0)
+                return;
+
+            float now = LoggerNow();
+            _episodeScratch.Clear();
+
+            foreach (GazeEpisode ep in _episodes.Values)
+            {
+                if (force) { _episodeScratch.Add(ep.Name); continue; }
+
+                if (now - ep.LastEnd <= _mergeGapSeconds)
+                    continue;
+
+                // Currently looking at it again, and that look began in time:
+                // it will merge when it ends - keep the episode open.
+                if (_currentName == ep.Name && _currentLookStartedAt - ep.LastEnd <= _mergeGapSeconds)
+                    continue;
+
+                _episodeScratch.Add(ep.Name);
+            }
+
+            foreach (string n in _episodeScratch)
+            {
+                if (_episodes.TryGetValue(n, out GazeEpisode ep))
+                    CloseEpisode(ep);
+            }
+        }
+
+        /// <summary>
+        /// Removes the episode, counts it as one merged look and, if it joined 2+
+        /// looks, writes a gaze / gaze_merged row:
+        ///   value         = span from the first look's start to the last look's end (includes the peeks away)
+        ///   on_target_s   = seconds actually on this object
+        ///   away_s        = span - on_target_s
+        ///   segments      = how many raw looks were joined
+        ///   start_at_s    = t_logger_s of the first look's start
+        ///   interrupted_by= objects looked at in between (';'-separated)
+        /// </summary>
+        private void CloseEpisode(GazeEpisode ep)
+        {
+            _episodes.Remove(ep.Name);
+
+            GazeObjectStats s = GetStats(ep.Name);
+            s.MergedLookCount++;
+            _stats[ep.Name] = s;
+            UpdateRegistryEntry(s);
+            _totalsDirty = true;
+
+            if (ep.Segments < 2 || !_logToDataManager)
+                return;
+
+            float span = Mathf.Max(0f, ep.LastEnd - ep.Start);
+            float away = Mathf.Max(0f, span - ep.OnTarget);
+
+            ExperimentDataManager.Instance?.Log("gaze", "gaze_merged", ep.Name, span,
+                $"on_target_s={ep.OnTarget.ToString("F3", Inv)}" +
+                $"|away_s={away.ToString("F3", Inv)}" +
+                $"|segments={ep.Segments}" +
+                $"|start_at_s={ep.Start.ToString("F2", Inv)}" +
+                $"|interrupted_by={string.Join(";", ep.Interruptions)}");
         }
 
         // ------------------------------------------------------------------ //
@@ -699,6 +851,9 @@ namespace CognitiveVR.Core
             // BEFORE the latch, because EndCurrentLook writes a gaze_exit row.
             EndCurrentLook();
 
+            // Close every open merge episode so its gaze_merged row is written.
+            CloseExpiredEpisodes(force: true);
+
             // Same for a freeze that is still open, so freeze_summary is final.
             if (_isFrozen)
             {
@@ -745,6 +900,7 @@ namespace CognitiveVR.Core
                     $"|last_dist_m={s.LastDistance.ToString("F2", Inv)}" +
                     $"|glances={s.GlanceCount}" +
                     $"|glance_s={s.GlanceSeconds.ToString("F3", Inv)}" +
+                    $"|merged_looks={s.MergedLookCount}" +
                     $"|freezes={s.FreezeCount}" +
                     $"|freeze_s={s.FreezeSeconds.ToString("F3", Inv)}");
             }
@@ -764,6 +920,7 @@ namespace CognitiveVR.Core
             _stats.Clear();
             _registry.Clear();
             _nameCache.Clear();
+            _episodes.Clear();
 
             _currentTarget = null;
             _currentName = null;

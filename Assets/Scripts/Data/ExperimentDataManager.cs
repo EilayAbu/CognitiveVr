@@ -104,6 +104,9 @@ namespace CognitiveVR.Data
         private CognitiveVR.Phone.PhoneSessionEventBridge _phoneBridge;
         private CognitiveVR.Phone.PhoneSessionEventBridge.PhoneMessagesSummary _finalPhoneMessagesSummary;
 
+        // Filled by SessionEndTrigger.RegisterExit just before finalize.
+        private ExitSummary _exitSummary;
+
         // Interaction bookkeeping (keyed by item name).
         private readonly Dictionary<string, float> _selectStartTimes = new Dictionary<string, float>();
         private readonly Dictionary<string, float> _lastHoverEnter = new Dictionary<string, float>();
@@ -544,6 +547,25 @@ namespace CognitiveVR.Data
                 _phoneBridge = bridge;
         }
 
+        /// <summary>
+        /// Called by SessionEndTrigger right before it finalizes the session, so
+        /// the JSON says how the participant left and whether they took the bag.
+        /// </summary>
+        public void RegisterExit(string how, bool backpackTaken, float backpackDistance, int items,
+            int preZoneVisits, int preZoneReturns)
+        {
+            _exitSummary = new ExitSummary
+            {
+                how = how,
+                backpackTaken = backpackTaken,
+                backpackDistanceMeters = backpackDistance,
+                itemsInBackpack = items,
+                preZoneVisits = preZoneVisits,
+                preZoneReturns = preZoneReturns,
+                atSessionSeconds = SessionElapsed
+            };
+        }
+
         // ------------------------------------------------------------------ //
         // Subscribed handlers
         // ------------------------------------------------------------------ //
@@ -750,7 +772,8 @@ namespace CognitiveVR.Data
                 keyTask = _finalKeyTaskSummary
                     ?? (keyTaskBridge != null ? keyTaskBridge.BuildSummary() : new CognitiveVR.Tasks.KeyTaskBridge.KeyTaskSummary()),
                 phoneMessages = _finalPhoneMessagesSummary
-                    ?? (_phoneBridge != null ? _phoneBridge.BuildSummary() : new CognitiveVR.Phone.PhoneSessionEventBridge.PhoneMessagesSummary())
+                    ?? (_phoneBridge != null ? _phoneBridge.BuildSummary() : new CognitiveVR.Phone.PhoneSessionEventBridge.PhoneMessagesSummary()),
+                exit = _exitSummary ?? new ExitSummary()
             };
 
             foreach (KeyValuePair<string, ItemSummary> pair in _itemStats)
@@ -790,6 +813,7 @@ namespace CognitiveVR.Data
                 stats.firstLookAt = g.FirstLookTime;
                 stats.glanceCount = g.GlanceCount;
                 stats.glanceSeconds = g.GlanceSeconds;
+                stats.mergedLookCount = g.MergedLookCount;
                 stats.gazeFreezeCount = g.FreezeCount;
                 stats.gazeFreezeTotalSeconds = g.FreezeSeconds;
             }
@@ -874,6 +898,8 @@ namespace CognitiveVR.Data
             public float firstLookAt = -1f;
             public int glanceCount;
             public float glanceSeconds;
+            /// <summary>Looks after merging looks separated by &lt; GazeObjectTracker Merge Gap Seconds (see gaze_merged rows).</summary>
+            public int mergedLookCount;
             public int gazeFreezeCount;
             public float gazeFreezeTotalSeconds;
         }
@@ -884,7 +910,7 @@ namespace CognitiveVR.Data
             public string participantId;
             public string startedAtIso;
             public string writtenAtIso;
-            /// <summary>"exit_with_backpack", "manual", "session_timer" = complete run. "quit" = aborted.</summary>
+            /// <summary>"exit_player", "manual", "simulation_timeout", "session_timer" = complete run. "quit" = aborted.</summary>
             public string endReason;
             /// <summary>Which window the gaze/hold numbers cover. Removes any ambiguity at analysis time.</summary>
             public string gazeWindow = "logger_start..session_end";
@@ -912,7 +938,26 @@ namespace CognitiveVR.Data
             /// <summary>Whether the phone messages were actually opened, when, and for how long.</summary>
             public CognitiveVR.Phone.PhoneSessionEventBridge.PhoneMessagesSummary phoneMessages =
                 new CognitiveVR.Phone.PhoneSessionEventBridge.PhoneMessagesSummary();
+            /// <summary>How the participant left the house and whether they took the bag.</summary>
+            public ExitSummary exit = new ExitSummary();
             public List<ItemSummary> items = new List<ItemSummary>();
+        }
+
+        [Serializable]
+        public class ExitSummary
+        {
+            /// <summary>"exit_player", "manual", "simulation_timeout" or "" (never reached the exit logic).</summary>
+            public string how = "";
+            /// <summary>Backpack within SessionEndTrigger.backpackCarryRadius of the head at the exit.</summary>
+            public bool backpackTaken;
+            public float backpackDistanceMeters = -1f;
+            public int itemsInBackpack;
+            /// <summary>Times the participant entered the pre-exit zone at the door.</summary>
+            public int preZoneVisits;
+            /// <summary>Times the participant stepped back into the house from the pre-exit zone.</summary>
+            public int preZoneReturns;
+            /// <summary>t_session_s at the exit. -1 = unknown.</summary>
+            public float atSessionSeconds = -1f;
         }
     }
 }

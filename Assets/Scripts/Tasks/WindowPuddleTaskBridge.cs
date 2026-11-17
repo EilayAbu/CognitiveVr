@@ -173,7 +173,7 @@ namespace CognitiveVR.Tasks
 
             _summary.taskStartedAt = Now();
 
-            Manager?.Log("task", "rain_task_start", logName, null, "trigger=request_open_window");
+            Manager?.Log("task", "rain_task_start", logName, null, "trigger=request_open_window" + RainSuffix(_summary.taskStartedAt));
 
             SchedulePuddleActivate();
         }
@@ -202,7 +202,8 @@ namespace CognitiveVR.Tasks
             _summary.windowOpenedAt = Now();
 
             Manager?.Log("task", "rain_task_window_opened", logName, SinceStart(_summary.windowOpenedAt),
-                $"since_task_start_s={SinceStart(_summary.windowOpenedAt).ToString("F2", Inv)}");
+                $"since_task_start_s={SinceStart(_summary.windowOpenedAt).ToString("F2", Inv)}" +
+                RainSuffix(_summary.windowOpenedAt));
         }
 
         private void HandleWindowAttempt()
@@ -240,7 +241,8 @@ namespace CognitiveVR.Tasks
             RegisterCompletion("window");
 
             Manager?.Log("task", "rain_task_window_closed", logName, _summary.timeToCloseWindow,
-                $"since_task_start_s={_summary.timeToCloseWindow.ToString("F2", Inv)}");
+                $"since_task_start_s={_summary.timeToCloseWindow.ToString("F2", Inv)}" +
+                RainSuffix(_summary.windowClosedAt));
 
             CheckBothComplete();
         }
@@ -257,7 +259,8 @@ namespace CognitiveVR.Tasks
 
             Manager?.Log("task", "rain_task_puddle_cleaned", logName, _summary.timeToCleanPuddle,
                 $"since_task_start_s={_summary.timeToCleanPuddle.ToString("F2", Inv)}" +
-                $"|wipes={_summary.wipeCount}");
+                $"|wipes={_summary.wipeCount}" +
+                RainSuffix(_summary.puddleCleanedAt));
 
             CheckBothComplete();
         }
@@ -367,7 +370,8 @@ namespace CognitiveVR.Tasks
 
             Manager?.Log("task", "rain_task_first_action", logName, _summary.timeToFirstAction,
                 $"first={action}" +
-                $"|since_task_start_s={_summary.timeToFirstAction.ToString("F2", Inv)}");
+                $"|since_task_start_s={_summary.timeToFirstAction.ToString("F2", Inv)}" +
+                RainSuffix(now));
         }
 
         private void RegisterCompletion(string part)
@@ -394,7 +398,27 @@ namespace CognitiveVR.Tasks
                 $"order={order}" +
                 $"|first_action={_summary.firstAction}" +
                 $"|window_s={_summary.timeToCloseWindow.ToString("F2", Inv)}" +
-                $"|puddle_s={_summary.timeToCleanPuddle.ToString("F2", Inv)}");
+                $"|puddle_s={_summary.timeToCleanPuddle.ToString("F2", Inv)}" +
+                RainSuffix(completedAt));
+        }
+
+        /// <summary>
+        /// "|since_rain_alert_s=.." for a session-clock time, measured from the
+        /// phone's rain alert (PhoneSessionEventBridge). Empty if the alert has
+        /// not arrived. The window auto-opens WindowTaskController.OpenDelay
+        /// seconds after the alert, so rain_task_start should read ~that value.
+        /// </summary>
+        private string RainSuffix(float at)
+        {
+            float alert = RainAlertAt();
+            if (alert < 0f || at < 0f) return "";
+            return $"|since_rain_alert_s={(at - alert).ToString("F2", Inv)}";
+        }
+
+        private static float RainAlertAt()
+        {
+            var phone = CognitiveVR.Phone.PhoneSessionEventBridge.Instance;
+            return phone != null ? phone.RainAlertAtSession : -1f;
         }
 
         /// <summary>Seconds since the task started, or -1 when the task never started.</summary>
@@ -425,6 +449,13 @@ namespace CognitiveVR.Tasks
         /// </summary>
         public WindowPuddleTaskSummary BuildSummary()
         {
+            _summary.rainAlertAt = RainAlertAt();
+            if (_summary.rainAlertAt >= 0f)
+            {
+                if (_summary.taskStartedAt >= 0f) _summary.taskStartSinceRainAlert = _summary.taskStartedAt - _summary.rainAlertAt;
+                if (_summary.windowOpenedAt >= 0f) _summary.windowOpenedSinceRainAlert = _summary.windowOpenedAt - _summary.rainAlertAt;
+                if (_summary.windowClosedAt >= 0f) _summary.windowClosedSinceRainAlert = _summary.windowClosedAt - _summary.rainAlertAt;
+            }
             return _summary;
         }
 
@@ -433,6 +464,12 @@ namespace CognitiveVR.Tasks
         {
             // Anchor: RequestOpenWindow.
             public float taskStartedAt = -1f;
+
+            // Phone rain alert (session clock) and the gaps from it. -1 = n/a.
+            public float rainAlertAt = -1f;
+            public float taskStartSinceRainAlert = -1f;
+            public float windowOpenedSinceRainAlert = -1f;
+            public float windowClosedSinceRainAlert = -1f;
 
             // First action after the window opened: "window", "puddle" or "".
             public string firstAction = "";

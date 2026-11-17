@@ -2014,8 +2014,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.DelayedGazeGlow
   _headTransformOverride: {fileID: 0}
   _triggerObject: {fileID: 2655394808490363447}
-  _enterAngleDegrees: 12
-  _exitAngleDegrees: 18
+  _enterAngleDegrees: 20
+  _exitAngleDegrees: 26
   _useTriggerDistanceLimit: 1
   _triggerMaxDistance: 14.71
   _requiredGazeSeconds: 0.55

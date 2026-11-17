@@ -99,6 +99,8 @@ namespace CognitiveVR.Interaction
         public event Action<int> ChairNudged;
         /// <summary>The hints were stopped. Arg = reason ("grabbed:&lt;name&gt;", "solved", ...).</summary>
         public event Action<string> HintsStopped;
+        /// <summary>A scheduled chair wiggle did not happen (Nudge() returned false, e.g. chair held/moving). Arg = wiggles so far.</summary>
+        public event Action<int> ChairNudgeSkipped;
 
         private readonly List<(Grabbable grabbable, Action<PointerEvent> handler)> _subscriptions =
             new List<(Grabbable, Action<PointerEvent>)>();
@@ -117,6 +119,12 @@ namespace CognitiveVR.Interaction
         public bool IsTargetEnabled => _targetGazeGlow != null && _targetGazeGlow.enabled;
         public bool AreGlowsEnabled => _glowsEnabled;
         public int NudgeCount => _nudgeCount;
+        /// <summary>Seconds between the first look at the key and the first hint (glow).</summary>
+        public float HintDelaySeconds => _delaySeconds;
+        /// <summary>Seconds between the glow hint and the first chair wiggle.</summary>
+        public float NudgeDelaySeconds => _nudgeDelaySeconds;
+        /// <summary>Seconds between chair wiggles.</summary>
+        public float NudgeRepeatSeconds => _nudgeRepeatSeconds;
 
         private void Awake()
         {
@@ -315,6 +323,10 @@ namespace CognitiveVR.Interaction
                     }
 
                     ChairNudged?.Invoke(_nudgeCount);
+                }
+                else
+                {
+                    ChairNudgeSkipped?.Invoke(_nudgeCount);
                 }
 
                 yield return new WaitForSeconds(_nudgeRepeatSeconds);

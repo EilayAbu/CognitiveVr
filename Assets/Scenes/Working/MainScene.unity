@@ -16037,7 +16037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad85f202f5cc729468d029e0ee3e03ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.SessionTimer
-  SessionDuration: 420
+  SessionDuration: 545
   WallClockStartHour: 8
   WallClockStartMinute: 53
   ScheduledEvents: []
@@ -16739,6 +16739,7 @@ MonoBehaviour:
     minLookDuration: 0.1
   _lookAwayGrace: 0.1
   _countGlances: 1
+  _mergeGapSeconds: 3
   _ignoredNamePrefixes:
   - FloorCollider
   - LobbyWall
@@ -27301,11 +27302,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.SessionEndTrigger
   backpackObject: {fileID: 438924787}
   backpack: {fileID: 1115826131}
-  minimumItems: 5
-  requirePlayerPresent: 1
+  backpackCarryRadius: 1.5
   playerHead: {fileID: 1080199422}
-  playerRadius: 2
-  cooldown: 1
+  outwardDirection: 0
+  preZoneInsideDepth: 0.3
+  realExitDistance: 1
+  lateralMargin: 0.5
   oneShot: 1
   onSessionComplete:
     m_PersistentCalls:
@@ -27346,23 +27348,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onExitDenied:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1598272366}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   _hasFired: 0
-  _deniedAttempts: 0
+  _inPreZone: 0
+  _preZoneVisits: 0
+  _preZoneReturns: 0
 --- !u!65 &1598272364
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27382,8 +27371,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 47.391895, z: 1}
-  m_Center: {x: 0, y: 23.195936, z: 0}
+  m_Size: {x: 1.8291713, y: 47.391895, z: 1}
+  m_Center: {x: 0.41458517, y: 23.195936, z: 0}
 --- !u!114 &1598272365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29137,6 +29126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.LunchBoxDataBridge
   logName: LunchBox
+  bagItemName: foodBox
+  backpack: {fileID: 0}
 --- !u!114 &1700029364 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2341600623700391488, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
@@ -57010,6 +57001,12 @@ MonoBehaviour:
   _notificationManager: {fileID: 7383544786289253046}
   _smsSwapTracker: {fileID: 7383544786289253048}
   _weatherAppScreen: {fileID: 7383544786289253049}
+  _phoneGazeNames:
+  - Phone
+  - Phone Gaze
+  _readThresholdSeconds: 1.5
+  _umbrellaItemName: umbrella
+  _backpack: {fileID: 0}
   _verboseLogs: 1
 --- !u!4 &5581374780307197037
 Transform:

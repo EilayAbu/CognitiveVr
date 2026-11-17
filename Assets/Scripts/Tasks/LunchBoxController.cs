@@ -88,6 +88,15 @@ namespace CognitiveVR.Tasks
         /// <summary>How the box was sealed: "release", "drop_in" or "external". Empty until sealed.</summary>
         public string SealSource => _sealSource;
 
+        /// <summary>Toaster state (Ready / Overcooked / Burnt / ...) the moment the toast was sealed in. "" = not sealed or no toaster wired.</summary>
+        public string ToastStateAtSeal => _toastStateAtSeal;
+
+        /// <summary>Toaster cooking seconds the moment the toast was sealed in. -1 = not sealed or no toaster wired.</summary>
+        public float ToastCookSecondsAtSeal => _toastCookSecondsAtSeal;
+
+        private string _toastStateAtSeal = "";
+        private float _toastCookSecondsAtSeal = -1f;
+
         /// <summary>True while this specific toast root is tracked inside the box.</summary>
         public bool IsTracking(GameObject toast) =>
             _toast != null && toast != null && _toast == toast;
@@ -278,6 +287,9 @@ namespace CognitiveVR.Tasks
 
             if (_toasterController != null)
             {
+                // Snapshot before RemoveToast() flips the toaster to Done.
+                _toastStateAtSeal = _toasterController.State.ToString();
+                _toastCookSecondsAtSeal = _toasterController.CookingElapsed;
                 _toasterController.RemoveToast();
             }
             else

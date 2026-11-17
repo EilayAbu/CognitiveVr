@@ -31,21 +31,24 @@ namespace CognitiveVR.Tasks
     ///   key_stool_standable   - the stool actually became a climbable surface
     ///                           (player in zone, stool not held).
     ///   key_taken_by_hand     - the key was grabbed directly (stool route).
-    ///   key_task_solved       - the task is done. details carry method=
-    ///                           umbrella|hand, the tool= used on the umbrella
-    ///                           route, plus attempt counters.
+    ///   key_task_solved       - the task is done. value = t_logger_s. See
+    ///                           RegisterSolved for the field list.
     ///   key_first_seen        - the player looked at the key for the first
-    ///                           time. value = logger time. details carry
-    ///                           distance_m=.
-    ///   key_hint_glow_on      - the hint delay elapsed; chair (and umbrella)
-    ///                           started glowing.
+    ///                           time. This STARTS the hint countdown.
+    ///                           value = logger time. details carry distance_m=
+    ///                           and hint_delay_s= (seconds until the first hint).
+    ///   key_hint_started      - the hint delay elapsed; chair (and umbrella)
+    ///                           started glowing (first hint).
+    ///                           details: hint=glow|since_first_seen_s=.
     ///   key_hint_chair_nudge  - the chair wiggled as a stronger hint.
-    ///                           value = wiggle count.
+    ///                           value = wiggle count. details: nudge=|since_hint_start_s=.
+    ///   key_hint_chair_nudge_skipped - a scheduled wiggle did not happen
+    ///                           (chair held / moving), so every hint attempt is logged.
     ///   key_hints_stopped     - hints ended. details carry reason=
     ///                           (grabbed:&lt;object&gt; or solved).
-    ///   key_reach_attempt     - a hand entered the reach zone around the key.
-    ///                           value = attempt count. details carry hand=
-    ///                           and in_stool_zone=0|1.
+    ///   key_reach_attempt     - something (hand, umbrella, ...) entered the reach
+    ///                           zone around the key. value = attempt count.
+    ///                           details: obj=|attempt=|in_stool_zone=0|1.
     ///
     /// The same data is accumulated into a <see cref="KeyTaskSummary"/> which
     /// ExperimentDataManager embeds in the session summary JSON. Read it via
@@ -104,6 +107,7 @@ namespace CognitiveVR.Tasks
                 hintRelay.HintGlowsEnabled += HandleHintGlowsEnabled;
                 hintRelay.ChairNudged += HandleChairNudged;
                 hintRelay.HintsStopped += HandleHintsStopped;
+                hintRelay.ChairNudgeSkipped += HandleChairNudgeSkipped;
             }
 
             if (reachZone != null)
@@ -135,6 +139,7 @@ namespace CognitiveVR.Tasks
                 hintRelay.HintGlowsEnabled -= HandleHintGlowsEnabled;
                 hintRelay.ChairNudged -= HandleChairNudged;
                 hintRelay.HintsStopped -= HandleHintsStopped;
+                hintRelay.ChairNudgeSkipped -= HandleChairNudgeSkipped;
             }
 
             if (reachZone != null)
@@ -238,21 +243,40 @@ namespace CognitiveVR.Tasks
             _summary.firstKeySeenAt = LoggerNow();
 
             Manager?.Log("task", "key_first_seen", logName, _summary.firstKeySeenAt,
-                $"distance_m={distance.ToString("F2", Inv)}");
+                $"distance_m={distance.ToString("F2", Inv)}" +
+                (hintRelay != null ? $"|hint_delay_s={hintRelay.HintDelaySeconds.ToString("F1", Inv)}" : ""));
         }
 
         private void HandleHintGlowsEnabled()
         {
             _summary.hintGlowAt = LoggerNow();
 
-            Manager?.Log("task", "key_hint_glow_on", logName, _summary.hintGlowAt, null);
+            Manager?.Log("task", "key_hint_started", logName, _summary.hintGlowAt,
+                "hint=glow" + SinceSuffix("since_first_seen_s", _summary.firstKeySeenAt));
         }
 
         private void HandleChairNudged(int count)
         {
             _summary.chairNudgeCount = count;
 
-            Manager?.Log("task", "key_hint_chair_nudge", logName, count, $"nudge={count}");
+            Manager?.Log("task", "key_hint_chair_nudge", logName, count,
+                $"nudge={count}" + SinceSuffix("since_hint_start_s", _summary.hintGlowAt));
+        }
+
+        private void HandleChairNudgeSkipped(int countSoFar)
+        {
+            _summary.chairNudgeSkippedCount++;
+
+            Manager?.Log("task", "key_hint_chair_nudge_skipped", logName, countSoFar,
+                $"nudges_so_far={countSoFar}|skipped={_summary.chairNudgeSkippedCount}" +
+                SinceSuffix("since_hint_start_s", _summary.hintGlowAt));
+        }
+
+        /// <summary>"|name=seconds since t" on the logger clock, or "" if t was never set.</summary>
+        private static string SinceSuffix(string name, float t)
+        {
+            if (t < 0f) return "";
+            return $"|{name}={(LoggerNow() - t).ToString("F2", Inv)}";
         }
 
         private void HandleHintsStopped(string reason)
@@ -263,7 +287,7 @@ namespace CognitiveVR.Tasks
                 $"|nudges={_summary.chairNudgeCount}");
         }
 
-        private void HandleReachAttempt(string hand, int count)
+        private void HandleReachAttempt(string objectName, int count)
         {
             _summary.reachAttemptCount = count;
             if (_summary.firstReachAttemptAt < 0f)
@@ -272,7 +296,7 @@ namespace CognitiveVR.Tasks
             RegisterFirstAttempt("reach");
 
             Manager?.Log("task", "key_reach_attempt", logName, count,
-                $"hand={hand}" +
+                $"obj={objectName}" +
                 $"|attempt={count}" +
                 $"|in_stool_zone={(_currentZoneEnterAt >= 0f ? 1 : 0)}");
         }
@@ -305,7 +329,7 @@ namespace CognitiveVR.Tasks
                 (string.IsNullOrEmpty(tool) ? "" : $"|tool={tool}"));
         }
 
-        private void RegisterSolved(string method, string tool = null)
+        private void RegisterSolved(string method)
         {
             if (_summary.solved) return;
 
@@ -313,14 +337,23 @@ namespace CognitiveVR.Tasks
             _summary.solvedMethod = method;
             _summary.solvedAt = LoggerNow();
 
+            // key_task_solved - one row, value = t_logger_s of the solve.
+            //   method             how it was solved: hand (stool route) | umbrella | mop | ...
+            //   solve_s            t_session_s of the solve (seconds since the session started)
+            //   since_first_seen_s seconds from the first look at the key to the solve
+            //   first_attempt      first thing tried: stool | reach | umbrella | mop | ...
+            //   reach_attempts     times something entered the reach zone around the key
+            //   stool_visits       times the player stepped into the stool stand zone
+            //   slow_hits          tool hits too slow to knock the key down
+            float sessionNow = Manager != null ? Manager.SessionElapsed : -1f;
             Manager?.Log("task", "key_task_solved", logName, _summary.solvedAt,
                 $"method={method}" +
-                (string.IsNullOrEmpty(tool) ? "" : $"|tool={tool}")
-                +
+                (sessionNow >= 0f ? $"|solve_s={sessionNow.ToString("F2", Inv)}" : "") +
+                SinceSuffix("since_first_seen_s", _summary.firstKeySeenAt) +
                 $"|first_attempt={_summary.firstAttempt}" +
-                $"|umbrella_slow_hits={_summary.umbrellaSlowHitCount}" +
-                $"|stool_zone_visits={_summary.stoolZoneEnterCount}" +
-                $"|reach_attempts={_summary.reachAttemptCount}");
+                $"|reach_attempts={_summary.reachAttemptCount}" +
+                $"|stool_visits={_summary.stoolZoneEnterCount}" +
+                $"|slow_hits={_summary.umbrellaSlowHitCount}");
 
             if (hintRelay != null) hintRelay.StopHints("solved");
             if (reachZone != null) reachZone.enabled = false;
@@ -385,6 +418,7 @@ namespace CognitiveVR.Tasks
             public float firstKeySeenAt = -1f;   // first registered gaze on the key
             public float hintGlowAt = -1f;       // chair/umbrella glow turned on
             public int chairNudgeCount;          // times the chair wiggled
+            public int chairNudgeSkippedCount;   // scheduled wiggles that did not happen
 
             // Hand reach attempts at the key.
             public int reachAttemptCount;
