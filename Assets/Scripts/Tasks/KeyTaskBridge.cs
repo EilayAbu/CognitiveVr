@@ -24,12 +24,10 @@ namespace CognitiveVR.Tasks
     ///   key_umbrella_too_slow - tool touched the zone but too slowly to
     ///                           count. value = hit speed (m/s). details carry
     ///                           tool=.
-    ///   key_stool_zone_enter  - player stepped into the stool stand zone
-    ///                           (positioned to climb). value = visit number.
-    ///   key_stool_zone_exit   - player left the stand zone. value = seconds
-    ///                           spent inside on this visit.
-    ///   key_stool_standable   - the stool actually became a climbable surface
-    ///                           (player in zone, stool not held).
+    ///   (stool zone visits are NOT logged per visit - they are only counted:
+    ///    stool_visits in key_task_solved, stoolZoneEnterCount /
+    ///    totalStoolZoneSeconds / stoolStandableCount in the JSON. Visits
+    ///    before the session starts are ignored.)
     ///   key_taken_by_hand     - the key was grabbed directly (stool route).
     ///   key_task_solved       - the task is done. value = t_logger_s. See
     ///                           RegisterSolved for the field list.
@@ -185,8 +183,14 @@ namespace CognitiveVR.Tasks
         // Stool route
         // ------------------------------------------------------------------ //
 
+        // True once Start was pressed. The player can stand by the stool during the
+        // instructions; those visits must not count as an attempt.
+        private static bool SessionStarted => Manager != null && Manager.HasSessionStarted;
+
         private void HandleStoolZoneEnter()
         {
+            if (!SessionStarted) return;
+
             _summary.triedStool = true;
             _summary.stoolZoneEnterCount++;
             _currentZoneEnterAt = LoggerNow();
@@ -195,33 +199,22 @@ namespace CognitiveVR.Tasks
                 _summary.firstStoolZoneEnterAt = _currentZoneEnterAt;
 
             RegisterFirstAttempt("stool");
-
-            Manager?.Log("task", "key_stool_zone_enter", logName, _summary.stoolZoneEnterCount,
-                $"visit={_summary.stoolZoneEnterCount}");
         }
 
         private void HandleStoolZoneExit()
         {
-            float visitSeconds = -1f;
-            if (_currentZoneEnterAt >= 0f)
-            {
-                visitSeconds = LoggerNow() - _currentZoneEnterAt;
-                if (visitSeconds >= 0f) _summary.totalStoolZoneSeconds += visitSeconds;
-                _currentZoneEnterAt = -1f;
-            }
+            if (_currentZoneEnterAt < 0f) return;
 
-            Manager?.Log("task", "key_stool_zone_exit", logName, visitSeconds,
-                visitSeconds >= 0f ? $"visit_s={visitSeconds.ToString("F2", Inv)}" : null);
+            float visitSeconds = LoggerNow() - _currentZoneEnterAt;
+            if (visitSeconds >= 0f) _summary.totalStoolZoneSeconds += visitSeconds;
+            _currentZoneEnterAt = -1f;
         }
 
         private void HandleStandableChanged(bool standable)
         {
-            if (!standable) return;
+            if (!standable || !SessionStarted) return;
 
             _summary.stoolStandableCount++;
-
-            Manager?.Log("task", "key_stool_standable", logName, _summary.stoolStandableCount,
-                "stool_is_climbable=1");
         }
 
         private void HandleTakenByHand()

@@ -47,8 +47,11 @@ namespace CognitiveVR.Tasks
         private void Awake()
         {
             _box = GetComponent<LunchBoxController>();
+            // Include inactive: StartupObjectsToggle hides the backpack in Awake until Start is pressed.
             if (backpack == null)
-                backpack = FindFirstObjectByType<BackpackInventoryZone>();
+                backpack = FindFirstObjectByType<BackpackInventoryZone>(FindObjectsInactive.Include);
+            if (backpack == null)
+                Debug.LogWarning("[LunchBoxDataBridge] No BackpackInventoryZone found; lunchbox_in_bag rows will not be logged.", this);
         }
 
         private void OnEnable()

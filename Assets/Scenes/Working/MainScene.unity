@@ -16056,6 +16056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.SimulationAutoEnd
   autoEndAfterSeconds: 540
+  plannedEndSeconds: 420
   sessionTimer: {fileID: 0}
   endTrigger: {fileID: 0}
   onAutoEnd:
@@ -16063,6 +16064,7 @@ MonoBehaviour:
       m_Calls: []
   _armed: 0
   _fired: 0
+  _plannedEndLogged: 0
   _elapsed: 0
 --- !u!1 &973574257
 GameObject:
@@ -29127,7 +29129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Tasks.LunchBoxDataBridge
   logName: LunchBox
   bagItemName: foodBox
-  backpack: {fileID: 0}
+  backpack: {fileID: 1115826131}
 --- !u!114 &1700029364 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2341600623700391488, guid: f2adccd787b8ef84698b2fc6559f3822, type: 3}
@@ -58143,8 +58145,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1080199422}
     - target: {fileID: 1516229641574428540, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: _maxNudges
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516229641574428540, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: _delaySeconds
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1516229641574428540, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: _headTransformOverride
@@ -58412,7 +58418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7475514846456798526, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: hands.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7475514846456798526, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: 'hands.Array.data[0]'
@@ -58422,6 +58428,14 @@ PrefabInstance:
       propertyPath: 'hands.Array.data[1]'
       value: 
       objectReference: {fileID: 7764317389931646548}
+    - target: {fileID: 7475514846456798526, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: 'hands.Array.data[2]'
+      value: 
+      objectReference: {fileID: 116926888}
+    - target: {fileID: 7475514846456798526, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
+      propertyPath: 'hands.Array.data[3]'
+      value: 
+      objectReference: {fileID: 541552412}
     - target: {fileID: 8310977768301547050, guid: 4855c02185f84dc47a8d3fdf56e7ab93, type: 3}
       propertyPath: m_IsActive
       value: 1

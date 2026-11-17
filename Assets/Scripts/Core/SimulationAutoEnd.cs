@@ -24,6 +24,9 @@ namespace CognitiveVR.Core
         [Header("Timing")]
         [Tooltip("Seconds after SessionTimer.StartSession() at which the ending plays (9 minutes = 540s).")]
         [SerializeField] private float autoEndAfterSeconds = 540f;
+        [Tooltip("Planned end of the task (7 minutes = 420s). Only a marker row is logged here; the session keeps " +
+                 "running and logging until Auto End After Seconds. 0 = no marker.")]
+        [SerializeField, Min(0f)] private float plannedEndSeconds = 420f;
 
         [Header("References (auto-found if empty)")]
         [SerializeField] private SessionTimer sessionTimer;
@@ -36,6 +39,7 @@ namespace CognitiveVR.Core
         [Header("Runtime (Read Only)")]
         [SerializeField] private bool _armed;
         [SerializeField] private bool _fired;
+        [SerializeField] private bool _plannedEndLogged;
         [SerializeField] private float _elapsed;
 
         private float _startTime;
@@ -87,6 +91,21 @@ namespace CognitiveVR.Core
             if (!_armed) return;
 
             _elapsed = Time.time - _startTime;
+
+            if (!_plannedEndLogged && plannedEndSeconds > 0f && _elapsed >= plannedEndSeconds)
+            {
+                _plannedEndLogged = true;
+                var manager = CognitiveVR.Data.ExperimentDataManager.Instance;
+                // Skipped if the participant already left: the log is closed by then.
+                if (manager != null && !manager.IsLoggingClosed)
+                {
+                    var inv = System.Globalization.CultureInfo.InvariantCulture;
+                    manager.Log("session", "planned_end_reached", "", _elapsed,
+                        $"planned_end_s={plannedEndSeconds.ToString("F0", inv)}" +
+                        $"|auto_end_at_s={autoEndAfterSeconds.ToString("F0", inv)}");
+                }
+            }
+
             if (_elapsed < autoEndAfterSeconds) return;
 
             _armed = false;

@@ -37,6 +37,12 @@ namespace CognitiveVR.Data
     {
         public static ExperimentDataManager Instance { get; private set; }
 
+        /// <summary>True once the session ended and Log() drops new rows.</summary>
+        public bool IsLoggingClosed => _loggingClosed;
+
+        /// <summary>True once SessionTimer.StartSession() ran (the participant pressed Start).</summary>
+        public bool HasSessionStarted => _sessionStartLoggerSeconds >= 0f;
+
         [Header("Participant / Output")]
         [Tooltip("Prefix used in the output file names.")]
         [SerializeField] private string participantId = "P00";

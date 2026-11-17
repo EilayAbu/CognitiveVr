@@ -69,9 +69,11 @@
 - **`since_first_seen_s`:** כמה זמן עבר מהמבט הראשון על המפתח ועד הפתרון.
 - **`first_attempt`:** מה ניסה קודם: `stool` / `reach` / `umbrella` / `mop`.
 - **`reach_attempts`:** כמה פעמים משהו נכנס לאזור סביב המפתח.
-- **`stool_visits`:** כמה פעמים נכנס לאזור העמידה ליד השרפרף.
+- **`stool_visits`:** כמה פעמים נכנס לאזור העמידה ליד השרפרף (רק אחרי Start).
 - **`slow_hits`:** מכות בכלי שהיו איטיות מדי להפיל את המפתח.
 - **הוסר:** `tool` (מעולם לא התמלא).
+
+**הוסרו השורות לכל ביקור באזור השרפרף:** `key_stool_zone_enter`, `key_stool_zone_exit`, `key_stool_standable`. נשארת רק הספירה: `stool_visits` למעלה, וב-JSON `stoolZoneEnterCount`, `totalStoolZoneSeconds`, `stoolStandableCount`. ביקורים לפני לחיצת Start (בזמן ההוראות) לא נספרים, ולכן גם לא נרשמים כ-`first_attempt=stool`.
 
 אזור המבט במפתח הורחב ל-20° כניסה / 26° יציאה (`chair&keymission.prefab`, `DelayedGazeGlow`).
 
@@ -84,6 +86,7 @@
 | `exit_pre_zone_return` | שניות באזור | חזר פנימה לבית ("נזכר במשהו") · `visit` · `time_in_zone_s` · `returns` |
 | `exit_complete` | פריטים בתיק | `backpack_taken=0/1` (התיק עד 1.5 מ' מהראש) · `backpack_dist_m` · `items` · `item_list` · `pre_zone_visits` · `pre_zone_returns` · `time_in_pre_zone_s` |
 | `exit_timeout` | פריטים בתיק | הזמן נגמר (540 שנ'). אותם שדות + `in_pre_zone` |
+| `planned_end_reached` (קטגוריה `session`) | שניות מ-Start | סימון בלבד: עברו 420 שנ' (הסיום המתוכנן). הסשן והלוג ממשיכים עד 540 · `planned_end_s` · `auto_end_at_s`. לא נכתבת אם המשתתף כבר יצא |
 
 - **הוסר:** `exit_denied`. אין יותר תנאי של 5 פריטים.
 - **ב-JSON:** בלוק `exit` חדש, עם `how`, `backpackTaken`, `backpackDistanceMeters`, `itemsInBackpack`, `preZoneVisits`, `preZoneReturns`, `atSessionSeconds`.
