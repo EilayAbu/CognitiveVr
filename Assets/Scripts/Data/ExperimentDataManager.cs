@@ -76,6 +76,8 @@ namespace CognitiveVR.Data
 
         private const string CsvHeader =
             "real_time,t_logger_s,t_session_s,wall_clock,category,event,object,value,details,BagCollection_Measurement,initiative_measurment";
+        // Appended to the header of the file that holds the gaze rows. See GazeObjectTracker "Look Grouping".
+        private const string GazeColumnsHeader = ",merged_look_id,revisit_id";
 
         private StreamWriter _writer;
         private StreamWriter _gazeWriter;
@@ -511,16 +513,19 @@ namespace CognitiveVR.Data
             Log("interaction", "button_press", buttonName, null, null);
         }
 
-        /// <summary>Called by GazeObjectTracker when a look begins.</summary>
-        public void LogGazeEnter(string objectName)
+        /// <summary>
+        /// Called by GazeObjectTracker when a look begins. The two ids fill the
+        /// merged_look_id / revisit_id columns (0 = leave empty).
+        /// </summary>
+        public void LogGazeEnter(string objectName, int mergedLookId = 0, int revisitId = 0)
         {
-            Log("gaze", "gaze_enter", objectName, null, null);
+            LogRow("gaze", "gaze_enter", objectName, null, null, mergedLookId, revisitId);
         }
 
         /// <summary>Companion to <see cref="LogGazeEnter"/>. Duration in seconds.</summary>
-        public void LogGazeExit(string objectName, float gazeDuration)
+        public void LogGazeExit(string objectName, float gazeDuration, int mergedLookId = 0, int revisitId = 0)
         {
-            Log("gaze", "gaze_exit", objectName, gazeDuration, null);
+            LogRow("gaze", "gaze_exit", objectName, gazeDuration, null, mergedLookId, revisitId);
         }
 
         /// <summary>Free-form marker row (Inspector-friendly).</summary>
@@ -630,6 +635,12 @@ namespace CognitiveVR.Data
         /// </summary>
         public void Log(string category, string eventName, string objectName, float? value, string details)
         {
+            LogRow(category, eventName, objectName, value, details, 0, 0);
+        }
+
+        private void LogRow(string category, string eventName, string objectName, float? value, string details,
+            int mergedLookId, int revisitId)
+        {
             if (_loggingClosed)
             {
                 // Deliberately noisy: if something is still firing after the exit
@@ -639,14 +650,15 @@ namespace CognitiveVR.Data
                 return;
             }
 
-            WriteRow(category, eventName, objectName, value, details);
+            WriteRow(category, eventName, objectName, value, details, mergedLookId, revisitId);
         }
 
         /// <summary>
         /// Unconditional row write. Bypasses the post-session gate, so only
         /// logger bookkeeping (logger_stop) should use it.
         /// </summary>
-        private void WriteRow(string category, string eventName, string objectName, float? value, string details)
+        private void WriteRow(string category, string eventName, string objectName, float? value, string details,
+            int mergedLookId = 0, int revisitId = 0)
         {
             StreamWriter target = SelectWriter(category);
             if (target == null) return;
@@ -670,16 +682,28 @@ namespace CognitiveVR.Data
             string bagCollection = BagCollectionColumnFor(objectName);
             string initiative = InitiativeColumnFor(objectName);
 
-            target.WriteLine(string.Join(",",
+            string row = string.Join(",",
                 Esc(realTime), Esc(tLogger), Esc(tSession), Esc(wallClock),
                 Esc(category), Esc(eventName), Esc(objectName), Esc(valueStr), Esc(details ?? ""),
-                Esc(bagCollection), Esc(initiative)));
+                Esc(bagCollection), Esc(initiative));
+
+            // The file that holds the gaze rows has two extra columns
+            // (merged_look_id, revisit_id); only gaze_enter / gaze_exit fill them.
+            if (HasGazeColumns(target))
+                row += "," + (mergedLookId > 0 ? mergedLookId.ToString(Inv) : "") +
+                       "," + (revisitId > 0 ? revisitId.ToString(Inv) : "");
+
+            target.WriteLine(row);
 
             if (logToConsole && category != "tracking" && category != "gaze")
             {
                 Debug.Log($"[Data {tLogger}s] {category}/{eventName} {objectName} {details}");
             }
         }
+
+        /// <summary>True for the file that holds the gaze rows: gaze.csv, or events.csv when splitting is off.</summary>
+        private bool HasGazeColumns(StreamWriter target) =>
+            separateGazeFile ? target == _gazeWriter : target == _writer;
 
         /// <summary>Routes a category to the right file.</summary>
         private StreamWriter SelectWriter(string category)
@@ -704,12 +728,12 @@ namespace CognitiveVR.Data
 
             // UTF-8 with BOM so Hebrew display names open correctly in Excel.
             _writer = new StreamWriter(_csvPath, false, new UTF8Encoding(true)) { AutoFlush = true };
-            _writer.WriteLine(CsvHeader);
+            _writer.WriteLine(separateGazeFile ? CsvHeader : CsvHeader + GazeColumnsHeader);
 
             if (separateGazeFile)
             {
                 _gazeWriter = new StreamWriter(_gazeCsvPath, false, new UTF8Encoding(true)) { AutoFlush = true };
-                _gazeWriter.WriteLine(CsvHeader);
+                _gazeWriter.WriteLine(CsvHeader + GazeColumnsHeader);
             }
 
             _loggerStartRealtime = Time.realtimeSinceStartup;
@@ -904,7 +928,7 @@ namespace CognitiveVR.Data
             public float firstLookAt = -1f;
             public int glanceCount;
             public float glanceSeconds;
-            /// <summary>Looks after merging looks separated by &lt; GazeObjectTracker Merge Gap Seconds (see gaze_merged rows).</summary>
+            /// <summary>Distinct merged_look_id values for this object (raw looks with a gap of at most GazeObjectTracker Merged Look Gap Seconds count as one).</summary>
             public int mergedLookCount;
             public int gazeFreezeCount;
             public float gazeFreezeTotalSeconds;

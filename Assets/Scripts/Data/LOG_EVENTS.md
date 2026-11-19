@@ -1,16 +1,21 @@
 # אירועי לוג חדשים ומעודכנים
 
-כל השורות נכתבות ל-`*_events.csv` (קטגוריה `task`), חוץ מ-`gaze_merged` שנכתבת ל-`*_gaze.csv`.
+כל השורות נכתבות ל-`*_events.csv` (קטגוריה `task`), חוץ משורות הגייז שב-`*_gaze.csv`.
 `details` הוא רשימת `key=value` מופרדת ב-`|`. זמנים: `t_logger_s` מתחילת הלוגר, `t_session_s` מלחיצת Start.
 
 ## גייז – איחוד מבטים (`GazeObjectTracker`)
-| event | object | value | details |
-|---|---|---|---|
-| `gaze_merged` | האובייקט | משך כולל מתחילת המבט הראשון עד סוף האחרון (כולל ההצצות הצידה) | `on_target_s` זמן בפועל על האובייקט · `away_s` זמן ההצצות · `segments` כמה מבטים אוחדו · `start_at_s` (t_logger) · `interrupted_by` על מה הציץ בינתיים (`;`) |
+**הוסר:** השורה `gaze_merged` (איחוד של 3 שנ'). השורות הגולמיות ב-`gaze.csv` לא משתנות; נוספו רק שתי עמודות בסוף הקובץ:
 
-- מבטים על אותו אובייקט שהפער ביניהם ≤ `Merge Gap Seconds` (3 שנ') מאוחדים. השורות הגולמיות `gaze_enter`/`gaze_exit` נשארות.
-- נכתבת רק כשאוחדו 2+ מבטים.
-- ב-`dwell_total` נוסף `merged_looks=`, וב-JSON (`items[]`) נוסף `mergedLookCount`.
+| עמודה | מתמלאת ב- | משמעות |
+|---|---|---|
+| `merged_look_id` | `gaze_enter`, `gaze_exit` | מספר המבט המאוחד. מבטים על אותו אובייקט עם פער ≤ `Merged Look Gap Seconds` (ברירת מחדל 0.1 שנ', כמו בטבלה ג.3 במסמך של אביגיל) מקבלים אותו מספר = מבט אחד |
+| `revisit_id` | `gaze_enter`, `gaze_exit` | "חזר להסתכל": מבטים על אותו אובייקט שמתחילים עד `Revisit Window Seconds` (ברירת מחדל 3 שנ') אחרי סוף המבט הקודם מקבלים אותו מספר (למשל רשימה → שעון → רשימה). 0 = העמודה ריקה |
+
+- המספרים רצים לאורך כל הסשן (1, 2, 3…), כך שאפשר לקבץ לפי עמודה אחת בלי לקבץ גם לפי אובייקט.
+- הפער נמדד מסוף המבט הקודם ועד **תחילת** המבט הבא (לא עד הרגע שבו נרשם אחרי `Min Look Duration`).
+- שני הערכים ניתנים לשינוי ב-Inspector של `GazeObjectTracker` (כותרת **Look Grouping**). בשאר השורות (freeze, `dwell_total`) העמודות ריקות.
+- אם `Separate Gaze File` כבוי, העמודות נמצאות ב-`events.csv`.
+- `merged_looks=` ב-`dwell_total` ו-`mergedLookCount` ב-JSON נשארו, ועכשיו הם סופרים לפי 0.1 שנ' (כמה ערכי `merged_look_id` שונים יש לאובייקט).
 
 ## טלפון – קריאת הודעה (`PhoneSessionEventBridge`)
 | event | object | value | details |
