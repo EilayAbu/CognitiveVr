@@ -16514,6 +16514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b05fca29267c64a9404ce686c32409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  audioSource: {fileID: 287540761}
+  extraTime: 0.5
   delay: 42
 --- !u!114 &1109196393
 MonoBehaviour:
@@ -29696,6 +29698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b05fca29267c64a9404ce686c32409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  audioSource: {fileID: 817861187}
+  extraTime: 0.5
   delay: 30
 --- !u!114 &1883188913
 MonoBehaviour:

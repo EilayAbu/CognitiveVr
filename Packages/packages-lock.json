@@ -158,7 +158,7 @@
       }
     },
     "com.unity.ai.assistant": {
-      "version": "2.12.0-pre.2",
+      "version": "2.22.0-pre.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {

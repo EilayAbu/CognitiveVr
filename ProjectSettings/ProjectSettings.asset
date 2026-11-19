@@ -978,11 +978,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: ce410d1d-62c1-4468-bf80-a7617ad697c3
+  cloudProjectId: 3161fbdf-1b58-4f5a-b486-dd38adcbe456
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: CognitiveVr
-  organizationId: arllabadmn
+  organizationId: eilay86
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

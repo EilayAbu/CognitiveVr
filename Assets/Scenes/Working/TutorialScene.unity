@@ -1599,7 +1599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &129208328
 Transform:
   m_ObjectHideFlags: 0
@@ -9099,10 +9099,18 @@ MonoBehaviour:
   fadeGroup: {fileID: 0}
   messageText: {fileID: 0}
   head: {fileID: 0}
+  subMessageText: {fileID: 0}
   message: "\u05DB\u05DC \u05D4\u05DB\u05D1\u05D5\u05D3! \u05E1\u05D9\u05D9\u05DE\u05EA
     \u05D0\u05EA \u05D4\u05DE\u05E9\u05D9\u05DE\u05D4"
+  subMessage: "\u05D0\u05E4\u05E9\u05E8 \u05DC\u05D4\u05D5\u05E8\u05D9\u05D3 \u05D0\u05EA
+    \u05D4\u05DE\u05E9\u05E7\u05E4\u05D9\u05D9\u05DD"
   showMessage: 0
   audioEnd: {fileID: 0}
+  titleFont: {fileID: 0}
+  subFont: {fileID: 0}
+  titleFontSize: 0.035
+  subFontSize: 0.018
+  rightToLeft: 1
   startDelay: 0
   fadeToBlackDuration: 1.5
   messageFadeInDuration: 0.75
@@ -16477,7 +16485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &865786251
 Transform:
   m_ObjectHideFlags: 0
@@ -19607,6 +19615,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 355957154}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1037094718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1037094719}
+  - component: {fileID: 1037094720}
+  m_Layer: 11
+  m_Name: TouchHandle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1037094719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037094718}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.005, y: 0.815, z: 0}
+  m_LocalScale: {x: 0.494, y: 0.015, z: 0.494}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4154170528164214341}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1037094720
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037094718}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1038327642
 GameObject:
   m_ObjectHideFlags: 0
@@ -21752,12 +21814,13 @@ GameObject:
   - component: {fileID: 1167135301}
   - component: {fileID: 1167135300}
   - component: {fileID: 1167135299}
+  - component: {fileID: 1167135306}
   m_Layer: 11
   m_Name: Chair_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!65 &1167135298
 BoxCollider:
@@ -21837,7 +21900,7 @@ MonoBehaviour:
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
   _rigidbody: {fileID: 1167135302}
-  _kinematicWhileSelected: 0
+  _kinematicWhileSelected: 1
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
 --- !u!54 &1167135302
@@ -21945,8 +22008,72 @@ Transform:
   - {fileID: 92124349}
   - {fileID: 1896391357}
   - {fileID: 283998188}
+  - {fileID: 1451354690}
   m_Father: {fileID: 1870859290}
   m_LocalEulerAnglesHint: {x: 0, y: 12.727, z: 0}
+--- !u!114 &1167135306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167135297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 923b12c3277042d7945c055b30e19560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Interaction.TwoHandSideHold
+  grabbable: {fileID: 1167135301}
+  box: {fileID: 1167135298}
+  body: {fileID: 1167135302}
+  mode: 0
+  useLocalXFaces: 1
+  useLocalZFaces: 1
+  useLocalYFaces: 0
+  sideMinRatio: 0.7
+  startDistance: 0.06
+  startDwell: 0.08
+  oneHandDwell: 0.3
+  requireOpenHand: 1
+  openFingerDistance: 0.065
+  minOpenFingers: 1
+  letGoSpread: 0.035
+  letGoDistance: 0.1
+  letGoDelay: 0.04
+  trackingLossGrace: 0.35
+  useHands: 1
+  useControllers: 1
+  skipWhenAlreadyGrabbed: 1
+  kinematicWhileHeld: 1
+  keepLevel: 1
+  clampAboveSupport: 1
+  releaseWhenPlaced: 1
+  placeReleaseDepth: 0.04
+  supportLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  freezeWhenSettled: 1
+  standUpWhenSettled: 1
+  settleSpeed: 0.02
+  settleTime: 0.5
+  onSideHoldStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onSideHoldEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onSideHoldReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttemptFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  attemptMinTime: 0.2
+  onSettled:
+    m_PersistentCalls:
+      m_Calls: []
+  enableDebugLogs: 0
+  drawGizmos: 1
 --- !u!1 &1172910830
 GameObject:
   m_ObjectHideFlags: 0
@@ -22339,9 +22466,9 @@ MonoBehaviour:
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
   _pointableElement: {fileID: 1167135301}
-  _boundsCollider: {fileID: 1167135298}
+  _boundsCollider: {fileID: 1451354691}
   _colliders:
-  - {fileID: 1167135298}
+  - {fileID: 1451354691}
 --- !u!114 &1211346251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28811,6 +28938,60 @@ Transform:
   - {fileID: 1696084258}
   m_Father: {fileID: 1126902578}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1451354689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451354690}
+  - component: {fileID: 1451354691}
+  m_Layer: 11
+  m_Name: TouchHandle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1451354690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451354689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.005, y: 0.815, z: 0}
+  m_LocalScale: {x: 0.494, y: 0.015, z: 0.494}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1167135305}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1451354691
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451354689}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1460749968
 GameObject:
   m_ObjectHideFlags: 0
@@ -29690,9 +29871,9 @@ MonoBehaviour:
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
   _pointableElement: {fileID: 9118510439100020951}
-  _boundsCollider: {fileID: 3091092622931593454}
+  _boundsCollider: {fileID: 1037094720}
   _colliders:
-  - {fileID: 3091092622931593454}
+  - {fileID: 1037094720}
 --- !u!114 &1518004366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43139,6 +43320,7 @@ Transform:
   - {fileID: 2201861371842369777}
   - {fileID: 7717527508909541014}
   - {fileID: 651110707}
+  - {fileID: 1037094719}
   m_Father: {fileID: 1784573187880547275}
   m_LocalEulerAnglesHint: {x: 0, y: 12.727, z: 0}
 --- !u!1 &4157222664944803419
@@ -43163,7 +43345,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!33 &4165756365452939485
 MeshFilter:
@@ -47468,7 +47650,7 @@ MonoBehaviour:
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
   _rigidbody: {fileID: 3131079825629592847}
-  _kinematicWhileSelected: 0
+  _kinematicWhileSelected: 1
   _throwWhenUnselected: 1
   _forceKinematicDisabled: 0
 --- !u!114 &9118510439100020952
@@ -47486,11 +47668,17 @@ MonoBehaviour:
   grabbable: {fileID: 9118510439100020951}
   box: {fileID: 3091092622931593454}
   body: {fileID: 3131079825629592847}
+  mode: 0
   useLocalXFaces: 1
   useLocalZFaces: 1
   useLocalYFaces: 0
+  sideMinRatio: 0.7
   startDistance: 0.06
   startDwell: 0.08
+  oneHandDwell: 0.3
+  requireOpenHand: 1
+  openFingerDistance: 0.065
+  minOpenFingers: 1
   letGoSpread: 0.035
   letGoDistance: 0.1
   letGoDelay: 0.04
@@ -47499,12 +47687,31 @@ MonoBehaviour:
   useControllers: 1
   skipWhenAlreadyGrabbed: 1
   kinematicWhileHeld: 1
+  keepLevel: 1
+  clampAboveSupport: 1
+  releaseWhenPlaced: 1
+  placeReleaseDepth: 0.04
+  supportLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   freezeWhenSettled: 1
   standUpWhenSettled: 1
+  settleSpeed: 0.02
+  settleTime: 0.5
   onSideHoldStart:
     m_PersistentCalls:
       m_Calls: []
   onSideHoldEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onSideHoldReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttemptFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  attemptMinTime: 0.2
+  onSettled:
     m_PersistentCalls:
       m_Calls: []
   enableDebugLogs: 0

@@ -61,6 +61,10 @@ namespace CognitiveVR.Interaction
         [Tooltip("Top/bottom faces (local Y). Off = only real 'from the sides' holds.")]
         [SerializeField] private bool useLocalYFaces = false;
 
+        [Tooltip("A hand this far out from the center (fraction of the half-size, X/Z) counts as on a side face, even near the top edge " +
+                 "(e.g. holding a stool by its seat). Only applies while the hand is not above the top face.")]
+        [SerializeField, Range(0f, 1f)] private float sideMinRatio = 0.7f;
+
         [Header("Detection (meters / seconds)")]
         [Tooltip("Each hand must be this close to its side of the box to START the hold. " +
                  "Measured from the hand's closest joint (finger bones / knuckles / wrist), which sit ~1 cm under the skin.")]
@@ -825,7 +829,13 @@ namespace CognitiveVR.Interaction
             float nz = half.z > 1e-5f ? local.z / half.z : 0f;
 
             float ax = Mathf.Abs(nx), ay = Mathf.Abs(ny), az = Mathf.Abs(nz);
-            if (ax >= ay && ax >= az) { axis = 0; sign = nx >= 0f ? 1 : -1; }
+            bool aboveTop = local.y > half.y;
+            if (!aboveTop && Mathf.Max(ax, az) >= sideMinRatio)
+            {
+                if (ax >= az) { axis = 0; sign = nx >= 0f ? 1 : -1; }
+                else { axis = 2; sign = nz >= 0f ? 1 : -1; }
+            }
+            else if (ax >= ay && ax >= az) { axis = 0; sign = nx >= 0f ? 1 : -1; }
             else if (az >= ay) { axis = 2; sign = nz >= 0f ? 1 : -1; }
             else { axis = 1; sign = ny >= 0f ? 1 : -1; }
         }
