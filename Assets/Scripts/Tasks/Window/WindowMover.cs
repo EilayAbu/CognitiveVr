@@ -18,10 +18,18 @@ namespace CognitiveVR.Tasks.Window
 
         private Coroutine _rotateRoutine;
 
+        // The scene starts with the window shut (same assumption as the controller),
+        // so the startup rotation is the reference the open pose is measured from.
+        private Quaternion _closedLocalRotation;
+        private Quaternion _closedWorldRotation;
+
         private void Awake()
         {
             if (windowPivot == null)
                 windowPivot = transform;
+
+            _closedLocalRotation = windowPivot.localRotation;
+            _closedWorldRotation = windowPivot.rotation;
         }
 
         private void OnEnable()
@@ -53,39 +61,46 @@ namespace CognitiveVR.Tasks.Window
             _rotateRoutine = StartCoroutine(RotateYRoutine(model));
         }
 
+        /// <summary>
+        /// Moves the window from wherever it is now to the fully open pose
+        /// (closed rotation + OpenRotationAmount around Y). The target is absolute,
+        /// so a window the player already opened part way does not overshoot.
+        /// </summary>
         private IEnumerator RotateYRoutine(WindowTaskModel model)
         {
+            bool local = model.UseLocalRotation;
             float degrees = model.OpenRotationAmount;
-            Space space = model.UseLocalRotation ? Space.Self : Space.World;
 
-            if (model.OpenDuration <= 0f)
+            Quaternion target = local
+                ? _closedLocalRotation * Quaternion.Euler(0f, degrees, 0f)
+                : Quaternion.AngleAxis(degrees, Vector3.up) * _closedWorldRotation;
+            Quaternion from = local ? windowPivot.localRotation : windowPivot.rotation;
+
+            if (model.OpenDuration > 0f)
             {
-                windowPivot.Rotate(0f, degrees, 0f, space);
-                yield break;
+                float elapsed = 0f;
+                while (elapsed < model.OpenDuration)
+                {
+                    elapsed += Time.deltaTime;
+                    float t = Mathf.Clamp01(elapsed / model.OpenDuration);
+                    float curveValue = model.OpenCurve != null ? model.OpenCurve.Evaluate(t) : t;
+
+                    SetRotation(Quaternion.SlerpUnclamped(from, target, curveValue), local);
+                    yield return null;
+                }
             }
 
-            float elapsed = 0f;
-            float appliedNormalized = 0f;
-
-            while (elapsed < model.OpenDuration)
-            {
-                elapsed += Time.deltaTime;
-                float t = Mathf.Clamp01(elapsed / model.OpenDuration);
-                float curveValue = model.OpenCurve != null ? model.OpenCurve.Evaluate(t) : t;
-
-                float delta = (curveValue - appliedNormalized) * degrees;
-                windowPivot.Rotate(0f, delta, 0f, space);
-                appliedNormalized = curveValue;
-
-                yield return null;
-            }
-
-            // Ensure we land exactly on the full rotation.
-            float remainder = (1f - appliedNormalized) * degrees;
-            if (Mathf.Abs(remainder) > Mathf.Epsilon)
-                windowPivot.Rotate(0f, remainder, 0f, space);
-
+            // Land exactly on the open pose.
+            SetRotation(target, local);
             _rotateRoutine = null;
+        }
+
+        private void SetRotation(Quaternion rotation, bool local)
+        {
+            if (local)
+                windowPivot.localRotation = rotation;
+            else
+                windowPivot.rotation = rotation;
         }
     }
 }

@@ -26,6 +26,8 @@ namespace CognitiveVR.Tasks
     ///
     /// Window open/closed detection comes from the controller's own
     /// WindowOpened/WindowClosed events (rotation-based, measured internally).
+    /// Window and puddle events that arrive before rain_task_start are ignored,
+    /// so a player playing with the window early cannot pre-fill the task.
     ///
     /// All timestamps use <see cref="SessionTimer.ElapsedTime"/> (seconds since
     /// the session started), so they line up with the rest of the experiment.
@@ -195,9 +197,11 @@ namespace CognitiveVR.Tasks
                 puddle.gameObject.SetActive(true);
         }
 
+        private bool TaskStarted => _summary.taskStartedAt >= 0f;
+
         private void HandleWindowOpened()
         {
-            if (_summary.windowOpenedAt >= 0f) return;
+            if (!TaskStarted || _summary.windowOpenedAt >= 0f) return;
 
             _summary.windowOpenedAt = Now();
 
@@ -208,7 +212,7 @@ namespace CognitiveVR.Tasks
 
         private void HandleWindowAttempt()
         {
-            if (_summary.windowStartedAt >= 0f) return;
+            if (!TaskStarted || _summary.windowStartedAt >= 0f) return;
 
             _summary.windowStartedAt = Now();
             RegisterFirstAction("window");
@@ -216,6 +220,8 @@ namespace CognitiveVR.Tasks
 
         private void HandleWipe()
         {
+            if (!TaskStarted) return;
+
             _summary.wipeCount++;
 
             if (_summary.puddleStartedAt >= 0f) return;
@@ -226,7 +232,7 @@ namespace CognitiveVR.Tasks
 
         private void HandleWindowClosed()
         {
-            if (_summary.windowClosed) return;
+            if (!TaskStarted || _summary.windowClosed) return;
 
             _summary.windowClosed = true;
             _summary.windowClosedAt = Now();
@@ -249,7 +255,7 @@ namespace CognitiveVR.Tasks
 
         private void HandlePuddleCleaned()
         {
-            if (_summary.puddleCleaned) return;
+            if (!TaskStarted || _summary.puddleCleaned) return;
 
             _summary.puddleCleaned = true;
             _summary.puddleCleanedAt = Now();

@@ -54,6 +54,7 @@ namespace CognitiveVR.Tasks.Window
 
         private Quaternion _closedRotation;
         private bool _isOpen;
+        private bool _taskRequested; // set by RequestOpenWindow; nothing before it counts
         private bool _isTaskActive;
         private bool _closed;
         private bool _attempted;
@@ -108,13 +109,22 @@ namespace CognitiveVR.Tasks.Window
         /// </summary>
         public void RequestOpenWindow()
         {
+            _taskRequested = true;
+
             OnRequestOpen?.Invoke();
             RequestOpen?.Invoke();
+
+            // The player may have opened the window by hand before the task. Update()
+            // only fires on the closed->open edge, so arm the task now instead.
+            if (_isOpen)
+                HandleWindowOpened();
         }
 
         private void HandleWindowOpened()
         {
-            if (_closed)
+            // Opening/closing the window before the task is ignored so it cannot
+            // consume the task's one-shot state.
+            if (!_taskRequested || _closed || _isTaskActive)
                 return;
 
             _isTaskActive = true;
@@ -128,7 +138,7 @@ namespace CognitiveVR.Tasks.Window
 
         private void HandleWindowClosed()
         {
-            if (!_isTaskActive || _closed)
+            if (!_taskRequested || !_isTaskActive || _closed)
                 return;
 
             _closed = true;
@@ -147,7 +157,7 @@ namespace CognitiveVR.Tasks.Window
         /// </summary>
         public void NotifyCloseAttempt()
         {
-            if (!_isTaskActive || _closed)
+            if (!_taskRequested || !_isTaskActive || _closed)
                 return;
 
             if (!_attempted)
