@@ -15,6 +15,12 @@ namespace CognitiveVR.Interaction
     /// the <see cref="GazeGlow"/> on a "target" object (B) and on every extra
     /// hint target (e.g. the umbrella).
     ///
+    /// The countdown can also be started from outside with
+    /// <see cref="StartCountdown"/> (e.g. a failed reach for the key). It runs
+    /// once: whichever source comes first starts it, later calls are ignored.
+    /// <see cref="CanStartCountdown"/> can hold it back (e.g. until the session
+    /// has started); while it returns false, gaze on A is not accumulated.
+    ///
     /// If a <see cref="ChairNudge"/> is assigned, after a further
     /// <see cref="_nudgeDelaySeconds"/> it wiggles the chair every
     /// <see cref="_nudgeRepeatSeconds"/> until the hints are stopped.
@@ -109,13 +115,24 @@ namespace CognitiveVR.Interaction
         private float _continuousGazeTime;
         private float _lastTriggerDistance;
         private bool _gazeRegistered;
-        private bool _delayScheduled;
+        private bool _countdownStarted;
+        private string _countdownSource = "";
         private bool _glowsEnabled;
         private bool _stopped;
         private int _nudgeCount;
         private Coroutine _hintRoutine;
 
+        /// <summary>
+        /// Optional gate. While set and returning false, gaze on A is not counted
+        /// and <see cref="StartCountdown"/> does nothing. Null = always allowed.
+        /// </summary>
+        public Func<bool> CanStartCountdown { get; set; }
+
         public bool IsGazeRegistered => _gazeRegistered;
+        /// <summary>True once the hint countdown has started (by gaze or from outside).</summary>
+        public bool IsCountdownStarted => _countdownStarted;
+        /// <summary>What started the countdown ("gaze", "reach", ...). Empty until then.</summary>
+        public string CountdownSource => _countdownSource;
         public bool IsTargetEnabled => _targetGazeGlow != null && _targetGazeGlow.enabled;
         public bool AreGlowsEnabled => _glowsEnabled;
         public int NudgeCount => _nudgeCount;
@@ -214,6 +231,12 @@ namespace CognitiveVR.Interaction
             if (_stopped || _gazeRegistered)
                 return;
 
+            if (!IsCountdownAllowed())
+            {
+                _continuousGazeTime = 0f;
+                return;
+            }
+
             UpdateTriggerGaze();
         }
 
@@ -276,11 +299,34 @@ namespace CognitiveVR.Interaction
 
             TriggerGazeRegistered?.Invoke(_lastTriggerDistance);
 
-            if (!_delayScheduled)
+            StartCountdown("gaze");
+        }
+
+        /// <summary>
+        /// Starts the hint countdown if it hasn't started yet. Returns true only
+        /// for the call that actually started it; false if it is already running,
+        /// the hints were stopped, or <see cref="CanStartCountdown"/> says no.
+        /// </summary>
+        public bool StartCountdown(string source)
+        {
+            if (_stopped || _countdownStarted || !isActiveAndEnabled || !IsCountdownAllowed())
+                return false;
+
+            _countdownStarted = true;
+            _countdownSource = source ?? "";
+
+            if (_verboseLogs)
             {
-                _delayScheduled = true;
-                _hintRoutine = StartCoroutine(RunHintSequence());
+                Debug.Log($"[{nameof(DelayedGazeGlow)}] Countdown started by '{_countdownSource}'. Hints in {_delaySeconds:0.##}s.", this);
             }
+
+            _hintRoutine = StartCoroutine(RunHintSequence());
+            return true;
+        }
+
+        private bool IsCountdownAllowed()
+        {
+            return CanStartCountdown == null || CanStartCountdown();
         }
 
         private IEnumerator RunHintSequence()

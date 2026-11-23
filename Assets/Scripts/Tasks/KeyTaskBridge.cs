@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -32,9 +33,16 @@ namespace CognitiveVR.Tasks
     ///   key_task_solved       - the task is done. value = t_logger_s. See
     ///                           RegisterSolved for the field list.
     ///   key_first_seen        - the player looked at the key for the first
-    ///                           time. This STARTS the hint countdown.
+    ///                           time (after Start). This starts the hint
+    ///                           countdown unless a failed reach already did.
     ///                           value = logger time. details carry distance_m=
     ///                           and hint_delay_s= (seconds until the first hint).
+    ///   key_hint_countdown_started - a failed reach started the hint countdown
+    ///                           before any gaze did: every tracked hand left the
+    ///                           KeyReachZone while the key was still on the shelf.
+    ///                           Logged once at most; not logged when gaze started it.
+    ///                           value = logger time. details: source=reach|
+    ///                           seconds_inside=|hint_delay_s=.
     ///   key_hint_started      - the hint delay elapsed; chair (and umbrella)
     ///                           started glowing (first hint).
     ///                           details: hint=glow|since_first_seen_s=.
@@ -67,11 +75,15 @@ namespace CognitiveVR.Tasks
         [Tooltip("Name used in the 'object' column of the CSV rows.")]
         [SerializeField] private string logName = "KeyTask";
 
+        [Tooltip("After every hand leaves the reach zone, wait this long and check again that the key is still on the shelf before starting the hint countdown (the hand may be carrying the key out).")]
+        [SerializeField] private float reachFailGraceSeconds = 0.5f;
+
         private static readonly CultureInfo Inv = CultureInfo.InvariantCulture;
 
         private readonly KeyTaskSummary _summary = new KeyTaskSummary();
 
         private float _currentZoneEnterAt = -1f;
+        private Coroutine _reachFailRoutine;
 
         private static ExperimentDataManager Manager => ExperimentDataManager.Instance;
 
@@ -106,11 +118,16 @@ namespace CognitiveVR.Tasks
                 hintRelay.ChairNudged += HandleChairNudged;
                 hintRelay.HintsStopped += HandleHintsStopped;
                 hintRelay.ChairNudgeSkipped += HandleChairNudgeSkipped;
+
+                // No hints during the instructions. No manager = no gate, so a
+                // scene without one still gets its hints.
+                hintRelay.CanStartCountdown = () => Manager == null || Manager.HasSessionStarted;
             }
 
             if (reachZone != null)
             {
                 reachZone.ReachAttempt += HandleReachAttempt;
+                reachZone.HandsLeftZone += HandleHandsLeftReachZone;
             }
         }
 
@@ -138,12 +155,17 @@ namespace CognitiveVR.Tasks
                 hintRelay.ChairNudged -= HandleChairNudged;
                 hintRelay.HintsStopped -= HandleHintsStopped;
                 hintRelay.ChairNudgeSkipped -= HandleChairNudgeSkipped;
+                hintRelay.CanStartCountdown = null;
             }
 
             if (reachZone != null)
             {
                 reachZone.ReachAttempt -= HandleReachAttempt;
+                reachZone.HandsLeftZone -= HandleHandsLeftReachZone;
             }
+
+            // Coroutines stop with the component; forget the handle too.
+            _reachFailRoutine = null;
         }
 
         // ------------------------------------------------------------------ //
@@ -235,6 +257,14 @@ namespace CognitiveVR.Tasks
 
             _summary.firstKeySeenAt = LoggerNow();
 
+            // The relay starts the countdown right after this event unless a
+            // failed reach already did.
+            if (hintRelay != null && !hintRelay.IsCountdownStarted)
+            {
+                _summary.hintCountdownStartedAt = _summary.firstKeySeenAt;
+                _summary.hintCountdownSource = "gaze";
+            }
+
             Manager?.Log("task", "key_first_seen", logName, _summary.firstKeySeenAt,
                 $"distance_m={distance.ToString("F2", Inv)}" +
                 (hintRelay != null ? $"|hint_delay_s={hintRelay.HintDelaySeconds.ToString("F1", Inv)}" : ""));
@@ -278,6 +308,51 @@ namespace CognitiveVR.Tasks
                 $"reason={reason}" +
                 $"|glows_shown={(_summary.hintGlowAt >= 0f ? 1 : 0)}" +
                 $"|nudges={_summary.chairNudgeCount}");
+        }
+
+        // Every tracked hand left the reach zone. If the key is still on the
+        // shelf, that was a failed reach and starts the hint countdown (no-op
+        // if gaze already started it). Tools leaving the zone don't count.
+        private void HandleHandsLeftReachZone(float secondsInside)
+        {
+            if (!CanTreatAsFailedReach()) return;
+            if (_reachFailRoutine != null) return; // one check at a time
+
+            _reachFailRoutine = StartCoroutine(ConfirmFailedReach(secondsInside));
+        }
+
+        private IEnumerator ConfirmFailedReach(float secondsInside)
+        {
+            // The hand may be carrying the key out: give the knock zone time
+            // to report KeyTakenByHand before deciding.
+            if (reachFailGraceSeconds > 0f)
+                yield return new WaitForSeconds(reachFailGraceSeconds);
+
+            _reachFailRoutine = null;
+
+            if (!CanTreatAsFailedReach()) yield break;
+            if (!hintRelay.StartCountdown("reach")) yield break;
+
+            _summary.hintCountdownStartedAt = LoggerNow();
+            _summary.hintCountdownSource = "reach";
+
+            Manager?.Log("task", "key_hint_countdown_started", logName, _summary.hintCountdownStartedAt,
+                $"source=reach" +
+                $"|seconds_inside={secondsInside.ToString("F2", Inv)}" +
+                $"|hint_delay_s={hintRelay.HintDelaySeconds.ToString("F1", Inv)}");
+        }
+
+        /// <summary>
+        /// True while a failed reach may still start the hints: the session has
+        /// started, the key is still on the shelf and the countdown hasn't begun.
+        /// </summary>
+        private bool CanTreatAsFailedReach()
+        {
+            if (hintRelay == null || hintRelay.IsCountdownStarted) return false;
+            if (!SessionStarted || _summary.solved) return false;
+            // The knock zone destroys itself once the key is knocked or taken.
+            if (keyZone == null || keyZone.IsConsumed) return false;
+            return true;
         }
 
         private void HandleReachAttempt(string objectName, int count)
@@ -409,6 +484,8 @@ namespace CognitiveVR.Tasks
 
             // Hints.
             public float firstKeySeenAt = -1f;   // first registered gaze on the key
+            public float hintCountdownStartedAt = -1f; // hint countdown began
+            public string hintCountdownSource = "";    // what started it: "gaze", "reach" or ""
             public float hintGlowAt = -1f;       // chair/umbrella glow turned on
             public int chairNudgeCount;          // times the chair wiggled
             public int chairNudgeSkippedCount;   // scheduled wiggles that did not happen

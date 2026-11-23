@@ -30,6 +30,13 @@ namespace CognitiveVR.Tasks
         /// <summary>Something entered the zone. Args = object name, total attempts so far.</summary>
         public event Action<string, int> ReachAttempt;
 
+        /// <summary>
+        /// Every tracked hand point has left the zone (none is inside any more).
+        /// Physics objects (umbrella, mop, ...) are not part of this. Arg = seconds
+        /// a hand was inside. Not raised when the zone is disabled.
+        /// </summary>
+        public event Action<float> HandsLeftZone;
+
         // Field keeps its old name so the hand anchors already assigned in the scene are kept.
         [Tooltip("Points polled every frame (e.g. LeftHandAnchor / RightHandAnchor, or the palm transforms). Need no colliders.")]
         [SerializeField] private List<Transform> hands = new List<Transform>();
@@ -53,6 +60,7 @@ namespace CognitiveVR.Tasks
         private float[] _lastExitAt;
         private int _attemptCount;
         private float _enabledAt;
+        private float _handsEnteredAt;
 
         // Physics objects: overlapping collider count and last exit, keyed by root.
         private readonly Dictionary<Transform, int> _overlaps = new Dictionary<Transform, int>();
@@ -102,6 +110,8 @@ namespace CognitiveVR.Tasks
         {
             if (_zone == null || !_zone.enabled) return;
 
+            bool wasAnyHandInside = AnyHandInside();
+
             for (int i = 0; i < hands.Count; i++)
             {
                 Transform hand = hands[i];
@@ -125,6 +135,32 @@ namespace CognitiveVR.Tasks
                     SetOutside(i);
                 }
             }
+
+            bool isAnyHandInside = AnyHandInside();
+            if (!wasAnyHandInside && isAnyHandInside)
+            {
+                _handsEnteredAt = Time.time;
+            }
+            else if (wasAnyHandInside && !isAnyHandInside)
+            {
+                float secondsInside = Time.time - _handsEnteredAt;
+
+                if (enableDebugLogs)
+                {
+                    Debug.Log($"[{nameof(KeyReachZone)}] All hands left the zone after {secondsInside:0.##}s.", this);
+                }
+
+                HandsLeftZone?.Invoke(secondsInside);
+            }
+        }
+
+        private bool AnyHandInside()
+        {
+            for (int i = 0; i < _inside.Length; i++)
+            {
+                if (_inside[i]) return true;
+            }
+            return false;
         }
 
         // ------------------------------------------------------------------ //
