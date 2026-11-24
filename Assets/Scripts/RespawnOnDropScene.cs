@@ -90,6 +90,17 @@ namespace Oculus.Interaction.Samples
             }
         }
 
+        /// <summary>
+        /// Makes the current pose the respawn pose (e.g. after a script moved the
+        /// object to its real starting place, like the key after shelf calibration).
+        /// </summary>
+        public void CaptureCurrentPose()
+        {
+            _initialPosition = transform.position;
+            _initialRotation = transform.rotation;
+            _initialScale = transform.localScale;
+        }
+
         public void Respawn()
         {
             transform.position = _initialPosition;

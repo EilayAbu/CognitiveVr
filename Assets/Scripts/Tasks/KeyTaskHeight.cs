@@ -119,7 +119,12 @@ namespace CognitiveVR.Tasks
             var body = key.GetComponent<Rigidbody>();
             if (body != null) body.position = key.position;
             Physics.SyncTransforms();
-            key.GetComponent<RespawnableObject>()?.CaptureHome();
+            // TryGetComponent, not GetComponent()?. : in the Editor a missing
+            // component comes back as a fake null that ?. does not catch.
+            if (key.TryGetComponent(out RespawnableObject respawnable)) respawnable.CaptureHome();
+            // The key in MainScene uses RespawnOnDropScene, not RespawnableObject.
+            if (key.TryGetComponent(out Oculus.Interaction.Samples.RespawnOnDropScene dropRespawn))
+                dropRespawn.CaptureCurrentPose();
             IsCalibrated = true;
             Debug.Log($"[KeyTaskHeight] Calibrated: eyes {eyeHeightAboveRig:F2} m above the rig, " +
                       $"shelf surface at {surfaceY:F2} m (moved {deltaY:+0.00;-0.00} m).", this);

@@ -355,9 +355,13 @@ namespace CognitiveVR.Tasks
             return true;
         }
 
-        private void HandleReachAttempt(string objectName, int count)
+        private void HandleReachAttempt(string objectName, int zoneCount)
         {
-            _summary.reachAttemptCount = count;
+            // Like the stool route: reaching during the instructions is not an attempt.
+            // Count here, not with the zone's counter, so attempt=1 is the first one after Start.
+            if (!SessionStarted) return;
+
+            int count = ++_summary.reachAttemptCount;
             if (_summary.firstReachAttemptAt < 0f)
                 _summary.firstReachAttemptAt = LoggerNow();
 
