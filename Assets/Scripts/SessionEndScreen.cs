@@ -39,9 +39,9 @@ namespace CognitiveVR.UI
 
         [Header("Message")]
         [TextArea(2, 4)]
-        [SerializeField] private string message = "כל הכבוד, סיימתם!";
+        [SerializeField] private string message = "כל הכבוד סיימתם!";
         [TextArea(1, 3)]
-        [SerializeField] private string subMessage = "אפשר להוריד את המשקפיים";
+        [SerializeField] private string subMessage = "אתם יכולים להוריד את המשקף";
         [SerializeField] private bool showMessage = true;
         [SerializeField] private AudioSource audioEnd;
 
@@ -178,6 +178,15 @@ namespace CognitiveVR.UI
             go.transform.SetParent(parent, false);
             var tmp = go.AddComponent<TextMeshProUGUI>();
             if (font != null) tmp.font = font;
+            // TMP multiplies the vertex color by the material's Face Color. Some font
+            // materials (e.g. Heebo-Regular SDF) have a black Face Color, which would
+            // draw the text black-on-black here, so use a white copy of the material.
+            if (tmp.fontSharedMaterial != null && tmp.fontSharedMaterial.HasProperty(ShaderUtilities.ID_FaceColor))
+            {
+                var mat = new Material(tmp.fontSharedMaterial);
+                mat.SetColor(ShaderUtilities.ID_FaceColor, Color.white);
+                tmp.fontSharedMaterial = mat;
+            }
             tmp.fontSize = size;
             tmp.fontStyle = bold ? FontStyles.Bold : FontStyles.Normal;
             tmp.isRightToLeftText = rightToLeft;
