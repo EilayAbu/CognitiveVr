@@ -490,6 +490,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2093596867}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &67123302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 67123303}
+  m_Layer: 0
+  m_Name: TableOutOfBounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &67123303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67123302}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1713905624}
+  - {fileID: 1676593349}
+  - {fileID: 1112660015}
+  - {fileID: 1403125640}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &76289347
 GameObject:
   m_ObjectHideFlags: 0
@@ -6244,7 +6279,10 @@ PrefabInstance:
     - {fileID: 6118556210595652, guid: 63b105a6ee122134295e170669579854, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1571555043832058641, guid: 63b105a6ee122134295e170669579854, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 333668711}
   m_SourcePrefab: {fileID: 100100000, guid: 63b105a6ee122134295e170669579854, type: 3}
 --- !u!4 &333668708 stripped
 Transform:
@@ -6256,12 +6294,40 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6376031429322947806, guid: 63b105a6ee122134295e170669579854, type: 3}
   m_PrefabInstance: {fileID: 333668707}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 333668710}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &333668710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1571555043832058641, guid: 63b105a6ee122134295e170669579854, type: 3}
+  m_PrefabInstance: {fileID: 333668707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &333668711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333668710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  enableDebugLogs: 0
 --- !u!1 &335478959
 GameObject:
   m_ObjectHideFlags: 0
@@ -11939,7 +12005,10 @@ PrefabInstance:
     - {fileID: 491806470335484173, guid: 975bcaf61a9872e488aa68d572fd4fb4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1371851131998176600, guid: 975bcaf61a9872e488aa68d572fd4fb4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 619580807}
   m_SourcePrefab: {fileID: 100100000, guid: 975bcaf61a9872e488aa68d572fd4fb4, type: 3}
 --- !u!4 &619580804 stripped
 Transform:
@@ -11951,12 +12020,40 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6825967642682616471, guid: 975bcaf61a9872e488aa68d572fd4fb4, type: 3}
   m_PrefabInstance: {fileID: 619580803}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 619580806}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &619580806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1371851131998176600, guid: 975bcaf61a9872e488aa68d572fd4fb4, type: 3}
+  m_PrefabInstance: {fileID: 619580803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &619580807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619580806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  enableDebugLogs: 0
 --- !u!1 &622484377
 GameObject:
   m_ObjectHideFlags: 0
@@ -16675,6 +16772,7 @@ GameObject:
   - component: {fileID: 877336781}
   - component: {fileID: 877336780}
   - component: {fileID: 877336787}
+  - component: {fileID: 877336788}
   m_Layer: 0
   m_Name: '[BuildingBlock] Cube'
   m_TagString: Untagged
@@ -16861,6 +16959,29 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _sleepFrames: 0
+--- !u!114 &877336788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877336779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  enableDebugLogs: 0
 --- !u!1 &881147390
 GameObject:
   m_ObjectHideFlags: 0
@@ -20840,6 +20961,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 801821132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1112660014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1112660015}
+  - component: {fileID: 1112660016}
+  m_Layer: 0
+  m_Name: OOB_Front
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1112660015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112660014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.35, y: 2, z: -13.1}
+  m_LocalScale: {x: 3.7, y: 8, z: 23.8}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 67123303}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1112660016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112660014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647a37c45a3c2a34b992a201bc51f5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.OutOfBoundsVolume
+  padding: 0
+  enableFloorCheck: 1
+  respawnBelowWorldY: -0.5
+  enableDebugLogs: 0
 --- !u!1 &1114215736
 GameObject:
   m_ObjectHideFlags: 0
@@ -27941,6 +28110,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 801821132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1403125639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403125640}
+  - component: {fileID: 1403125641}
+  m_Layer: 0
+  m_Name: OOB_Back
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1403125640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403125639}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.35, y: 2, z: 13.7}
+  m_LocalScale: {x: 3.7, y: 8, z: 22.6}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 67123303}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1403125641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403125639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647a37c45a3c2a34b992a201bc51f5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.OutOfBoundsVolume
+  padding: 0
+  enableFloorCheck: 1
+  respawnBelowWorldY: -0.5
+  enableDebugLogs: 0
 --- !u!1 &1404431630
 GameObject:
   m_ObjectHideFlags: 0
@@ -32625,6 +32842,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666255228}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1676593348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1676593349}
+  - component: {fileID: 1676593350}
+  m_Layer: 0
+  m_Name: OOB_Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1676593349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676593348}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.6, y: 2, z: 0}
+  m_LocalScale: {x: 22.8, y: 8, z: 50}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 67123303}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1676593350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676593348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647a37c45a3c2a34b992a201bc51f5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.OutOfBoundsVolume
+  padding: 0
+  enableFloorCheck: 1
+  respawnBelowWorldY: -0.5
+  enableDebugLogs: 0
 --- !u!1 &1677968015
 GameObject:
   m_ObjectHideFlags: 0
@@ -33132,6 +33397,54 @@ MonoBehaviour:
   swingAmount: 1
   defaultDuration: 1.5
   defaultSpeed: 50
+--- !u!1 &1713905623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1713905624}
+  - component: {fileID: 1713905625}
+  m_Layer: 0
+  m_Name: OOB_Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1713905624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713905623}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.25, y: 2, z: 0}
+  m_LocalScale: {x: 23.5, y: 8, z: 50}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 67123303}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1713905625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713905623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647a37c45a3c2a34b992a201bc51f5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.OutOfBoundsVolume
+  padding: 0
+  enableFloorCheck: 1
+  respawnBelowWorldY: -0.5
+  enableDebugLogs: 0
 --- !u!1 &1731191858
 GameObject:
   m_ObjectHideFlags: 0
@@ -33750,6 +34063,7 @@ GameObject:
   - component: {fileID: 1765608402}
   - component: {fileID: 1765608409}
   - component: {fileID: 1765608410}
+  - component: {fileID: 1765608411}
   m_Layer: 0
   m_Name: '[BuildingBlock] Cube'
   m_TagString: Untagged
@@ -34001,6 +34315,29 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _sleepFrames: 0
+--- !u!114 &1765608411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765608401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  enableDebugLogs: 0
 --- !u!1 &1766281992
 GameObject:
   m_ObjectHideFlags: 0
@@ -37093,7 +37430,10 @@ PrefabInstance:
     - {fileID: 3779340340562844243, guid: 31e61fab4487ba940a445bdfb90c53bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2425221604022717958, guid: 31e61fab4487ba940a445bdfb90c53bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1989395020}
   m_SourcePrefab: {fileID: 100100000, guid: 31e61fab4487ba940a445bdfb90c53bb, type: 3}
 --- !u!4 &1989395017 stripped
 Transform:
@@ -37105,12 +37445,40 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7789925545670664649, guid: 31e61fab4487ba940a445bdfb90c53bb, type: 3}
   m_PrefabInstance: {fileID: 1989395016}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1989395019}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1989395019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2425221604022717958, guid: 31e61fab4487ba940a445bdfb90c53bb, type: 3}
+  m_PrefabInstance: {fileID: 1989395016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1989395020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989395019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  enableDebugLogs: 0
 --- !u!114 &1997362764 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2796234437428112013, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
@@ -37473,7 +37841,10 @@ PrefabInstance:
     - {fileID: 922687626164847997, guid: b40c01843778b2446b1d3dcd5e5fdc8f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1807350511420674344, guid: b40c01843778b2446b1d3dcd5e5fdc8f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020489801}
   m_SourcePrefab: {fileID: 100100000, guid: b40c01843778b2446b1d3dcd5e5fdc8f, type: 3}
 --- !u!4 &2020489798 stripped
 Transform:
@@ -37485,12 +37856,40 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6099986637667303143, guid: b40c01843778b2446b1d3dcd5e5fdc8f, type: 3}
   m_PrefabInstance: {fileID: 2020489797}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2020489800}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2020489800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1807350511420674344, guid: b40c01843778b2446b1d3dcd5e5fdc8f, type: 3}
+  m_PrefabInstance: {fileID: 2020489797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2020489801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020489800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  enableDebugLogs: 0
 --- !u!114 &2025205836 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 824113091687133964, guid: bd2ff5d780c79cf4c8e7c1e2afd07b1a, type: 3}
@@ -37840,7 +38239,10 @@ PrefabInstance:
     - {fileID: 7617022833338360681, guid: e3b826e8a7103bc49af231259b274c97, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8966646920969844540, guid: e3b826e8a7103bc49af231259b274c97, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2047319332}
   m_SourcePrefab: {fileID: 100100000, guid: e3b826e8a7103bc49af231259b274c97, type: 3}
 --- !u!4 &2047319329 stripped
 Transform:
@@ -37852,12 +38254,40 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3592909260793682163, guid: e3b826e8a7103bc49af231259b274c97, type: 3}
   m_PrefabInstance: {fileID: 2047319328}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2047319331}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2047319331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8966646920969844540, guid: e3b826e8a7103bc49af231259b274c97, type: 3}
+  m_PrefabInstance: {fileID: 2047319328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2047319332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047319331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713403e3eafe004439a3c41075523885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CognitiveVR.Core.RespawnableObject
+  checkInterval: 0.25
+  useColliderCenter: 1
+  respawnOnStartIfOutOfBounds: 0
+  overrideFloorY: 0
+  floorYOverride: -0.5
+  respawnCooldown: 0.5
+  sleepFrames: 3
+  whenRespawned:
+    m_PersistentCalls:
+      m_Calls: []
+  enableDebugLogs: 0
 --- !u!1 &2052102660
 GameObject:
   m_ObjectHideFlags: 0
@@ -47760,3 +48190,4 @@ SceneRoots:
   - {fileID: 843118113}
   - {fileID: 933953817}
   - {fileID: 445865372}
+  - {fileID: 67123303}
